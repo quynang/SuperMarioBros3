@@ -272,12 +272,11 @@ void CPlayScene::Update(DWORD dt)
 
 void CPlayScene::Render()
 {
-
+	CMap::GetInstance()->Render();
 
 	for (int i = 0; i < objects.size(); i++)
 		objects[i]->Render();
 	
-	CMap::GetInstance()->Render();
 }
 
 /*

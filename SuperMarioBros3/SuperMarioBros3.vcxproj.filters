@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Animations.cpp" />
+    <ClCompile Include="Brick.cpp" />
+    <ClCompile Include="Koopas.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Portal.cpp" />
+    <ClCompile Include="TileSet.cpp" />
+    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Goomba.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mario.cpp" />
+    <ClCompile Include="PlayScence.cpp" />
+    <ClCompile Include="Scence.cpp" />
+    <ClCompile Include="Sprites.cpp" />
+    <ClCompile Include="Textures.cpp" />
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticObject.cpp">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Animations.h" />
+    <ClInclude Include="Brick.h" />
+    <ClInclude Include="Koopas.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="Portal.h" />
+    <ClInclude Include="TileSet.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Goomba.h" />
+    <ClInclude Include="KeyEventHandler.h" />
+    <ClInclude Include="Mario.h" />
+    <ClInclude Include="PlayScence.h" />
+    <ClInclude Include="Scence.h" />
+    <ClInclude Include="Sprites.h" />
+    <ClInclude Include="Textures.h" />
+    <ClInclude Include="GameObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticObject.h">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{84e44e2a-876d-407a-ba08-726429b09244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\StaticObjects">
+      <UniqueIdentifier>{f3f0c694-6a5b-4284-8fa1-2893e88b5419}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
