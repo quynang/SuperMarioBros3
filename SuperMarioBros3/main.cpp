@@ -51,18 +51,9 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 /*
-	Update world status for this frame
-	dt: time period between beginning of last frame and beginning of this frame
-*/
-void Update(DWORD dt)
-{
-	CGame::GetInstance()->GetCurrentScene()->Update(dt);
-}
-
-/*
 	Render a frame 
 */
-void Render()
+void UpdateThenRender(DWORD dt)
 {
 	LPDIRECT3DDEVICE9 d3ddv = game->GetDirect3DDevice();
 	LPDIRECT3DSURFACE9 bb = game->GetBackBuffer();
@@ -74,6 +65,8 @@ void Render()
 		d3ddv->ColorFill(bb, NULL, BACKGROUND_COLOR);
 
 		spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
+
+		CGame::GetInstance()->GetCurrentScene()->Update(dt);
 
 		CGame::GetInstance()->GetCurrentScene()->Render();
 
@@ -160,9 +153,7 @@ int Run()
 			frameStart = now;
 
 			game->ProcessKeyboard();
-			
-			Update(dt);
-			Render();
+			UpdateThenRender(dt);
 		}
 		else
 			Sleep(tickPerFrame - dt);	
