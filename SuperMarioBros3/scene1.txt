@@ -84,7 +84,6 @@ map-world-1-1.txt
 702	30003	100
 
 
-
 #
 # id	ani1	ani2	ani3
 #

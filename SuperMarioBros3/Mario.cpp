@@ -1,3 +1,4 @@
+#pragma once
 #include <algorithm>
 #include <assert.h>
 #include "Utils.h"
@@ -7,6 +8,7 @@
 
 #include "Goomba.h"
 #include "Portal.h"
+#include "IdleState.h"
 
 CMario::CMario(float x, float y) : CGameObject()
 {
@@ -17,13 +19,29 @@ CMario::CMario(float x, float y) : CGameObject()
 	start_x = x; 
 	start_y = y; 
 	this->x = x; 
-	this->y = y; 
+	this->y = y;
+	marioState = new IdleState();
+}
+
+void CMario::SetAni(int ani) {
+	this->ani = ani;
+}
+
+void CMario::handleOnKeyUp(int keyCode) {
+	marioState->handleOnKeyUp(*this, keyCode);
+}
+void CMario::handleOnKeyDown(int keyCode) {
+	marioState->handleOnKeyDown(*this, keyCode);
+}
+void CMario::handleKeyState(BYTE* states) {
+	marioState->handleKeyState(*this, states);
 }
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
 	// Calculate dx, dy 
 	CGameObject::Update(dt);
+	marioState->update(*this);
 
 	// Simple fall down
 	vy += MARIO_GRAVITY*dt;
@@ -122,7 +140,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 void CMario::Render()
 {
-	int ani = -1;
+	/*int ani = -1;
 	if (state == MARIO_STATE_DIE)
 		ani = MARIO_ANI_DIE;
 	else
@@ -147,14 +165,14 @@ void CMario::Render()
 		else if (vx > 0)
 			ani = MARIO_ANI_SMALL_WALKING_RIGHT;
 		else ani = MARIO_ANI_SMALL_WALKING_LEFT;
-	}
+	}*/
 
 	int alpha = 255;
 	if (untouchable) alpha = 128;
 
 	animation_set->at(ani)->Render(x, y, alpha);
 
-	RenderBoundingBox();
+	//RenderBoundingBox();
 }
 
 void CMario::SetState(int state)

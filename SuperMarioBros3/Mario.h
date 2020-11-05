@@ -1,5 +1,8 @@
 #pragma once
 #include "GameObject.h"
+#include "MarioState.h"
+
+class MarioState;
 
 #define MARIO_WALKING_SPEED		0.15f 
 //0.1f
@@ -45,12 +48,21 @@ class CMario : public CGameObject
 	DWORD untouchable_start;
 
 	float start_x;			// initial position of Mario at scene
-	float start_y; 
-public: 
+	float start_y;
+	MarioState * marioState;
+	friend class WalkingState;
+	friend class IdleState;
+
+public:
+	int ani = -1;
 	CMario(float x = 0.0f, float y = 0.0f);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *colliable_objects = NULL);
 	virtual void Render();
-
+	void handleOnKeyUp(int keyCode);
+	void handleOnKeyDown(int keyCode);
+	void handleKeyState(BYTE* states);
+	void SetAni(int ani);
+	void ChangeState(MarioState* marioState) { marioState = marioState; }
 	void SetState(int state);
 	void SetLevel(int l) { level = l; }
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount(); }
