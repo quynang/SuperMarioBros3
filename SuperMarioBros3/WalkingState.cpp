@@ -37,6 +37,10 @@ void WalkingState::handleKeyState(CMario& mario, BYTE* states) {
 		mario.nx = -1;
 	}
 
+	if ((states[DIK_A] & 0x80) > 0) {
+		mario.vx = 1.5 * mario.vx;
+	}
+
 };
 
 void WalkingState::update(CMario& mario, DWORD dt) {
