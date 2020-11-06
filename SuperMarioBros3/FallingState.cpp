@@ -20,7 +20,28 @@ void FallingState::update(CMario& mario, DWORD dt) {
 	mario.current_state = FALLING;
 
 	if (mario.nx > 0)
-		mario.SetAni(MARIO_ANI_BIG_FALLING_RIGHT);
-	else 
-		mario.SetAni(MARIO_ANI_BIG_FALLING_LEFT);
+	{
+		switch (mario.type)
+		{
+			case MARIO_TYPE_SMALL:
+			mario.SetAni(MARIO_ANI_SMALL_FALLING_RIGHT);
+			break;
+			case MARIO_TYPE_BIG:
+			mario.SetAni(MARIO_ANI_BIG_FALLING_RIGHT);
+			break;
+		}
+	}
+		
+	else
+	{
+		switch (mario.type)
+		{
+			case MARIO_TYPE_SMALL:
+			mario.SetAni(MARIO_ANI_SMALL_FALLING_LEFT);
+			break;
+			case MARIO_TYPE_BIG:
+			mario.SetAni(MARIO_ANI_BIG_FALLING_LEFT);
+			break;
+		}
+	}
 };

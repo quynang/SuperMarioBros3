@@ -27,11 +27,6 @@ void JumpingState::update(CMario& mario, DWORD dt) {
 	mario.current_state = JUMPING;
 	mario.vy = -MARIO_JUMP_SPEED_Y;
 
-	if (mario.nx > 0)
-		mario.SetAni(MARIO_ANI_BIG_JUMPING_RIGHT);
-	else
-		mario.SetAni(MARIO_ANI_BIG_JUMPING_LEFT);
-
 	//Điều chỉnh lại dy để đảm bảo rằng mario sẽ nhảy chính xác một khoảng bằng MAX_CHARGE.
 	if (abs(mario.dy) + chargeY_ >= MAX_CHARGE) {
 		mario.dy = -(MAX_CHARGE - chargeY_); //Giá trị âm bởi vì lúc này mario vẫn đang nhảy lên.
@@ -40,6 +35,33 @@ void JumpingState::update(CMario& mario, DWORD dt) {
 	}
 	
 	chargeY_ += abs(mario.dy);
+
+
+	if (mario.nx > 0)
+	{
+		switch (mario.type)
+		{
+			case MARIO_TYPE_SMALL:
+			mario.SetAni(MARIO_ANI_SMALL_JUMPING_RIGHT);
+			break;
+			case MARIO_TYPE_BIG:
+			mario.SetAni(MARIO_ANI_BIG_JUMPING_RIGHT);
+			break;
+		}
+	}
+		
+	else
+	{
+		switch (mario.type)
+		{
+			case MARIO_TYPE_SMALL:
+			mario.SetAni(MARIO_ANI_SMALL_JUMPING_LEFT);
+			break;
+			case MARIO_TYPE_BIG:
+			mario.SetAni(MARIO_ANI_BIG_JUMPING_LEFT);
+			break;
+		}
+	}
 
 	
 };

@@ -14,10 +14,8 @@
 
 CMario::CMario(float x, float y) : CGameObject()
 {
-	level = MARIO_LEVEL_BIG;
+	type = MARIO_TYPE_SMALL;
 	untouchable = 0;
-	SetState(MARIO_STATE_IDLE);
-
 	start_x = x; 
 	start_y = y; 
 	this->x = x; 
@@ -117,9 +115,9 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 					{
 						if (goomba->GetState()!=GOOMBA_STATE_DIE)
 						{
-							if (level > MARIO_LEVEL_SMALL)
+							if (type > MARIO_TYPE_SMALL)
 							{
-								level = MARIO_LEVEL_SMALL;
+								type = MARIO_TYPE_SMALL;
 								StartUntouchable();
 							}
 							else 
@@ -183,7 +181,7 @@ void CMario::GetBoundingBox(float &left, float &top, float &right, float &bottom
 	left = x;
 	top = y; 
 
-	if (level==MARIO_LEVEL_BIG)
+	if (type == MARIO_TYPE_BIG)
 	{
 		right = x + MARIO_BIG_BBOX_WIDTH;
 		bottom = y + MARIO_BIG_BBOX_HEIGHT;
@@ -201,7 +199,7 @@ void CMario::GetBoundingBox(float &left, float &top, float &right, float &bottom
 void CMario::Reset()
 {
 	SetState(MARIO_STATE_IDLE);
-	SetLevel(MARIO_LEVEL_BIG);
+	SetType(MARIO_TYPE_BIG);
 	SetPosition(start_x, start_y);
 	SetSpeed(0, 0);
 }

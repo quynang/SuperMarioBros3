@@ -44,10 +44,31 @@ void WalkingState::handleKeyState(CMario& mario, BYTE* states) {
 
 void WalkingState::update(CMario& mario, DWORD dt) {
 	mario.current_state = WALKING;
-	if (mario.nx > 0)
-		mario.SetAni(MARIO_ANI_BIG_WALKING_RIGHT);
-	else
-		mario.SetAni(MARIO_ANI_BIG_WALKING_LEFT);
-
 	mario.vx = MARIO_WALKING_SPEED * mario.nx;
+
+	if (mario.nx > 0)
+	{
+		switch (mario.type)
+		{
+			case MARIO_TYPE_SMALL:
+			mario.SetAni(MARIO_ANI_SMALL_WALKING_RIGHT);
+			break;
+			case MARIO_TYPE_BIG:
+			mario.SetAni(MARIO_ANI_BIG_WALKING_RIGHT);
+			break;
+		}
+	}
+		
+	else
+	{
+		switch (mario.type)
+		{
+			case MARIO_TYPE_SMALL:
+			mario.SetAni(MARIO_ANI_SMALL_WALKING_LEFT);
+			break;
+			case MARIO_TYPE_BIG:
+			mario.SetAni(MARIO_ANI_BIG_WALKING_LEFT);
+			break;
+		}
+	}
 };

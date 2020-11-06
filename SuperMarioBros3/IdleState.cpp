@@ -36,8 +36,29 @@ void IdleState::update(CMario& mario, DWORD dt) {
 	mario.current_state = IDLE;
 
 	if (mario.nx > 0)
-		mario.SetAni(MARIO_ANI_BIG_IDLE_RIGHT);
+	{
+		switch (mario.type)
+		{
+			case MARIO_TYPE_SMALL:
+			mario.SetAni(MARIO_ANI_SMALL_IDLE_RIGHT);
+			break;
+			case MARIO_TYPE_BIG:
+			mario.SetAni(MARIO_ANI_BIG_IDLE_RIGHT);
+			break;
+		}
+	}
+		
 	else
-		mario.SetAni(MARIO_ANI_BIG_IDLE_LEFT);
+	{
+		switch (mario.type)
+		{
+			case MARIO_TYPE_SMALL:
+			mario.SetAni(MARIO_ANI_SMALL_IDLE_LEFT);
+			break;
+			case MARIO_TYPE_BIG:
+			mario.SetAni(MARIO_ANI_BIG_IDLE_LEFT);
+			break;
+		}
+	}
 
 };
