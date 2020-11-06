@@ -36,6 +36,9 @@
     <ClCompile Include="Ground.cpp">
       <Filter>GameObjects\StaticObjects</Filter>
     </ClCompile>
+    <ClCompile Include="BigBox.cpp">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -74,6 +77,9 @@
       <Filter>GameObjects\Player</Filter>
     </ClInclude>
     <ClInclude Include="Ground.h">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="BigBox.h">
       <Filter>GameObjects\StaticObjects</Filter>
     </ClInclude>
   </ItemGroup>

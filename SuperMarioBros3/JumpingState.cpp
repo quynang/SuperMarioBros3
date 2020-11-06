@@ -17,10 +17,15 @@ void JumpingState::handleKeyState(CMario& mario, BYTE* states) {
 };
 
 void JumpingState::update(CMario& mario, DWORD dt) {
-
+	
 	/*
 		ChargeY_ là khoảng đường nhảy được trước đó tính tới thời điểm hàm update này được goị
 	*/
+	if (mario.current_state == WALKING)
+		mario.vx = MARIO_WALKING_SPEED*mario.nx;
+
+	mario.current_state = JUMPING;
+	mario.vy = -MARIO_JUMP_SPEED_Y;
 
 	if (mario.nx > 0)
 		mario.SetAni(MARIO_ANI_BIG_JUMPING_RIGHT);
@@ -32,12 +37,9 @@ void JumpingState::update(CMario& mario, DWORD dt) {
 		mario.dy = -(MAX_CHARGE - chargeY_); //Giá trị âm bởi vì lúc này mario vẫn đang nhảy lên.
 		mario.vy = 0;
 		mario.marioState = new FallingState();
-	} else {
-
-		mario.vy = -MARIO_JUMP_SPEED_Y;
 	}
 	
 	chargeY_ += abs(mario.dy);
 
-
+	
 };

@@ -6,7 +6,7 @@ class MarioState;
    
 #define MARIO_WALKING_SPEED		0.3f 
 //0.1f
-#define MARIO_JUMP_SPEED_Y		0.7f
+#define MARIO_JUMP_SPEED_Y		0.9f
 #define MARIO_JUMP_DEFLECT_SPEED 0.2f
 #define MARIO_GRAVITY			0.01f
 #define MARIO_DIE_DEFLECT_SPEED	 0.5f
@@ -48,7 +48,10 @@ class MarioState;
 
 #define MARIO_UNTOUCHABLE_TIME 5000
 
-
+#define IDLE 1001
+#define FALLING 1002
+#define WALKING 1003
+#define JUMPING	1004
 class CMario : public CGameObject
 {
 	int level;
@@ -62,7 +65,7 @@ class CMario : public CGameObject
 	friend class IdleState;
 	friend class JumpingState;
 	friend class FallingState;
-
+	int current_state;
 public:
 	int ani = -1;
 	CMario(float x = 0.0f, float y = 0.0f);

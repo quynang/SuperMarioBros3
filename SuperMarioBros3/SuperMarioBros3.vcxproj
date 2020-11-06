@@ -126,6 +126,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animations.cpp" />
+    <ClCompile Include="BigBox.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="FallingState.cpp" />
     <ClCompile Include="Ground.cpp" />
@@ -149,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
+    <ClInclude Include="BigBox.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="FallingState.h" />
     <ClInclude Include="Ground.h" />

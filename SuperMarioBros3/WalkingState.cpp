@@ -40,11 +40,10 @@ void WalkingState::handleKeyState(CMario& mario, BYTE* states) {
 	if ((states[DIK_A] & 0x80) > 0) {
 		mario.vx = 1.5 * mario.vx;
 	}
-
 };
 
 void WalkingState::update(CMario& mario, DWORD dt) {
-	
+	mario.current_state = WALKING;
 	if (mario.nx > 0)
 		mario.SetAni(MARIO_ANI_BIG_WALKING_RIGHT);
 	else

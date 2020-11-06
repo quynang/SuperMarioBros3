@@ -5,11 +5,12 @@
 
 #include "Mario.h"
 #include "Game.h"
-
+#include "BigBox.h"
 #include "Goomba.h"
 #include "Portal.h"
 #include "IdleState.h"
 #include "FallingState.h"
+#include "Ground.h"
 
 CMario::CMario(float x, float y) : CGameObject()
 {
@@ -40,8 +41,8 @@ void CMario::handleKeyState(BYTE* states) {
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
-
 	CGameObject::Update(dt);
+	vy += MARIO_GRAVITY * dt;
 	marioState->update(*this, dt);
 
 	vector<LPCOLLISIONEVENT> coEvents;
@@ -63,9 +64,9 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	// No collision occured, proceed normally
 	if (coEvents.size()==0)
 	{
-		x += dx; 
+		x += dx;
 		y += dy;
-
+	
 	}
 
 
@@ -74,7 +75,6 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		float min_tx, min_ty, nx = 0, ny;
 		float rdx = 0; 
 		float rdy = 0;
-		marioState = new IdleState(); //TODO: handle this in collision with brick.
 
 		// TODO: This is a very ugly designed function!!!!
 		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
@@ -127,11 +127,31 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 						}
 					}
 				}
-			} // if Goomba
+			}
+
 			else if (dynamic_cast<CPortal *>(e->obj))
 			{
 				CPortal *p = dynamic_cast<CPortal *>(e->obj);
 				CGame::GetInstance()->SwitchScene(p->GetSceneId());
+			}
+
+		
+			else if (dynamic_cast<CGround *>(e->obj))
+			{
+
+				if (e->ny < 0 && current_state != JUMPING)// Bug fix
+					marioState = new IdleState();
+			}
+
+			else if (dynamic_cast<CBigBox *>(e->obj))
+			{
+				if (e->ny < 0  && current_state != JUMPING)
+					marioState = new IdleState();
+				else {
+					x += dx; 
+					
+				}
+				
 			}
 		}
 	}
@@ -148,7 +168,7 @@ void CMario::Render()
 
 	if (untouchable) alpha = 128;
 
-	RenderBoundingBox();
+	//RenderBoundingBox();
 	animation_set->at(ani)->Render(x, y, alpha);
 
 }

@@ -6,7 +6,7 @@
 #include "Textures.h"
 #include "Sprites.h"
 #include "Portal.h"
-
+#include "BigBox.h"
 using namespace std;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath):
@@ -30,8 +30,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 
 #define OBJECT_TYPE_MARIO	0
 #define OBJECT_TYPE_GROUND	1
-#define OBJECT_TYPE_GOOMBA	2
-#define OBJECT_TYPE_KOOPAS	3
+#define OBJECT_TYPE_BIG_BOX	2
 
 #define OBJECT_TYPE_PORTAL	50
 
@@ -154,15 +153,22 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 		DebugOut(L"[INFO] Player object created!\n");
 		break;
-	case OBJECT_TYPE_GOOMBA: obj = new CGoomba(); break;
+
 	case OBJECT_TYPE_GROUND: obj = new CGround(); break;
-	case OBJECT_TYPE_KOOPAS: obj = new CKoopas(); break;
 	case OBJECT_TYPE_PORTAL:
 		{	
 			float r = atof(tokens[4].c_str());
 			float b = atof(tokens[5].c_str());
 			int scene_id = atoi(tokens[6].c_str());
 			obj = new CPortal(x, y, r, b, scene_id);
+		}
+		break;
+
+	case OBJECT_TYPE_BIG_BOX: 
+		{
+			int size_width = atoi(tokens[4].c_str());
+			int size_height = atoi(tokens[5].c_str());
+			obj = new CBigBox(size_width, size_height);
 		}
 		break;
 	default:
@@ -172,10 +178,11 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 	// General object setup
 	obj->SetPosition(x, y);
-
-	LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
-
-	obj->SetAnimationSet(ani_set);
+	if (ani_set_id != 0) {
+		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
+		obj->SetAnimationSet(ani_set);
+	}
+	
 	objects.push_back(obj);
 }
 

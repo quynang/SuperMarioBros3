@@ -32,8 +32,8 @@ void IdleState::handleKeyState(CMario& mario, BYTE* states) {
 
 void IdleState::update(CMario& mario, DWORD dt) {
 
-	mario.vy = 0;
 	mario.vx = 0;
+	mario.current_state = IDLE;
 
 	if (mario.nx > 0)
 		mario.SetAni(MARIO_ANI_BIG_IDLE_RIGHT);
