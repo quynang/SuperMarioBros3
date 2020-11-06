@@ -129,6 +129,7 @@
     <ClCompile Include="BigBox.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="FallingState.cpp" />
+    <ClCompile Include="GreenPipe.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="JumpingState.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="BigBox.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="FallingState.h" />
+    <ClInclude Include="GreenPipe.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="JumpingState.h" />

@@ -7,6 +7,7 @@
 #include "Sprites.h"
 #include "Portal.h"
 #include "BigBox.h"
+#include "GreenPipe.h"
 using namespace std;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath):
@@ -31,6 +32,8 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 #define OBJECT_TYPE_MARIO	0
 #define OBJECT_TYPE_GROUND	1
 #define OBJECT_TYPE_BIG_BOX	2
+#define OBJECT_TYPE_GOOMBA	3
+#define OBJECT_TYPE_GREEN_PIPE	4
 
 #define OBJECT_TYPE_PORTAL	50
 
@@ -171,6 +174,13 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 			obj = new CBigBox(size_width, size_height);
 		}
 		break;
+
+	case OBJECT_TYPE_GREEN_PIPE: 
+		{
+			int size_height = atoi(tokens[4].c_str());
+			obj = new CGreenPipe(size_height);
+		}
+		break;
 	default:
 		DebugOut(L"[ERR] Invalid object type: %d\n", object_type);
 		return;
@@ -305,6 +315,15 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 
 	CMario *mario = ((CPlayScene*)scence)->GetPlayer();
 	mario->handleOnKeyDown(KeyCode);
+	switch (KeyCode)
+	{
+	case DIK_1:
+		mario->SetType(MARIO_TYPE_SMALL);
+		break;
+	case DIK_2:
+		mario->SetType(MARIO_TYPE_BIG);
+		break;
+	}
 }
 
 void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
