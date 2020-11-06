@@ -1,13 +1,12 @@
 #pragma once
 #include "MarioState.h"
+class CMario;
 
-#define MAX_CHARGE 60
-
-class JumpingState : public MarioState {
+class FallingState : public MarioState {
 
 public:
 
-	JumpingState() : chargeY_(0) {};
+	//FallingState() { debug_state = 3; };
 
 	void handleOnKeyUp(CMario& mario, int keyCode);
 
@@ -15,8 +14,7 @@ public:
 
 	void handleKeyState(CMario& mario, BYTE* states);
 
-	void update(CMario& mari, DWORD dt);
+	void update(CMario& mario, DWORD dt);
 
-private:
-	float chargeY_;
 };
+

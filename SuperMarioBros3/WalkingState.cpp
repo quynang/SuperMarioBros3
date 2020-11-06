@@ -2,6 +2,7 @@
 #include <dinput.h>
 #include "Utils.h"
 #include "IdleState.h"
+#include "JumpingState.h"
 
 void WalkingState::handleOnKeyUp(CMario& mario, int keyCode) {
 
@@ -11,12 +12,17 @@ void WalkingState::handleOnKeyUp(CMario& mario, int keyCode) {
 		mario.marioState = new IdleState();
 	case DIK_LEFT:
 		mario.marioState = new IdleState();
+
 	}
 
 };
 
 void WalkingState::handleOnKeyDown(CMario& mario, int keyCode) {
-
+	switch (keyCode)
+	{
+	case DIK_SPACE:
+		mario.marioState = new JumpingState();
+	}
 };
 
 void WalkingState::handleKeyState(CMario& mario, BYTE* states) {
@@ -33,7 +39,7 @@ void WalkingState::handleKeyState(CMario& mario, BYTE* states) {
 
 };
 
-void WalkingState::update(CMario& mario) {
+void WalkingState::update(CMario& mario, DWORD dt) {
 	
 	if (mario.nx > 0)
 		mario.SetAni(MARIO_ANI_BIG_WALKING_RIGHT);

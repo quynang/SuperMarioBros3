@@ -9,5 +9,5 @@ public:
 
 	virtual void handleKeyState(CMario& mario, BYTE* states);
 
-	virtual void update(CMario& mario);
+	virtual void update(CMario& mario, DWORD dt);
 };

@@ -5,6 +5,8 @@ class CMario; //TODO: Why this line avoid circular denpendency ? How it work. Ar
 class MarioState {
 
 public:
+
+	int debug_state = 0;
 	
 	virtual void handleOnKeyUp(CMario& mario, int keyCode) = 0;
 
@@ -12,5 +14,5 @@ public:
 
 	virtual void handleKeyState(CMario& mario, BYTE* states) = 0;
 
-	virtual void update(CMario& mario) = 0;
+	virtual void update(CMario& mario, DWORD dt) = 0;
 };

@@ -3,12 +3,12 @@
 #include "MarioState.h"
 
 class MarioState;
-
-#define MARIO_WALKING_SPEED		0.15f 
+   
+#define MARIO_WALKING_SPEED		0.3f 
 //0.1f
-#define MARIO_JUMP_SPEED_Y		0.5f
+#define MARIO_JUMP_SPEED_Y		0.7f
 #define MARIO_JUMP_DEFLECT_SPEED 0.2f
-#define MARIO_GRAVITY			0.002f
+#define MARIO_GRAVITY			0.01f
 #define MARIO_DIE_DEFLECT_SPEED	 0.5f
 
 #define MARIO_STATE_IDLE			0
@@ -28,6 +28,14 @@ class MarioState;
 #define MARIO_ANI_SMALL_WALKING_LEFT		7
 
 #define MARIO_ANI_DIE				8
+#define MARIO_ANI_BIG_JUMPING_LEFT			9
+#define MARIO_ANI_BIG_JUMPING_RIGHT		10
+
+
+#define MARIO_ANI_BIG_FALLING_RIGHT		11
+#define MARIO_ANI_BIG_FALLING_LEFT			12
+
+
 
 #define	MARIO_LEVEL_SMALL	1
 #define	MARIO_LEVEL_BIG		2
@@ -52,6 +60,8 @@ class CMario : public CGameObject
 	MarioState * marioState;
 	friend class WalkingState;
 	friend class IdleState;
+	friend class JumpingState;
+	friend class FallingState;
 
 public:
 	int ani = -1;
