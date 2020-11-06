@@ -13,7 +13,9 @@ void JumpingState::handleOnKeyUp(CMario& mario, int keyCode) {
 };
 
 void JumpingState::handleKeyState(CMario& mario, BYTE* states) {
-
+	if ((states[DIK_RIGHT] & 0x80) > 0 || (states[DIK_LEFT] & 0x80) > 0) {
+		mario.vx = MARIO_WALKING_SPEED*mario.nx;
+	}
 };
 
 void JumpingState::update(CMario& mario, DWORD dt) {
@@ -21,8 +23,6 @@ void JumpingState::update(CMario& mario, DWORD dt) {
 	/*
 		ChargeY_ là khoảng đường nhảy được trước đó tính tới thời điểm hàm update này được goị
 	*/
-	if (mario.current_state == WALKING)
-		mario.vx = MARIO_WALKING_SPEED*mario.nx;
 
 	mario.current_state = JUMPING;
 	mario.vy = -MARIO_JUMP_SPEED_Y;
