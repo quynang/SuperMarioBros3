@@ -35,8 +35,8 @@ class CGame
 
 	LPKEYEVENTHANDLER keyHandler;
 
-	float cam_x = 0.0f;
-	float cam_y = 0.0f;
+	int cam_x = 0;
+	int cam_y = 0;
 
 	int screen_width;
 	int screen_height; 
