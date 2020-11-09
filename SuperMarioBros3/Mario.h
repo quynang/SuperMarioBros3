@@ -6,7 +6,7 @@ class MarioState;
    
 #define MARIO_WALKING_SPEED		0.3f 
 //0.1f
-#define MARIO_JUMP_SPEED_Y		0.9f
+#define MARIO_JUMP_SPEED_Y		0.5f
 #define MARIO_JUMP_DEFLECT_SPEED 0.2f
 #define MARIO_GRAVITY			0.01f
 #define MARIO_DIE_DEFLECT_SPEED	 0.5f

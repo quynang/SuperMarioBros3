@@ -8,6 +8,7 @@
 #include "Portal.h"
 #include "BigBox.h"
 #include "GreenPipe.h"
+#include "FloatingBrick.h"
 using namespace std;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath):
@@ -34,6 +35,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 #define OBJECT_TYPE_BIG_BOX	2
 #define OBJECT_TYPE_GOOMBA	3
 #define OBJECT_TYPE_GREEN_PIPE	4
+#define OBJECT_TYPE_FLOATING_BRICK	5
 
 #define OBJECT_TYPE_PORTAL	50
 
@@ -158,6 +160,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		break;
 
 	case OBJECT_TYPE_GROUND: obj = new CGround(); break;
+	case OBJECT_TYPE_FLOATING_BRICK: obj = new CFloatingBrick(y); break;
 	case OBJECT_TYPE_PORTAL:
 		{	
 			float r = atof(tokens[4].c_str());
@@ -282,6 +285,7 @@ void CPlayScene::Update(DWORD dt)
 	cx -= game->GetScreenWidth() / 2;
 	cy -= game->GetScreenHeight() / 2;
 	if (cx < 0) cx = 0;
+	if (cx + 320 > CMap::GetInstance()->getWidth()) cx = CMap::GetInstance()->getWidth() - 320;
 
 
 	CGame::GetInstance()->SetCamPos(cx, 230 /*cy*/);

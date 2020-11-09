@@ -11,6 +11,7 @@
 #include "IdleState.h"
 #include "FallingState.h"
 #include "Ground.h"
+#include "FloatingBrick.h"
 
 CMario::CMario(float x, float y) : CGameObject()
 {
@@ -74,39 +75,29 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		float rdx = 0; 
 		float rdy = 0;
 
-		// TODO: This is a very ugly designed function!!!!
 		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
 
-		// how to push back Mario if collides with a moving objects, what if Mario is pushed this way into another object?
-		//if (rdx != 0 && rdx!=dx)
-		//	x += nx*abs(rdx); 
-		
-		// block every object first!
 		x += min_tx*dx + nx*0.4f;
 		y += min_ty*dy + ny*0.4f;
 
 		if (nx!=0) vx = 0;
 		if (ny!=0) vy = 0;
 
-
-		//
-		// Collision logic with other objects
-		//
 		for (UINT i = 0; i < coEventsResult.size(); i++)
 		{
 			LPCOLLISIONEVENT e = coEventsResult[i];
 
-			if (dynamic_cast<CGoomba *>(e->obj)) // if e->obj is Goomba 
+			if (dynamic_cast<CGoomba *>(e->obj))
 			{
 				CGoomba *goomba = dynamic_cast<CGoomba *>(e->obj);
 
-				// jump on top >> kill Goomba and deflect a bit 
 				if (e->ny < 0)
 				{
 					if (goomba->GetState()!= GOOMBA_STATE_DIE)
 					{
 						goomba->SetState(GOOMBA_STATE_DIE);
 						vy = -MARIO_JUMP_DEFLECT_SPEED;
+						marioState = new IdleState();
 					}
 				}
 				else if (e->nx != 0)
@@ -151,11 +142,34 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 				}
 				
 			}
+
+			else if (dynamic_cast<CFloatingBrick *>(e->obj))
+			{
+				
+				CFloatingBrick *floatingBrick = dynamic_cast<CFloatingBrick *>(e->obj);
+
+				if (e->ny > 0) {
+
+					y += e->t*dy + e->ny*0.4f;
+					vy += MARIO_GRAVITY*dt;
+
+					if (current_state != FALLING)
+						marioState = new FallingState();
+
+					if (floatingBrick->flag_ == 0)
+						floatingBrick->SetState(DEFLECT_STATE);
+					
+					
+				}
+			}
+		
 		}
 	}
 
 	// clean up collision events
 	for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
+
+	if (x < 0) x = 0;
 
 }
 
