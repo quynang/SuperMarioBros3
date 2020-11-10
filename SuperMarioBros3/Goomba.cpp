@@ -1,4 +1,8 @@
 #include "Goomba.h"
+#include "BigBox.h"
+#include "Ground.h"
+#include "Utils.h"
+#include "FloatingBrick.h"
 CGoomba::CGoomba()
 {
 	SetState(GOOMBA_STATE_WALKING);
@@ -18,22 +22,61 @@ void CGoomba::GetBoundingBox(float &left, float &top, float &right, float &botto
 
 void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
-	CGameObject::Update(dt, coObjects);
+	CGameObject::Update(dt);
+	vy = GOOMBA_GRAVITY * dt;
+	
+	vector<LPCOLLISIONEVENT> coEvents;
+	vector<LPCOLLISIONEVENT> coEventsResult;
 
-	//
-	// TO-DO: make sure Goomba can interact with the world and to each of them too!
-	// 
+	coEvents.clear();
 
-	x += dx;
-	y += dy;
-
-	if (vx < 0 && x < 0) {
-		x = 0; vx = -vx;
+	CalcPotentialCollisions(coObjects, coEvents);
+	
+	if (coEvents.size()==0)
+	{
+		x += dx;
+		y += dy;
+	
 	}
 
-	if (vx > 0 && x > 290) {
-		x = 290; vx = -vx;
+
+	else
+	{
+		float min_tx, min_ty, nx = 0, ny;
+		float rdx = 0;
+		float rdy = 0;
+
+		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
+
+		x += min_tx * dx + nx * 0.1f;
+		y += min_ty * dy + ny * 0.2f;
+
+		if (nx != 0) vx = 0;
+		if (ny != 0) vy = 0;
+
+		for (UINT i = 0; i < coEventsResult.size(); i++)
+		{
+			LPCOLLISIONEVENT e = coEventsResult[i];
+
+			if (dynamic_cast<CBigBox*>(e->obj))
+			{
+				x += dx;
+				vx = - e->nx * GOOMBA_WALKING_SPEED;
+			}
+
+			else if (dynamic_cast<CGround*>(e->obj)) {
+				if(e->nx != 0)
+					vx = - e->nx * GOOMBA_WALKING_SPEED;
+			}
+			else {
+				vx = e->nx * GOOMBA_WALKING_SPEED;
+			}
+	
+		}
+
+
 	}
+
 }
 
 void CGoomba::Render()
@@ -50,7 +93,7 @@ void CGoomba::Render()
 
 void CGoomba::SetState(int state)
 {
-	CGameObject::SetState(state);
+	CGameObject::SetState(state); 
 	switch (state)
 	{
 		case GOOMBA_STATE_DIE:
@@ -59,6 +102,6 @@ void CGoomba::SetState(int state)
 			vy = 0;
 			break;
 		case GOOMBA_STATE_WALKING: 
-			vx = -GOOMBA_WALKING_SPEED;
+			vx = GOOMBA_WALKING_SPEED;
 	}
 }

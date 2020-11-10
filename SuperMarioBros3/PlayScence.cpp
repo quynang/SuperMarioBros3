@@ -160,6 +160,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		break;
 
 	case OBJECT_TYPE_GROUND: obj = new CGround(); break;
+	case OBJECT_TYPE_GOOMBA: obj = new CGoomba(); break;
 	case OBJECT_TYPE_FLOATING_BRICK: obj = new CFloatingBrick(y); break;
 	case OBJECT_TYPE_PORTAL:
 		{	

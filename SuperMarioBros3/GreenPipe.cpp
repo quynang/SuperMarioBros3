@@ -2,7 +2,7 @@
 
 void CGreenPipe::Render()
 {
-	RenderBoundingBox();
+	//RenderBoundingBox();
 }
 
 void CGreenPipe::GetBoundingBox(float &l, float &t, float &r, float &b)

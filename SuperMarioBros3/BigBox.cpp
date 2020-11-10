@@ -2,7 +2,7 @@
 
 void CBigBox::Render()
 {
-	RenderBoundingBox();
+	//RenderBoundingBox();
 }
 
 void CBigBox::GetBoundingBox(float &l, float &t, float &r, float &b)
