@@ -43,6 +43,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	CGameObject::Update(dt);
 	vy += MARIO_GRAVITY * dt;
 	marioState->update(*this, dt);
+	//DebugOut(L"Mario state: %d\n", marioState->debug_state);
 
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
@@ -128,7 +129,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			else if (dynamic_cast<CGround *>(e->obj))
 			{
 
-				if (e->ny < 0 && current_state != JUMPING)// Bug fix
+				if (e->ny < 0 && current_state == FALLING)// Bug fix
 					marioState = new IdleState();
 			}
 

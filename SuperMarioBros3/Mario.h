@@ -49,6 +49,7 @@ class CMario : public CGameObject
 	friend class JumpingState;
 	friend class FallingState;
 	int current_state;
+	int power = 0;
 
 public:
 	int ani = -1;

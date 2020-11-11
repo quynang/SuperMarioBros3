@@ -12,6 +12,10 @@ void WalkingState::handleOnKeyUp(CMario& mario, int keyCode) {
 		mario.marioState = new IdleState();
 	case DIK_LEFT:
 		mario.marioState = new IdleState();
+	case DIK_A:
+		in_speed_run = 0;
+		counter_time = 0;
+		break;
 
 	}
 
@@ -22,6 +26,11 @@ void WalkingState::handleOnKeyDown(CMario& mario, int keyCode) {
 	{
 	case DIK_SPACE:
 		mario.marioState = new JumpingState();
+		break;
+	case DIK_A:
+		in_speed_run = 1;
+		break;
+
 	}
 };
 
@@ -45,16 +54,21 @@ void WalkingState::handleKeyState(CMario& mario, BYTE* states) {
 void WalkingState::update(CMario& mario, DWORD dt) {
 	mario.current_state = WALKING;
 	mario.vx = MARIO_WALKING_SPEED * mario.nx;
+	if (in_speed_run)
+		counter_time += dt;
+		
+
+	mario.power = (int) ((counter_time/1000) / 0.1);
 
 	if (mario.nx > 0)
 	{
 		switch (mario.type)
 		{
 			case MARIO_TYPE_SMALL:
-			mario.SetAni(MARIO_ANI_SMALL_WALKING_RIGHT);
+				mario.SetAni(mario.power >= 4 ? MARIO_ANI_SMALL_RUNNING_RIGHT: MARIO_ANI_SMALL_WALKING_RIGHT);
 			break;
 			case MARIO_TYPE_BIG:
-			mario.SetAni(MARIO_ANI_BIG_WALKING_RIGHT);
+				mario.SetAni(mario.power >= 4 ? MARIO_ANI_BIG_RUNNING_RIGHT : MARIO_ANI_BIG_WALKING_RIGHT);
 			break;
 		}
 	}
@@ -64,10 +78,10 @@ void WalkingState::update(CMario& mario, DWORD dt) {
 		switch (mario.type)
 		{
 			case MARIO_TYPE_SMALL:
-			mario.SetAni(MARIO_ANI_SMALL_WALKING_LEFT);
+			mario.SetAni(mario.power >= 4 ? MARIO_ANI_SMALL_RUNNING_LEFT: MARIO_ANI_SMALL_WALKING_LEFT);
 			break;
 			case MARIO_TYPE_BIG:
-			mario.SetAni(MARIO_ANI_BIG_WALKING_LEFT);
+			mario.SetAni(mario.power >= 4 ? MARIO_ANI_BIG_RUNNING_LEFT : MARIO_ANI_BIG_WALKING_LEFT);
 			break;
 		}
 	}
