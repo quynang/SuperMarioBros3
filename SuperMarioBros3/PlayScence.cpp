@@ -288,8 +288,10 @@ void CPlayScene::Update(DWORD dt)
 	if (cx < 0) cx = 0;
 	if (cx + 320 > CMap::GetInstance()->getWidth()) cx = CMap::GetInstance()->getWidth() - 320;
 
+	if (cy > 230) cy = 230;
+	if (cy < 0) cy = 0;
 
-	CGame::GetInstance()->SetCamPos(cx, 230 /*cy*/);
+	CGame::GetInstance()->SetCamPos(cx, cy /*cy*/);
 }
 
 void CPlayScene::Render()
@@ -327,6 +329,9 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 		break;
 	case DIK_2:
 		mario->SetType(MARIO_TYPE_BIG);
+		break;
+	case DIK_3:
+		mario->SetType(MARIO_TYPE_RACCOON);
 		break;
 	}
 }

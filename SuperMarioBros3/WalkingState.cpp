@@ -3,6 +3,7 @@
 #include "Utils.h"
 #include "IdleState.h"
 #include "JumpingState.h"
+#include "FlyingState.h"
 
 void WalkingState::handleOnKeyUp(CMario& mario, int keyCode) {
 
@@ -16,7 +17,6 @@ void WalkingState::handleOnKeyUp(CMario& mario, int keyCode) {
 		in_speed_run = 0;
 		counter_time = 0;
 		break;
-
 	}
 
 };
@@ -25,7 +25,10 @@ void WalkingState::handleOnKeyDown(CMario& mario, int keyCode) {
 	switch (keyCode)
 	{
 	case DIK_SPACE:
-		mario.marioState = new JumpingState();
+		if (mario.power >= 4 && mario.type == MARIO_TYPE_RACCOON)
+			mario.marioState = new FlyingState();
+		else
+			mario.marioState = new JumpingState();
 		break;
 	case DIK_A:
 		in_speed_run = 1;
@@ -54,10 +57,11 @@ void WalkingState::handleKeyState(CMario& mario, BYTE* states) {
 void WalkingState::update(CMario& mario, DWORD dt) {
 	mario.current_state = WALKING;
 	mario.vx = MARIO_WALKING_SPEED * mario.nx;
+
 	if (in_speed_run)
 		counter_time += dt;
 		
-
+	
 	mario.power = (int) ((counter_time/1000) / 0.1);
 
 	if (mario.nx > 0)
@@ -66,10 +70,13 @@ void WalkingState::update(CMario& mario, DWORD dt) {
 		{
 			case MARIO_TYPE_SMALL:
 				mario.SetAni(mario.power >= 4 ? MARIO_ANI_SMALL_RUNNING_RIGHT: MARIO_ANI_SMALL_WALKING_RIGHT);
-			break;
+				break;
 			case MARIO_TYPE_BIG:
 				mario.SetAni(mario.power >= 4 ? MARIO_ANI_BIG_RUNNING_RIGHT : MARIO_ANI_BIG_WALKING_RIGHT);
-			break;
+				break;
+			case MARIO_TYPE_RACCOON:
+				mario.SetAni(mario.power >= 4 ? RACCOON_MARIO_ANI_RUNNING_RIGHT: RACCOON_MARIO_ANI_WALKING_RIGHT);
+				break;
 		}
 	}
 		
@@ -78,11 +85,14 @@ void WalkingState::update(CMario& mario, DWORD dt) {
 		switch (mario.type)
 		{
 			case MARIO_TYPE_SMALL:
-			mario.SetAni(mario.power >= 4 ? MARIO_ANI_SMALL_RUNNING_LEFT: MARIO_ANI_SMALL_WALKING_LEFT);
-			break;
+				mario.SetAni(mario.power >= 4 ? MARIO_ANI_SMALL_RUNNING_LEFT: MARIO_ANI_SMALL_WALKING_LEFT);
+				break;
 			case MARIO_TYPE_BIG:
-			mario.SetAni(mario.power >= 4 ? MARIO_ANI_BIG_RUNNING_LEFT : MARIO_ANI_BIG_WALKING_LEFT);
-			break;
+				mario.SetAni(mario.power >= 4 ? MARIO_ANI_BIG_RUNNING_LEFT : MARIO_ANI_BIG_WALKING_LEFT);
+				break;
+			case MARIO_TYPE_RACCOON:
+				mario.SetAni(mario.power >= 4 ? RACCOON_MARIO_ANI_RUNNING_LEFT : RACCOON_MARIO_ANI_WALKING_LEFT);
+				break;
 		}
 	}
 };

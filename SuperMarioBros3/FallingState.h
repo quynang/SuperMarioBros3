@@ -8,6 +8,9 @@ class CMario;
 #define MARIO_ANI_SMALL_FALLING_RIGHT	16
 #define MARIO_ANI_SMALL_FALLING_LEFT	15
 
+#define RACCOON_MARIO_ANI_FALLING_RIGHT	35
+#define RACCOON_MARIO_ANI_FALLING_LEFT	36
+
 class FallingState : public MarioState {
 
 public:

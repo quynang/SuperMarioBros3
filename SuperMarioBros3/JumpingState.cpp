@@ -42,11 +42,14 @@ void JumpingState::update(CMario& mario, DWORD dt) {
 		switch (mario.type)
 		{
 			case MARIO_TYPE_SMALL:
-			mario.SetAni(MARIO_ANI_SMALL_JUMPING_RIGHT);
-			break;
+				mario.SetAni(MARIO_ANI_SMALL_JUMPING_RIGHT);
+				break;
 			case MARIO_TYPE_BIG:
-			mario.SetAni(MARIO_ANI_BIG_JUMPING_RIGHT);
-			break;
+				mario.SetAni(MARIO_ANI_BIG_JUMPING_RIGHT);
+				break;
+			case MARIO_TYPE_RACCOON:
+				mario.SetAni(RACCOON_MARIO_ANI_JUMPING_RIGHT);
+				break;
 		}
 	}
 		
@@ -55,11 +58,14 @@ void JumpingState::update(CMario& mario, DWORD dt) {
 		switch (mario.type)
 		{
 			case MARIO_TYPE_SMALL:
-			mario.SetAni(MARIO_ANI_SMALL_JUMPING_LEFT);
-			break;
+				mario.SetAni(MARIO_ANI_SMALL_JUMPING_LEFT);
+				break;
 			case MARIO_TYPE_BIG:
-			mario.SetAni(MARIO_ANI_BIG_JUMPING_LEFT);
-			break;
+				mario.SetAni(MARIO_ANI_BIG_JUMPING_LEFT);
+				break;
+			case MARIO_TYPE_RACCOON:
+				mario.SetAni(RACCOON_MARIO_ANI_JUMPING_LEFT);
+				break;
 		}
 	}
 

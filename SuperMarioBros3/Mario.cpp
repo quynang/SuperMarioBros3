@@ -55,7 +55,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		CalcPotentialCollisions(coObjects, coEvents);
 
 	// reset untouchable timer if untouchable time has passed
-	if ( GetTickCount() - untouchable_start > MARIO_UNTOUCHABLE_TIME) 
+	if (GetTickCount() - untouchable_start > MARIO_UNTOUCHABLE_TIME) 
 	{
 		untouchable_start = 0;
 		untouchable = 0;
@@ -129,11 +129,11 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			else if (dynamic_cast<CGround *>(e->obj))
 			{
 
-				if (e->ny < 0 && current_state == FALLING)// Bug fix
+				if (e->ny < 0 && (current_state == FALLING || current_state == FALLING_WHILE_FLYING))// Bug fix
 					marioState = new IdleState();
 			}
 
-			else if (dynamic_cast<CBigBox *>(e->obj))
+			else if (dynamic_cast<CBigBox *>(e->obj))  
 			{
 				if (e->ny < 0  && current_state != JUMPING)
 					marioState = new IdleState();
@@ -196,7 +196,7 @@ void CMario::GetBoundingBox(float &left, float &top, float &right, float &bottom
 	left = x;
 	top = y; 
 
-	if (type == MARIO_TYPE_BIG)
+	if (type == MARIO_TYPE_BIG || type == MARIO_TYPE_RACCOON)
 	{
 		right = x + MARIO_BIG_BBOX_WIDTH;
 		bottom = y + MARIO_BIG_BBOX_HEIGHT;

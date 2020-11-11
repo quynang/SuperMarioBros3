@@ -9,6 +9,9 @@
 #define MARIO_ANI_SMALL_JUMPING_LEFT	13
 #define MARIO_ANI_SMALL_JUMPING_RIGHT	14
 
+#define RACCOON_MARIO_ANI_JUMPING_RIGHT	31
+#define RACCOON_MARIO_ANI_JUMPING_LEFT	32
+
 class JumpingState : public MarioState {
 
 public:

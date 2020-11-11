@@ -7,6 +7,8 @@ class MarioState;
 #define MARIO_WALKING_SPEED		0.3f 
 //0.1f
 #define MARIO_JUMP_SPEED_Y		0.5f
+#define FLYING_SPEED_X	0.2f
+#define MARIO_FLYING_SPEED_Y		0.18f
 #define MARIO_JUMP_DEFLECT_SPEED 0.2f
 #define MARIO_GRAVITY			0.01f
 #define MARIO_DIE_DEFLECT_SPEED	 0.5f
@@ -22,6 +24,7 @@ class MarioState;
 
 #define	MARIO_TYPE_SMALL	1
 #define	MARIO_TYPE_BIG		2
+#define MARIO_TYPE_RACCOON	3
 
 #define MARIO_BIG_BBOX_WIDTH  15
 #define MARIO_BIG_BBOX_HEIGHT 27
@@ -35,6 +38,8 @@ class MarioState;
 #define FALLING 1002
 #define WALKING 1003
 #define JUMPING	1004
+#define FLYING	1005
+#define FALLING_WHILE_FLYING	1006
 class CMario : public CGameObject
 {
 	int type;
@@ -43,13 +48,16 @@ class CMario : public CGameObject
 
 	float start_x;			// initial position of Mario at scene
 	float start_y;
+	int current_state;
+	int power = 0;
+
 	MarioState * marioState;
 	friend class WalkingState;
 	friend class IdleState;
 	friend class JumpingState;
 	friend class FallingState;
-	int current_state;
-	int power = 0;
+	friend class FlyingState;
+	friend class FallingWhileFlyingState;
 
 public:
 	int ani = -1;
