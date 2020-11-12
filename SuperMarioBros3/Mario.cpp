@@ -12,6 +12,7 @@
 #include "FallingState.h"
 #include "Ground.h"
 #include "FloatingBrick.h"
+#include "Koopas.h"
 
 CMario::CMario(float x, float y) : CGameObject()
 {
@@ -117,6 +118,37 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 						}
 					}
 				}
+			} else if (dynamic_cast<CKoopas *>(e->obj))
+
+			{
+				CKoopas *koopas = dynamic_cast<CKoopas *>(e->obj);
+
+				if (e->ny < 0)
+				{
+					if (koopas->GetState() != KOOPAS_STATE_HIDE_IN_SHELL)
+					{
+						vy = -MARIO_JUMP_DEFLECT_SPEED;
+						koopas->SetState(KOOPAS_STATE_HIDE_IN_SHELL);
+					}
+					
+
+					else if (koopas->GetState() == KOOPAS_STATE_HIDE_IN_SHELL)
+					{
+						koopas->nx = this->nx;
+						koopas->SetState(KOOPAS_STATE_SLIDING);
+
+					}
+				}
+				else if (e->nx != 0)
+				{
+					if (koopas->GetState() == KOOPAS_STATE_HIDE_IN_SHELL)
+					{
+						koopas->nx = this->nx;
+						koopas->SetState(KOOPAS_STATE_SLIDING);
+
+					}
+				}
+				
 			}
 
 			else if (dynamic_cast<CPortal *>(e->obj))

@@ -1,8 +1,11 @@
 #include "Koopas.h"
-
+#include "BigBox.h"
+#include "Ground.h"
+#include "Utils.h"
 CKoopas::CKoopas()
 {
 	SetState(KOOPAS_STATE_WALKING);
+	this->nx = 1;
 }
 
 void CKoopas::GetBoundingBox(float &left, float &top, float &right, float &bottom)
@@ -11,44 +14,152 @@ void CKoopas::GetBoundingBox(float &left, float &top, float &right, float &botto
 	top = y;
 	right = x + KOOPAS_BBOX_WIDTH;
 
-	if (state == KOOPAS_STATE_DIE)
-		bottom = y + KOOPAS_BBOX_HEIGHT_DIE;
+	if (state == KOOPAS_STATE_HIDE_IN_SHELL || state == KOOPAS_STATE_SLIDING)
+		bottom = y + KOOPAS_BBOX_HEIGHT_SHELL;
 	else
 		bottom = y + KOOPAS_BBOX_HEIGHT;
+	
 }
 
 void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
-	CGameObject::Update(dt, coObjects);
+	CGameObject::Update(dt);
 
-	//
-	// TO-DO: make sure Koopas can interact with the world and to each of them too!
-	// 
+	vy += dt * KOOPAS_GRAVITY;
+	
+	vector<LPCOLLISIONEVENT> coEvents;
+	vector<LPCOLLISIONEVENT> coEventsResult;
 
-	x += dx;
-	y += dy;
+	coEvents.clear();
 
-	if (vx < 0 && x < 0) {
-		x = 0; vx = -vx;
+	CalcPotentialCollisions(coObjects, coEvents);
+	
+	if (coEvents.size()==0)
+	{
+		x += dx;
+		y += dy;
+		
 	}
 
-	if (vx > 0 && x > 290) {
-		x = 290; vx = -vx;
+	else
+	{
+
+		//TODO: This is very very ugly. Try update here.
+
+		float min_tx, min_ty, nx = 0, ny;
+		float rdx = 0;
+		float rdy = 0;
+
+		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
+
+		x += min_tx * dx + nx * 0.1f;
+		y += min_ty * dy + ny * 0.2f;
+
+		if (nx != 0) vx = 0;
+		if (ny != 0) vy = 0;
+
+		for (UINT i = 0; i < coEventsResult.size(); i++)
+		{
+			LPCOLLISIONEVENT e = coEventsResult[i];
+
+			if (dynamic_cast<CBigBox*>(e->obj))
+			{
+
+				if (e->ny < 0) {
+					if (state == KOOPAS_STATE_WALKING)
+					{
+						CBigBox *bigbox = dynamic_cast<CBigBox *>(e->obj);
+				
+						float l, t, r, b;
+
+						bigbox->GetBoundingBox(l, t, r, b);
+
+						if (x + KOOPAS_BBOX_WIDTH > r || x < l)
+						{
+							this->nx = -this->nx;
+							vx = this->nx*KOOPAS_WALKING_SPEED;
+						}
+					}
+					
+					else if (state == KOOPAS_STATE_SLIDING)
+					{
+						vx = this->nx*KOOPAS_SLIDING_SPEED;
+						vy = 0;
+
+					}
+						
+				}
+
+				else if (e->nx != 0) {
+
+					if (state == KOOPAS_STATE_WALKING)
+					{
+						x += dx;
+						vx = - e->nx*KOOPAS_WALKING_SPEED;
+						
+
+					} else {
+
+						vx = - e->nx*KOOPAS_SLIDING_SPEED;
+						x += dx;
+					}
+				 	
+				 }
+
+			}
+
+			else if (dynamic_cast<CGround*>(e->obj)) {
+				if (state == KOOPAS_STATE_WALKING && e->nx != 0)
+				{
+					vx = - e->nx*KOOPAS_WALKING_SPEED;
+
+				} else if (state == KOOPAS_STATE_SLIDING && e->nx != 0) {
+
+					vx = - e->nx *KOOPAS_SLIDING_SPEED;
+		
+				}
+			} else {
+				//For another object. vy = 0. update vx
+				if (state == KOOPAS_STATE_WALKING)
+				{
+					vx = e->nx*KOOPAS_WALKING_SPEED;
+
+				} else if (state == KOOPAS_STATE_SLIDING) {
+
+					vx = e->nx*KOOPAS_SLIDING_SPEED;
+				}
+			}
+			
+	
+		}
+
+
 	}
 }
 
 void CKoopas::Render()
 {
-	int ani = KOOPAS_ANI_WALKING_LEFT;
-	if (state == KOOPAS_STATE_DIE) {
-		ani = KOOPAS_ANI_DIE;
+	int ani = -1;
+	switch (state)
+	{
+	case KOOPAS_STATE_WALKING:
+		if (vx > 0)
+			ani = KOOPAS_ANI_WALKING_RIGHT;
+		else
+			ani = KOOPAS_ANI_WALKING_LEFT;
+		break;
+	case KOOPAS_STATE_HIDE_IN_SHELL:
+		ani = KOOPAS_ANI_HIDE_IN_SHELL;
+		break;
+	case KOOPAS_STATE_SLIDING: 
+		ani = KOOPAS_ANI_HIDE_IN_SHELL;
+		break;
 	}
-	else if (vx > 0) ani = KOOPAS_ANI_WALKING_RIGHT;
-	else if (vx <= 0) ani = KOOPAS_ANI_WALKING_LEFT;
-
+		
+		
 	animation_set->at(ani)->Render(x, y);
 
-	RenderBoundingBox();
+	//RenderBoundingBox();
 }
 
 void CKoopas::SetState(int state)
@@ -56,13 +167,19 @@ void CKoopas::SetState(int state)
 	CGameObject::SetState(state);
 	switch (state)
 	{
-	case KOOPAS_STATE_DIE:
-		y += KOOPAS_BBOX_HEIGHT - KOOPAS_BBOX_HEIGHT_DIE + 1;
+	case KOOPAS_STATE_HIDE_IN_SHELL:
+		y += KOOPAS_BBOX_HEIGHT - KOOPAS_BBOX_HEIGHT_SHELL;
 		vx = 0;
 		vy = 0;
 		break;
 	case KOOPAS_STATE_WALKING:
-		vx = KOOPAS_WALKING_SPEED;
+		vx = this->nx*KOOPAS_WALKING_SPEED;
+		break;
+	case KOOPAS_STATE_SLIDING:
+		y -= 2;
+		vx = this->nx*KOOPAS_SLIDING_SPEED;
+		break;
+
 	}
 
 }

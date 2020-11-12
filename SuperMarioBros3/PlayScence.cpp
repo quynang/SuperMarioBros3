@@ -9,6 +9,7 @@
 #include "BigBox.h"
 #include "GreenPipe.h"
 #include "FloatingBrick.h"
+#include "Koopas.h"
 using namespace std;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath):
@@ -36,6 +37,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 #define OBJECT_TYPE_GOOMBA	3
 #define OBJECT_TYPE_GREEN_PIPE	4
 #define OBJECT_TYPE_FLOATING_BRICK	5
+#define OBJECT_TYPE_KOOPAS	6
 
 #define OBJECT_TYPE_PORTAL	50
 
@@ -161,6 +163,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 	case OBJECT_TYPE_GROUND: obj = new CGround(); break;
 	case OBJECT_TYPE_GOOMBA: obj = new CGoomba(); break;
+	case OBJECT_TYPE_KOOPAS: obj = new CKoopas(); break;
 	case OBJECT_TYPE_FLOATING_BRICK: obj = new CFloatingBrick(y); break;
 	case OBJECT_TYPE_PORTAL:
 		{	
