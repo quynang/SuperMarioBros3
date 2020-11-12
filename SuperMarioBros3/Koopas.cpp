@@ -4,7 +4,7 @@
 #include "Utils.h"
 CKoopas::CKoopas()
 {
-	SetState(KOOPAS_STATE_WALKING);
+	SetState(KOOPAS_STATE_HIDE_IN_SHELL);
 	this->nx = 1;
 }
 
@@ -23,117 +23,123 @@ void CKoopas::GetBoundingBox(float &left, float &top, float &right, float &botto
 
 void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
-	CGameObject::Update(dt);
+	if (update_flag) {
+		CGameObject::Update(dt);
 
-	vy += dt * KOOPAS_GRAVITY;
-	
-	vector<LPCOLLISIONEVENT> coEvents;
-	vector<LPCOLLISIONEVENT> coEventsResult;
+		vy += dt * KOOPAS_GRAVITY;
 
-	coEvents.clear();
+		vector<LPCOLLISIONEVENT> coEvents;
+		vector<LPCOLLISIONEVENT> coEventsResult;
 
-	CalcPotentialCollisions(coObjects, coEvents);
-	
-	if (coEvents.size()==0)
-	{
-		x += dx;
-		y += dy;
-		
-	}
+		coEvents.clear();
 
-	else
-	{
+		CalcPotentialCollisions(coObjects, coEvents);
 
-		//TODO: This is very very ugly. Try update here.
-
-		float min_tx, min_ty, nx = 0, ny;
-		float rdx = 0;
-		float rdy = 0;
-
-		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
-
-		x += min_tx * dx + nx * 0.1f;
-		y += min_ty * dy + ny * 0.2f;
-
-		if (nx != 0) vx = 0;
-		if (ny != 0) vy = 0;
-
-		for (UINT i = 0; i < coEventsResult.size(); i++)
+		if (coEvents.size() == 0)
 		{
-			LPCOLLISIONEVENT e = coEventsResult[i];
+			x += dx;
+			y += dy;
 
-			if (dynamic_cast<CBigBox*>(e->obj))
-			{
-
-				if (e->ny < 0) {
-					if (state == KOOPAS_STATE_WALKING)
-					{
-						CBigBox *bigbox = dynamic_cast<CBigBox *>(e->obj);
-				
-						float l, t, r, b;
-
-						bigbox->GetBoundingBox(l, t, r, b);
-
-						if (x + KOOPAS_BBOX_WIDTH > r || x < l)
-						{
-							this->nx = -this->nx;
-							vx = this->nx*KOOPAS_WALKING_SPEED;
-						}
-					}
-					
-					else if (state == KOOPAS_STATE_SLIDING)
-					{
-						vx = this->nx*KOOPAS_SLIDING_SPEED;
-						vy = 0;
-
-					}
-						
-				}
-
-				else if (e->nx != 0) {
-
-					if (state == KOOPAS_STATE_WALKING)
-					{
-						x += dx;
-						vx = - e->nx*KOOPAS_WALKING_SPEED;
-						
-
-					} else {
-
-						vx = - e->nx*KOOPAS_SLIDING_SPEED;
-						x += dx;
-					}
-				 	
-				 }
-
-			}
-
-			else if (dynamic_cast<CGround*>(e->obj)) {
-				if (state == KOOPAS_STATE_WALKING && e->nx != 0)
-				{
-					vx = - e->nx*KOOPAS_WALKING_SPEED;
-
-				} else if (state == KOOPAS_STATE_SLIDING && e->nx != 0) {
-
-					vx = - e->nx *KOOPAS_SLIDING_SPEED;
-		
-				}
-			} else {
-				//For another object. vy = 0. update vx
-				if (state == KOOPAS_STATE_WALKING)
-				{
-					vx = e->nx*KOOPAS_WALKING_SPEED;
-
-				} else if (state == KOOPAS_STATE_SLIDING) {
-
-					vx = e->nx*KOOPAS_SLIDING_SPEED;
-				}
-			}
-			
-	
 		}
 
+		else
+		{
 
+			//TODO: This is very very ugly. Try update here.
+
+			float min_tx, min_ty, nx = 0, ny;
+			float rdx = 0;
+			float rdy = 0;
+
+			FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
+
+			x += min_tx * dx + nx * 0.1f;
+			y += min_ty * dy + ny * 0.2f;
+
+			if (nx != 0) vx = 0;
+			if (ny != 0) vy = 0;
+
+			for (UINT i = 0; i < coEventsResult.size(); i++)
+			{
+				LPCOLLISIONEVENT e = coEventsResult[i];
+
+				if (dynamic_cast<CBigBox*>(e->obj))
+				{
+
+					if (e->ny < 0) {
+						if (state == KOOPAS_STATE_WALKING)
+						{
+							CBigBox* bigbox = dynamic_cast<CBigBox*>(e->obj);
+
+							float l, t, r, b;
+
+							bigbox->GetBoundingBox(l, t, r, b);
+
+							if (x + KOOPAS_BBOX_WIDTH > r || x < l)
+							{
+								this->nx = -this->nx;
+								vx = this->nx * KOOPAS_WALKING_SPEED;
+							}
+						}
+
+						else if (state == KOOPAS_STATE_SLIDING)
+						{
+							vx = this->nx * KOOPAS_SLIDING_SPEED;
+							vy = 0;
+
+						}
+
+					}
+
+					else if (e->nx != 0) {
+
+						if (state == KOOPAS_STATE_WALKING)
+						{
+							x += dx;
+							vx = -e->nx * KOOPAS_WALKING_SPEED;
+
+
+						}
+						else {
+
+							vx = -e->nx * KOOPAS_SLIDING_SPEED;
+							x += dx;
+						}
+
+					}
+
+				}
+
+				else if (dynamic_cast<CGround*>(e->obj)) {
+					if (state == KOOPAS_STATE_WALKING && e->nx != 0)
+					{
+						vx = -e->nx * KOOPAS_WALKING_SPEED;
+
+					}
+					else if (state == KOOPAS_STATE_SLIDING && e->nx != 0) {
+
+						vx = -e->nx * KOOPAS_SLIDING_SPEED;
+
+					}
+				}
+				else {
+					//For another object. vy = 0. update vx
+					if (state == KOOPAS_STATE_WALKING)
+					{
+						vx = e->nx * KOOPAS_WALKING_SPEED;
+
+					}
+					else if (state == KOOPAS_STATE_SLIDING) {
+
+						vx = e->nx * KOOPAS_SLIDING_SPEED;
+					}
+				}
+
+
+			}
+
+
+		}
 	}
 }
 
@@ -155,11 +161,10 @@ void CKoopas::Render()
 		ani = KOOPAS_ANI_HIDE_IN_SHELL;
 		break;
 	}
-		
-		
+	
 	animation_set->at(ani)->Render(x, y);
 
-	RenderBoundingBox();
+	//RenderBoundingBox();
 }
 
 void CKoopas::SetState(int state)

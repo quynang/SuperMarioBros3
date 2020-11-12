@@ -43,6 +43,14 @@ map-world-1-1.txt
 10067	252	283	273	310	0
 #kick left
 10068	133	283	154	310	0
+#holding right
+10069	331	323	345	350	0
+10070	356	323	371	350	0
+10071	381	323	396	350	0
+#holding left
+10072	61	323	75	350	0
+10073	35	323	50	350	0
+10074	10	323	25	350	0
 # die
 10099	215	120	231	135	0
 # ==============SMALL MARIO==============
@@ -69,6 +77,12 @@ map-world-1-1.txt
 10055	255	129	271	145	0
 #kick left
 10056	135	129	151	145	0
+#holding right
+10057	336	169	350	185	0
+10058	376	169	391	185	0
+#holding left
+10059	56	169	70	185	0
+10060	15	169	30	185	0
 
 #=============RACCOON MARIO=============
 #idle right
@@ -109,6 +123,15 @@ map-world-1-1.txt
 11023	247	483	269	511	0
 #kick left
 11024	137	483	159	511	0
+#holding right
+11025	322	523	343	551	0
+11026	351	523	373	551	0
+11027	381	523	404	551	0
+#holding left
+11028	63	523	84	551	0
+11029	33	523	55	551	0
+11030	2	523	25	551	0
+
 #============OTHER=============
 
 #BRICK
@@ -197,6 +220,22 @@ map-world-1-1.txt
 514	10067	150
 #big kick left
 515	10068	150
+#small holding right
+516	10057	100	10058	100
+#small holding left
+517	10059	100	10060	100
+#big holding right
+518	10069	100	10070	100	10071	100
+#big holding left
+519	10072	100	10073	100	10074	100
+#small idle when holding right
+520	10057	100
+#small idle when holding left
+521	10059	100
+#Big idle when holding right
+522	10069	100
+#Big idle when holding left
+523	10072	100
 #======RACCOON MARIO===========
 #idle right
 10	11001	100
@@ -230,6 +269,14 @@ map-world-1-1.txt
 24	11023	150
 #kick left
 25	11024	150
+#holding right
+26	11025	100	11026	100	11027	100
+#holding left
+27	11028	100	11029	100	11030	100
+#idle when holding right
+28	11025	100
+#idle when holding left
+29	10028	100
 #die
 599	10099	100
 # ==== BRICK =========
@@ -255,7 +302,7 @@ map-world-1-1.txt
 #
 [ANIMATION_SETS]
 # MARIO
-1	400	401	402	403	500	501	502	503	599	404	405	406	407	408	409	410	411	504	505	506	507	508	509	510	511	10	11	12	13	14	15	16	17	18	19	20	21	22	23	512	513	514	515	24	25
+1	400	401	402	403	500	501	502	503	599	404	405	406	407	408	409	410	411	504	505	506	507	508	509	510	511	10	11	12	13	14	15	16	17	18	19	20	21	22	23	512	513	514	515	24	25	516	517	518	519	26	27	520	521	522	523	28	29
 # BRICK 
 2	601
 # GOOMBA
@@ -267,8 +314,6 @@ map-world-1-1.txt
 [OBJECTS]
 # type	x	y	ani_set_id	extra_settings per object type
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba
-# MARIO
-0	50.0	250	1
 # BRICK 
 # --- platform (hint: I created the list using Excel!) ----
 1	0	416	2
@@ -495,4 +540,6 @@ map-world-1-1.txt
 
 #========= KOOPAS=====
 6	532	352	5
+# MARIO
+0	50.0	250	1
 

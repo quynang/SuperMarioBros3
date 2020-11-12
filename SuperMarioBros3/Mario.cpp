@@ -13,6 +13,7 @@
 #include "FloatingBrick.h"
 #include "Koopas.h"
 #include "KickState.h"
+#include "HoldingState.h"
 
 CMario::CMario(float x, float y) : CGameObject()
 {
@@ -39,11 +40,45 @@ void CMario::handleKeyState(BYTE* states) {
 	marioState->handleKeyState(*this, states);
 }
 
+void CMario::SetPosForItemPicked() {
+
+	float l_, t_, r_, b_;
+
+	this->GetBoundingBox(l_, t_, r_, b_);
+
+	if (this->nx > 0)
+	{
+		item_picked->nx = 1;
+		item_picked->x = r_;
+		item_picked->y = (b_ - t_) / 2 + t_ - 8;
+	}
+	else
+	{
+		item_picked->x = l_ - 16;
+		item_picked->y = (b_ - t_)/2  + t_ - 8;
+		item_picked->nx = -1;
+
+	}
+}
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
 	CGameObject::Update(dt);
 	vy += MARIO_GRAVITY * dt;
 	marioState->update(*this, dt);
+
+	if (!can_pick_item && item_picked != NULL)
+	{
+		//TODO: What if item picked is not Koopas ?
+		marioState = new KickState();
+		((CKoopas*)item_picked)->TurnOnUpdation();
+		((CKoopas*)item_picked)->SetState(KOOPAS_STATE_SLIDING);
+		item_picked = NULL;
+	}
+		
+	if (item_picked != NULL)
+		SetPosForItemPicked();
+		
+	
 
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
@@ -143,9 +178,20 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 				{
 					if (koopas->GetState() == KOOPAS_STATE_HIDE_IN_SHELL)
 					{
-						marioState = new KickState();
-						koopas->nx = this->nx;
-						koopas->SetState(KOOPAS_STATE_SLIDING);
+						if (!can_pick_item)
+						{
+							marioState = new KickState();
+							koopas->nx = this->nx;
+							koopas->SetState(KOOPAS_STATE_SLIDING);
+						}
+						else
+						{
+							marioState = new HoldingState();
+							item_picked = koopas;
+							((CKoopas*)item_picked)->TurnOffUpdation();
+						}
+					
+						
 
 					}
 				}
@@ -168,7 +214,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 			else if (dynamic_cast<CBigBox *>(e->obj))  
 			{
-				if (e->ny < 0 && marioState->current_state != JUMPING && marioState->current_state != KICK)
+				if (e->ny < 0 && marioState->current_state != JUMPING && marioState->current_state != KICK && marioState->current_state != HOLDING)
 				{
 					marioState = new IdleState();
 				}
@@ -212,7 +258,6 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 void CMario::Render()
 {
-
 	int alpha = 255;
 
 	if (untouchable) alpha = 128;
@@ -229,6 +274,7 @@ void CMario::SetState(int state)
 
 void CMario::GetBoundingBox(float &left, float &top, float &right, float &bottom)
 {
+	//TODO: Fix bounding box for all state of mario.
 	left = x;
 	top = y; 
 

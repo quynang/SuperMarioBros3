@@ -322,7 +322,7 @@ void CPlayScene::Unload()
 
 void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 {
-
+	CGame *game = CGame::GetInstance();
 	CMario *mario = ((CPlayScene*)scence)->GetPlayer();
 	mario->handleOnKeyDown(KeyCode);
 	switch (KeyCode)
@@ -336,6 +336,10 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 	case DIK_3:
 		mario->SetType(MARIO_TYPE_RACCOON);
 		break;
+	case DIK_R:
+		game->SwitchScene(1);
+		break;
+
 	}
 }
 

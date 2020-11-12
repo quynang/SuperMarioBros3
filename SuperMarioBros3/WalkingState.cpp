@@ -52,6 +52,15 @@ void WalkingState::handleKeyState(CMario& mario, BYTE* states) {
 	if ((states[DIK_A] & 0x80) > 0) {
 		mario.vx = 1.5 * mario.vx;
 	}
+
+	
+	if ((states[DIK_S] & 0x80) > 0) {
+		mario.can_pick_item = 1;
+	}
+	else
+	{
+		mario.can_pick_item = 0;
+	}
 };
 
 void WalkingState::update(CMario& mario, DWORD dt) {

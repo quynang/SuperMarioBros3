@@ -26,6 +26,9 @@ class CKoopas : public CGameObject
 	virtual void Render();
 
 public:
+	int update_flag = 1;
 	CKoopas();
+	void TurnOffUpdation() { update_flag = 0; };
+	void TurnOnUpdation() { update_flag = 1; };
 	virtual void SetState(int state);
 };

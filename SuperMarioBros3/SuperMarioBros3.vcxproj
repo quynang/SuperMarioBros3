@@ -134,6 +134,7 @@
     <ClCompile Include="FlyingState.cpp" />
     <ClCompile Include="GreenPipe.cpp" />
     <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="HoldingState.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="JumpingState.cpp" />
     <ClCompile Include="KickState.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="FlyingState.h" />
     <ClInclude Include="GreenPipe.h" />
     <ClInclude Include="Ground.h" />
+    <ClInclude Include="HoldingState.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="JumpingState.h" />
     <ClInclude Include="KickState.h" />

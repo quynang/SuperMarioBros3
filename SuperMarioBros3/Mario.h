@@ -1,7 +1,6 @@
 #pragma once
 #include "GameObject.h"
 #include "MarioState.h"
-
 class MarioState;
    
 #define MARIO_WALKING_SPEED		0.3f 
@@ -41,6 +40,7 @@ class MarioState;
 #define FLYING	1005
 #define FALLING_WHILE_FLYING	1006
 #define KICK	1007
+#define HOLDING	1008
 class CMario : public CGameObject
 {
 	int type;
@@ -50,6 +50,7 @@ class CMario : public CGameObject
 	float start_x;			// initial position of Mario at scene
 	float start_y;
 	int power = 0;
+	int can_pick_item = 0;
 
 	MarioState * marioState;
 	friend class WalkingState;
@@ -59,6 +60,8 @@ class CMario : public CGameObject
 	friend class FlyingState;
 	friend class FallingWhileFlyingState;
 	friend class KickState;
+	friend class HoldingState;
+	CGameObject* item_picked = NULL;
 
 public:
 	int ani = -1;
@@ -73,6 +76,7 @@ public:
 	void SetState(int state);
 	void SetType(int t) { type = t; }
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount(); }
+	void SetPosForItemPicked();
 
 	void Reset();
 
