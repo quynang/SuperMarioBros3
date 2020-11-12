@@ -17,7 +17,6 @@ void FallingState::handleKeyState(CMario& mario, BYTE* states) {
 void FallingState::update(CMario& mario, DWORD dt) {
 
 	mario.vy += MARIO_GRAVITY*dt;
-	mario.current_state = FALLING;
 
 	if (mario.nx > 0)
 	{

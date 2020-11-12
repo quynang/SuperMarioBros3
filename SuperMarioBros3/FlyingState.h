@@ -7,7 +7,7 @@ class FlyingState : public MarioState
 {
 	float counter_time = 0;
 public:
-	FlyingState() { debug_state = 4; };
+	FlyingState() { current_state = FLYING; };
 	void handleOnKeyUp(CMario& mario, int keyCode);
 
 	void handleOnKeyDown(CMario& mario, int keyCode);

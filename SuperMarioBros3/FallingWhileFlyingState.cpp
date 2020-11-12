@@ -38,8 +38,6 @@ void FallingWhileFlyingState::update(CMario& mario, DWORD dt) {
 	if (flap_tails)
 		mario.vy = MARIO_SLOW_GRAVITY * dt;
 
-	mario.current_state = FALLING_WHILE_FLYING;
-
 	if (mario.nx > 0)
 	{
 		flap_tails ? mario.SetAni(RACCOON_MARIO_ANI_FLYING_STATE_RIGHT) : mario.SetAni(RACCOON_MARIO_ANI_FALLING_WHILE_FLYING_RIGHT);

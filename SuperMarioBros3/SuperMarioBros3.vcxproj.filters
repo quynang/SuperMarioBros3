@@ -51,6 +51,9 @@
     <ClCompile Include="FallingWhileFlyingState.cpp">
       <Filter>GameObjects\Player</Filter>
     </ClCompile>
+    <ClCompile Include="KickState.cpp">
+      <Filter>GameObjects\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -104,6 +107,9 @@
       <Filter>GameObjects\Player</Filter>
     </ClInclude>
     <ClInclude Include="FallingWhileFlyingState.h">
+      <Filter>GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="KickState.h">
       <Filter>GameObjects\Player</Filter>
     </ClInclude>
   </ItemGroup>

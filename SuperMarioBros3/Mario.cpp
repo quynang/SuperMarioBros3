@@ -2,7 +2,6 @@
 #include <algorithm>
 #include <assert.h>
 #include "Utils.h"
-
 #include "Mario.h"
 #include "Game.h"
 #include "BigBox.h"
@@ -13,6 +12,7 @@
 #include "Ground.h"
 #include "FloatingBrick.h"
 #include "Koopas.h"
+#include "KickState.h"
 
 CMario::CMario(float x, float y) : CGameObject()
 {
@@ -44,7 +44,6 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	CGameObject::Update(dt);
 	vy += MARIO_GRAVITY * dt;
 	marioState->update(*this, dt);
-	//DebugOut(L"Mario state: %d\n", marioState->debug_state);
 
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
@@ -127,11 +126,12 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 				{
 					if (koopas->GetState() != KOOPAS_STATE_HIDE_IN_SHELL)
 					{
-						vy = -MARIO_JUMP_DEFLECT_SPEED;
+						vy = -0.5f;//TODO: naming this value
+						x -= 6;//Remove this. It's just for testing.
+						
 						koopas->SetState(KOOPAS_STATE_HIDE_IN_SHELL);
 					}
 					
-
 					else if (koopas->GetState() == KOOPAS_STATE_HIDE_IN_SHELL)
 					{
 						koopas->nx = this->nx;
@@ -143,6 +143,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 				{
 					if (koopas->GetState() == KOOPAS_STATE_HIDE_IN_SHELL)
 					{
+						marioState = new KickState();
 						koopas->nx = this->nx;
 						koopas->SetState(KOOPAS_STATE_SLIDING);
 
@@ -161,19 +162,22 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			else if (dynamic_cast<CGround *>(e->obj))
 			{
 
-				if (e->ny < 0 && (current_state == FALLING || current_state == FALLING_WHILE_FLYING))// Bug fix
+				if (e->ny < 0 && (marioState->current_state == FALLING || marioState->current_state == FALLING_WHILE_FLYING))// Bug fix
 					marioState = new IdleState();
 			}
 
 			else if (dynamic_cast<CBigBox *>(e->obj))  
 			{
-				if (e->ny < 0  && current_state != JUMPING)
+				if (e->ny < 0 && marioState->current_state != JUMPING && marioState->current_state != KICK)
+				{
 					marioState = new IdleState();
-				else {
-					x += dx; 
-					
 				}
-				
+					
+				else {
+					x += dx;
+					vy = 0;
+					
+				}	
 			}
 
 			else if (dynamic_cast<CFloatingBrick *>(e->obj))
@@ -186,7 +190,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 					y += e->t*dy + e->ny*0.4f;
 					vy += MARIO_GRAVITY*dt;
 
-					if (current_state != FALLING)
+					if (marioState->current_state != FALLING)
 						marioState = new FallingState();
 
 					if (floatingBrick->flag_ == 0)

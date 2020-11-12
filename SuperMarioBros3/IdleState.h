@@ -12,7 +12,7 @@ class IdleState : public MarioState {
 
 public:
 
-	IdleState() { debug_state = 1; };
+	IdleState() { current_state = IDLE; };
 	void handleOnKeyUp(CMario& mario, int keyCode);
 
 	void handleOnKeyDown(CMario& mario, int keyCode);

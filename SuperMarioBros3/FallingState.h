@@ -15,7 +15,7 @@ class FallingState : public MarioState {
 
 public:
 
-	//FallingState() { debug_state = 3; };
+	FallingState() { current_state = FALLING; };
 
 	void handleOnKeyUp(CMario& mario, int keyCode);
 

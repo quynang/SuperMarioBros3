@@ -12,7 +12,7 @@ class FallingWhileFlyingState : public MarioState {
 	int flap_tails = 0;
 public:
 
-	FallingWhileFlyingState() { debug_state = 5; };
+	FallingWhileFlyingState() { current_state = FALLING_WHILE_FLYING; };
 
 	void handleOnKeyUp(CMario& mario, int keyCode);
 

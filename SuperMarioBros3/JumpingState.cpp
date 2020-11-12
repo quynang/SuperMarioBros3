@@ -24,7 +24,6 @@ void JumpingState::update(CMario& mario, DWORD dt) {
 		ChargeY_ là khoảng đường nhảy được trước đó tính tới thời điểm hàm update này được goị
 	*/
 
-	mario.current_state = JUMPING;
 	mario.vy = -MARIO_JUMP_SPEED_Y;
 
 	//Điều chỉnh lại dy để đảm bảo rằng mario sẽ nhảy chính xác một khoảng bằng MAX_CHARGE.

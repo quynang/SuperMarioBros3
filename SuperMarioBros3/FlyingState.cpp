@@ -21,7 +21,7 @@ void FlyingState::handleKeyState(CMario& mario, BYTE* states) {
 };
 
 void FlyingState::update(CMario& mario, DWORD dt) {
-	mario.current_state = FLYING;
+
 	mario.vy = -MARIO_FLYING_SPEED_Y;
 
 	counter_time += dt;

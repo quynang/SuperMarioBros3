@@ -55,9 +55,8 @@ void WalkingState::handleKeyState(CMario& mario, BYTE* states) {
 };
 
 void WalkingState::update(CMario& mario, DWORD dt) {
-	mario.current_state = WALKING;
-	mario.vx = MARIO_WALKING_SPEED * mario.nx;
 
+	mario.vx = MARIO_WALKING_SPEED * mario.nx;
 	if (in_speed_run)
 		counter_time += dt;
 		

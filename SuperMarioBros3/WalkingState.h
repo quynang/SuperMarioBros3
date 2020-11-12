@@ -20,6 +20,7 @@ class WalkingState : public MarioState {
 	int in_speed_run = 0;
 
 public:
+	WalkingState() { current_state = WALKING; };
 	virtual void handleOnKeyUp(CMario& mario, int keyCode);
 
 	virtual void handleOnKeyDown(CMario& mario, int keyCode);

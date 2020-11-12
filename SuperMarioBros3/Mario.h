@@ -40,6 +40,7 @@ class MarioState;
 #define JUMPING	1004
 #define FLYING	1005
 #define FALLING_WHILE_FLYING	1006
+#define KICK	1007
 class CMario : public CGameObject
 {
 	int type;
@@ -48,7 +49,6 @@ class CMario : public CGameObject
 
 	float start_x;			// initial position of Mario at scene
 	float start_y;
-	int current_state;
 	int power = 0;
 
 	MarioState * marioState;
@@ -58,6 +58,7 @@ class CMario : public CGameObject
 	friend class FallingState;
 	friend class FlyingState;
 	friend class FallingWhileFlyingState;
+	friend class KickState;
 
 public:
 	int ani = -1;

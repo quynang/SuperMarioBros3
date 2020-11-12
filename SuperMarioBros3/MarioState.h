@@ -1,12 +1,13 @@
 #pragma once
 #include "Mario.h"
+#include "Utils.h"
 class CMario; //TODO: Why this line avoid circular denpendency ? How it work. Are there any efficent way for that?
 
 class MarioState {
 
 public:
 
-	int debug_state = 0;
+	int current_state = 0;
 	
 	virtual void handleOnKeyUp(CMario& mario, int keyCode) = 0;
 

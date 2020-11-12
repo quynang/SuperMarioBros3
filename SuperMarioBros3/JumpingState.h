@@ -16,7 +16,7 @@ class JumpingState : public MarioState {
 
 public:
 
-	JumpingState() : chargeY_(0) {};
+	JumpingState() : chargeY_(0) { current_state = JUMPING; };
 
 	void handleOnKeyUp(CMario& mario, int keyCode);
 
