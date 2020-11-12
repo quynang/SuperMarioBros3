@@ -276,7 +276,7 @@ map-world-1-1.txt
 #idle when holding right
 28	11025	100
 #idle when holding left
-29	10028	100
+29	11028	100
 #die
 599	10099	100
 # ==== BRICK =========
