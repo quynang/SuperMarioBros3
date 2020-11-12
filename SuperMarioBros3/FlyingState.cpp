@@ -4,7 +4,12 @@
 #include "FallingWhileFlyingState.h"
 
 void FlyingState::handleOnKeyUp(CMario& mario, int keyCode) {
-
+	switch (keyCode)
+	{
+	case DIK_SPACE:
+		mario.marioState = new FallingWhileFlyingState();
+		break;
+	}
 };
 
 void FlyingState::handleOnKeyDown(CMario& mario, int keyCode) {
@@ -12,12 +17,23 @@ void FlyingState::handleOnKeyDown(CMario& mario, int keyCode) {
 };
 
 void FlyingState::handleKeyState(CMario& mario, BYTE* states) {
-	if ((states[DIK_RIGHT] & 0x80) > 0 || (states[DIK_LEFT] & 0x80) > 0) {
-		mario.vx = FLYING_SPEED_X*mario.nx;
+	/*if ((states[DIK_RIGHT] & 0x80) > 0 || (states[DIK_LEFT] & 0x80) > 0) {
+		mario.vx = FLYING_SPEED_X * mario.nx;
+	}
+	*/
+	if ((states[DIK_RIGHT] & 0x80) > 0) {
+		mario.nx = 1;
+		mario.vx = FLYING_SPEED_X * mario.nx;
+	}
+
+	else if ((states[DIK_LEFT] & 0x80) > 0) {
+		mario.nx = -1;
+		mario.vx = FLYING_SPEED_X * mario.nx;
 	}
 	else {
 		mario.vx = 0;
 	}
+
 };
 
 void FlyingState::update(CMario& mario, DWORD dt) {

@@ -23,7 +23,13 @@ void FallingWhileFlyingState::handleOnKeyDown(CMario& mario, int keyCode) {
 };
 
 void FallingWhileFlyingState::handleKeyState(CMario& mario, BYTE* states) {
-	if ((states[DIK_RIGHT] & 0x80) > 0 || (states[DIK_LEFT] & 0x80) > 0) {
+	if ((states[DIK_RIGHT] & 0x80) > 0) {
+		mario.nx = 1;
+		mario.vx = FLYING_SPEED_X * mario.nx;
+	}
+
+	else if ((states[DIK_LEFT] & 0x80) > 0) {
+		mario.nx = -1;
 		mario.vx = FLYING_SPEED_X * mario.nx;
 	}
 	else {
