@@ -71,6 +71,16 @@ void CPlayScene::_ParseSection_SPRITES(string line)
 	int r = atoi(tokens[3].c_str());
 	int b = atoi(tokens[4].c_str());
 	int texID = atoi(tokens[5].c_str());
+	float dx = 0;
+	float dy = 0;
+
+	if (tokens.size() == 8)
+	{
+		dx = atof(tokens[6].c_str());
+		dy = atof(tokens[7].c_str());
+	}
+
+
 
 	LPDIRECT3DTEXTURE9 tex = CTextures::GetInstance()->Get(texID);
 	if (tex == NULL)
@@ -79,7 +89,7 @@ void CPlayScene::_ParseSection_SPRITES(string line)
 		return; 
 	}
 
-	CSprites::GetInstance()->Add(ID, l, t, r, b, tex);
+	CSprites::GetInstance()->Add(ID, l, t, r, b, tex, dx, dy);
 }
 
 void CPlayScene::_ParseSection_ANIMATIONS(string line)

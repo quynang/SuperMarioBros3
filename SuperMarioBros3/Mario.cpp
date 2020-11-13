@@ -49,12 +49,12 @@ void CMario::SetPosForItemPicked() {
 	if (this->nx > 0)
 	{
 		item_picked->nx = 1;
-		item_picked->x = r_;
+		item_picked->x = r_ - 2;
 		item_picked->y = (b_ - t_) / 2 + t_ - 8;
 	}
 	else
 	{
-		item_picked->x = l_ - 16;
+		item_picked->x = l_ - 16 + 2;
 		item_picked->y = (b_ - t_)/2  + t_ - 8;
 		item_picked->nx = -1;
 
@@ -74,12 +74,8 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		((CKoopas*)item_picked)->SetState(KOOPAS_STATE_SLIDING);
 		item_picked = NULL;
 	}
-		
-	if (item_picked != NULL)
-		SetPosForItemPicked();
-		
 	
-
+	
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
 
@@ -253,6 +249,10 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
 
 	if (x < 0) x = 0;
+		
+	if (item_picked != NULL)
+		SetPosForItemPicked();
+		
 
 }
 
@@ -262,7 +262,7 @@ void CMario::Render()
 
 	if (untouchable) alpha = 128;
 
-	//RenderBoundingBox();
+	RenderBoundingBox();
 	animation_set->at(ani)->Render(x, y, alpha);
 
 }
