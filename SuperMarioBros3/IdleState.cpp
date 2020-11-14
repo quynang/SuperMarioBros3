@@ -34,19 +34,25 @@ void IdleState::update(CMario& mario, DWORD dt) {
 
 	mario.vx = 0;
 
+};
+
+int IdleState::getAni(CMario& mario) {
+
+	int ani = -1;
+
 	if (mario.nx > 0)
 	{
 		switch (mario.type)
 		{
-			case MARIO_TYPE_SMALL:
-				mario.SetAni(MARIO_ANI_SMALL_IDLE_RIGHT);
-				break;
-			case MARIO_TYPE_BIG:
-				mario.SetAni(MARIO_ANI_BIG_IDLE_RIGHT);
-				break;
-			case MARIO_TYPE_RACCOON:
-				mario.SetAni(RACCOON_MARIO_ANI_IDLE_RIGHT);
-				break;
+		case MARIO_TYPE_SMALL:
+			ani = MARIO_ANI_SMALL_IDLE_RIGHT;
+			break;
+		case MARIO_TYPE_BIG:
+			ani = MARIO_ANI_BIG_IDLE_RIGHT;
+			break;
+		case MARIO_TYPE_RACCOON:
+			ani = RACCOON_MARIO_ANI_IDLE_RIGHT;
+			break;
 		}
 	}
 		
@@ -54,16 +60,17 @@ void IdleState::update(CMario& mario, DWORD dt) {
 	{
 		switch (mario.type)
 		{
-			case MARIO_TYPE_SMALL:
-				mario.SetAni(MARIO_ANI_SMALL_IDLE_LEFT);
-				break;
-			case MARIO_TYPE_BIG:
-				mario.SetAni(MARIO_ANI_BIG_IDLE_LEFT);
-				break;
-			case MARIO_TYPE_RACCOON:
-				mario.SetAni(RACCOON_MARIO_ANI_IDLE_LEFT);
-				break;
+		case MARIO_TYPE_SMALL:
+			ani = MARIO_ANI_SMALL_IDLE_LEFT;
+			break;
+		case MARIO_TYPE_BIG:
+			ani = MARIO_ANI_BIG_IDLE_LEFT;
+			break;
+		case MARIO_TYPE_RACCOON:
+			ani = RACCOON_MARIO_ANI_IDLE_LEFT;
+			break;
 		}
 	}
-
-};
+	
+	return ani;
+}

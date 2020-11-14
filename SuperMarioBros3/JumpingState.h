@@ -26,6 +26,8 @@ public:
 
 	void update(CMario& mari, DWORD dt);
 
+	int getAni(CMario& mario);
+
 private:
 	float chargeY_;
 };

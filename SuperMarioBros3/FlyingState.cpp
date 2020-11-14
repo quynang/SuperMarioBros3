@@ -43,10 +43,16 @@ void FlyingState::update(CMario& mario, DWORD dt) {
 	counter_time += dt;
 	if (counter_time / 1000 > MAX_TIME)
 		mario.marioState = new FallingWhileFlyingState();
+}
+
+int FlyingState::getAni(CMario& mario) {
+	int ani = -1;
 
 	if (mario.nx > 0)
-		mario.SetAni(RACCOON_MARIO_ANI_FLYING_STATE_RIGHT);
+		ani = RACCOON_MARIO_ANI_FLYING_STATE_RIGHT;
 	else
-		mario.SetAni(RACCOON_MARIO_ANI_FLYING_STATE_LEFT);
-}	
+		ani = RACCOON_MARIO_ANI_FLYING_STATE_LEFT;
+
+	return ani;
+}
 

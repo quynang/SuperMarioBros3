@@ -10,12 +10,16 @@ class CMario;
 #define RACCOON_MARIO_ANI_KICK_RIGHT	43
 #define RACCOON_MARIO_ANI_KICK_LEFT	44
 
+#define KICK_ACTION_TIME 0.07f
+
 class KickState : public MarioState {
 
 public:
 
 	KickState() { current_state = KICK; };
+
 	float counter_time = 0;
+
 	void handleOnKeyUp(CMario& mario, int keyCode);
 
 	void handleOnKeyDown(CMario& mario, int keyCode);
@@ -23,6 +27,8 @@ public:
 	void handleKeyState(CMario& mario, BYTE* states);
 
 	void update(CMario& mario, DWORD dt);
+
+	int getAni(CMario& mario);
 
 };
 

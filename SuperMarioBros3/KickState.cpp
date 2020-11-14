@@ -20,39 +20,7 @@ void KickState::update(CMario& mario, DWORD dt) {
 	mario.vx = 0;
 	counter_time += dt;
 
-	if (mario.nx > 0)
-	{
-		switch (mario.type)
-		{
-			case MARIO_TYPE_SMALL:
-				mario.SetAni(MARIO_ANI_SMALL_KICK_RIGHT);
-				break;
-			case MARIO_TYPE_BIG:
-				mario.SetAni(MARIO_ANI_BIG_KICK_RIGHT);
-				break;
-			case MARIO_TYPE_RACCOON:
-				mario.SetAni(RACCOON_MARIO_ANI_KICK_RIGHT);
-				break;
-		}
-	}
-		
-	else
-	{
-		switch (mario.type)
-		{
-			case MARIO_TYPE_SMALL:
-				mario.SetAni(MARIO_ANI_SMALL_KICK_LEFT);
-				break;
-			case MARIO_TYPE_BIG:
-				mario.SetAni(MARIO_ANI_BIG_KICK_LEFT);
-				break;
-			case MARIO_TYPE_RACCOON:
-				mario.SetAni(RACCOON_MARIO_ANI_KICK_LEFT);
-				break;
-		}
-	}
-
-	if (counter_time / 1000 > 0.07)
+	if (counter_time / 1000 > KICK_ACTION_TIME)
 	{
 		counter_time = 0;
 		mario.marioState = new IdleState();
@@ -60,3 +28,43 @@ void KickState::update(CMario& mario, DWORD dt) {
 		
 
 };
+
+
+int KickState::getAni(CMario& mario) {
+
+	int ani = -1;
+
+	if (mario.nx > 0)
+	{
+		switch (mario.type)
+		{
+		case MARIO_TYPE_SMALL:
+			ani = MARIO_ANI_SMALL_KICK_RIGHT;
+			break;
+		case MARIO_TYPE_BIG:
+			ani = MARIO_ANI_BIG_KICK_RIGHT;
+			break;
+		case MARIO_TYPE_RACCOON:
+			ani = RACCOON_MARIO_ANI_KICK_RIGHT;
+			break;
+		}
+	}
+
+	else
+	{
+		switch (mario.type)
+		{
+		case MARIO_TYPE_SMALL:
+			ani = MARIO_ANI_SMALL_KICK_LEFT;
+			break;
+		case MARIO_TYPE_BIG:
+			ani = MARIO_ANI_BIG_KICK_LEFT;
+			break;
+		case MARIO_TYPE_RACCOON:
+			ani = RACCOON_MARIO_ANI_KICK_LEFT;
+			break;
+		}
+	};
+
+	return ani;
+}

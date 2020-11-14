@@ -21,6 +21,7 @@ class WalkingState : public MarioState {
 
 public:
 	WalkingState() { current_state = WALKING; };
+
 	virtual void handleOnKeyUp(CMario& mario, int keyCode);
 
 	virtual void handleOnKeyDown(CMario& mario, int keyCode);
@@ -28,4 +29,6 @@ public:
 	virtual void handleKeyState(CMario& mario, BYTE* states);
 
 	virtual void update(CMario& mario, DWORD dt);
+
+	int getAni(CMario& mario);
 };

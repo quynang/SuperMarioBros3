@@ -43,13 +43,20 @@ void FallingWhileFlyingState::update(CMario& mario, DWORD dt) {
 
 	if (flap_tails)
 		mario.vy = MARIO_SLOW_GRAVITY * dt;
+};
 
+int FallingWhileFlyingState::getAni(CMario& mario) {
+
+	int ani = -1;
+		
 	if (mario.nx > 0)
 	{
-		flap_tails ? mario.SetAni(RACCOON_MARIO_ANI_FLYING_STATE_RIGHT) : mario.SetAni(RACCOON_MARIO_ANI_FALLING_WHILE_FLYING_RIGHT);
+		flap_tails ? ani = RACCOON_MARIO_ANI_FLYING_STATE_RIGHT : ani = RACCOON_MARIO_ANI_FALLING_WHILE_FLYING_RIGHT;
 	}
 	else
 	{
-		flap_tails ? mario.SetAni(RACCOON_MARIO_ANI_FLYING_STATE_LEFT) : mario.SetAni(RACCOON_MARIO_ANI_FALLING_WHILE_FLYING_LEFT);
+		flap_tails ? ani = RACCOON_MARIO_ANI_FLYING_STATE_LEFT : ani = RACCOON_MARIO_ANI_FALLING_WHILE_FLYING_LEFT;
 	}
-};
+
+	return ani;
+}

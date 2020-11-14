@@ -26,10 +26,6 @@ CMario::CMario(float x, float y) : CGameObject()
 	marioState = new FallingState();
 }
 
-void CMario::SetAni(int ani) {
-	this->ani = ani;
-}
-
 void CMario::handleOnKeyUp(int keyCode) {
 	marioState->handleOnKeyUp(*this, keyCode);
 }
@@ -262,7 +258,9 @@ void CMario::Render()
 
 	if (untouchable) alpha = 128;
 
-	RenderBoundingBox();
+	int ani = marioState->getAni(*this);
+
+	//RenderBoundingBox();
 	animation_set->at(ani)->Render(x, y, alpha);
 
 }

@@ -22,5 +22,7 @@ public:
 
 	void update(CMario& mario, DWORD dt);
 
+	int getAni(CMario& mario);
+
 };
 

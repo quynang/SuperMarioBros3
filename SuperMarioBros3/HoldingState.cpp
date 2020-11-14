@@ -43,18 +43,23 @@ void HoldingState::handleKeyState(CMario& mario, BYTE* states) {
 
 void HoldingState::update(CMario& mario, DWORD dt) {
 
+};
+
+int HoldingState::getAni(CMario& mario) {
+	int ani = -1;
+
 	if (mario.nx > 0)
 	{
 		switch (mario.type)
 		{
 		case MARIO_TYPE_SMALL:
-			mario.SetAni(mario.vx != 0 ? MARIO_ANI_SMALL_HOLDING_WALKING_RIGHT : MARIO_ANI_IDLE_SMALL_HOLDING_RIGHT);
+			mario.vx != 0 ? ani = MARIO_ANI_SMALL_HOLDING_WALKING_RIGHT : ani = MARIO_ANI_IDLE_SMALL_HOLDING_RIGHT;
 			break;
 		case MARIO_TYPE_BIG:
-			mario.SetAni(mario.vx != 0 ? MARIO_ANI_BIG_HOLDING_WALKING_RIGHT : MARIO_ANI_IDLE_BIG_HOLDING_RIGHT);
+			mario.vx != 0 ? ani = MARIO_ANI_BIG_HOLDING_WALKING_RIGHT : ani = MARIO_ANI_IDLE_BIG_HOLDING_RIGHT;
 			break;
 		case MARIO_TYPE_RACCOON:
-			mario.SetAni(mario.vx != 0 ? RACCOON_MARIO_ANI_HOLDING_WALKING_RIGHT : RACCOON_MARIO_ANI_IDLE_HOLDING_RIGHT);
+			mario.vx != 0 ? ani = RACCOON_MARIO_ANI_HOLDING_WALKING_RIGHT : ani = RACCOON_MARIO_ANI_IDLE_HOLDING_RIGHT;
 			break;
 		}
 	}
@@ -64,14 +69,16 @@ void HoldingState::update(CMario& mario, DWORD dt) {
 		switch (mario.type)
 		{
 		case MARIO_TYPE_SMALL:
-			mario.SetAni(mario.vx != 0 ? MARIO_ANI_SMALL_HOLDING_WALKING_LEFT : MARIO_ANI_IDLE_SMALL_HOLDING_LEFT);
+			mario.vx != 0 ? ani = MARIO_ANI_SMALL_HOLDING_WALKING_LEFT : ani = MARIO_ANI_IDLE_SMALL_HOLDING_LEFT;
 			break;
 		case MARIO_TYPE_BIG:
-			mario.SetAni(mario.vx != 0 ? MARIO_ANI_BIG_HOLDING_WALKING_LEFT : MARIO_ANI_IDLE_BIG_HOLDING_LEFT);
+			mario.vx != 0 ? ani = MARIO_ANI_BIG_HOLDING_WALKING_LEFT : ani = MARIO_ANI_IDLE_BIG_HOLDING_LEFT;
 			break;
 		case MARIO_TYPE_RACCOON:
-			mario.SetAni(mario.vx != 0 ? RACCOON_MARIO_ANI_HOLDING_WALKING_LEFT : RACCOON_MARIO_ANI_IDLE_HOLDING_LEFT);
+			mario.vx != 0 ? ani = RACCOON_MARIO_ANI_HOLDING_WALKING_LEFT : ani = RACCOON_MARIO_ANI_IDLE_HOLDING_LEFT;
 			break;
 		}
 	}
-};
+
+	return ani;
+}

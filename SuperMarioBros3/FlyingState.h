@@ -15,5 +15,7 @@ public:
 	void handleKeyState(CMario& mario, BYTE* states);
 
 	void update(CMario& mario, DWORD dt);
+
+	int getAni(CMario& mario);
 };
 

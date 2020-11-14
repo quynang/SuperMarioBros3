@@ -16,4 +16,6 @@ public:
 	virtual void handleKeyState(CMario& mario, BYTE* states) = 0;
 
 	virtual void update(CMario& mario, DWORD dt) = 0;
+
+	virtual int getAni(CMario& mario) = 0;
 };
