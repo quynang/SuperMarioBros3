@@ -57,6 +57,15 @@
     <ClCompile Include="HoldingState.cpp">
       <Filter>GameObjects\Player</Filter>
     </ClCompile>
+    <ClCompile Include="TailSmacking_1_State.cpp">
+      <Filter>GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="TailSmacking_2_State.cpp">
+      <Filter>GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="TailSmacking_3_State.cpp">
+      <Filter>GameObjects\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -116,6 +125,15 @@
       <Filter>GameObjects\Player</Filter>
     </ClInclude>
     <ClInclude Include="HoldingState.h">
+      <Filter>GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="TailSmacking_1_State.h">
+      <Filter>GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="TailSmacking_2_State.h">
+      <Filter>GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="TailSmacking_3_State.h">
       <Filter>GameObjects\Player</Filter>
     </ClInclude>
   </ItemGroup>

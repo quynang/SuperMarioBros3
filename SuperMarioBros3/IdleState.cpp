@@ -2,6 +2,7 @@
 #include <dinput.h>
 #include "WalkingState.h"
 #include "JumpingState.h"
+#include "TailSmacking_1_State.h"
 #include "Utils.h"
 
 void IdleState::handleOnKeyUp(CMario& mario, int keyCode) {
@@ -14,6 +15,10 @@ void IdleState::handleOnKeyDown(CMario& mario, int keyCode) {
 	{
 	case DIK_SPACE:
 		mario.marioState = new JumpingState();
+		break;
+	case DIK_D:
+		mario.marioState = new TailSmacking_1_State();
+		break;
 	}
 
 };

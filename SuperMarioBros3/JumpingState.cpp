@@ -1,12 +1,19 @@
 #include "JumpingState.h"
 #include "FallingState.h"
+#include "TailSmacking_1_State.h"
 #include <dinput.h>
 #include "IdleState.h"
 #include "Utils.h"
 
 void JumpingState::handleOnKeyDown(CMario& mario, int keyCode) {
-
-};
+	switch (keyCode)
+	{
+	case DIK_D:
+		mario.marioState = new TailSmacking_1_State();
+		break;
+	};
+}
+	
 
 void JumpingState::handleOnKeyUp(CMario& mario, int keyCode) {
 

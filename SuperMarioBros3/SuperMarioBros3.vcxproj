@@ -141,6 +141,9 @@
     <ClCompile Include="Koopas.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Portal.cpp" />
+    <ClCompile Include="TailSmacking_2_State.cpp" />
+    <ClCompile Include="TailSmacking_1_State.cpp" />
+    <ClCompile Include="TailSmacking_3_State.cpp" />
     <ClCompile Include="TileSet.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -172,6 +175,9 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="MarioState.h" />
     <ClInclude Include="Portal.h" />
+    <ClInclude Include="TailSmacking_2_State.h" />
+    <ClInclude Include="TailSmacking_1_State.h" />
+    <ClInclude Include="TailSmacking_3_State.h" />
     <ClInclude Include="TileSet.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Game.h" />

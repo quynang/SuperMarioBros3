@@ -32,6 +32,7 @@ class MarioState;
 #define MARIO_SMALL_BBOX_HEIGHT 15
 
 #define MARIO_UNTOUCHABLE_TIME 5000
+#define TIME_ANI_SMACKING_TAIL	25
 
 #define IDLE 1001
 #define FALLING 1002
@@ -41,6 +42,10 @@ class MarioState;
 #define FALLING_WHILE_FLYING	1006
 #define KICK	1007
 #define HOLDING	1008
+#define TAIL_SMACKING_1	1009
+#define TAIL_SMACKING_2	1010
+#define TAIL_SMACKING_3 1011
+
 class CMario : public CGameObject
 {
 	int type;
@@ -61,6 +66,9 @@ class CMario : public CGameObject
 	friend class FallingWhileFlyingState;
 	friend class KickState;
 	friend class HoldingState;
+	friend class TailSmacking_1_State;
+	friend class TailSmacking_2_State;
+	friend class TailSmacking_3_State;
 	CGameObject* item_picked = NULL;
 
 public:
