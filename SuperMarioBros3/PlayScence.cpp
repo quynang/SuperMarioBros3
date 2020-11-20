@@ -330,6 +330,11 @@ void CPlayScene::Unload()
 	DebugOut(L"[INFO] Scene %s unloaded! \n", sceneFilePath);
 }
 
+void CPlayScene::AddObject(LPGAMEOBJECT obj)
+{
+	objects.insert(objects.begin(), obj);
+}
+
 void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 {
 	CGame *game = CGame::GetInstance();
