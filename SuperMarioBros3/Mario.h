@@ -92,6 +92,7 @@ public:
 	void SetType(int t) { type = t; }
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount(); }
 	void SetPosForItemPicked();
+	void handleTailAttacking(vector<LPGAMEOBJECT> *coObjects);
 
 	void Reset();
 

@@ -259,6 +259,9 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		
 	if (item_holding != NULL)
 		SetPosForItemPicked();
+
+	if (marioState->current_state == TAIL_SMACKING_2)
+		handleTailAttacking(coObjects);
 		
 
 }
@@ -296,6 +299,51 @@ void CMario::GetBoundingBox(float &left, float &top, float &right, float &bottom
 	{
 		right = x + MARIO_BIG_BBOX_WIDTH;
 		bottom = y + MARIO_BIG_BBOX_HEIGHT;
+	}
+}
+
+//TODO: This is a dirty way. We should make it can readable and remove hard-code.
+void CMario::handleTailAttacking(vector<LPGAMEOBJECT> *coObjects) {
+	RECT tail_rect;
+	float l_, t_, r_, b_;
+
+	this->GetBoundingBox(l_, t_, r_, b_);
+
+	if (this->nx > 0)
+	{
+		tail_rect.top = b_ - 9;
+		tail_rect.left = r_;
+		tail_rect.right = r_ + 8;
+		tail_rect.bottom = b_ - 3;
+	}
+	else
+	{
+		tail_rect.top = b_ - 9;
+		tail_rect.left = l_ - 9;
+		tail_rect.right = l_;
+		tail_rect.bottom = b_ - 3;
+	}
+
+	for (UINT i = 0; i < coObjects->size(); i++) {
+		RECT obj_rect;
+		float l, t, r, b;
+		coObjects->at(i)->GetBoundingBox(l, t, r, b);
+		obj_rect.top = t;
+		obj_rect.left = l;
+		obj_rect.right = r;
+		obj_rect.bottom = b;
+		bool test = CGame::GetInstance()->isColliding(tail_rect, obj_rect);
+		if (test && dynamic_cast<CGoomba*>(coObjects->at(i))) {
+
+			CGoomba *goomba = dynamic_cast<CGoomba *>(coObjects->at(i));
+		
+			if (goomba->GetState()!= GOOMBA_STATE_DIE)
+			{
+				goomba->SetState(GOOMBA_STATE_DIE);
+
+			}
+			
+		}
 	}
 }
 
