@@ -23,7 +23,10 @@ void Throw_2_State::update(CMario& mario, DWORD dt) {
 	counter_time += dt;
 
 	if (!is_threw_item) {
-		FireBall* fireBall = new FireBall(mario.x, mario.y, mario.nx);
+		float x, y;
+		mario.getPositionOfHandWhenThrowing(x, y);
+
+		FireBall* fireBall = new FireBall(mario.nx > 0 ? x : x - FIRE_BALL_BBOX_WIDTH, y, mario.nx);
 		is_threw_item = 1;
 	}
 

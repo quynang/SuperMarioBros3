@@ -36,6 +36,8 @@ class MarioState;
 #define TAIL_BBOX_HEIGHT	6
 #define DISTANCE_FROM_FOOT_TO_TAIL	2
 
+#define DISTANCE_FROM_HEAD_TO_HAND	14
+
 #define MARIO_UNTOUCHABLE_TIME 5000
 #define TIME_ANI_SMACKING_TAIL	25
 
@@ -98,6 +100,7 @@ public:
 	void SetPosForItemPicked();
 	void handleTailAttacking(vector<LPGAMEOBJECT> *coObjects);
 	RECT getTailRect();
+	void getPositionOfHandWhenThrowing(float& x, float& y);
 	void Reset();
 
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);

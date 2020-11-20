@@ -334,6 +334,23 @@ RECT CMario::getTailRect() {
 	return tail_rect;
 }
 
+void CMario::getPositionOfHandWhenThrowing(float& x, float& y) {
+
+	float l_, t_, r_, b_;
+
+	this->GetBoundingBox(l_, t_, r_, b_);
+
+	if (nx > 0) {
+		x = r_;
+		y = t_ + DISTANCE_FROM_HEAD_TO_HAND;
+	}
+	else
+	{
+		x = l_;
+		y = t_ + DISTANCE_FROM_HEAD_TO_HAND;
+	}
+}
+
 void CMario::handleTailAttacking(vector<LPGAMEOBJECT> *coObjects) {
 
 	RECT tail_rect = this->getTailRect();
