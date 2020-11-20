@@ -3,6 +3,7 @@
 #include "WalkingState.h"
 #include "JumpingState.h"
 #include "TailSmacking_1_State.h"
+#include "FireBall.h"
 #include "Utils.h"
 
 void IdleState::handleOnKeyUp(CMario& mario, int keyCode) {
@@ -18,6 +19,9 @@ void IdleState::handleOnKeyDown(CMario& mario, int keyCode) {
 		break;
 	case DIK_D:
 		mario.marioState = new TailSmacking_1_State();
+		break;
+	case DIK_F:
+		FireBall* fireBall = new FireBall(mario.x, mario.y, mario.nx);
 		break;
 	}
 
