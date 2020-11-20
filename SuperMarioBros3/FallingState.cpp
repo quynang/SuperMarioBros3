@@ -35,6 +35,9 @@ int FallingState::getAni(CMario& mario) {
 			case MARIO_TYPE_RACCOON:
 				ani = RACCOON_MARIO_ANI_FALLING_RIGHT;
 				break;
+			case MARIO_TYPE_FIRE:
+				ani = FIRE_MARIO_ANI_FALLING_RIGHT;
+				break;
 		}
 	}
 		
@@ -50,6 +53,9 @@ int FallingState::getAni(CMario& mario) {
 				break;
 			case MARIO_TYPE_RACCOON:
 				ani = RACCOON_MARIO_ANI_FALLING_LEFT;
+				break;
+			case MARIO_TYPE_FIRE:
+				ani = FIRE_MARIO_ANI_FALLING_LEFT;
 				break;
 		}
 	}

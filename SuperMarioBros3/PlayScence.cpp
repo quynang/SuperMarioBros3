@@ -351,6 +351,9 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 	case DIK_3:
 		mario->SetType(MARIO_TYPE_RACCOON);
 		break;
+	case DIK_4:
+		mario->SetType(MARIO_TYPE_FIRE);
+		break;
 	case DIK_R:
 		game->SwitchScene(1);
 		break;

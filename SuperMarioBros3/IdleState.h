@@ -7,6 +7,8 @@ class CMario;
 #define MARIO_ANI_SMALL_IDLE_LEFT			3
 #define RACCOON_MARIO_ANI_IDLE_RIGHT	25
 #define RACCOON_MARIO_ANI_IDLE_LEFT	26
+#define FIRE_MARIO_ANI_IDLE_RIGHT	65
+#define FIRE_MARIO_ANI_IDLE_LEFT	66
 
 class IdleState : public MarioState {
 

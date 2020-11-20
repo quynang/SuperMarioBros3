@@ -3,6 +3,7 @@
 #include "WalkingState.h"
 #include "JumpingState.h"
 #include "TailSmacking_1_State.h"
+#include "Throw_1_State.h"
 #include "FireBall.h"
 #include "Utils.h"
 
@@ -18,7 +19,10 @@ void IdleState::handleOnKeyDown(CMario& mario, int keyCode) {
 		mario.marioState = new JumpingState();
 		break;
 	case DIK_D:
-		mario.marioState = new TailSmacking_1_State();
+		if(mario.type == MARIO_TYPE_RACCOON)
+			mario.marioState = new TailSmacking_1_State();
+		else
+			mario.marioState = new Throw_1_State();
 		break;
 	case DIK_F:
 		FireBall* fireBall = new FireBall(mario.x, mario.y, mario.nx);
@@ -62,6 +66,9 @@ int IdleState::getAni(CMario& mario) {
 		case MARIO_TYPE_RACCOON:
 			ani = RACCOON_MARIO_ANI_IDLE_RIGHT;
 			break;
+		case MARIO_TYPE_FIRE:
+			ani = FIRE_MARIO_ANI_IDLE_RIGHT;
+			break;
 		}
 	}
 		
@@ -77,6 +84,9 @@ int IdleState::getAni(CMario& mario) {
 			break;
 		case MARIO_TYPE_RACCOON:
 			ani = RACCOON_MARIO_ANI_IDLE_LEFT;
+			break;
+		case MARIO_TYPE_FIRE:
+			ani = FIRE_MARIO_ANI_IDLE_LEFT;
 			break;
 		}
 	}

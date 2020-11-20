@@ -47,6 +47,9 @@ int KickState::getAni(CMario& mario) {
 		case MARIO_TYPE_RACCOON:
 			ani = RACCOON_MARIO_ANI_KICK_RIGHT;
 			break;
+		case MARIO_TYPE_FIRE:
+			ani = FIRE_MARIO_ANI_KICK_RIGHT;
+			break;
 		}
 	}
 
@@ -62,6 +65,9 @@ int KickState::getAni(CMario& mario) {
 			break;
 		case MARIO_TYPE_RACCOON:
 			ani = RACCOON_MARIO_ANI_KICK_LEFT;
+			break;
+		case MARIO_TYPE_FIRE:
+			ani = FIRE_MARIO_ANI_KICK_LEFT;
 			break;
 		}
 	};

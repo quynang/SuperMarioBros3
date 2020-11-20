@@ -69,6 +69,12 @@
     <ClCompile Include="FireBall.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Throw_1_State.cpp">
+      <Filter>GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Throw_2_State.cpp">
+      <Filter>GameObjects\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -141,6 +147,12 @@
     </ClInclude>
     <ClInclude Include="FireBall.h">
       <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Throw_1_State.h">
+      <Filter>GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Throw_2_State.h">
+      <Filter>GameObjects\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

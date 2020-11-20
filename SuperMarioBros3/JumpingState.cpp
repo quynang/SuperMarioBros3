@@ -61,6 +61,9 @@ int JumpingState::getAni(CMario& mario) {
 			case MARIO_TYPE_RACCOON:
 				ani = RACCOON_MARIO_ANI_JUMPING_RIGHT;
 				break;
+			case MARIO_TYPE_FIRE:
+				ani = FIRE_MARIO_ANI_JUMPING_RIGHT;
+				break;
 		}
 	}
 		
@@ -76,6 +79,9 @@ int JumpingState::getAni(CMario& mario) {
 				break;
 			case MARIO_TYPE_RACCOON:
 				ani = RACCOON_MARIO_ANI_JUMPING_LEFT;
+				break;
+			case MARIO_TYPE_FIRE:
+				ani = FIRE_MARIO_ANI_JUMPING_LEFT;
 				break;
 		}
 	}

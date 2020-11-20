@@ -24,6 +24,7 @@ class MarioState;
 #define	MARIO_TYPE_SMALL	1
 #define	MARIO_TYPE_BIG		2
 #define MARIO_TYPE_RACCOON	3
+#define MARIO_TYPE_FIRE	4
 
 #define MARIO_BIG_BBOX_WIDTH  15
 #define MARIO_BIG_BBOX_HEIGHT 27
@@ -33,6 +34,8 @@ class MarioState;
 
 #define MARIO_UNTOUCHABLE_TIME 5000
 #define TIME_ANI_SMACKING_TAIL	25
+
+#define TIME_ANI_THROW	25
 
 #define IDLE 1001
 #define FALLING 1002
@@ -45,6 +48,8 @@ class MarioState;
 #define TAIL_SMACKING_1	1009
 #define TAIL_SMACKING_2	1010
 #define TAIL_SMACKING_3 1011
+#define TAIL_THROW_1	1012
+#define TAIL_THROW_2	1013
 
 class CMario : public CGameObject
 {
@@ -69,6 +74,8 @@ class CMario : public CGameObject
 	friend class TailSmacking_1_State;
 	friend class TailSmacking_2_State;
 	friend class TailSmacking_3_State;
+	friend class Throw_1_State;
+	friend class Throw_2_State;
 	CGameObject* item_holding = NULL;
 
 public:

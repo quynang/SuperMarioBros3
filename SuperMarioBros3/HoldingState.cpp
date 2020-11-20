@@ -61,6 +61,9 @@ int HoldingState::getAni(CMario& mario) {
 		case MARIO_TYPE_RACCOON:
 			mario.vx != 0 ? ani = RACCOON_MARIO_ANI_HOLDING_WALKING_RIGHT : ani = RACCOON_MARIO_ANI_IDLE_HOLDING_RIGHT;
 			break;
+		case MARIO_TYPE_FIRE:
+			mario.vx != 0 ? ani = FIRE_MARIO_ANI_HOLDING_WALKING_RIGHT : ani = FIRE_MARIO_ANI_IDLE_HOLDING_RIGHT;
+			break;
 		}
 	}
 		
@@ -76,6 +79,9 @@ int HoldingState::getAni(CMario& mario) {
 			break;
 		case MARIO_TYPE_RACCOON:
 			mario.vx != 0 ? ani = RACCOON_MARIO_ANI_HOLDING_WALKING_LEFT : ani = RACCOON_MARIO_ANI_IDLE_HOLDING_LEFT;
+			break;
+		case MARIO_TYPE_FIRE:
+			mario.vx != 0 ? ani = FIRE_MARIO_ANI_HOLDING_WALKING_LEFT : ani = FIRE_MARIO_ANI_IDLE_HOLDING_LEFT;
 			break;
 		}
 	}

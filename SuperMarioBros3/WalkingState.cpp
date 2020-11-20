@@ -91,6 +91,9 @@ int WalkingState::getAni(CMario& mario) {
 			case MARIO_TYPE_RACCOON:
 				mario.power >= 4 ? ani = RACCOON_MARIO_ANI_RUNNING_RIGHT: ani = RACCOON_MARIO_ANI_WALKING_RIGHT;
 				break;
+			case MARIO_TYPE_FIRE:
+				mario.power >= 4 ? ani = FIRE_MARIO_ANI_RUNNING_RIGHT: ani = FIRE_MARIO_ANI_WALKING_RIGHT;
+				break;
 		}
 	}
 	else
@@ -105,6 +108,9 @@ int WalkingState::getAni(CMario& mario) {
 				break;
 			case MARIO_TYPE_RACCOON:
 				mario.power >= 4 ? ani = RACCOON_MARIO_ANI_RUNNING_LEFT : ani = RACCOON_MARIO_ANI_WALKING_LEFT;
+				break;
+			case MARIO_TYPE_FIRE:
+				mario.power >= 4 ? ani = FIRE_MARIO_ANI_RUNNING_LEFT : ani = FIRE_MARIO_ANI_WALKING_LEFT;
 				break;
 		}
 	}
