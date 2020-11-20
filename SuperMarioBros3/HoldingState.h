@@ -1,6 +1,7 @@
 #pragma once
 #include "MarioState.h"
 
+//TODO: Remove this class and handle it in each state idle, walking, jumping .......
 
 #define MARIO_ANI_SMALL_HOLDING_WALKING_RIGHT		45
 #define MARIO_ANI_SMALL_HOLDING_WALKING_LEFT		46
