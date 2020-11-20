@@ -6,6 +6,7 @@ map-world-1-1.txt
 20	textures\misc.png	176	224	248
 10	textures\enemies.png	3	26	110
 30	textures\items-objects.png	255	255	255
+40	textures\fireball.png	255	255	255
 # id	left	top	right	bottom	texture_id
 [SPRITES]
 # ===============BIG MARIO=============
@@ -176,7 +177,18 @@ map-world-1-1.txt
 50004	6	130	22	156	10
 #hide in shell
 50005	50	139	66	155	10
-				
+
+#=====FIRE BALL=========
+#fire ball right
+60001	62	3	70	11	40
+60002	80	2	88	11	40
+60003	80	23	88	31	40
+60004	62	22	70	31	40
+#fire ball left
+60005	20	3	28	11	40
+60006	2	2	10	11	40
+60007	2	23	10	31	40
+60008	20	22	28	31	40
 # ani_id	sprite1_id	time1	sprite2_id	time2	...
 [ANIMATIONS]
 # ==== MARIO =========
@@ -329,7 +341,11 @@ map-world-1-1.txt
 #hide in shell
 903	50005	100
 
-
+#======FIRE BALL====
+#fire ball right
+1000	60001	100	60002	100	60003	100	60004	100
+#fire ball left
+1001	60005	100	60006	100	60007	100	60008	100
 # id	ani1	ani2	ani3
 #
 [ANIMATION_SETS]
@@ -343,6 +359,8 @@ map-world-1-1.txt
 4	801	802
 #KOPASS
 5	901	902	903
+#FIRE BALL
+6	1000	1001
 [OBJECTS]
 # type	x	y	ani_set_id	extra_settings per object type
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba
