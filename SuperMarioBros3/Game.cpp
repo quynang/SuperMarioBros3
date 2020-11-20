@@ -306,6 +306,14 @@ void CGame::SweptAABB(
 
 }
 
+bool CGame::isColliding(const RECT& object, const RECT& other) {
+	float left = other.left - object.right;
+	float top = other.bottom - object.top;
+	float right = other.right - object.left;
+	float bottom = other.top - object.bottom;
+	return !(left > 0 || right < 0 || top < 0 || bottom > 0);
+}
+
 CGame *CGame::GetInstance()
 {
 	if (__instance == NULL) __instance = new CGame();
