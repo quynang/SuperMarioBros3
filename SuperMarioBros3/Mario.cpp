@@ -20,7 +20,7 @@ CMario::CMario(float x, float y) : CGameObject()
 	type = MARIO_TYPE_SMALL;
 	untouchable = 0;
 	start_x = x; 
-	start_y = y; 
+	start_y = y;
 	this->x = x; 
 	this->y = y;
 	marioState = new FallingState();
@@ -44,15 +44,15 @@ void CMario::SetPosForItemPicked() {
 
 	if (this->nx > 0)
 	{
-		item_picked->nx = 1;
-		item_picked->x = r_ - 2;
-		item_picked->y = (b_ - t_) / 2 + t_ - 8;
+		item_holding->nx = 1;
+		item_holding->x = r_ - 2;
+		item_holding->y = (b_ - t_) / 2 + t_ - 8;
 	}
 	else
 	{
-		item_picked->x = l_ - 16 + 2;
-		item_picked->y = (b_ - t_)/2  + t_ - 8;
-		item_picked->nx = -1;
+		item_holding->x = l_ - 16 + 2;
+		item_holding->y = (b_ - t_)/2  + t_ - 8;
+		item_holding->nx = -1;
 
 	}
 }
@@ -62,13 +62,13 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	vy += MARIO_GRAVITY * dt;
 	marioState->update(*this, dt);
 
-	if (!can_pick_item && item_picked != NULL)
+	if (!can_pick_item && item_holding != NULL)
 	{
 		//TODO: What if item picked is not Koopas ?
 		marioState = new KickState();
-		((CKoopas*)item_picked)->TurnOnUpdation();
-		((CKoopas*)item_picked)->SetState(KOOPAS_STATE_SLIDING);
-		item_picked = NULL;
+		((CKoopas*)item_holding)->TurnOnUpdation();
+		((CKoopas*)item_holding)->SetState(KOOPAS_STATE_SLIDING);
+		item_holding = NULL;
 	}
 	
 	
@@ -179,8 +179,8 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 						else
 						{
 							marioState = new HoldingState();
-							item_picked = koopas;
-							((CKoopas*)item_picked)->TurnOffUpdation();
+							item_holding = koopas;
+							((CKoopas*)item_holding)->TurnOffUpdation();
 						}
 					
 						
@@ -246,7 +246,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 	if (x < 0) x = 0;
 		
-	if (item_picked != NULL)
+	if (item_holding != NULL)
 		SetPosForItemPicked();
 		
 
@@ -260,7 +260,7 @@ void CMario::Render()
 
 	int ani = marioState->getAni(*this);
 
-	//RenderBoundingBox();
+	RenderBoundingBox();
 	animation_set->at(ani)->Render(x, y, alpha);
 
 }

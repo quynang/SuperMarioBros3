@@ -69,7 +69,7 @@ class CMario : public CGameObject
 	friend class TailSmacking_1_State;
 	friend class TailSmacking_2_State;
 	friend class TailSmacking_3_State;
-	CGameObject* item_picked = NULL;
+	CGameObject* item_holding = NULL;
 
 public:
 
