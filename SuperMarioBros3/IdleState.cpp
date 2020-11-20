@@ -19,9 +19,9 @@ void IdleState::handleOnKeyDown(CMario& mario, int keyCode) {
 		mario.marioState = new JumpingState();
 		break;
 	case DIK_D:
-		if(mario.type == MARIO_TYPE_RACCOON)
+		if (mario.type == MARIO_TYPE_RACCOON)
 			mario.marioState = new TailSmacking_1_State();
-		else
+		else if (mario.type == MARIO_TYPE_FIRE)
 			mario.marioState = new Throw_1_State();
 		break;
 	}

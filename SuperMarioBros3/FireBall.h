@@ -7,11 +7,12 @@
 #define FIRE_BALL_ANI_RIGHT	0
 #define FIRE_BALL_ANI_LEFT	1
 
-#define FIRE_BALL_V0	0.5f
-#define FIRE_BALL_GRAVITY	0.007f
+#define FIRE_BALL_V0	0.4f
+#define FIRE_BALL_GRAVITY	0.004f
 
 class FireBall : public CGameObject
 {
+	int is_visible = 1;
 	float time_elapsed = 0;
 	float angle;
 public:
