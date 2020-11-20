@@ -32,6 +32,10 @@ class MarioState;
 #define MARIO_SMALL_BBOX_WIDTH  13
 #define MARIO_SMALL_BBOX_HEIGHT 15
 
+#define TAIL_BBOX_WIDTH	8
+#define TAIL_BBOX_HEIGHT	6
+#define DISTANCE_FROM_FOOT_TO_TAIL	2
+
 #define MARIO_UNTOUCHABLE_TIME 5000
 #define TIME_ANI_SMACKING_TAIL	25
 
@@ -93,7 +97,7 @@ public:
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount(); }
 	void SetPosForItemPicked();
 	void handleTailAttacking(vector<LPGAMEOBJECT> *coObjects);
-
+	RECT getTailRect();
 	void Reset();
 
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);

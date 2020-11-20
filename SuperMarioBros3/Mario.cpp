@@ -15,6 +15,7 @@
 #include "KickState.h"
 #include "HoldingState.h"
 #include "GreenPipe.h"
+#include "Textures.h"
 
 CMario::CMario(float x, float y) : CGameObject()
 {
@@ -262,8 +263,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 	if (marioState->current_state == TAIL_SMACKING_2)
 		handleTailAttacking(coObjects);
-		
-
+	
 }
 
 void CMario::Render()
@@ -276,6 +276,13 @@ void CMario::Render()
 
 	RenderBoundingBox();
 	animation_set->at(ani)->Render(x, y, alpha);
+
+	/*if (marioState->current_state == TAIL_SMACKING_2) {
+		RECT tail_rect = this->getTailRect();
+		LPDIRECT3DTEXTURE9 bbox = CTextures::GetInstance()->Get(ID_TEX_BBOX);
+		CGame::GetInstance()->Draw(tail_rect.left, tail_rect.top, bbox, 0, 0, TAIL_BBOX_WIDTH, TAIL_BBOX_HEIGHT, 150);
+	}*/
+	
 
 }
 
@@ -302,8 +309,8 @@ void CMario::GetBoundingBox(float &left, float &top, float &right, float &bottom
 	}
 }
 
-//TODO: This is a dirty way. We should make it can readable and remove hard-code.
-void CMario::handleTailAttacking(vector<LPGAMEOBJECT> *coObjects) {
+RECT CMario::getTailRect() {
+
 	RECT tail_rect;
 	float l_, t_, r_, b_;
 
@@ -311,18 +318,25 @@ void CMario::handleTailAttacking(vector<LPGAMEOBJECT> *coObjects) {
 
 	if (this->nx > 0)
 	{
-		tail_rect.top = b_ - 9;
+		tail_rect.top = b_ - (DISTANCE_FROM_FOOT_TO_TAIL + TAIL_BBOX_HEIGHT);
 		tail_rect.left = r_;
-		tail_rect.right = r_ + 8;
-		tail_rect.bottom = b_ - 3;
+		tail_rect.right = r_ + TAIL_BBOX_WIDTH;
+		tail_rect.bottom = b_ - DISTANCE_FROM_FOOT_TO_TAIL;
 	}
 	else
 	{
-		tail_rect.top = b_ - 9;
-		tail_rect.left = l_ - 9;
+		tail_rect.top = b_ - (DISTANCE_FROM_FOOT_TO_TAIL + TAIL_BBOX_HEIGHT);
+		tail_rect.left =  l_ - TAIL_BBOX_WIDTH;
 		tail_rect.right = l_;
-		tail_rect.bottom = b_ - 3;
+		tail_rect.bottom = b_ - DISTANCE_FROM_FOOT_TO_TAIL;
 	}
+
+	return tail_rect;
+}
+
+void CMario::handleTailAttacking(vector<LPGAMEOBJECT> *coObjects) {
+
+	RECT tail_rect = this->getTailRect();
 
 	for (UINT i = 0; i < coObjects->size(); i++) {
 		RECT obj_rect;
@@ -332,8 +346,10 @@ void CMario::handleTailAttacking(vector<LPGAMEOBJECT> *coObjects) {
 		obj_rect.left = l;
 		obj_rect.right = r;
 		obj_rect.bottom = b;
-		bool test = CGame::GetInstance()->isColliding(tail_rect, obj_rect);
-		if (test && dynamic_cast<CGoomba*>(coObjects->at(i))) {
+
+		bool isOverlapping = CGame::GetInstance()->isColliding(tail_rect, obj_rect);
+
+		if (isOverlapping && dynamic_cast<CGoomba*>(coObjects->at(i))) {
 
 			CGoomba *goomba = dynamic_cast<CGoomba *>(coObjects->at(i));
 		
