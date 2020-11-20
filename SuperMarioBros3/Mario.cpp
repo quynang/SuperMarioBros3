@@ -206,7 +206,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 			else if (dynamic_cast<CBigBox *>(e->obj))  
 			{
-				if (e->ny < 0 && marioState->current_state != JUMPING && marioState->current_state != KICK && marioState->current_state != HOLDING)
+				if (e->ny < 0 &&  (marioState->current_state == FALLING || marioState->current_state == FALLING_WHILE_FLYING))
 				{
 					marioState = new IdleState();
 				}
