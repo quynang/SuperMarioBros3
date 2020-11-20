@@ -14,6 +14,7 @@
 #include "Koopas.h"
 #include "KickState.h"
 #include "HoldingState.h"
+#include "GreenPipe.h"
 
 CMario::CMario(float x, float y) : CGameObject()
 {
@@ -144,7 +145,9 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 						}
 					}
 				}
-			} else if (dynamic_cast<CKoopas *>(e->obj))
+			}
+
+			else if (dynamic_cast<CKoopas *>(e->obj))
 
 			{
 				CKoopas *koopas = dynamic_cast<CKoopas *>(e->obj);
@@ -183,8 +186,6 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 							((CKoopas*)item_holding)->TurnOffUpdation();
 						}
 					
-						
-
 					}
 				}
 				
@@ -200,22 +201,20 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			else if (dynamic_cast<CGround *>(e->obj))
 			{
 
-				if (e->ny < 0 && (marioState->current_state == FALLING || marioState->current_state == FALLING_WHILE_FLYING))// Bug fix
+				if (e->ny < 0 && (marioState->current_state == FALLING || marioState->current_state == FALLING_WHILE_FLYING)) {
 					marioState = new IdleState();
+					x += dx;
+				}
+					
 			}
 
 			else if (dynamic_cast<CBigBox *>(e->obj))  
 			{
+				x += dx;
 				if (e->ny < 0 &&  (marioState->current_state == FALLING || marioState->current_state == FALLING_WHILE_FLYING))
 				{
 					marioState = new IdleState();
 				}
-					
-				else {
-					x += dx;
-					vy = 0;
-					
-				}	
 			}
 
 			else if (dynamic_cast<CFloatingBrick *>(e->obj))
@@ -236,6 +235,12 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 					
 					
 				}
+			}
+
+			else if (dynamic_cast<CGreenPipe *>(e->obj))
+			{
+				CGreenPipe *greenPipe = dynamic_cast<CGreenPipe *>(e->obj);
+				vx = 0;
 			}
 		
 		}

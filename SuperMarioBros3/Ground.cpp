@@ -9,6 +9,6 @@ void CGround::GetBoundingBox(float &l, float &t, float &r, float &b)
 {
 	l = x;
 	t = y;
-	r = x + GROUND_BOX_WIDTH;
-	b = y + GROUND_BOX_HEIGHT;
+	r = x + FRAME_SIZE*size_width;
+	b = y + FRAME_SIZE*size_height;
 }
