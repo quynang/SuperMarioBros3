@@ -210,10 +210,13 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 			else if (dynamic_cast<CBigBox *>(e->obj))  
 			{
-				x += dx;
+				
 				if (e->ny < 0 &&  (marioState->current_state == FALLING || marioState->current_state == FALLING_WHILE_FLYING))
 				{
 					marioState = new IdleState();
+				}
+				if (e->nx != 0) {
+					x += dx;
 				}
 			}
 
@@ -239,8 +242,11 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 			else if (dynamic_cast<CGreenPipe *>(e->obj))
 			{
-				CGreenPipe *greenPipe = dynamic_cast<CGreenPipe *>(e->obj);
-				vx = 0;
+				if (e->ny < 0 &&  (marioState->current_state == FALLING || marioState->current_state == FALLING_WHILE_FLYING))
+				{
+					marioState = new IdleState();
+					x += dx;
+				}
 			}
 		
 		}
