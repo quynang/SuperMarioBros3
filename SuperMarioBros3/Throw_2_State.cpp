@@ -1,5 +1,6 @@
 #include "Throw_2_State.h"
 #include "IdleState.h"
+#include "FireBall.h"
 #include <dinput.h>
 #include "Utils.h"
 
@@ -20,6 +21,11 @@ void Throw_2_State::handleKeyState(CMario& mario, BYTE* states) {
 void Throw_2_State::update(CMario& mario, DWORD dt) {
 
 	counter_time += dt;
+
+	if (!is_threw_item) {
+		FireBall* fireBall = new FireBall(mario.x, mario.y, mario.nx);
+		is_threw_item = 1;
+	}
 
 	if (counter_time >= TIME_ANI_THROW)
 		mario.marioState = new IdleState();

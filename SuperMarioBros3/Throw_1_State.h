@@ -9,7 +9,7 @@ class Throw_1_State : public MarioState {
 	float counter_time = 0;
 public:
 
-	Throw_1_State() { current_state = TAIL_THROW_1; };
+	Throw_1_State() { current_state = THROW_1; };
 
 	void handleOnKeyUp(CMario& mario, int keyCode);
 

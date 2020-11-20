@@ -24,9 +24,6 @@ void IdleState::handleOnKeyDown(CMario& mario, int keyCode) {
 		else
 			mario.marioState = new Throw_1_State();
 		break;
-	case DIK_F:
-		FireBall* fireBall = new FireBall(mario.x, mario.y, mario.nx);
-		break;
 	}
 
 };

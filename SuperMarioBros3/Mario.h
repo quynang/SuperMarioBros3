@@ -48,8 +48,8 @@ class MarioState;
 #define TAIL_SMACKING_1	1009
 #define TAIL_SMACKING_2	1010
 #define TAIL_SMACKING_3 1011
-#define TAIL_THROW_1	1012
-#define TAIL_THROW_2	1013
+#define THROW_1	1012
+#define THROW_2	1013
 
 class CMario : public CGameObject
 {
