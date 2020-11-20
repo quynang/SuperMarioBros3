@@ -9,7 +9,8 @@ void JumpingState::handleOnKeyDown(CMario& mario, int keyCode) {
 	switch (keyCode)
 	{
 	case DIK_D:
-		mario.marioState = new TailSmacking_1_State();
+		if (mario.type == MARIO_TYPE_RACCOON)
+			mario.marioState = new TailSmacking_1_State();
 		break;
 	};
 }
