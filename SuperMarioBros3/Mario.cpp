@@ -177,7 +177,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 						if (!can_pick_item)
 						{
 							marioState = new KickState();
-							koopas->nx = this->nx;
+							koopas->nx = - e->nx;
 							koopas->SetState(KOOPAS_STATE_SLIDING);
 						}
 						else
