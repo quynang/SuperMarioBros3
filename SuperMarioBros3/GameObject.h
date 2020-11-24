@@ -71,6 +71,7 @@ public:
 	int GetState() { return this->state; }
 
 	void RenderBoundingBox();
+	D3DXVECTOR3 GetPosition() { D3DXVECTOR3 p; p.x = x; p.y = y; return p; };
 
 	void SetAnimationSet(LPANIMATION_SET ani_set) { animation_set = ani_set; }
 

@@ -134,6 +134,7 @@
     <ClCompile Include="FloatingBrick.cpp" />
     <ClCompile Include="FlyingState.cpp" />
     <ClCompile Include="GreenPipe.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="HoldingState.cpp" />
     <ClCompile Include="IdleState.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="FloatingBrick.h" />
     <ClInclude Include="FlyingState.h" />
     <ClInclude Include="GreenPipe.h" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="HoldingState.h" />
     <ClInclude Include="IdleState.h" />
@@ -185,6 +187,7 @@
     <ClInclude Include="Throw_1_State.h" />
     <ClInclude Include="Throw_2_State.h" />
     <ClInclude Include="TileSet.h" />
+    <ClInclude Include="Unit.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />

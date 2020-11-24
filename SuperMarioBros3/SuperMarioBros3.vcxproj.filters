@@ -75,6 +75,9 @@
     <ClCompile Include="Throw_2_State.cpp">
       <Filter>GameObjects\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Grid</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -154,6 +157,12 @@
     <ClInclude Include="Throw_2_State.h">
       <Filter>GameObjects\Player</Filter>
     </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Grid</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">
@@ -164,6 +173,9 @@
     </Filter>
     <Filter Include="GameObjects\StaticObjects">
       <UniqueIdentifier>{2454ad34-c333-4fd8-989a-26e8a8159817}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Grid">
+      <UniqueIdentifier>{32ed22d4-df1c-44b8-8a18-71199f59ff4a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
