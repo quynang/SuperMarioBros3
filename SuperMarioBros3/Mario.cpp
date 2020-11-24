@@ -146,9 +146,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 						}
 					}
 				}
-			}
-
-			else if (dynamic_cast<CKoopas *>(e->obj))
+			} else if (dynamic_cast<CKoopas *>(e->obj))
 
 			{
 				CKoopas *koopas = dynamic_cast<CKoopas *>(e->obj);
@@ -187,6 +185,8 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 							((CKoopas*)item_holding)->TurnOffUpdation();
 						}
 					
+						
+
 					}
 				}
 				
@@ -202,16 +202,12 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			else if (dynamic_cast<CGround *>(e->obj))
 			{
 
-				if (e->ny < 0 && (marioState->current_state == FALLING || marioState->current_state == FALLING_WHILE_FLYING)) {
+				if (e->ny < 0 && (marioState->current_state == FALLING || marioState->current_state == FALLING_WHILE_FLYING))// Bug fix
 					marioState = new IdleState();
-					x += dx;
-				}
-					
 			}
 
 			else if (dynamic_cast<CBigBox *>(e->obj))  
 			{
-				
 				if (e->ny < 0 &&  (marioState->current_state == FALLING || marioState->current_state == FALLING_WHILE_FLYING))
 				{
 					marioState = new IdleState();
