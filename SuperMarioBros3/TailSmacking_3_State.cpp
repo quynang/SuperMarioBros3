@@ -22,7 +22,7 @@ void TailSmacking_3_State::update(CMario& mario, DWORD dt) {
 	counter_time += dt;
 
 	if (counter_time >= TIME_ANI_SMACKING_TAIL)
-		mario.marioState = new IdleState();
+		mario.state = new IdleState();
 
 };
 

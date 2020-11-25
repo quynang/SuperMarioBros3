@@ -25,17 +25,17 @@ CMario::CMario(float x, float y) : CGameObject()
 	start_y = y;
 	this->x = x; 
 	this->y = y;
-	marioState = new FallingState();
+	state = new FallingState();
 }
 
 void CMario::handleOnKeyUp(int keyCode) {
-	marioState->handleOnKeyUp(*this, keyCode);
+	state->handleOnKeyUp(*this, keyCode);
 }
 void CMario::handleOnKeyDown(int keyCode) {
-	marioState->handleOnKeyDown(*this, keyCode);
+	state->handleOnKeyDown(*this, keyCode);
 }
 void CMario::handleKeyState(BYTE* states) {
-	marioState->handleKeyState(*this, states);
+	state->handleKeyState(*this, states);
 }
 
 void CMario::SetPosForItemPicked() {
@@ -63,12 +63,12 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	//DebugOut(L"Mario objects to check size: %d\n", coObjects->size());
 	CGameObject::Update(dt);
 	vy += MARIO_GRAVITY * dt;
-	marioState->update(*this, dt);
+	state->update(*this, dt);
 
 	if (!can_pick_item && item_holding != NULL)
 	{
 		//TODO: What if item picked is not Koopas ?
-		marioState = new KickState();
+		state = new KickState();
 		((CKoopas*)item_holding)->TurnOnUpdation();
 		((CKoopas*)item_holding)->SetState(KOOPAS_STATE_SLIDING);
 		item_holding = NULL;
@@ -127,7 +127,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 					{
 						goomba->SetState(GOOMBA_STATE_DIE);
 						vy = -MARIO_JUMP_DEFLECT_SPEED;
-						marioState = new IdleState();
+						state = new IdleState();
 					}
 				}
 				else if (e->nx != 0)
@@ -173,13 +173,13 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 					{
 						if (!can_pick_item)
 						{
-							marioState = new KickState();
+							state = new KickState();
 							koopas->nx = - e->nx;
 							koopas->SetState(KOOPAS_STATE_SLIDING);
 						}
 						else
 						{
-							marioState = new HoldingState();
+							state = new HoldingState();
 							item_holding = koopas;
 							((CKoopas*)item_holding)->TurnOffUpdation();
 						}
@@ -201,15 +201,15 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			else if (dynamic_cast<CGround *>(e->obj))
 			{
 
-				if (e->ny < 0 && (marioState->current_state == FALLING || marioState->current_state == FALLING_WHILE_FLYING))// Bug fix
-					marioState = new IdleState();
+				if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))// Bug fix
+					state = new IdleState();
 			}
 
 			else if (dynamic_cast<CBigBox *>(e->obj))  
 			{
-				if (e->ny < 0 &&  (marioState->current_state == FALLING || marioState->current_state == FALLING_WHILE_FLYING))
+				if (e->ny < 0 &&  (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))
 				{
-					marioState = new IdleState();
+					state = new IdleState();
 				}
 				if (e->nx != 0) {
 					x += dx;
@@ -226,8 +226,8 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 					y += e->t*dy + e->ny*0.4f;
 					vy += MARIO_GRAVITY*dt;
 
-					if (marioState->current_state != FALLING)
-						marioState = new FallingState();
+					if (state->current_state != FALLING)
+						state = new FallingState();
 
 					if (floatingBrick->flag_ == 0)
 						floatingBrick->SetState(DEFLECT_STATE);
@@ -238,9 +238,9 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 			else if (dynamic_cast<CGreenPipe *>(e->obj))
 			{
-				if (e->ny < 0 &&  (marioState->current_state == FALLING || marioState->current_state == FALLING_WHILE_FLYING))
+				if (e->ny < 0 &&  (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))
 				{
-					marioState = new IdleState();
+					state = new IdleState();
 					x += dx;
 				}
 			}
@@ -256,7 +256,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	if (item_holding != NULL)
 		SetPosForItemPicked();
 
-	if (marioState->current_state == TAIL_SMACKING_2)
+	if (state->current_state == TAIL_SMACKING_2)
 		handleTailAttacking(coObjects);
 	
 }
@@ -267,7 +267,7 @@ void CMario::Render()
 
 	if (untouchable) alpha = 128;
 
-	int ani = marioState->getAni(*this);
+	int ani = state->getAni(*this);
 
 	//RenderBoundingBox();
 	animation_set->at(ani)->Render(x, y, alpha);

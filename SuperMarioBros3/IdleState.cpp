@@ -16,13 +16,13 @@ void IdleState::handleOnKeyDown(CMario& mario, int keyCode) {
 	switch (keyCode)
 	{
 	case DIK_SPACE:
-		mario.marioState = new JumpingState();
+		mario.state = new JumpingState();
 		break;
 	case DIK_D:
 		if (mario.type == MARIO_TYPE_RACCOON)
-			mario.marioState = new TailSmacking_1_State();
+			mario.state = new TailSmacking_1_State();
 		else if (mario.type == MARIO_TYPE_FIRE)
-			mario.marioState = new Throw_1_State();
+			mario.state = new Throw_1_State();
 		break;
 	}
 
@@ -31,11 +31,11 @@ void IdleState::handleOnKeyDown(CMario& mario, int keyCode) {
 void IdleState::handleKeyState(CMario& mario, BYTE* states) {
 
 	if ((states[DIK_RIGHT] & 0x80) > 0) {
-		mario.marioState = new WalkingState();
+		mario.state = new WalkingState();
 	}
 
 	if ((states[DIK_LEFT] & 0x80) > 0) {
-		mario.marioState = new WalkingState();
+		mario.state = new WalkingState();
 	}
 
 };

@@ -22,7 +22,7 @@ void TailSmacking_1_State::update(CMario& mario, DWORD dt) {
 	counter_time += dt;
 
 	if (counter_time >= TIME_ANI_SMACKING_TAIL)
-		mario.marioState = new TailSmacking_2_State();
+		mario.state = new TailSmacking_2_State();
 
 };
 

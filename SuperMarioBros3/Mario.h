@@ -68,7 +68,7 @@ class CMario : public CGameObject
 	int power = 0;
 	int can_pick_item = 0;
 
-	MarioState * marioState;
+	MarioState * state;
 	friend class WalkingState;
 	friend class IdleState;
 	friend class JumpingState;

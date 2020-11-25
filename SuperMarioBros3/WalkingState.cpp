@@ -10,9 +10,9 @@ void WalkingState::handleOnKeyUp(CMario& mario, int keyCode) {
 	switch (keyCode)
 	{
 	case DIK_RIGHT:
-		mario.marioState = new IdleState();
+		mario.state = new IdleState();
 	case DIK_LEFT:
-		mario.marioState = new IdleState();
+		mario.state = new IdleState();
 	case DIK_A:
 		in_speed_run = 0;
 		counter_time = 0;
@@ -26,9 +26,9 @@ void WalkingState::handleOnKeyDown(CMario& mario, int keyCode) {
 	{
 	case DIK_SPACE:
 		if (mario.power >= 4 && mario.type == MARIO_TYPE_RACCOON)
-			mario.marioState = new FlyingState();
+			mario.state = new FlyingState();
 		else
-			mario.marioState = new JumpingState();
+			mario.state = new JumpingState();
 		break;
 	case DIK_A:
 		in_speed_run = 1;

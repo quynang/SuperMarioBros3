@@ -10,7 +10,7 @@ void JumpingState::handleOnKeyDown(CMario& mario, int keyCode) {
 	{
 	case DIK_D:
 		if (mario.type == MARIO_TYPE_RACCOON)
-			mario.marioState = new TailSmacking_1_State();
+			mario.state = new TailSmacking_1_State();
 		break;
 	};
 }
@@ -38,7 +38,7 @@ void JumpingState::update(CMario& mario, DWORD dt) {
 	if (abs(mario.dy) + chargeY_ >= MAX_CHARGE) {
 		mario.dy = -(MAX_CHARGE - chargeY_); //Giá trị âm bởi vì lúc này mario vẫn đang nhảy lên.
 		mario.vy = 0;
-		mario.marioState = new FallingState();
+		mario.state = new FallingState();
 	}
 	
 	chargeY_ += abs(mario.dy);

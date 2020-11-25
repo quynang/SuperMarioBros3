@@ -7,7 +7,7 @@ void FlyingState::handleOnKeyUp(CMario& mario, int keyCode) {
 	switch (keyCode)
 	{
 	case DIK_SPACE:
-		mario.marioState = new FallingWhileFlyingState();
+		mario.state = new FallingWhileFlyingState();
 		break;
 	}
 };
@@ -42,7 +42,7 @@ void FlyingState::update(CMario& mario, DWORD dt) {
 
 	counter_time += dt;
 	if (counter_time / 1000 > MAX_TIME)
-		mario.marioState = new FallingWhileFlyingState();
+		mario.state = new FallingWhileFlyingState();
 }
 
 int FlyingState::getAni(CMario& mario) {

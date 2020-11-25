@@ -22,7 +22,7 @@ void Throw_1_State::update(CMario& mario, DWORD dt) {
 	counter_time += dt;
 
 	if (counter_time >= TIME_ANI_THROW)
-		mario.marioState = new Throw_2_State();
+		mario.state = new Throw_2_State();
 
 };
 

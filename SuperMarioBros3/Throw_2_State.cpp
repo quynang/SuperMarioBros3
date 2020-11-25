@@ -31,7 +31,7 @@ void Throw_2_State::update(CMario& mario, DWORD dt) {
 	}
 
 	if (counter_time >= TIME_ANI_THROW)
-		mario.marioState = new IdleState();
+		mario.state = new IdleState();
 
 };
 

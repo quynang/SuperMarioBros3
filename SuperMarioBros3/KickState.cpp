@@ -23,7 +23,7 @@ void KickState::update(CMario& mario, DWORD dt) {
 	if (counter_time / 1000 > KICK_ACTION_TIME)
 	{
 		counter_time = 0;
-		mario.marioState = new IdleState();
+		mario.state = new IdleState();
 	}
 		
 
