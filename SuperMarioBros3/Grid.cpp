@@ -57,14 +57,22 @@ void Grid::handleUpdate(DWORD dt) {
         for (size_t j = 0; j < cell.units.size(); j++) {
             vector<LPUNIT> units;
             Unit* unit = cell.units[j];
-            // Update with the residing cell
-            mergeUnits(units, cell.units, j + 1);
+            /*
+                TODO: Whether we use startindex is j + 1 mergeUnits(..., ...., startIndex).
+                It can avoid redudant checking collision.
+                But if we do that. We have to update collison for all object and take player (Mario) into account.
+                Example: For Ground objects, we need to check how it interact with mario. It mean we change behavior of
+                Mario in update method of Ground. Should we ?
+            */
+
+            //residing cell
+            mergeUnits(units, cell.units, 0);
 
             // Update collision with neighbor cells. Reference: https://gameprogrammingpatterns.com/spatial-partition.html 
 
             if (x > 0) {
                 // Left
-                mergeUnits(units, getCell(x - 1, y)->units, j + 1);
+                mergeUnits(units, getCell(x - 1, y)->units, 0);
 
                 if (y > 0) {
                     // Top left
