@@ -354,7 +354,7 @@ void CPlayScene::Unload()
 
 void CPlayScene::AddObject(LPGAMEOBJECT obj)
 {
-	//objects.insert(objects.begin(), obj);
+	objects.insert(objects.begin(), obj);
 	LPUNIT unit = new Unit();
 	unit->object = obj;
 	m_grid->addUnit(unit);
