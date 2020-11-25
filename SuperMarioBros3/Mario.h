@@ -92,9 +92,6 @@ public:
 	void handleOnKeyUp(int keyCode);
 	void handleOnKeyDown(int keyCode);
 	void handleKeyState(BYTE* states);
-	void SetAni(int ani);
-	void ChangeState(MarioState* marioState) { marioState = marioState; }
-	void SetState(int state);
 	void SetType(int t) { type = t; }
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount(); }
 	void SetPosForItemPicked();

@@ -54,7 +54,7 @@ void CFloatingBrick::Render()
 
 void CFloatingBrick::SetState(int state)
 {
-	CGameObject::SetState(state);
+	this->state = state;
 	switch (state)
 	{
 	case DEFLECT_STATE:

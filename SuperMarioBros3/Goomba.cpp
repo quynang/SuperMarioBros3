@@ -22,6 +22,7 @@ void CGoomba::GetBoundingBox(float &left, float &top, float &right, float &botto
 
 void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
+	//DebugOut(L"Goomba objects to check size: %d\n", coObjects->size());
 	CGameObject::Update(dt);
 	vy += GOOMBA_GRAVITY * dt;
 	
@@ -48,8 +49,8 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
 
-		x += min_tx * dx + nx * 0.1f;
-		y += min_ty * dy + ny * 0.2f;
+		x += min_tx * dx + nx * 0.4f;
+		y += min_ty * dy + ny * 0.4f;
 
 		if (nx != 0) vx = 0;
 		if (ny != 0) vy = 0;
@@ -65,11 +66,9 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			}
 
 			else if (dynamic_cast<CGround*>(e->obj)) {
-				if(e->nx != 0)
-					vx = - e->nx * GOOMBA_WALKING_SPEED;
-			}
-			else {
+			
 				vx = e->nx * GOOMBA_WALKING_SPEED;
+				x += dx;
 			}
 	
 		}
@@ -93,7 +92,7 @@ void CGoomba::Render()
 
 void CGoomba::SetState(int state)
 {
-	CGameObject::SetState(state); 
+	this->state = state;
 	switch (state)
 	{
 		case GOOMBA_STATE_DIE:

@@ -18,6 +18,7 @@ class CFloatingBrick : public CGameObject
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects);
 	virtual void Render();
+	int state;
 
 public:
 	int flag_ = 0;
@@ -25,5 +26,6 @@ public:
 	float init_y;
 	
 	CFloatingBrick(float y) { init_y = y; };
+	int GetState() { return this->state; }
 	virtual void SetState(int state);
 };

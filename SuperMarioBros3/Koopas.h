@@ -24,11 +24,12 @@ class CKoopas : public CGameObject
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects);
 	virtual void Render();
-
+	int state;
 public:
 	int update_flag = 1;
 	CKoopas();
 	void TurnOffUpdation() { update_flag = 0; };
 	void TurnOnUpdation() { update_flag = 1; };
+	int GetState() { return this->state; }
 	virtual void SetState(int state);
 };

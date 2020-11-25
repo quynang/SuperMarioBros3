@@ -60,6 +60,7 @@ void CMario::SetPosForItemPicked() {
 }
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
+	//DebugOut(L"Mario objects to check size: %d\n", coObjects->size());
 	CGameObject::Update(dt);
 	vy += MARIO_GRAVITY * dt;
 	marioState->update(*this, dt);
@@ -79,9 +80,8 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 	coEvents.clear();
 
-	// turn off collision when die 
-	if (state!=MARIO_STATE_DIE)
-		CalcPotentialCollisions(coObjects, coEvents);
+	CalcPotentialCollisions(coObjects, coEvents);
+
 
 	// reset untouchable timer if untouchable time has passed
 	if (GetTickCount() - untouchable_start > MARIO_UNTOUCHABLE_TIME) 
@@ -141,8 +141,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 								type = MARIO_TYPE_SMALL;
 								StartUntouchable();
 							}
-							else 
-								SetState(MARIO_STATE_DIE);
+						
 						}
 					}
 				}
@@ -270,7 +269,7 @@ void CMario::Render()
 
 	int ani = marioState->getAni(*this);
 
-	RenderBoundingBox();
+	//RenderBoundingBox();
 	animation_set->at(ani)->Render(x, y, alpha);
 
 	/*if (marioState->current_state == TAIL_SMACKING_2) {
@@ -282,10 +281,6 @@ void CMario::Render()
 
 }
 
-void CMario::SetState(int state)
-{
-	//TODO: Remove this.
-}
 
 void CMario::GetBoundingBox(float &left, float &top, float &right, float &bottom)
 {
@@ -381,7 +376,6 @@ void CMario::handleTailAttacking(vector<LPGAMEOBJECT> *coObjects) {
 */
 void CMario::Reset()
 {
-	SetState(MARIO_STATE_IDLE);
 	SetType(MARIO_TYPE_BIG);
 	SetPosition(start_x, start_y);
 	SetSpeed(0, 0);

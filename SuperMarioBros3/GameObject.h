@@ -56,8 +56,6 @@ public:
 
 	int nx;	 
 
-	int state;
-
 	DWORD dt; 
 
 	LPANIMATION_SET animation_set;
@@ -67,8 +65,6 @@ public:
 	void SetSpeed(float vx, float vy) { this->vx = vx, this->vy = vy; }
 	void GetPosition(float &x, float &y) { x = this->x; y = this->y; }
 	void GetSpeed(float &vx, float &vy) { vx = this->vx; vy = this->vy; }
-
-	int GetState() { return this->state; }
 
 	void RenderBoundingBox();
 	D3DXVECTOR3 GetPosition() { D3DXVECTOR3 p; p.x = x; p.y = y; return p; };
@@ -92,8 +88,6 @@ public:
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom) = 0;
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects = NULL);
 	virtual void Render() = 0;
-	virtual void SetState(int state) { this->state = state; }
-
 
 	~CGameObject();
 };
