@@ -98,6 +98,7 @@ public:
 	void handleTailAttacking(vector<LPGAMEOBJECT> *coObjects);
 	RECT getTailRect();
 	void getPositionOfHandWhenThrowing(float& x, float& y);
+	void SetState(int state);
 	void Reset();
 
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);

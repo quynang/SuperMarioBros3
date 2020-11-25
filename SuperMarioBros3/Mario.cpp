@@ -7,15 +7,27 @@
 #include "BigBox.h"
 #include "Goomba.h"
 #include "Portal.h"
-#include "IdleState.h"
-#include "FallingState.h"
 #include "Ground.h"
 #include "FloatingBrick.h"
 #include "Koopas.h"
-#include "KickState.h"
-#include "HoldingState.h"
 #include "GreenPipe.h"
 #include "Textures.h"
+
+//TODO: How to haven't to include state here.
+#include "WalkingState.h"
+#include "JumpingState.h"
+#include "FallingWhileFlyingState.h"
+#include "FlyingState.h"
+#include "TailSmacking_1_State.h"
+#include "TailSmacking_2_State.h"
+#include "TailSmacking_3_State.h"
+#include "Throw_1_State.h"
+#include "Throw_2_State.h"
+#include "KickState.h"
+#include "HoldingState.h"
+#include "IdleState.h"
+#include "FallingState.h"
+
 
 CMario::CMario(float x, float y) : CGameObject()
 {
@@ -368,6 +380,52 @@ void CMario::handleTailAttacking(vector<LPGAMEOBJECT> *coObjects) {
 			}
 			
 		}
+	}
+}
+
+void CMario::SetState(int state) {
+	switch (state)
+	{
+	case IDLE:
+		this->state = new IdleState();
+		break;
+	case WALKING:
+		this->state = new WalkingState();
+		break;
+	case FALLING:
+		this->state = new FallingState();
+		break;
+	case JUMPING:
+		this->state = new JumpingState();
+		break;
+	case FLYING:
+		this->state = new FlyingState();
+		break;
+	case FALLING_WHILE_FLYING:
+		this->state = new FallingState();
+		break;
+	case KICK:
+		this->state = new KickState();
+		break;
+	case HOLDING:
+		this->state = new HoldingState();
+		break;
+	case TAIL_SMACKING_1:
+		this->state = new TailSmacking_1_State();
+		break;
+	case TAIL_SMACKING_2:
+		this->state = new TailSmacking_2_State();
+		break;
+	case TAIL_SMACKING_3:
+		this->state = new TailSmacking_3_State();
+		break;
+	case THROW_1:
+		this->state = new Throw_1_State();
+		break;
+	case THROW_2:
+		this->state = new Throw_2_State();
+		break;
+
 	}
 }
 
