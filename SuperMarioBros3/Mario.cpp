@@ -29,7 +29,7 @@
 #include "FallingState.h"
 
 
-CMario::CMario(float x, float y) : CGameObject()
+CMario::CMario(float x, float y) : MovableObject()
 {
 	type = MARIO_TYPE_SMALL;
 	untouchable = 0;

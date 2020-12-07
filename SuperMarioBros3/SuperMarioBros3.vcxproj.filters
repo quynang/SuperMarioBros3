@@ -14,7 +14,7 @@
       <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="Mario.cpp">
-      <Filter>GameObjects\Player</Filter>
+      <Filter>GameObjects\MovableObjects\Player</Filter>
     </ClCompile>
     <ClCompile Include="Ground.cpp">
       <Filter>GameObjects\StaticObjects</Filter>
@@ -24,12 +24,6 @@
     </ClCompile>
     <ClCompile Include="GreenPipe.cpp">
       <Filter>GameObjects\StaticObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="FloatingBrick.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="FireBall.cpp">
-      <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="Grid.cpp">
       <Filter>Grid</Filter>
@@ -41,52 +35,58 @@
       <Filter>TiledMap</Filter>
     </ClCompile>
     <ClCompile Include="Goomba.cpp">
-      <Filter>GameObjects\Enemies</Filter>
+      <Filter>GameObjects\MovableObjects\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Koopas.cpp">
-      <Filter>GameObjects\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Brick.cpp">
-      <Filter>GameObjects</Filter>
+      <Filter>GameObjects\MovableObjects\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="FallingState.cpp">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="FallingWhileFlyingState.cpp">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="FlyingState.cpp">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="HoldingState.cpp">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="IdleState.cpp">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="JumpingState.cpp">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="KickState.cpp">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="TailSmacking_1_State.cpp">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="TailSmacking_2_State.cpp">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="TailSmacking_3_State.cpp">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="Throw_1_State.cpp">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="Throw_2_State.cpp">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="WalkingState.cpp">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick.cpp">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBall.cpp">
+      <Filter>GameObjects\MovableObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="FloatingBrick.cpp">
+      <Filter>GameObjects\StaticObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -102,9 +102,6 @@
     <ClInclude Include="GameObject.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Mario.h">
-      <Filter>GameObjects\Player</Filter>
-    </ClInclude>
     <ClInclude Include="Ground.h">
       <Filter>GameObjects\StaticObjects</Filter>
     </ClInclude>
@@ -113,12 +110,6 @@
     </ClInclude>
     <ClInclude Include="GreenPipe.h">
       <Filter>GameObjects\StaticObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="FloatingBrick.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="FireBall.h">
-      <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Grid.h">
       <Filter>Grid</Filter>
@@ -133,63 +124,72 @@
       <Filter>TiledMap</Filter>
     </ClInclude>
     <ClInclude Include="Goomba.h">
-      <Filter>GameObjects\Enemies</Filter>
+      <Filter>GameObjects\MovableObjects\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Koopas.h">
-      <Filter>GameObjects\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Brick.h">
-      <Filter>GameObjects</Filter>
+      <Filter>GameObjects\MovableObjects\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="FallingState.h">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="FallingWhileFlyingState.h">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="FlyingState.h">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="HoldingState.h">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="IdleState.h">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="JumpingState.h">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="KickState.h">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="MarioState.h">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="TailSmacking_1_State.h">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="TailSmacking_2_State.h">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="TailSmacking_3_State.h">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="Throw_1_State.h">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="Throw_2_State.h">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="WalkingState.h">
-      <Filter>GameObjects\Player\States</Filter>
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario.h">
+      <Filter>GameObjects\MovableObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick.h">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBall.h">
+      <Filter>GameObjects\MovableObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatingBrick.h">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="MovableObject.h">
+      <Filter>GameObjects\MovableObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">
       <UniqueIdentifier>{84e44e2a-876d-407a-ba08-726429b09244}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObjects\Player">
-      <UniqueIdentifier>{7a036ec8-5db7-41fd-981f-91dcbba22778}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameObjects\StaticObjects">
       <UniqueIdentifier>{2454ad34-c333-4fd8-989a-26e8a8159817}</UniqueIdentifier>
@@ -200,10 +200,16 @@
     <Filter Include="TiledMap">
       <UniqueIdentifier>{6e93c7b2-ef4c-47e8-9189-d601cd85ce24}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObjects\Enemies">
+    <Filter Include="GameObjects\MovableObjects">
+      <UniqueIdentifier>{746e59a2-e36c-4931-b894-3d1a770db93d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\MovableObjects\Enemies">
       <UniqueIdentifier>{3ee68a37-01a3-48d0-8260-f5bb888958b2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObjects\Player\States">
+    <Filter Include="GameObjects\MovableObjects\Player">
+      <UniqueIdentifier>{7a036ec8-5db7-41fd-981f-91dcbba22778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\MovableObjects\Player\States">
       <UniqueIdentifier>{16e3ec98-00f7-445d-bd93-15bc52bd86e8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

@@ -16,13 +16,13 @@ void CGoomba::GetBoundingBox(float &left, float &top, float &right, float &botto
 
 	if (state == GOOMBA_STATE_DIE)
 		bottom = y + GOOMBA_BBOX_HEIGHT_DIE;
-	else 	
+	else
 		bottom = y + GOOMBA_BBOX_HEIGHT;
 }
 
 void CGoomba::Update(DWORD dt)
 {
-	CGameObject::Update(dt);
+	MovableObject::Update(dt);
 	vy += GOOMBA_GRAVITY * dt;
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;

@@ -24,7 +24,7 @@ void CKoopas::GetBoundingBox(float &left, float &top, float &right, float &botto
 void CKoopas::Update(DWORD dt)
 {
 	if (update_flag) {
-		CGameObject::Update(dt);
+		MovableObject::Update(dt);
 
 		vy += dt * KOOPAS_GRAVITY;
 

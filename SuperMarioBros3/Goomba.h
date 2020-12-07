@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObject.h"
+#include "MovableObject.h"
 
 #define GOOMBA_WALKING_SPEED 0.1f;
 #define GOOMBA_GRAVITY			0.001f
@@ -14,7 +14,7 @@
 #define GOOMBA_ANI_WALKING 0
 #define GOOMBA_ANI_DIE 1
 
-class CGoomba : public CGameObject
+class CGoomba : public MovableObject
 {
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	virtual void Update(DWORD dt);

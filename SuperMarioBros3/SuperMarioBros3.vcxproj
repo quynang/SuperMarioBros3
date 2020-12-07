@@ -180,6 +180,7 @@
     <ClInclude Include="Koopas.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MarioState.h" />
+    <ClInclude Include="MovableObject.h" />
     <ClInclude Include="Portal.h" />
     <ClInclude Include="TailSmacking_2_State.h" />
     <ClInclude Include="TailSmacking_1_State.h" />

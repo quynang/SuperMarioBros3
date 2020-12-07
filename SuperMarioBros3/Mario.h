@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObject.h"
+#include "MovableObject.h"
 #include "MarioState.h"
 class MarioState;
    
@@ -57,7 +57,7 @@ class MarioState;
 #define THROW_1	1012
 #define THROW_2	1013
 
-class CMario : public CGameObject
+class CMario : public MovableObject
 {
 	int type;
 	int untouchable;

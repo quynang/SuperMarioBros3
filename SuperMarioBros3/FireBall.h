@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObject.h"
+#include "MovableObject.h"
 
 #define FIRE_BALL_BBOX_WIDTH  8
 #define FIRE_BALL_BBOX_HEIGHT 8
@@ -10,7 +10,7 @@
 #define FIRE_BALL_V0	0.4f
 #define FIRE_BALL_GRAVITY	0.004f
 
-class FireBall : public CGameObject
+class FireBall : public MovableObject
 {
 	int is_visible = 1;
 	float time_elapsed = 0;

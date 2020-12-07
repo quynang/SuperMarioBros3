@@ -25,7 +25,7 @@ FireBall::FireBall(float x, float y, int nx) {
 
 void FireBall::Update(DWORD dt) {
 	if (!is_visible) return;
-	CGameObject::Update(dt);
+	MovableObject::Update(dt);
 	time_elapsed += dt;
 
 	//Apply projectile motion
