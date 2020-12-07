@@ -23,9 +23,9 @@ FireBall::FireBall(float x, float y, int nx) {
 	((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddObject(this);
 }
 
-void FireBall::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) {
+void FireBall::Update(DWORD dt) {
 	if (!is_visible) return;
-	CGameObject::Update(dt, coObjects);
+	CGameObject::Update(dt);
 	time_elapsed += dt;
 
 	//Apply projectile motion
@@ -42,7 +42,7 @@ void FireBall::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) {
 
 	coEvents.clear();
 
-	CalcPotentialCollisions(coObjects, coEvents);
+	CalcPotentialCollisions(&m_coObjects, coEvents);
 
 	if (coEvents.size()==0)
 	{
@@ -118,6 +118,9 @@ void FireBall::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) {
 
 		}
 	}
+
+	m_coObjects.clear();
+
 }
 
 void FireBall::Render() {

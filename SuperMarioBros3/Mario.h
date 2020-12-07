@@ -87,7 +87,7 @@ class CMario : public CGameObject
 public:
 
 	CMario(float x = 0.0f, float y = 0.0f);
-	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *colliable_objects = NULL);
+	virtual void Update(DWORD dt);
 	virtual void Render();
 	void handleOnKeyUp(int keyCode);
 	void handleOnKeyDown(int keyCode);

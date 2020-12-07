@@ -20,18 +20,16 @@ void CGoomba::GetBoundingBox(float &left, float &top, float &right, float &botto
 		bottom = y + GOOMBA_BBOX_HEIGHT;
 }
 
-void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
+void CGoomba::Update(DWORD dt)
 {
-	//DebugOut(L"Goomba objects to check size: %d\n", coObjects->size());
 	CGameObject::Update(dt);
 	vy += GOOMBA_GRAVITY * dt;
-	
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
 
 	coEvents.clear();
 
-	CalcPotentialCollisions(coObjects, coEvents);
+	CalcPotentialCollisions(&m_coObjects, coEvents);
 	
 	if (coEvents.size()==0)
 	{
@@ -72,10 +70,9 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			}
 	
 		}
-
-
 	}
 
+	m_coObjects.clear();
 }
 
 void CGoomba::Render()

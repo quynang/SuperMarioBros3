@@ -19,6 +19,6 @@ public:
 	FireBall();
 	FireBall(float x, float y, int nx);
 	virtual void Render();
-	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects);
+	virtual void Update(DWORD dt);
 	virtual void GetBoundingBox(float &l, float &t, float &r, float &b);
 };

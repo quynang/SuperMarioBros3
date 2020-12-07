@@ -8,7 +8,7 @@ void CFloatingBrick::GetBoundingBox(float& left, float& top, float& right, float
 	bottom = y + BRICK_BOX_HEIGHT;
 }
 
-void CFloatingBrick::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
+void CFloatingBrick::Update(DWORD dt)
 {
 	CGameObject::Update(dt);
 	switch (state)
@@ -28,6 +28,9 @@ void CFloatingBrick::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 	if (state == STATIC_STATE)
 		y = init_y;
+
+	m_coObjects.clear();
+
 	
 }
 

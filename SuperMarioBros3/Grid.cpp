@@ -88,8 +88,8 @@ void Grid::handleUpdate(DWORD dt) {
                 mergeUnits(units, getCell(x, y - 1)->units, 0);
             }
             vector<LPGAMEOBJECT> objects = extractGameObjectsFromUnits(units);
-            unit->object->Update(dt, &objects);
-
+            unit->object->AddCoObjects(&objects);
+            unit->object->Update(dt);
             Cell* newCell = this->getCell(unit->object->GetPosition());
             if (newCell != unit->ownerCell) {
                 removeUnitFromCell(unit);

@@ -51,7 +51,7 @@ void CMario::handleKeyState(BYTE* states) {
 }
 
 void CMario::SetPosForItemPicked() {
-
+	  
 	float l_, t_, r_, b_;
 
 	this->GetBoundingBox(l_, t_, r_, b_);
@@ -70,9 +70,9 @@ void CMario::SetPosForItemPicked() {
 
 	}
 }
-void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
+void CMario::Update(DWORD dt)
 {
-	//DebugOut(L"Mario objects to check size: %d\n", coObjects->size());
+	//DebugOut(L"Mario objects to check size: %d\n", m_coObjects.size());
 	CGameObject::Update(dt);
 	vy += MARIO_GRAVITY * dt;
 	state->update(*this, dt);
@@ -92,7 +92,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 	coEvents.clear();
 
-	CalcPotentialCollisions(coObjects, coEvents);
+	CalcPotentialCollisions(&m_coObjects, coEvents);
 
 
 	// reset untouchable timer if untouchable time has passed
@@ -269,7 +269,9 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		SetPosForItemPicked();
 
 	if (state->current_state == TAIL_SMACKING_2)
-		handleTailAttacking(coObjects);
+		handleTailAttacking(&m_coObjects);
+
+	m_coObjects.clear();
 	
 }
 

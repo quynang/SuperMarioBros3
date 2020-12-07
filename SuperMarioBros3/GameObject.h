@@ -56,16 +56,22 @@ public:
 
 	int nx;	 
 
-	DWORD dt; 
+	DWORD dt;
 
 	LPANIMATION_SET animation_set;
+
+	vector<LPGAMEOBJECT> m_coObjects;
+
 
 public: 
 	void SetPosition(float x, float y) { this->x = x, this->y = y; }
 	void SetSpeed(float vx, float vy) { this->vx = vx, this->vy = vy; }
 	void GetPosition(float &x, float &y) { x = this->x; y = this->y; }
 	void GetSpeed(float &vx, float &vy) { vx = this->vx; vy = this->vy; }
-
+	void AddCoObjects(vector<LPGAMEOBJECT> *coObjects) { 
+		m_coObjects.insert(m_coObjects.end(), coObjects->begin(), coObjects->end()); 
+	};
+	void AddCoObjects(LPGAMEOBJECT coObject) { m_coObjects.push_back(coObject); };
 	void RenderBoundingBox();
 	D3DXVECTOR3 GetPosition() { D3DXVECTOR3 p; p.x = x; p.y = y; return p; };
 
@@ -86,7 +92,7 @@ public:
 	CGameObject();
 
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom) = 0;
-	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects = NULL);
+	virtual void Update(DWORD dt);
 	virtual void Render() = 0;
 
 	~CGameObject();

@@ -21,7 +21,7 @@ void CKoopas::GetBoundingBox(float &left, float &top, float &right, float &botto
 	
 }
 
-void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
+void CKoopas::Update(DWORD dt)
 {
 	if (update_flag) {
 		CGameObject::Update(dt);
@@ -33,7 +33,7 @@ void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 		coEvents.clear();
 
-		CalcPotentialCollisions(coObjects, coEvents);
+		CalcPotentialCollisions(&m_coObjects, coEvents);
 
 		if (coEvents.size() == 0)
 		{
@@ -141,6 +141,9 @@ void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 		}
 	}
+
+	m_coObjects.clear();
+
 }
 
 void CKoopas::Render()
