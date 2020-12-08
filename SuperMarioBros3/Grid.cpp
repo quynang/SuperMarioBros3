@@ -80,7 +80,9 @@ void Grid::handleUpdate(DWORD dt) {
             if (y > 0) {
                 mergeUnits(units, getCell(x, y - 1)->units, 0);
             }
+
             vector<LPGAMEOBJECT> objects = extractGameObjectsFromUnits(units);
+            //TODO: Refactor for the whole code base. I think this not good. This against  S - Single-responsiblity principle
             unit->object->AddCoObjects(&objects);
             unit->object->Update(dt);
             Cell* newCell = this->getCell(unit->object->GetPosition());
