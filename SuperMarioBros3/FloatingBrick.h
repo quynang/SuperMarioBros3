@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObject.h"
+#include "StaticObject.h"
 #define DEFLECT_STATE	100
 #define FALLING_STATE	200
 #define STATIC_STATE	300
@@ -13,7 +13,7 @@
 
 #define DEFLECT_SPEED_Y	0.5f
 
-class CFloatingBrick : public CGameObject
+class CFloatingBrick : public StaticObject
 {
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	virtual void Update(DWORD dt);

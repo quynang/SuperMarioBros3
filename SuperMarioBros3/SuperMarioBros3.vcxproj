@@ -182,6 +182,7 @@
     <ClInclude Include="MarioState.h" />
     <ClInclude Include="MovableObject.h" />
     <ClInclude Include="Portal.h" />
+    <ClInclude Include="StaticObject.h" />
     <ClInclude Include="TailSmacking_2_State.h" />
     <ClInclude Include="TailSmacking_1_State.h" />
     <ClInclude Include="TailSmacking_3_State.h" />
