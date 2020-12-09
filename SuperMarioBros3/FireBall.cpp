@@ -24,7 +24,7 @@ FireBall::FireBall(float x, float y, int nx) {
 }
 
 void FireBall::Update(DWORD dt) {
-	if (!is_visible) return;
+
 	MovableObject::Update(dt);
 	time_elapsed += dt;
 
@@ -69,52 +69,9 @@ void FireBall::Update(DWORD dt) {
 				this->angle = 38;
 				this->time_elapsed = 0;
 			}
-
-			if (dynamic_cast<CGoomba*>(e->obj))
-			{
-				DebugOut(L"Test \n");
-				is_visible = 0;
-				CGoomba* goomba = dynamic_cast<CGoomba*>(e->obj);
-
-				if (goomba->GetState() != GOOMBA_STATE_DIE)
-				{
-					goomba->SetState(GOOMBA_STATE_DIE);
-
-				}
-
+			else {
+				is_dead = true;
 			}
-
-			else if (dynamic_cast<CBigBox *>(e->obj))  
-			{
-				if (e->nx != 0)
-				{
-					x += dx;
-				}
-				else if(e->ny < 0) {
-					this->angle = 38;
-					this->time_elapsed = 0;
-				}
-					
-			}
-
-			else if (dynamic_cast<CGreenPipe *>(e->obj))  
-			{
-				is_visible = 0;
-					
-			}
-
-			else if (dynamic_cast<CKoopas *>(e->obj))  
-			{
-				is_visible = 0;
-				CKoopas* koopas = dynamic_cast<CKoopas*>(e->obj);
-
-				if (koopas->GetState() != KOOPAS_STATE_HIDE_IN_SHELL)
-				{
-					koopas->SetState(KOOPAS_STATE_HIDE_IN_SHELL);
-
-				}
-			}
-
 
 		}
 	}
@@ -125,8 +82,6 @@ void FireBall::Update(DWORD dt) {
 
 void FireBall::Render() {
 	int ani = -1;
-
-	if (!is_visible) return;
 
 	if (nx > 0)
 		ani = FIRE_BALL_ANI_RIGHT;
@@ -140,7 +95,6 @@ void FireBall::Render() {
 
 void FireBall::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	if (!is_visible) return;
 	left = x;
 	top = y;
 	right = x + FIRE_BALL_BBOX_WIDTH;

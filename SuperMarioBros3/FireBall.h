@@ -12,7 +12,6 @@
 
 class FireBall : public MovableObject
 {
-	int is_visible = 1;
 	float time_elapsed = 0;
 	float angle;
 public:
