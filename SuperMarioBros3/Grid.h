@@ -28,6 +28,7 @@ public:
 
     vector<LPGAMEOBJECT> extractGameObjectsFromUnits(vector<LPUNIT> units);
     void handleUpdate(DWORD dt);
+    void handleRender();
 
     void mergeUnits(vector<LPUNIT> &units, vector<LPUNIT> otherUnits, int startIndex);
     

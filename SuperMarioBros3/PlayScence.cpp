@@ -332,9 +332,7 @@ void CPlayScene::_ParseSection_GRID(string line) {
 void CPlayScene::Render()
 {
 	CMap::GetInstance()->Render();
-
-	for (int i = 0; i < objects.size(); i++)
-		objects[i]->Render();
+	m_grid->handleRender();
 	
 }
 

@@ -54,7 +54,9 @@ public:
 	float vx;
 	float vy;
 
-	int nx;	 
+	int nx;
+	
+	bool is_dead = false;
 
 	DWORD dt;
 

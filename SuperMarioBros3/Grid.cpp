@@ -90,11 +90,25 @@ void Grid::handleUpdate(DWORD dt) {
                 removeUnitFromCell(unit);
                 addUnit(unit, newCell);
             }
+
+            if (unit->object->is_dead) removeUnitFromCell(unit);
         }
     }
 }
 
+void Grid::handleRender() {
+    for (size_t i = 0; i < m_cells.size(); i++) {
 
+        int x = i % m_numXCells;
+        int y = i / m_numXCells;
+
+        Cell& cell = m_cells[i];
+
+        for (size_t j = 0; j < cell.units.size(); j++) {
+            cell.units[j]->object->Render();
+        }
+    }
+}
 void Grid::mergeUnits(vector<LPUNIT> &units, vector<LPUNIT> otherUnits, int startIndex) {
     for (size_t i = startIndex; i < otherUnits.size(); i++) {
         units.push_back(otherUnits[i]);
