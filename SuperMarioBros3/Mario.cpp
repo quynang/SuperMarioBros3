@@ -241,8 +241,10 @@ void CMario::Update(DWORD dt)
 					if (state->current_state != FALLING)
 						state = new FallingState();
 
-					if (floatingBrick->flag_ == 0)
-						floatingBrick->SetState(DEFLECT_STATE);
+					if (floatingBrick->GetState() != STATIC_STATE) {
+						floatingBrick->SetState(BOUNCING_STATE);
+						floatingBrick->ProduceItem();
+					}
 					
 					
 				}

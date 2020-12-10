@@ -2,6 +2,7 @@
 #include "Utils.h"
 #include "Mushroom.h"
 #include "PlayScence.h"
+
 void CFloatingBrick::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	left = x;
@@ -13,48 +14,43 @@ void CFloatingBrick::GetBoundingBox(float& left, float& top, float& right, float
 void CFloatingBrick::Update(DWORD dt)
 {
 	CGameObject::Update(dt);
-	switch (state)
-	{
-	case DEFLECT_STATE:
-		vy = -DEFLECT_SPEED_Y;
-		countY_ += dt * vy;
-		break;
-	case FALLING_STATE:
-		vy = DEFLECT_SPEED_Y;
-		countY_ += dt * vy;
-		break;
-	}
-
 	x += dx;
 	y += dy;
 
-	if (state == STATIC_STATE)
+	switch (state)
+	{
+	case BOUNCING_STATE:
+		countY_ += dt * vy;
+		break;
+	case REBOUNDING_STATE:
+		countY_ += dt * vy;
+		break;
+	case STATIC_STATE:
 		y = init_y;
+		break;
+	}
+
+	if (state == BOUNCING_STATE && abs(countY_) >= MAX_HEIGHT)
+		SetState(REBOUNDING_STATE);
+
+	else if (state == REBOUNDING_STATE && abs(countY_) >= MAX_HEIGHT)
+		SetState(STATIC_STATE);
 
 	m_coObjects.clear();
-
-	
 }
 
 
 void CFloatingBrick::Render()
 {
 	
-	if (state == DEFLECT_STATE && abs(countY_) >= MAX_HEIGHT)
-		SetState(FALLING_STATE);
-
-	else if (state == FALLING_STATE && abs(countY_) >= MAX_HEIGHT)
-		SetState(STATIC_STATE);
-
 	int ani = BRICK_ANI_QUESTION_MARK;
 
-	if (flag_ == 1) {
+	if (this->state == STATIC_STATE) {
 		ani = BRICK_ANI_COLLECTED;
 	}
 	
 	animation_set->at(ani)->Render(x,y);
-	//RenderBoundingBox();
-	
+	//RenderBoundingBox();	
 }
 
 void CFloatingBrick::SetState(int state)
@@ -62,16 +58,22 @@ void CFloatingBrick::SetState(int state)
 	this->state = state;
 	switch (state)
 	{
-	case DEFLECT_STATE:
-		flag_ = 1;
+	case BOUNCING_STATE:
+		vy = -BOUNCE_SPEED_Y;
 		break;
-	case FALLING_STATE:
+	case REBOUNDING_STATE:
 		countY_ = 0;
+		vy = BOUNCE_SPEED_Y;
+		break;
+	case STATIC_STATE:
+		vy = 0;
+		vx = 0;
 		break;
 	}
 }
 
 void CFloatingBrick::ProduceItem() {
+
 	switch (item_type)
 	{
 	case ITEM_TYPE_RED_MUSHROOM:
