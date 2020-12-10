@@ -1,5 +1,7 @@
 #include "FloatingBrick.h"
 #include "Utils.h"
+#include "Mushroom.h"
+#include "PlayScence.h"
 void CFloatingBrick::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	left = x;
@@ -65,6 +67,16 @@ void CFloatingBrick::SetState(int state)
 		break;
 	case FALLING_STATE:
 		countY_ = 0;
+		break;
+	}
+}
+
+void CFloatingBrick::ProduceItem() {
+	switch (item_type)
+	{
+	case ITEM_TYPE_RED_MUSHROOM:
+		Mushroom* mushroom = new Mushroom(this->x, this->y);
+		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddObject(mushroom);
 		break;
 	}
 }

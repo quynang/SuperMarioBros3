@@ -175,7 +175,11 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_GROUND: obj = new CGround(); break;
 	case OBJECT_TYPE_GOOMBA: obj = new CGoomba(); break;
 	case OBJECT_TYPE_KOOPAS: obj = new CKoopas(); break;
-	case OBJECT_TYPE_FLOATING_BRICK: obj = new CFloatingBrick(y); break;
+	case OBJECT_TYPE_FLOATING_BRICK: {
+		int item_type = atoi(tokens[4].c_str());
+		obj = new CFloatingBrick(y, item_type);
+		break;
+	}
 	case OBJECT_TYPE_PORTAL:
 		{	
 			float r = atof(tokens[4].c_str());
@@ -352,7 +356,7 @@ void CPlayScene::Unload()
 
 void CPlayScene::AddObject(LPGAMEOBJECT obj)
 {
-	objects.insert(objects.begin(), obj);
+	//objects.insert(objects.begin(), obj);
 	LPUNIT unit = new Unit();
 	unit->object = obj;
 	m_grid->addUnit(unit);

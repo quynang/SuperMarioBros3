@@ -3,7 +3,7 @@
 map-world-1-1.txt
 [GRID]
 #width	height	cell_size
-2816	432	432
+2816	432	200
 [TEXTURES]
 0	textures\mario-1.png	255	255	255
 20	textures\misc.png	176	224	248
@@ -240,6 +240,10 @@ map-world-1-1.txt
 60006	2	2	10	11	40
 60007	2	23	10	31	40
 60008	20	22	28	31	40
+
+#================MUSHROOM===========
+#red mushroom
+70001	164	253	180	269	30
 # ani_id	sprite1_id	time1	sprite2_id	time2	...
 [ANIMATIONS]
 # ==== MARIO =========
@@ -441,8 +445,9 @@ map-world-1-1.txt
 1000	60001	50	60002	50	60003	50	60004	50
 #fire ball left
 1001	60005	50	60006	50	60007	50	60008	50
+#======MUSHROOM===========
+1002	70001	100
 # id	ani1	ani2	ani3
-#
 [ANIMATION_SETS]
 # MARIO
 1	400	401	402	403	500	501	502	503	599	404	405	406	407	408	409	410	411	504	505	506	507	508	509	510	511	10	11	12	13	14	15	16	17	18	19	20	21	22	23	512	513	514	515	24	25	516	517	518	519	26	27	520	521	522	523	28	29	30	31	32	33	34	35	36	37	100	101	102	103	104	105	106	107	108	109	110	111	112	113	114	115	116	117	118	119
@@ -456,6 +461,8 @@ map-world-1-1.txt
 5	901	902	903
 #FIRE BALL
 6	1000	1001
+#======= ITEMS =======
+7	1002
 [OBJECTS]
 # type	x	y	ani_set_id	extra_settings per object type
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba
@@ -680,10 +687,11 @@ map-world-1-1.txt
 4	623	400	0	1
 
 #=======Floating Brick========
-5	176	352	4
-5	192	352	4
-5	224	304	4
-5	240	304	4
+#id	x	y	ani_set_id	hidden_iem_type
+5	176	352	4	1000
+5	192	352	4	0
+5	224	304	4	0
+5	240	304	4	0
 
 #========= KOOPAS=====
 6	532	352	5

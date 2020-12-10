@@ -88,6 +88,9 @@
     <ClCompile Include="FloatingBrick.cpp">
       <Filter>GameObjects\StaticObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Mushroom.cpp">
+      <Filter>GameObjects\MovableObjects\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -189,6 +192,9 @@
     <ClInclude Include="StaticObject.h">
       <Filter>GameObjects\StaticObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Mushroom.h">
+      <Filter>GameObjects\MovableObjects\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">
@@ -214,6 +220,9 @@
     </Filter>
     <Filter Include="GameObjects\MovableObjects\Player\States">
       <UniqueIdentifier>{16e3ec98-00f7-445d-bd93-15bc52bd86e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\MovableObjects\Items">
+      <UniqueIdentifier>{7da6a1e1-4597-4e35-a75c-a4be001382fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
