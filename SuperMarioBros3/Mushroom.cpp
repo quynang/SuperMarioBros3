@@ -1,5 +1,6 @@
 #include "Mushroom.h"
 #include "Utils.h"
+
 Mushroom::Mushroom(float x, float y)
 {
 	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
@@ -20,69 +21,65 @@ void Mushroom::GetBoundingBox(float &left, float &top, float &right, float &bott
 
 void Mushroom::Update(DWORD dt)
 {
-	MovableObject::Update(dt);
-
-	if (charge_y >= 16) this->state = MUSHROOM_STATE_MOVING;
 
 	if (this->state == MUSHROOM_STATE_SPROUT) {
-		charge_y += abs(dy);
-	}
-
-	if (this->state == MUSHROOM_STATE_MOVING) {
-		vy += MUSHROOM_GRAVITY;
-	}
-
-	x += dx;
-	y += dy;
-	/*vector<LPCOLLISIONEVENT> coEvents;
-	vector<LPCOLLISIONEVENT> coEventsResult;
-
-	coEvents.clear();
-
-	CalcPotentialCollisions(&m_coObjects, coEvents);
-	
-	if (coEvents.size()==0)
-	{
-		x += dx;
+		vy = MUSHROOM_SPROUT_SPEED_Y;
+		MovableObject::Update(dt);
 		y += dy;
-	
+		charge_y += abs(dy);
+		if (charge_y >= 20) {
+			SetState(MUSHROOM_STATE_MOVING);
+			charge_y = 0;
+		}
 	}
 
+	else if (this->state == MUSHROOM_STATE_MOVING) {
+		vy += MUSHROOM_GRAVITY;
+		MovableObject::Update(dt);
+		vector<LPCOLLISIONEVENT> coEvents;
+		vector<LPCOLLISIONEVENT> coEventsResult;
 
-	else
-	{
-		float min_tx, min_ty, nx = 0, ny;
-		float rdx = 0;
-		float rdy = 0;
+		coEvents.clear();
 
-		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
+		CalcPotentialCollisions(&m_coObjects, coEvents);
 
-		x += min_tx * dx + nx * 0.4f;
-		y += min_ty * dy + ny * 0.4f;
-
-		if (nx != 0) vx = 0;
-		if (ny != 0) vy = 0;
-
-		for (UINT i = 0; i < coEventsResult.size(); i++)
+		if (coEvents.size() == 0)
 		{
-			LPCOLLISIONEVENT e = coEventsResult[i];
+			x += dx;
+			y += dy;
 
-			if (dynamic_cast<CBigBox*>(e->obj))
-			{
-				x += dx;
-				vx = - e->nx * GOOMBA_WALKING_SPEED;
-			}
-
-			else if (dynamic_cast<CGround*>(e->obj)) {
-			
-				vx = e->nx * GOOMBA_WALKING_SPEED;
-				x += dx;
-			}
-	
 		}
-	}*/
+		else
+		{
+			float min_tx, min_ty, nx = 0, ny;
+			float rdx = 0;
+			float rdy = 0;
 
-	m_coObjects.clear();
+			FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
+
+			x += min_tx * dx + nx * 0.4f;
+			y += min_ty * dy + ny * 0.4f;
+
+			if (nx != 0) vx = 0;
+			if (ny != 0) vy = 0;
+
+			for (UINT i = 0; i < coEventsResult.size(); i++)
+			{
+				LPCOLLISIONEVENT e = coEventsResult[i];
+				if (e->nx != 0)
+				{
+					this->nx = -this->nx;
+					this->vx = this->nx * MUSHROOM_MOVING_SPEED;
+				}
+				else if (e->ny != 0) {
+					x += dx;
+				}
+
+			}
+		}
+
+		m_coObjects.clear();
+	}
 }
 
 void Mushroom::Render()
@@ -97,4 +94,14 @@ void Mushroom::Render()
 void Mushroom::SetState(int state)
 {
 	this->state = state;
+	switch (state)
+	{
+	case MUSHROOM_STATE_MOVING:
+		vx = MUSHROOM_MOVING_SPEED;
+		vy = 0;
+		break;
+	case MUSHROOM_STATE_COLLECTED:
+		this->is_dead = true;
+		break;
+	}
 }
