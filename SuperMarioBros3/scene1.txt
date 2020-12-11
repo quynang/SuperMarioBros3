@@ -8,7 +8,7 @@ map-world-1-1.txt
 0	textures\mario-1.png	255	255	255
 20	textures\misc.png	176	224	248
 10	textures\enemies.png	3	26	110
-30	textures\items-objects.png	255	255	255
+30	textures\misc.png	166	185	255
 40	textures\fireball.png	255	255	255
 # id	left	top	right	bottom	texture_id
 [SPRITES]
@@ -202,8 +202,6 @@ map-world-1-1.txt
 
 #============OTHER=============
 
-#BRICK
-20001	408	225	424	241	20
 #GOOMBA
 30001	5	14	21	29	10
 30002	25	14	41	29	10
@@ -212,12 +210,12 @@ map-world-1-1.txt
 
 #===========FLOATING BRICK================
 #question mark
-40001	91	200	107	216	30
-40002	108	200	124	216	30
-40003	125	200	141	216	30
-40004	142	200	158	216	30
+40001	157	188	173	204	30
+40002	176	188	192	204	30
+40003	196	188	212	204	30
+40004	215	188	231	204	30
 #collected
-40005	91	217	107	233	30
+40005	235	188	251	204	30
 #=======KOOPAS===========
 #small
 #walk right
@@ -243,7 +241,7 @@ map-world-1-1.txt
 
 #================MUSHROOM===========
 #red mushroom
-70001	164	253	180	269	30
+70001	156	121	172	137	30
 # ani_id	sprite1_id	time1	sprite2_id	time2	...
 [ANIMATIONS]
 # ==== MARIO =========
