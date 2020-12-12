@@ -4,11 +4,11 @@
 
 //Reference: https://gameprogrammingpatterns.com/spatial-partition.html
 
+//Cell is contain a Doubly Linked List of Unit.
 struct Cell {
-	vector<LPUNIT> units;
+	Unit* head = NULL;
+    Unit* tail = NULL;
 };
-
- static int counter = 0;
 
 class Grid {
 public:
@@ -16,22 +16,20 @@ public:
     Grid(int width, int height, int cellSize);
     ~Grid();
 
-    void addUnit(LPUNIT unit);
-    void addUnit(LPUNIT unit, Cell* cell);
+    void addUnitToLastOfCell(LPUNIT unit);
+    void addUnitToSpecificCell(LPUNIT unit, Cell* cell);
+    void addUnitToFirstOfCell(LPUNIT unit);
 
     // Gets cell based on cell coordinates
     Cell* getCell(int x, int y);
 
+    void extractGameObjectFromCell(Cell *cell, Unit *unit_to_start, vector<LPGAMEOBJECT> &gameObjects);
 
     // Gets cell based on window coordinates
     Cell* getCell(D3DXVECTOR3 p);
 
-    vector<LPGAMEOBJECT> extractGameObjectsFromUnits(vector<LPUNIT> units);
     void handleUpdate(DWORD dt);
-    void handleRender();
-
-    void mergeUnits(vector<LPUNIT> &units, vector<LPUNIT> otherUnits, int startIndex);
-    
+    void handleRender();    
     void removeUnitFromCell(LPUNIT unit);
 
 private:

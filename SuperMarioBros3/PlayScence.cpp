@@ -217,7 +217,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	
 	LPUNIT unit = new Unit();
 	unit->object = obj;
-	m_grid->addUnit(unit);
+	m_grid->addUnitToLastOfCell(unit);
 
 	objects.push_back(obj);
 }
@@ -359,8 +359,14 @@ void CPlayScene::AddObject(LPGAMEOBJECT obj)
 	//objects.insert(objects.begin(), obj);
 	LPUNIT unit = new Unit();
 	unit->object = obj;
-	m_grid->addUnit(unit);
+	m_grid->addUnitToLastOfCell(unit);
 }
+
+void  CPlayScene::AddObjectIntoBeginning(LPGAMEOBJECT obj) {
+	LPUNIT unit = new Unit();
+	unit->object = obj;
+	m_grid->addUnitToFirstOfCell(unit);
+ }
 
 void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 {

@@ -30,6 +30,7 @@ protected:
 public: 
 	CPlayScene(int id, LPCWSTR filePath);
 	virtual void AddObject(LPGAMEOBJECT object);
+	virtual void AddObjectIntoBeginning(LPGAMEOBJECT object);
 	virtual void Load();
 	virtual void Update(DWORD dt);
 	virtual void Render();
