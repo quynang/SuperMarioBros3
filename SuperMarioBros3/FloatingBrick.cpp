@@ -2,6 +2,8 @@
 #include "Utils.h"
 #include "Mushroom.h"
 #include "PlayScence.h"
+#include "GameEffects.h"
+#include "EffectFactory.h"
 
 void CFloatingBrick::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
@@ -68,7 +70,8 @@ void CFloatingBrick::SetState(int state)
 	case STATIC_STATE:
 		vy = 0;
 		vx = 0;
-		break;
+		this->ProduceItem();
+		
 	}
 }
 
@@ -77,8 +80,17 @@ void CFloatingBrick::ProduceItem() {
 	switch (item_type)
 	{
 	case ITEM_TYPE_RED_MUSHROOM:
-		Mushroom* mushroom = new Mushroom(this->x, this->y);
-		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddObjectIntoBeginning(mushroom);
-		break;
+		{
+			Mushroom* mushroom = new Mushroom(this->x, this->y);
+			((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddObjectIntoBeginning(mushroom);
+			break;
+		}
+	case ITEM_TYPE_COIN:
+		{
+			Effect* effect = EffectFactory::GetInstance()->create(COIN_100);
+			effect->SetPosition(this->x, this->y - 16);
+			GameEffects::GetInstance()->addEffect(effect);
+			break;
+		}
 	}
 }

@@ -244,7 +244,6 @@ void CMario::Update(DWORD dt)
 
 					if (floatingBrick->GetState() != STATIC_STATE) {
 						floatingBrick->SetState(BOUNCING_STATE);
-						floatingBrick->ProduceItem();
 					}
 					
 					
