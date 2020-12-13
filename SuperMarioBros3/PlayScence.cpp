@@ -10,6 +10,8 @@
 #include "GreenPipe.h"
 #include "FloatingBrick.h"
 #include "Koopas.h"
+#include "Coin100.h"
+#include "Coin50.h"
 using namespace std;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath):
@@ -39,6 +41,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 #define OBJECT_TYPE_GREEN_PIPE	4
 #define OBJECT_TYPE_FLOATING_BRICK	5
 #define OBJECT_TYPE_KOOPAS	6
+#define OBJECT_TYPE_COIN_50	7
 
 #define OBJECT_TYPE_PORTAL	50
 
@@ -202,6 +205,9 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 			int size_height = atoi(tokens[4].c_str());
 			obj = new CGreenPipe(size_height);
 		}
+		break;
+	case OBJECT_TYPE_COIN_50: 
+		obj = new Coin50();
 		break;
 	default:
 		DebugOut(L"[ERR] Invalid object type: %d\n", object_type);

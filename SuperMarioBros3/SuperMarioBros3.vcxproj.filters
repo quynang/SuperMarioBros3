@@ -91,6 +91,12 @@
     <ClCompile Include="Mushroom.cpp">
       <Filter>GameObjects\MovableObjects\Items</Filter>
     </ClCompile>
+    <ClCompile Include="Coin100.cpp">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin50.cpp">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -194,6 +200,12 @@
     </ClInclude>
     <ClInclude Include="Mushroom.h">
       <Filter>GameObjects\MovableObjects\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin100.h">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin50.h">
+      <Filter>GameObjects\StaticObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

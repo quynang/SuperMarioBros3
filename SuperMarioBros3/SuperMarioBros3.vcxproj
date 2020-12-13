@@ -128,6 +128,8 @@
     <ClCompile Include="Animations.cpp" />
     <ClCompile Include="BigBox.cpp" />
     <ClCompile Include="Brick.cpp" />
+    <ClCompile Include="Coin100.cpp" />
+    <ClCompile Include="Coin50.cpp" />
     <ClCompile Include="FallingState.cpp" />
     <ClCompile Include="FallingWhileFlyingState.cpp" />
     <ClCompile Include="FireBall.cpp" />
@@ -166,6 +168,8 @@
     <ClInclude Include="Animations.h" />
     <ClInclude Include="BigBox.h" />
     <ClInclude Include="Brick.h" />
+    <ClInclude Include="Coin100.h" />
+    <ClInclude Include="Coin50.h" />
     <ClInclude Include="FallingState.h" />
     <ClInclude Include="FallingWhileFlyingState.h" />
     <ClInclude Include="FireBall.h" />

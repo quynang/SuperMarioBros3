@@ -57,17 +57,7 @@ void CGoomba::Update(DWORD dt)
 		{
 			LPCOLLISIONEVENT e = coEventsResult[i];
 
-			if (dynamic_cast<CBigBox*>(e->obj))
-			{
-				x += dx;
-				vx = - e->nx * GOOMBA_WALKING_SPEED;
-			}
-
-			else if (dynamic_cast<CGround*>(e->obj)) {
-			
-				vx = e->nx * GOOMBA_WALKING_SPEED;
-				x += dx;
-			}
+		
 	
 		}
 	}

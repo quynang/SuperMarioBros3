@@ -12,6 +12,7 @@
 #include "Koopas.h"
 #include "GreenPipe.h"
 #include "Textures.h"
+#include "Coin50.h"
 
 //TODO: How to haven't to include state here.
 #include "WalkingState.h"
@@ -257,6 +258,12 @@ void CMario::Update(DWORD dt)
 					state = new IdleState();
 					x += dx;
 				}
+			}
+
+			else if (dynamic_cast<Coin50 *>(e->obj))
+			{
+				Coin50 *coin_50 = dynamic_cast<Coin50 *>(e->obj);
+				coin_50->is_dead = true;
 			}
 		
 		}
