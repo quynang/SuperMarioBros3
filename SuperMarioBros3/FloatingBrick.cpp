@@ -78,7 +78,7 @@ void CFloatingBrick::ProduceItem() {
 	{
 	case ITEM_TYPE_RED_MUSHROOM:
 		Mushroom* mushroom = new Mushroom(this->x, this->y);
-		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddObject(mushroom);
+		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddObjectIntoBeginning(mushroom);
 		break;
 	}
 }
