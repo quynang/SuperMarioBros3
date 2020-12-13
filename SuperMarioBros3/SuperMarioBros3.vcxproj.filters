@@ -91,11 +91,17 @@
     <ClCompile Include="Mushroom.cpp">
       <Filter>GameObjects\MovableObjects\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Coin100.cpp">
-      <Filter>GameObjects\StaticObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Coin50.cpp">
       <Filter>GameObjects\StaticObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEffects.cpp">
+      <Filter>GameEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin100.cpp">
+      <Filter>GameEffects\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectFatory.cpp">
+      <Filter>GameEffects\Effects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,11 +207,20 @@
     <ClInclude Include="Mushroom.h">
       <Filter>GameObjects\MovableObjects\Items</Filter>
     </ClInclude>
-    <ClInclude Include="Coin100.h">
-      <Filter>GameObjects\StaticObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Coin50.h">
       <Filter>GameObjects\StaticObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEffects.h">
+      <Filter>GameEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>GameEffects\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin100.h">
+      <Filter>GameEffects\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectFactory.h">
+      <Filter>GameEffects\Effects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +250,12 @@
     </Filter>
     <Filter Include="GameObjects\MovableObjects\Items">
       <UniqueIdentifier>{7da6a1e1-4597-4e35-a75c-a4be001382fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEffects">
+      <UniqueIdentifier>{c221e620-0d71-4298-899e-dbe83b559613}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEffects\Effects">
+      <UniqueIdentifier>{2fcfbc5f-4c56-4b97-9d52-baa6d8535eff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

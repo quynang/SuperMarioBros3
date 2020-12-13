@@ -10,8 +10,8 @@
 #include "GreenPipe.h"
 #include "FloatingBrick.h"
 #include "Koopas.h"
-#include "Coin100.h"
 #include "Coin50.h"
+#include "GameEffects.h"
 using namespace std;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath):
@@ -326,6 +326,8 @@ void CPlayScene::Update(DWORD dt)
 	if (cy < 0) cy = 0;
 
 	CGame::GetInstance()->SetCamPos(cx, cy /*cy*/);
+
+	GameEffects::GetInstance()->Update(dt);
 }
 
 void CPlayScene::_ParseSection_GRID(string line) {
@@ -343,6 +345,7 @@ void CPlayScene::Render()
 {
 	CMap::GetInstance()->Render();
 	m_grid->handleRender();
+	GameEffects::GetInstance()->Render();
 	
 }
 
