@@ -74,6 +74,8 @@ void CGameObject::CalcPotentialCollisions(
 {
 	for (UINT i = 0; i < coObjects->size(); i++)
 	{
+		//Exclude player from list object to check collision of all game object. 
+		if (dynamic_cast<CMario*>(coObjects->at(i))) continue;
 		LPCOLLISIONEVENT e = SweptAABBEx(coObjects->at(i));
 
 		if (e->t > 0 && e->t <= 1.0f)
@@ -104,9 +106,6 @@ void CGameObject::FilterCollision(
 	for (UINT i = 0; i < coEvents.size(); i++)
 	{
 		LPCOLLISIONEVENT c = coEvents[i];
-
-		//Exclude player from list object to check collision of all game object. 
-		if (dynamic_cast<CMario*>(c->obj)) continue;
 
 		//TODO: Refactor here. Define list object we going to ignore proccessing collide by nx.
 		if (c->t < min_tx && c->nx != 0 && !dynamic_cast<CBigBox *>(c->obj) && !dynamic_cast<CGround *>(c->obj)) {
