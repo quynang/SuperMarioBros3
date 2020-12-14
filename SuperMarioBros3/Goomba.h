@@ -1,5 +1,5 @@
 #pragma once
-#include "MovableObject.h"
+#include "Enemy.h"
 
 #define GOOMBA_WALKING_SPEED 0.1f;
 #define GOOMBA_GRAVITY			0.001f
@@ -14,7 +14,8 @@
 #define GOOMBA_ANI_WALKING 0
 #define GOOMBA_ANI_DIE 1
 #define TIME_STATE_DIE 100.0f
-class CGoomba : public MovableObject
+
+class CGoomba : public Enemy
 {
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	virtual void Update(DWORD dt);

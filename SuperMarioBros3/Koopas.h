@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MovableObject.h"
+#include "Enemy.h"
 
 #define KOOPAS_WALKING_SPEED 0.07f;
 #define KOOPAS_SLIDING_SPEED 0.5f;
@@ -19,7 +19,7 @@
 #define KOOPAS_ANI_WALKING_LEFT 1
 #define KOOPAS_ANI_HIDE_IN_SHELL	2
 
-class CKoopas : public MovableObject
+class CKoopas : public Enemy
 {
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	virtual void Update(DWORD dt);
