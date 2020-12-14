@@ -11,6 +11,7 @@
 #include "FloatingBrick.h"
 #include "Koopas.h"
 #include "Coin50.h"
+#include "BreakableBrick.h"
 #include "GameEffects.h"
 using namespace std;
 
@@ -42,6 +43,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 #define OBJECT_TYPE_FLOATING_BRICK	5
 #define OBJECT_TYPE_KOOPAS	6
 #define OBJECT_TYPE_COIN_50	7
+#define BREAKABLE_BRICK	8
 
 #define OBJECT_TYPE_PORTAL	50
 
@@ -208,6 +210,9 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		break;
 	case OBJECT_TYPE_COIN_50: 
 		obj = new Coin50();
+		break;
+	case BREAKABLE_BRICK: 
+		obj = new BreakableBrick();
 		break;
 	default:
 		DebugOut(L"[ERR] Invalid object type: %d\n", object_type);

@@ -13,7 +13,7 @@
 #include "GreenPipe.h"
 #include "Textures.h"
 #include "Coin50.h"
-
+#include "BreakableBrick.h"
 //TODO: How to haven't to include state here.
 #include "WalkingState.h"
 #include "JumpingState.h"
@@ -212,6 +212,13 @@ void CMario::Update(DWORD dt)
 
 		
 			else if (dynamic_cast<CGround *>(e->obj))
+			{
+
+				if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))// Bug fix
+					state = new IdleState();
+			}
+
+			else if (dynamic_cast<BreakableBrick *>(e->obj))
 			{
 
 				if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))// Bug fix
