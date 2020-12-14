@@ -13,14 +13,14 @@
 
 #define GOOMBA_ANI_WALKING 0
 #define GOOMBA_ANI_DIE 1
-
+#define TIME_STATE_DIE 100.0f
 class CGoomba : public MovableObject
 {
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	virtual void Update(DWORD dt);
 	virtual void Render();
 	int state;
-
+	float counter_time = 0;
 public:
 
 	CGoomba();

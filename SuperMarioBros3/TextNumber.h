@@ -1,7 +1,7 @@
 #pragma once
 #include "Effect.h"
 #define TEXT_NUMBER_ANI_SET_ID	10
-#define TEXT_NUMBER_SPEED_UP	-0.2f
+#define TEXT_NUMBER_SPEED_UP	-0.1f
 #define BOUNCING_STEP	100
 #define MAX_Y	20
 
@@ -22,5 +22,4 @@ public:
 	void Update(DWORD dt);
 	void Render();
 	void SetStep(int step);
-
 };

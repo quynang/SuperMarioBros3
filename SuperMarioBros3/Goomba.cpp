@@ -1,11 +1,11 @@
 #include "Goomba.h"
-#include "BigBox.h"
-#include "Ground.h"
 #include "Utils.h"
-#include "FloatingBrick.h"
+#include "EffectFactory.h"
 CGoomba::CGoomba()
 {
+	this->nx = -1;
 	SetState(GOOMBA_STATE_WALKING);
+	
 }
 
 void CGoomba::GetBoundingBox(float &left, float &top, float &right, float &bottom)
@@ -22,8 +22,13 @@ void CGoomba::GetBoundingBox(float &left, float &top, float &right, float &botto
 
 void CGoomba::Update(DWORD dt)
 {
+
 	MovableObject::Update(dt);
 	vy += GOOMBA_GRAVITY * dt;
+
+	if (this->state == GOOMBA_STATE_DIE) counter_time += dt;
+	if (counter_time >= TIME_STATE_DIE) this->is_dead = true;
+
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
 
@@ -37,8 +42,6 @@ void CGoomba::Update(DWORD dt)
 		y += dy;
 	
 	}
-
-
 	else
 	{
 		float min_tx, min_ty, nx = 0, ny;
@@ -57,8 +60,11 @@ void CGoomba::Update(DWORD dt)
 		{
 			LPCOLLISIONEVENT e = coEventsResult[i];
 
+			if (e->nx != 0) {
+				this->nx = e->nx;
+				this->vx = e->nx * GOOMBA_WALKING_SPEED;
+			}
 		
-	
 		}
 	}
 
@@ -84,10 +90,11 @@ void CGoomba::SetState(int state)
 	{
 		case GOOMBA_STATE_DIE:
 			y += GOOMBA_BBOX_HEIGHT - GOOMBA_BBOX_HEIGHT_DIE + 1;
+			EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - 10, 100);
 			vx = 0;
 			vy = 0;
 			break;
-		case GOOMBA_STATE_WALKING: 
-			vx = GOOMBA_WALKING_SPEED;
+		case GOOMBA_STATE_WALKING:
+			vx = this->nx*GOOMBA_WALKING_SPEED;
 	}
 }
