@@ -1,5 +1,6 @@
 #include "Coin100.h"
-
+#include "EffectFactory.h"
+#include "GameEffects.h"
 Coin100::Coin100() {
 	this->x = x;
 	this->y = y;
@@ -15,7 +16,13 @@ void Coin100::Update(DWORD dt) {
 	charge_Y += abs(dy);
 	
 	if (charge_Y >= MAX_Y && step == BOUNCING_STEP) SetStep(FALL_DOWN_STEP);
-	if (charge_Y >= MAX_Y && step == FALL_DOWN_STEP) this->is_finished = true;
+	if (charge_Y >= MAX_Y && step == FALL_DOWN_STEP)
+	{
+		this->is_finished = true;
+		Effect* effect = EffectFactory::GetInstance()->create(TEXT_NUMBER, 100);
+		effect->SetPosition(this->x, this->y);
+		GameEffects::GetInstance()->addEffect(effect);
+	}
 
 	y += dy;
 

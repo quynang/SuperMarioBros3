@@ -151,6 +151,7 @@
     <ClCompile Include="TailSmacking_2_State.cpp" />
     <ClCompile Include="TailSmacking_1_State.cpp" />
     <ClCompile Include="TailSmacking_3_State.cpp" />
+    <ClCompile Include="TextNumber.cpp" />
     <ClCompile Include="Throw_1_State.cpp" />
     <ClCompile Include="Throw_2_State.cpp" />
     <ClCompile Include="TileSet.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="TailSmacking_2_State.h" />
     <ClInclude Include="TailSmacking_1_State.h" />
     <ClInclude Include="TailSmacking_3_State.h" />
+    <ClInclude Include="TextNumber.h" />
     <ClInclude Include="Throw_1_State.h" />
     <ClInclude Include="Throw_2_State.h" />
     <ClInclude Include="TileSet.h" />

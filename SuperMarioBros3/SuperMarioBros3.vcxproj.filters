@@ -103,6 +103,9 @@
     <ClCompile Include="EffectFatory.cpp">
       <Filter>GameEffects\Effects</Filter>
     </ClCompile>
+    <ClCompile Include="TextNumber.cpp">
+      <Filter>GameEffects\Effects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -220,6 +223,9 @@
       <Filter>GameEffects\Effects</Filter>
     </ClInclude>
     <ClInclude Include="EffectFactory.h">
+      <Filter>GameEffects\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="TextNumber.h">
       <Filter>GameEffects\Effects</Filter>
     </ClInclude>
   </ItemGroup>
