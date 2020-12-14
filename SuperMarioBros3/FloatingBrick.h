@@ -14,9 +14,8 @@
 #define BOUNCE_SPEED_Y	0.6f
 
 //Item type
-#define	ITEM_TYPE_RED_MUSHROOM	1000
 #define ITEM_TYPE_COIN	0
-#define ITEM_TYPE_SUPER_LEAF	2000
+#define ITEM_TYPE_SUPER	1
 
 class CFloatingBrick : public StaticObject
 {

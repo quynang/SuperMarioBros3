@@ -100,6 +100,7 @@ public:
 	void getPositionOfHandWhenThrowing(float& x, float& y);
 	void SetState(int state);
 	void Reset();
+	int getCurrentType() { return type; }
 
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 };

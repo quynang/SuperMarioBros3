@@ -3,6 +3,7 @@
 #include "Mushroom.h"
 #include "EffectFactory.h"
 #include "ItemFactory.h"
+#include "PlayScence.h"
 
 void CFloatingBrick::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
@@ -75,21 +76,21 @@ void CFloatingBrick::SetState(int state)
 }
 
 void CFloatingBrick::ProduceItem() {
+	CMario *mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	int current_mario_type = mario->getCurrentType();
 
-	switch (item_type)
-	{
-	case ITEM_TYPE_RED_MUSHROOM:
+	if (item_type == ITEM_TYPE_COIN) {
+		EffectFactory::GetInstance()->create(COIN_100, this->x, this->y - 10);
+
+	} else {
+		switch (current_mario_type)
 		{
+		case MARIO_TYPE_SMALL:
 			ItemFactory::GetInstance()->create(MUSHROOM, this->x, this->y);
 			break;
-		}
-	case ITEM_TYPE_COIN:
-		{
-			EffectFactory::GetInstance()->create(COIN_100, this->x, this->y - 10);
+		case MARIO_TYPE_BIG:
+			ItemFactory::GetInstance()->create(SUPER_LEAF, this->x, this->y - 6);
 			break;
-		}
-	case ITEM_TYPE_SUPER_LEAF:
-		ItemFactory::GetInstance()->create(SUPER_LEAF, this->x, this->y - 6);
-		break;
+		};
 	}
 }
