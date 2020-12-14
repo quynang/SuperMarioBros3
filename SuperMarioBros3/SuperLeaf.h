@@ -1,5 +1,5 @@
 #pragma once
-#include "MovableObject.h"
+#include "Item.h"
 
 #define SUPER_LEAF_ANI_SET_ID	11
 #define SUPER_LEAF_ANI_LEFT_INDEX	0
@@ -18,7 +18,7 @@
 #define MAX_CHARGE_Y	40
 #define MAX_CHARGE_X	20
 
-class SuperLeaf : public MovableObject
+class SuperLeaf : public Item
 {
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	virtual void Update(DWORD dt);

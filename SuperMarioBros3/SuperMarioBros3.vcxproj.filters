@@ -109,6 +109,9 @@
     <ClCompile Include="SuperLeaf.cpp">
       <Filter>GameObjects\MovableObjects\Items</Filter>
     </ClCompile>
+    <ClCompile Include="ItemFactory.cpp">
+      <Filter>GameObjects\MovableObjects\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -232,6 +235,12 @@
       <Filter>GameEffects\Effects</Filter>
     </ClInclude>
     <ClInclude Include="SuperLeaf.h">
+      <Filter>GameObjects\MovableObjects\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemFactory.h">
+      <Filter>GameObjects\MovableObjects\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
       <Filter>GameObjects\MovableObjects\Items</Filter>
     </ClInclude>
   </ItemGroup>

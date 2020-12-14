@@ -4,7 +4,7 @@
 #include "PlayScence.h"
 #include "GameEffects.h"
 #include "EffectFactory.h"
-#include "SuperLeaf.h"
+#include "ItemFactory.h"
 
 void CFloatingBrick::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
@@ -82,8 +82,7 @@ void CFloatingBrick::ProduceItem() {
 	{
 	case ITEM_TYPE_RED_MUSHROOM:
 		{
-			Mushroom* mushroom = new Mushroom(this->x, this->y);
-			((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddObjectIntoBeginning(mushroom);
+			ItemFactory::GetInstance()->create(MUSHROOM, this->x, this->y);
 			break;
 		}
 	case ITEM_TYPE_COIN:
@@ -94,8 +93,7 @@ void CFloatingBrick::ProduceItem() {
 			break;
 		}
 	case ITEM_TYPE_SUPER_LEAF:
-		SuperLeaf* super_leaf = new SuperLeaf(this->x, this->y);
-		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddObject(super_leaf);
+		ItemFactory::GetInstance()->create(SUPER_LEAF, this->x, this->y);
 		break;
 	}
 }

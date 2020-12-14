@@ -1,5 +1,5 @@
 #pragma once
-#include "MovableObject.h"
+#include "Item.h"
 
 #define MUSHROOM_GRAVITY	0.08f
 #define MUSHROOM_MOVING_SPEED	0.08f
@@ -13,7 +13,7 @@
 
 #define MUSHROOM_BBOX_WIDTH	16
 #define MUSHROOM_BBOX_HEIGHT	16
-class Mushroom : public MovableObject
+class Mushroom : public Item
 {
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	virtual void Update(DWORD dt);
