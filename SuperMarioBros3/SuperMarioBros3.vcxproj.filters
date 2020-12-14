@@ -246,6 +246,9 @@
     <ClInclude Include="BouncingState.h">
       <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>GameObjects\MovableObjects\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

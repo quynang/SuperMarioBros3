@@ -178,6 +178,7 @@
     <ClInclude Include="Coin50.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectFactory.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="FallingState.h" />
     <ClInclude Include="FallingWhileFlyingState.h" />
     <ClInclude Include="FireBall.h" />
