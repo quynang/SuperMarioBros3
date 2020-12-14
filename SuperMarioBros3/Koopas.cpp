@@ -1,6 +1,7 @@
 #include "Koopas.h"
 #include "BigBox.h"
 #include "Ground.h"
+#include "FloatingBrick.h"
 #include "Utils.h"
 CKoopas::CKoopas()
 {
@@ -45,7 +46,6 @@ void CKoopas::Update(DWORD dt)
 		else
 		{
 
-			//TODO: This is very very ugly. Try update here.
 
 			float min_tx, min_ty, nx = 0, ny;
 			float rdx = 0;
@@ -122,6 +122,15 @@ void CKoopas::Update(DWORD dt)
 
 					}
 				}
+				else if (dynamic_cast<CFloatingBrick*>(e->obj)) {
+					if (state == KOOPAS_STATE_SLIDING) {
+						if (e->nx != 0) {
+							CFloatingBrick* brick = dynamic_cast<CFloatingBrick*>(e->obj);
+							brick->SetState(STATIC_STATE);
+							vx =  e->nx * KOOPAS_SLIDING_SPEED;
+						}
+					}
+				}
 				else {
 					//For another object. vy = 0. update vx
 					if (state == KOOPAS_STATE_WALKING)
@@ -145,6 +154,7 @@ void CKoopas::Update(DWORD dt)
 	m_coObjects.clear();
 
 }
+
 
 void CKoopas::Render()
 {

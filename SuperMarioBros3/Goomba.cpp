@@ -89,7 +89,7 @@ void CGoomba::SetState(int state)
 	switch (state)
 	{
 		case GOOMBA_STATE_DIE:
-			y += GOOMBA_BBOX_HEIGHT - GOOMBA_BBOX_HEIGHT_DIE + 1;
+			y += GOOMBA_BBOX_HEIGHT - GOOMBA_BBOX_HEIGHT_DIE;
 			EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - 10, 100);
 			vx = 0;
 			vy = 0;
