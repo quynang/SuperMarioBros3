@@ -56,6 +56,7 @@ class MarioState;
 #define TAIL_SMACKING_3 1011
 #define THROW_1	1012
 #define THROW_2	1013
+#define BOUNCING	1014
 
 class CMario : public MovableObject
 {

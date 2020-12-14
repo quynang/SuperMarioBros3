@@ -1,7 +1,7 @@
 #pragma once
 #include "MarioState.h"
 
-#define MAX_CHARGE 60
+#define JUMP_HEIGHT 60
 
 #define MARIO_ANI_BIG_JUMPING_LEFT	9
 #define MARIO_ANI_BIG_JUMPING_RIGHT	10
@@ -16,10 +16,12 @@
 #define FIRE_MARIO_ANI_JUMPING_LEFT	72
 
 class JumpingState : public MarioState {
-
+	float jump_height;
 public:
 
-	JumpingState() : chargeY_(0) { current_state = JUMPING; };
+	JumpingState() : chargeY_(0) { current_state = JUMPING; setJumpHeight(JUMP_HEIGHT); };
+
+	virtual void setJumpHeight(float height);
 
 	void handleOnKeyUp(CMario& mario, int keyCode);
 

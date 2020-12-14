@@ -26,6 +26,10 @@ void JumpingState::handleKeyState(CMario& mario, BYTE* states) {
 	}
 };
 
+void JumpingState::setJumpHeight(float height) {
+	this->jump_height = height;
+}
+
 void JumpingState::update(CMario& mario, DWORD dt) {
 	
 	/*
@@ -35,8 +39,8 @@ void JumpingState::update(CMario& mario, DWORD dt) {
 	mario.vy = -MARIO_JUMP_SPEED_Y;
 
 	//Điều chỉnh lại dy để đảm bảo rằng mario sẽ nhảy chính xác một khoảng bằng MAX_CHARGE.
-	if (abs(mario.dy) + chargeY_ >= MAX_CHARGE) {
-		mario.dy = -(MAX_CHARGE - chargeY_); //Giá trị âm bởi vì lúc này mario vẫn đang nhảy lên.
+	if (abs(mario.dy) + chargeY_ >= jump_height) {
+		mario.dy = -(jump_height - chargeY_); //Giá trị âm bởi vì lúc này mario vẫn đang nhảy lên.
 		mario.vy = 0;
 		mario.state = new FallingState();
 	}

@@ -172,6 +172,7 @@
   <ItemGroup>
     <ClInclude Include="Animations.h" />
     <ClInclude Include="BigBox.h" />
+    <ClInclude Include="BouncingState.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Coin100.h" />
     <ClInclude Include="Coin50.h" />

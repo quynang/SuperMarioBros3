@@ -28,6 +28,7 @@
 #include "HoldingState.h"
 #include "IdleState.h"
 #include "FallingState.h"
+#include "BouncingState.h"
 
 
 CMario::CMario(float x, float y) : MovableObject()
@@ -136,11 +137,11 @@ void CMario::Update(DWORD dt)
 
 				if (e->ny < 0)
 				{
-					if (goomba->GetState()!= GOOMBA_STATE_DIE)
+					if (goomba->GetState() != GOOMBA_STATE_DIE)
 					{
 						goomba->SetState(GOOMBA_STATE_DIE);
 						vy = -MARIO_JUMP_DEFLECT_SPEED;
-						state = new IdleState();
+						state = new BouncingState();
 					}
 				}
 				else if (e->nx != 0)
@@ -167,8 +168,7 @@ void CMario::Update(DWORD dt)
 				{
 					if (koopas->GetState() != KOOPAS_STATE_HIDE_IN_SHELL)
 					{
-						vy = -0.5f;//TODO: naming this value
-						x -= 6;//Remove this. It's just for testing.
+						state = new BouncingState();
 						
 						koopas->SetState(KOOPAS_STATE_HIDE_IN_SHELL);
 					}
