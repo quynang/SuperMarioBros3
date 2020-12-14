@@ -1,6 +1,6 @@
 #pragma once
 #include "JumpingState.h"
-#define BOUNCE_HEIGHT	30
+#define BOUNCE_HEIGHT	20
 class BouncingState : public JumpingState
 {
 public:
