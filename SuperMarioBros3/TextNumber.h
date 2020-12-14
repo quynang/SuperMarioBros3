@@ -18,7 +18,7 @@ class TextNumber : public Effect
 	float charge_Y = 0;
 	int number;
 public:
-	TextNumber(int num_val);
+	TextNumber(float x, float y, int num_val);
 	void Update(DWORD dt);
 	void Render();
 	void SetStep(int step);

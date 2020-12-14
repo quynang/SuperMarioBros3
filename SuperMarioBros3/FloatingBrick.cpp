@@ -1,8 +1,6 @@
 #include "FloatingBrick.h"
 #include "Utils.h"
 #include "Mushroom.h"
-#include "PlayScence.h"
-#include "GameEffects.h"
 #include "EffectFactory.h"
 #include "ItemFactory.h"
 
@@ -87,13 +85,11 @@ void CFloatingBrick::ProduceItem() {
 		}
 	case ITEM_TYPE_COIN:
 		{
-			Effect* effect = EffectFactory::GetInstance()->create(COIN_100);
-			effect->SetPosition(this->x, this->y - 16);
-			GameEffects::GetInstance()->addEffect(effect);
+			EffectFactory::GetInstance()->create(COIN_100, this->x, this->y - 10);
 			break;
 		}
 	case ITEM_TYPE_SUPER_LEAF:
-		ItemFactory::GetInstance()->create(SUPER_LEAF, this->x, this->y);
+		ItemFactory::GetInstance()->create(SUPER_LEAF, this->x, this->y - 6);
 		break;
 	}
 }

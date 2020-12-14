@@ -1,4 +1,5 @@
 #include "EffectFactory.h"
+#include "GameEffects.h"
 #include "Coin100.h"
 #include "TextNumber.h"
 #include "Utils.h"
@@ -11,18 +12,20 @@ EffectFactory *EffectFactory::GetInstance()
 	return _instance;
 }
 
-Effect* EffectFactory::create(int effect_type, int extra_param) {
+Effect* EffectFactory::create(int effect_type, float x, float y, int extra_param) {
 	switch (effect_type)
 	{
 	case COIN_100:
 		{
-			Effect *effect = new Coin100();
+			Effect *effect = new Coin100(x, y);
+			GameEffects::GetInstance()->addEffect(effect);
 			return effect;
 			break;
 		}
 	case TEXT_NUMBER:
 		{
-			Effect* effect = new TextNumber(extra_param);
+			Effect* effect = new TextNumber(x, y, extra_param);
+			GameEffects::GetInstance()->addEffect(effect);
 			return effect;
 			break;
 		}

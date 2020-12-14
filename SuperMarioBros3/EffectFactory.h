@@ -7,6 +7,6 @@
 class EffectFactory {
 	static EffectFactory* _instance;
 public:
-	Effect* create(int effect_type, int extra_param = NULL);
+	Effect* create(int effect_type, float x, float y, int extra_param = NULL);
 	static EffectFactory* GetInstance();
 };

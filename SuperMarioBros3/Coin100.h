@@ -13,7 +13,7 @@ class Coin100 : public Effect
 	int step;
 	float charge_Y = 0;
 public:
-	Coin100();
+	Coin100(float x, float y);
 	void Update(DWORD dt);
 	void Render();
 	void SetStep(int step);

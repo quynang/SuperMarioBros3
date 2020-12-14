@@ -1,6 +1,6 @@
 #include "TextNumber.h"
 
-TextNumber::TextNumber(int num_val) {
+TextNumber::TextNumber(float x, float y, int num_val) {
 	this->x = x;
 	this->y = y;
 	this->number = num_val;
