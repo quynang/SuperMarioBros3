@@ -148,6 +148,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="Portal.cpp" />
+    <ClCompile Include="SuperLeaf.cpp" />
     <ClCompile Include="TailSmacking_2_State.cpp" />
     <ClCompile Include="TailSmacking_1_State.cpp" />
     <ClCompile Include="TailSmacking_3_State.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="Mushroom.h" />
     <ClInclude Include="Portal.h" />
     <ClInclude Include="StaticObject.h" />
+    <ClInclude Include="SuperLeaf.h" />
     <ClInclude Include="TailSmacking_2_State.h" />
     <ClInclude Include="TailSmacking_1_State.h" />
     <ClInclude Include="TailSmacking_3_State.h" />

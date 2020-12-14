@@ -16,6 +16,7 @@
 //Item type
 #define	ITEM_TYPE_RED_MUSHROOM	1000
 #define ITEM_TYPE_COIN	0
+#define ITEM_TYPE_SUPER_LEAF	2000
 
 class CFloatingBrick : public StaticObject
 {

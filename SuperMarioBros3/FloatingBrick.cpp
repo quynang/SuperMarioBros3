@@ -4,6 +4,7 @@
 #include "PlayScence.h"
 #include "GameEffects.h"
 #include "EffectFactory.h"
+#include "SuperLeaf.h"
 
 void CFloatingBrick::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
@@ -92,5 +93,9 @@ void CFloatingBrick::ProduceItem() {
 			GameEffects::GetInstance()->addEffect(effect);
 			break;
 		}
+	case ITEM_TYPE_SUPER_LEAF:
+		SuperLeaf* super_leaf = new SuperLeaf(this->x, this->y);
+		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddObject(super_leaf);
+		break;
 	}
 }
