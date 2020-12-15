@@ -48,10 +48,11 @@ CMario::CMario(float x, float y) : MovableObject()
 
 void CMario::Update(DWORD dt)
 {
+	state->update(*this, dt);
 	CGameObject::Update(dt);
 	vy += MARIO_GRAVITY * dt;
 
-	state->update(*this, dt);
+
 
 	if (!can_pick_item && item_holding != NULL)
 	{
@@ -68,8 +69,8 @@ void CMario::Update(DWORD dt)
 		untouchable = 0;
 	}
 
-	processCollisionWithStaticObject();
 	processCollisionWithMovableObject();
+	processCollisionWithStaticObject();
 
 	if (x < 0) x = 0;
 		
@@ -378,10 +379,9 @@ void CMario::processCollisionWithStaticObject() {
 
 void CMario::processCollisionWithMovableObject() {
 
-	CGameObject::Update(dt);
-
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
+
 
 	coEvents.clear();
 
@@ -408,7 +408,6 @@ void CMario::processCollisionWithMovableObject() {
 				if (goomba->GetState() != GOOMBA_STATE_DIE)
 				{
 					goomba->SetState(GOOMBA_STATE_DIE);
-					vy = -MARIO_JUMP_DEFLECT_SPEED;
 					state = new BouncingState();
 				}
 			}
