@@ -118,6 +118,9 @@
     <ClCompile Include="MarioTypeUp.cpp">
       <Filter>GameEffects\Effects</Filter>
     </ClCompile>
+    <ClCompile Include="MovableObject.cpp">
+      <Filter>GameObjects\MovableObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />

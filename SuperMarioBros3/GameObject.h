@@ -62,8 +62,6 @@ public:
 
 	LPANIMATION_SET animation_set;
 
-	vector<LPGAMEOBJECT> m_coObjects;
-
 
 public: 
 	void SetPosition(float x, float y) { this->x = x, this->y = y; }
@@ -71,7 +69,6 @@ public:
 	void GetPosition(float &x, float &y) { x = this->x; y = this->y; }
 	void GetSpeed(float &vx, float &vy) { vx = this->vx; vy = this->vy; }
 	virtual void AddCoObjects(vector<LPGAMEOBJECT>* coObjects = NULL);
-	void AddCoObject(LPGAMEOBJECT coObject) { m_coObjects.push_back(coObject); };
 	void RenderBoundingBox();
 	D3DXVECTOR3 GetPosition() { D3DXVECTOR3 p; p.x = x; p.y = y; return p; };
 

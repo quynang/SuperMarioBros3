@@ -13,7 +13,6 @@ void BreakableBrick::GetBoundingBox(float& left, float& top, float& right, float
 void BreakableBrick::Update(DWORD dt)
 {
 
-	m_coObjects.clear();
 }
 
 

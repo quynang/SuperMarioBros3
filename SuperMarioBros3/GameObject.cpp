@@ -25,7 +25,7 @@ void CGameObject::Update(DWORD dt)
 }
 
 void CGameObject::AddCoObjects(vector<LPGAMEOBJECT>* coObjects) {
-	m_coObjects.insert(m_coObjects.end(), coObjects->begin(), coObjects->end());
+	
 }
 /*
 	Extension of original SweptAABB to deal with two moving objects

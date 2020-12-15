@@ -34,7 +34,7 @@ void CKoopas::Update(DWORD dt)
 
 		coEvents.clear();
 
-		CalcPotentialCollisions(&m_coObjects, coEvents);
+		CalcPotentialCollisions(&coStaticObjects, coEvents);
 
 		if (coEvents.size() == 0)
 		{
@@ -151,7 +151,7 @@ void CKoopas::Update(DWORD dt)
 		}
 	}
 
-	m_coObjects.clear();
+	coStaticObjects.clear();
 
 }
 
@@ -194,7 +194,6 @@ void CKoopas::SetState(int state)
 		vx = this->nx*KOOPAS_WALKING_SPEED;
 		break;
 	case KOOPAS_STATE_SLIDING:
-		y -= 2;
 		vx = this->nx*KOOPAS_SLIDING_SPEED;
 		break;
 

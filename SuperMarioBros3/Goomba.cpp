@@ -34,7 +34,7 @@ void CGoomba::Update(DWORD dt)
 
 	coEvents.clear();
 
-	CalcPotentialCollisions(&m_coObjects, coEvents);
+	CalcPotentialCollisions(&coStaticObjects, coEvents);
 	
 	if (coEvents.size()==0)
 	{
@@ -68,7 +68,7 @@ void CGoomba::Update(DWORD dt)
 		}
 	}
 
-	m_coObjects.clear();
+	coStaticObjects.clear();
 }
 
 void CGoomba::Render()

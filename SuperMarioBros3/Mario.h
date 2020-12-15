@@ -85,7 +85,8 @@ class CMario : public MovableObject
 	friend class Throw_1_State;
 	friend class Throw_2_State;
 	CGameObject* item_holding = NULL;
-
+	void processCollisionWithStaticObject();
+	void processCollisionWithMovableObject();
 public:
 
 	CMario(float x = 0.0f, float y = 0.0f);
@@ -97,7 +98,7 @@ public:
 	void SetType(int t) { type = t; }
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount(); }
 	void SetPosForItemPicked();
-	void handleTailAttacking(vector<LPGAMEOBJECT> *coObjects);
+	void handleTailAttacking();
 	RECT getTailRect();
 	void getPositionOfHandWhenThrowing(float& x, float& y);
 	void SetState(int state);

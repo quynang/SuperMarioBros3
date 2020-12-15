@@ -15,6 +15,7 @@ void CFloatingBrick::GetBoundingBox(float& left, float& top, float& right, float
 
 void CFloatingBrick::Update(DWORD dt)
 {
+	//DebugOut(L"Object To Check %d\n", m_coObjects.size());
 	CGameObject::Update(dt);
 	x += dx;
 	y += dy;
@@ -38,7 +39,6 @@ void CFloatingBrick::Update(DWORD dt)
 	else if (state == REBOUNDING_STATE && abs(countY_) >= MAX_HEIGHT)
 		SetState(STATIC_STATE);
 
-	m_coObjects.clear();
 }
 
 
