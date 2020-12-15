@@ -13,7 +13,11 @@
 #include "GreenPipe.h"
 #include "Textures.h"
 #include "Coin50.h"
+#include "Mushroom.h"
 #include "BreakableBrick.h"
+#include "EffectFactory.h"
+#include "PlayScence.h"
+
 //TODO: How to haven't to include state here.
 #include "WalkingState.h"
 #include "JumpingState.h"
@@ -196,8 +200,6 @@ void CMario::Update(DWORD dt)
 							item_holding = koopas;
 							((CKoopas*)item_holding)->TurnOffUpdation();
 						}
-					
-						
 
 					}
 				}
@@ -234,6 +236,16 @@ void CMario::Update(DWORD dt)
 				if (e->nx != 0) {
 					x += dx;
 				}
+			}
+
+			else if (dynamic_cast<Mushroom *>(e->obj))  
+			{
+				Mushroom *mushroom = dynamic_cast<Mushroom *>(e->obj);
+				mushroom->is_dead = true;
+				SetType(MARIO_TYPE_BIG);
+				state = new IdleState();
+				EffectFactory::GetInstance()->create(MARIO_TYPE_UP, this->x, this->y, this->nx);
+				y = y - (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT);
 			}
 
 			else if (dynamic_cast<CFloatingBrick *>(e->obj))
@@ -299,7 +311,8 @@ void CMario::Render()
 	int ani = state->getAni(*this);
 
 	//RenderBoundingBox();
-	animation_set->at(ani)->Render(x, y, alpha);
+
+	if(is_visible) animation_set->at(ani)->Render(x, y, alpha);
 
 	/*if (marioState->current_state == TAIL_SMACKING_2) {
 		RECT tail_rect = this->getTailRect();

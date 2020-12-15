@@ -297,40 +297,27 @@ void CPlayScene::Load()
 
 void CPlayScene::Update(DWORD dt)
 {
-	// We know that Mario is the first object in the list hence we won't add him into the colliable object list
-	// TO-DO: This is a "dirty" way, need a more organized way 
 
-	/*vector<LPGAMEOBJECT> coObjects;
-	for (size_t i = 1; i < objects.size(); i++)
-	{
-		coObjects.push_back(objects[i]);
+	if (is_update) {
+
+		m_grid->handleUpdate(dt);
+
+		if (player == NULL) return; 
+
+		float cx, cy;
+		player->GetPosition(cx, cy);
+
+		CGame *game = CGame::GetInstance();
+		cx -= game->GetScreenWidth() / 2;
+		cy -= game->GetScreenHeight() / 2;
+		if (cx < 0) cx = 0;
+		if (cx + 320 > CMap::GetInstance()->getWidth()) cx = CMap::GetInstance()->getWidth() - 320;
+
+		if (cy > 230) cy = 230;
+		if (cy < 0) cy = 0;
+
+		CGame::GetInstance()->SetCamPos(cx, cy /*cy*/);
 	}
-
-	for (size_t i = 0; i < objects.size(); i++)
-	{
-		objects[i]->Update(dt, &coObjects);
-	}*/
-
-	
-	m_grid->handleUpdate(dt);
-
-	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
-	if (player == NULL) return; 
-
-	// Update camera to follow mario
-	float cx, cy;
-	player->GetPosition(cx, cy);
-
-	CGame *game = CGame::GetInstance();
-	cx -= game->GetScreenWidth() / 2;
-	cy -= game->GetScreenHeight() / 2;
-	if (cx < 0) cx = 0;
-	if (cx + 320 > CMap::GetInstance()->getWidth()) cx = CMap::GetInstance()->getWidth() - 320;
-
-	if (cy > 230) cy = 230;
-	if (cy < 0) cy = 0;
-
-	CGame::GetInstance()->SetCamPos(cx, cy /*cy*/);
 
 	GameEffects::GetInstance()->Update(dt);
 }
@@ -357,6 +344,7 @@ void CPlayScene::Render()
 /*
 	Unload current scene
 */
+
 void CPlayScene::Unload()
 {
 	for (int i = 0; i < objects.size(); i++)
@@ -404,7 +392,6 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 	case DIK_R:
 		game->SwitchScene(1);
 		break;
-
 	}
 }
 
@@ -420,4 +407,4 @@ void CPlayScenceKeyHandler::KeyState(BYTE *states)
 	CGame *game = CGame::GetInstance();
 	CMario* mario = ((CPlayScene*)scence)->GetPlayer();
 	mario->handleKeyState(states);
-}
+}	

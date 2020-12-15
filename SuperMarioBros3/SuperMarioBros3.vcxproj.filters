@@ -115,6 +115,9 @@
     <ClCompile Include="BreakableBrick.cpp">
       <Filter>GameObjects\StaticObjects</Filter>
     </ClCompile>
+    <ClCompile Include="MarioTypeUp.cpp">
+      <Filter>GameEffects\Effects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -254,6 +257,9 @@
     </ClInclude>
     <ClInclude Include="BreakableBrick.h">
       <Filter>GameObjects\StaticObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="MarioTypeUp.h">
+      <Filter>GameEffects\Effects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

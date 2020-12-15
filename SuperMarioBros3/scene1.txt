@@ -88,7 +88,6 @@ map-world-1-1.txt
 #holding left
 10059	56	169	70	185	0
 10060	15	169	30	185	0
-
 #=============RACCOON MARIO=============
 #idle right
 11001	212	443	233	471	0	6	0
@@ -263,6 +262,17 @@ map-world-1-1.txt
 70011	45	1	57	9	50
 #1000
 70012	60	1	75	9	50
+
+#========= MARIO TYPE UP EFFECT========
+#type up anmation
+#left
+70013	336	17	348	32	0
+70014	350	10	364	32	0	0	7
+70015	366	5	380	32	0	0	12
+#right
+70016	368	55	380	70	0
+70017	352	48	366	70	0	0	7
+70018	336	43	350	70	0	0	12
 
 #======SUPER LEAF=============
 #left
@@ -503,6 +513,11 @@ map-world-1-1.txt
 1011	80002	100
 #========BREAKABLE BRICK========
 1012	80003	100	80004	100	80005	100	80006	100
+#====MARIO TYPE UP EFFECT========
+#left
+1013	70013	100	70014	100	70013	100	70014	100	70015	100	70014	100	70015	100
+#right
+1014	70016	100	70017	100	70016	100	70017	100	70018	100	70017	100	70018	100
 # id	ani1	ani2	ani3
 [ANIMATION_SETS]
 # MARIO
@@ -528,6 +543,8 @@ map-world-1-1.txt
 11	1010	1011
 #========BREAKABLE BRICK========
 12	1012
+#========MARIO TYPE UP EFFECT=======
+13	1013	1014
 [OBJECTS]
 # type	x	y	ani_set_id	extra_settings per object type
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba

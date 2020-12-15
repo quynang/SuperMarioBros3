@@ -68,6 +68,7 @@ class CMario : public MovableObject
 	float start_y;
 	int power = 0;
 	int can_pick_item = 0;
+	bool is_visible = true;
 
 	MarioState * state;
 	friend class WalkingState;
@@ -101,6 +102,7 @@ public:
 	void getPositionOfHandWhenThrowing(float& x, float& y);
 	void SetState(int state);
 	void Reset();
+	void setIsVisible(bool value) { this->is_visible = value; }
 	int getCurrentType() { return type; }
 
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);

@@ -148,6 +148,7 @@
     <ClCompile Include="KickState.cpp" />
     <ClCompile Include="Koopas.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MarioTypeUp.cpp" />
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="SuperLeaf.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="Koopas.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MarioState.h" />
+    <ClInclude Include="MarioTypeUp.h" />
     <ClInclude Include="MovableObject.h" />
     <ClInclude Include="Mushroom.h" />
     <ClInclude Include="Portal.h" />

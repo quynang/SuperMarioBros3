@@ -19,6 +19,8 @@ protected:
 
 	Grid* m_grid;
 
+	bool is_update = true;
+
 	void _ParseSection_TEXTURES(string line);
 	void _ParseSection_SPRITES(string line);
 	void _ParseSection_ANIMATIONS(string line);
@@ -36,6 +38,9 @@ public:
 	virtual void Render();
 	virtual void Unload();
 
+	void turnOffGameObjectUpdate() { this->is_update = false; }
+	void turnOnGameObjectUpdate() { this->is_update = true; }
+	
 	CMario * GetPlayer() { return player; } 
 
 	//friend class CPlayScenceKeyHandler;
