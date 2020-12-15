@@ -7,6 +7,7 @@ Mushroom::Mushroom(float x, float y)
 	SetAnimationSet(animation_sets->Get(ITEMS_ANI_SET));
 	this->x = x;
 	this->y = y;
+	this->nx = 1;
 	this->state = MUSHROOM_STATE_SPROUT;
 	this->vy = MUSHROOM_SPROUT_SPEED_Y;
 }
@@ -71,10 +72,7 @@ void Mushroom::Update(DWORD dt)
 					this->nx = -this->nx;
 					this->vx = this->nx * MUSHROOM_MOVING_SPEED;
 				}
-				else if (e->ny != 0) {
-					x += dx;
-				}
-
+			
 			}
 		}
 
@@ -97,7 +95,7 @@ void Mushroom::SetState(int state)
 	switch (state)
 	{
 	case MUSHROOM_STATE_MOVING:
-		vx = MUSHROOM_MOVING_SPEED;
+		vx = this->nx* MUSHROOM_MOVING_SPEED;
 		vy = 0;
 		break;
 	case MUSHROOM_STATE_COLLECTED:
