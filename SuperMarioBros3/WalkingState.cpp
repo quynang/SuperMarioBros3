@@ -24,7 +24,7 @@ void WalkingState::handleOnKeyUp(CMario& mario, int keyCode) {
 void WalkingState::handleOnKeyDown(CMario& mario, int keyCode) {
 	switch (keyCode)
 	{
-	case DIK_SPACE:
+	case DIK_S:
 		if (mario.power >= 4 && mario.type == MARIO_TYPE_RACCOON)
 			mario.state = new FlyingState();
 		else

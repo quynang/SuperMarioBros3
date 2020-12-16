@@ -6,7 +6,7 @@
 void FlyingState::handleOnKeyUp(CMario& mario, int keyCode) {
 	switch (keyCode)
 	{
-	case DIK_SPACE:
+	case DIK_S:
 		mario.state = new FallingWhileFlyingState();
 		break;
 	}

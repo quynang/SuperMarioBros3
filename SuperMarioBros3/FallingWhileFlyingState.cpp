@@ -5,7 +5,7 @@
 void FallingWhileFlyingState::handleOnKeyUp(CMario& mario, int keyCode) {
 	switch (keyCode)
 	{
-	case DIK_SPACE:
+	case DIK_S:
 		flap_tails = 0;
 		break;
 		
@@ -15,7 +15,7 @@ void FallingWhileFlyingState::handleOnKeyUp(CMario& mario, int keyCode) {
 void FallingWhileFlyingState::handleOnKeyDown(CMario& mario, int keyCode) {
 	switch (keyCode)
 	{
-	case DIK_SPACE:
+	case DIK_S:
 		flap_tails = 1;
 		break;
 		

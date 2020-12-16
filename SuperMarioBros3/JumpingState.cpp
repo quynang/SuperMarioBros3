@@ -1,6 +1,7 @@
 #include "JumpingState.h"
 #include "FallingState.h"
 #include "TailSmacking_1_State.h"
+#include "Throw_1_State.h"
 #include <dinput.h>
 #include "IdleState.h"
 #include "Utils.h"
@@ -8,9 +9,11 @@
 void JumpingState::handleOnKeyDown(CMario& mario, int keyCode) {
 	switch (keyCode)
 	{
-	case DIK_D:
+	case DIK_A:
 		if (mario.type == MARIO_TYPE_RACCOON)
 			mario.state = new TailSmacking_1_State();
+		else if(mario.type == MARIO_TYPE_FIRE)
+			mario.state = new Throw_1_State();
 		break;
 	};
 }

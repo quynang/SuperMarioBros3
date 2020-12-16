@@ -15,10 +15,10 @@ void IdleState::handleOnKeyDown(CMario& mario, int keyCode) {
 
 	switch (keyCode)
 	{
-	case DIK_SPACE:
+	case DIK_S:
 		mario.state = new JumpingState();
 		break;
-	case DIK_D:
+	case DIK_A:
 		if (mario.type == MARIO_TYPE_RACCOON)
 			mario.state = new TailSmacking_1_State();
 		else if (mario.type == MARIO_TYPE_FIRE)
