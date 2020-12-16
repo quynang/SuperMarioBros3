@@ -152,6 +152,7 @@
     <ClCompile Include="MovableObject.cpp" />
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="Portal.cpp" />
+    <ClCompile Include="Smoke.cpp" />
     <ClCompile Include="SuperLeaf.cpp" />
     <ClCompile Include="TailSmacking_2_State.cpp" />
     <ClCompile Include="TailSmacking_1_State.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="MovableObject.h" />
     <ClInclude Include="Mushroom.h" />
     <ClInclude Include="Portal.h" />
+    <ClInclude Include="Smoke.h" />
     <ClInclude Include="StaticObject.h" />
     <ClInclude Include="SuperLeaf.h" />
     <ClInclude Include="TailSmacking_2_State.h" />

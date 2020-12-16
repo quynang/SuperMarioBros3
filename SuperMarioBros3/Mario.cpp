@@ -17,6 +17,7 @@
 #include "BreakableBrick.h"
 #include "EffectFactory.h"
 #include "PlayScence.h"
+#include "SuperLeaf.h"
 
 //TODO: How to haven't to include state here.
 #include "WalkingState.h"
@@ -71,6 +72,7 @@ void CMario::Update(DWORD dt)
 
 	processCollisionWithMovableObject();
 	processCollisionWithStaticObject();
+	
 
 	if (x < 0) x = 0;
 		
@@ -484,6 +486,16 @@ void CMario::processCollisionWithMovableObject() {
 			state = new IdleState();
 			EffectFactory::GetInstance()->create(MARIO_TYPE_UP, this->x, this->y, this->nx);
 			y = y - (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT);
+		}
+
+		else if (dynamic_cast<SuperLeaf *>(e->obj))  
+		{
+			SuperLeaf *super_leaf = dynamic_cast<SuperLeaf *>(e->obj);
+			super_leaf->is_dead = true;
+			SetType(MARIO_TYPE_RACCOON);
+			float _x, _y;
+			super_leaf->GetPosition(_x, _y);
+			EffectFactory::GetInstance()->create(SMOKE, _x, _y);
 		}
 
 		else if (dynamic_cast<CFloatingBrick *>(e->obj))

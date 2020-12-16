@@ -121,6 +121,9 @@
     <ClCompile Include="MovableObject.cpp">
       <Filter>GameObjects\MovableObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Smoke.cpp">
+      <Filter>GameEffects\Effects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -262,6 +265,9 @@
       <Filter>GameObjects\StaticObjects</Filter>
     </ClInclude>
     <ClInclude Include="MarioTypeUp.h">
+      <Filter>GameEffects\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Smoke.h">
       <Filter>GameEffects\Effects</Filter>
     </ClInclude>
   </ItemGroup>

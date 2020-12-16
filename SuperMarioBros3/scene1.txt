@@ -11,6 +11,7 @@ map-world-1-1.txt
 30	textures\misc.png	166	185	255
 40	textures\fireball.png	255	255	255
 50	textures\number-effect.png	255	150	255
+60	textures\effects.png	176	224	248
 # id	left	top	right	bottom	texture_id
 [SPRITES]
 # ===============BIG MARIO=============
@@ -273,7 +274,11 @@ map-world-1-1.txt
 70016	368	55	380	70	0
 70017	352	48	366	70	0	0	7
 70018	336	43	350	70	0	0	12
-
+#========== Smoke Effect=========
+70019	113	19	126	32	60
+70020	98	19	111	32	60
+70021	79	17	96	34	60
+70022	129	20	140	31	60
 #======SUPER LEAF=============
 #left
 80001	375	121	391	135	30
@@ -518,6 +523,8 @@ map-world-1-1.txt
 1013	70013	100	70014	100	70013	100	70014	100	70015	100	70014	100	70015	100
 #right
 1014	70016	100	70017	100	70016	100	70017	100	70018	100	70017	100	70018	100
+#=========SMOKE EFFECT==========
+1015	70019	100	70020	100	70021	100	70022	100
 # id	ani1	ani2	ani3
 [ANIMATION_SETS]
 # MARIO
@@ -545,6 +552,8 @@ map-world-1-1.txt
 12	1012
 #========MARIO TYPE UP EFFECT=======
 13	1013	1014
+#======SMOKE EFFECT=========
+14	1015
 [OBJECTS]
 # type	x	y	ani_set_id	extra_settings per object type
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba

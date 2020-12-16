@@ -3,6 +3,7 @@
 #include "Coin100.h"
 #include "TextNumber.h"
 #include "MarioTypeUp.h"
+#include "Smoke.h"
 #include "Utils.h"
 
 EffectFactory *EffectFactory::_instance = NULL;
@@ -34,6 +35,13 @@ Effect* EffectFactory::create(int effect_type, float x, float y, int extra_param
 	case MARIO_TYPE_UP:
 		{
 			Effect *effect = new MarioTypeUp(x, y, extra_param);
+			GameEffects::GetInstance()->addEffect(effect);
+			return effect;
+			break;
+		}
+	case SMOKE:
+		{
+			Effect *effect = new Smoke(x, y);
 			GameEffects::GetInstance()->addEffect(effect);
 			return effect;
 			break;
