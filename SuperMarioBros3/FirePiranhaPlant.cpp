@@ -21,7 +21,7 @@ void FirePiranhaPlant::GetBoundingBox(float& left, float& top, float& right, flo
 
 void FirePiranhaPlant::Update(DWORD dt)
 {
-	DebugOut(L"Speed Y: %d !\n", this->nx);
+
 	Enemy::Update(dt);
 	y += dy;
 	x += 0;
@@ -31,12 +31,11 @@ void FirePiranhaPlant::Update(DWORD dt)
 	if (abs(this->x - player_x) < 150 && action == false)
 	{
 		this->x - player_x > 0 ? this->nx = -1 : this->nx = 1;
-		DebugOut(L"Start action !\n");
 		action = true;
 		SetState(STATE_COME_OUT);
 	}
 	
-
+	//Looping state.
 	if (state == STATE_COME_OUT) {
 		charge_y += abs(dy);
 
