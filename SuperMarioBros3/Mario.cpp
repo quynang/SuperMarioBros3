@@ -18,6 +18,7 @@
 #include "EffectFactory.h"
 #include "PlayScence.h"
 #include "SuperLeaf.h"
+#include "WingGoomba.h"
 
 //TODO: How to haven't to include state here.
 #include "WalkingState.h"
@@ -525,6 +526,19 @@ void CMario::processCollisionWithMovableObject() {
 			{
 				state = new IdleState();
 				x += dx;
+			}
+		}
+		if (dynamic_cast<WingGoomba*>(e->obj))
+		{
+			WingGoomba* w_goomba = dynamic_cast<WingGoomba*>(e->obj);
+
+			if (e->ny < 0)
+			{
+				if (w_goomba->GetState() != WING_GOOMBA_STATE_DEAD)
+				{
+					w_goomba->handleIsTrampled();
+					state = new BouncingState();
+				}
 			}
 		}
 	}
