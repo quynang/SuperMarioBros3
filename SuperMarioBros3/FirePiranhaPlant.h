@@ -24,9 +24,10 @@
 #define STATE_LOOK	300
 #define STATE_FIRE	400
 
-#define MIN_DISTANCE_TO_START	140
+#define MIN_DISTANCE_TO_START	30
+#define MAX_DISTANCE_TO_START	140
 #define MAX_CHARGE_Y	32
-#define MAX_TIME_LOOK	1000
+#define MAX_TIME_LOOK	500
 #define MAX_TIME_FIRE	200
 
 
@@ -40,6 +41,7 @@ class FirePiranhaPlant : public Enemy
 	bool is_look_up;
 	bool is_fire_up;
 	float time_fire;
+	bool bullet_was_thrown = false;
 public:
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	virtual void Update(DWORD dt);

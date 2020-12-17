@@ -1,6 +1,7 @@
 #include "FirePiranhaPlant.h"
 #include "Utils.h"
 #include "PlayScence.h"
+#include "PlantFireBullet.h"
 
 FirePiranhaPlant::FirePiranhaPlant()
 {
@@ -28,7 +29,9 @@ void FirePiranhaPlant::Update(DWORD dt)
 	float player_x, player_y;
 	((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->GetPosition(player_x, player_y);
 
-	if (abs(this->x - player_x) < MIN_DISTANCE_TO_START && start_action == false)
+	float current_distance_x = abs(this->x - player_x);
+
+	if (current_distance_x < MAX_DISTANCE_TO_START && current_distance_x > MIN_DISTANCE_TO_START && start_action == false)
 	{
 		this->x - player_x > 0 ? this->nx = -1 : this->nx = 1;
 		start_action = true;
@@ -70,7 +73,7 @@ void FirePiranhaPlant::Update(DWORD dt)
 	if (state == STATE_HIDDEN)
 	{
 		charge_y += abs(dy);
-
+		bullet_was_thrown = false;
 		if (charge_y >= MAX_CHARGE_Y)
 		{	
 			charge_y = 0;
@@ -164,5 +167,6 @@ void FirePiranhaPlant::startLook() {
 
 void FirePiranhaPlant::startFire() {
 	is_fire_up = is_look_up;
-	//TODO: Throw fire ball.
+	if (!bullet_was_thrown) PlantFireBullet* fire_bullet = new PlantFireBullet(this->x, this->y, this->nx);
+	bullet_was_thrown = true;
 }
