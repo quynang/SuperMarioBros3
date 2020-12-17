@@ -14,6 +14,7 @@
 #include "WingGoomba.h"
 #include "BreakableBrick.h"
 #include "GameEffects.h"
+#include "FirePiranhaPlant.h"
 using namespace std;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath):
@@ -46,6 +47,8 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 #define OBJECT_TYPE_COIN_50	7
 #define BREAKABLE_BRICK	8
 #define OBJECT_TYPE_WING_GOOMBA	9
+#define OBJECT_TYPE_FIRE_PLANT	10
+
 
 #define OBJECT_TYPE_PORTAL	50
 
@@ -218,6 +221,9 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		break;
 	case OBJECT_TYPE_WING_GOOMBA: 
 		obj = new WingGoomba();
+		break;
+	case OBJECT_TYPE_FIRE_PLANT: 
+		obj = new FirePiranhaPlant();
 		break;
 	default:
 		DebugOut(L"[ERR] Invalid object type: %d\n", object_type);

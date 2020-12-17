@@ -301,6 +301,22 @@ map-world-1-1.txt
 80004	293	188	309	204	30
 80005	312	188	328	204	30
 80006	331	188	347	204	30
+#=========Fire Piranha Plant==========
+#left
+#fire down
+90001	400	135	416	167	10
+#look down
+90002	417	135	433	167	10
+#fire up
+90003	434	135	450	167	10
+#look up
+90004	451	135	467	167	10
+#right
+90005	520	135	536	167	10
+90006	503	135	519	167	10
+90007	486	135	502	167	10
+90008	469	135	485	167	10
+
 # ani_id	sprite1_id	time1	sprite2_id	time2	...
 [ANIMATIONS]
 # ==== MARIO =========
@@ -544,6 +560,31 @@ map-world-1-1.txt
 1014	70016	100	70017	100	70016	100	70017	100	70018	100	70017	100	70018	100
 #=========SMOKE EFFECT==========
 1015	70019	100	70020	100	70021	100	70022	100
+#=========Fire Piranha Plant==========
+#left
+#come out
+1100	90002	100
+#look up
+1101	90004	100
+#look down
+1102	90002	100
+#fire up
+1103	90003	100
+#fire down
+1104	90001	100
+
+#right
+#come out
+1105	90006	100
+#look up
+1106	90008	100
+#look down
+1107	90006	100
+#fire up
+1108	90007	100
+#fire down
+1109	90005	100
+
 # id	ani1	ani2	ani3
 [ANIMATION_SETS]
 # MARIO
@@ -573,12 +614,16 @@ map-world-1-1.txt
 14	1015
 #========WING GOOMBA=========
 15	904	905	906	907
+
+#=========Fire Piranha Plant==========
+16	1100	1101	1102	1103	1104	1105	1106	1107	1108	1109
 [OBJECTS]
 # type	x	y	ani_set_id	extra_settings per object type
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba
 # BRICK 
 # MARIO
 0	50.0	250	1
+
 # --- platform (hint: I created the list using Excel!) ----
 1	0	416	0
 1	16	416	0
@@ -768,6 +813,7 @@ map-world-1-1.txt
 1	1440	192	0
 1	1456	192	0
 
+
 #==========BIG BOX============
 2	240	368	0	3	3
 2	272	336	0	3	5
@@ -800,6 +846,8 @@ map-world-1-1.txt
 4	2256	368	0	3
 4	2320	384	0	2
 4	623	400	0	1
+#============fire plant===========
+10	360	368	16
 
 #=======Floating Brick========
 #id	x	y	ani_set_id	hidden_iem_type

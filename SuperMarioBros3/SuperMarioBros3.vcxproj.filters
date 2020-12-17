@@ -127,6 +127,9 @@
     <ClCompile Include="WingGoomba.cpp">
       <Filter>GameObjects\MovableObjects\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="FirePiranhaPlant.cpp">
+      <Filter>GameObjects\MovableObjects\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -274,6 +277,9 @@
       <Filter>GameEffects\Effects</Filter>
     </ClInclude>
     <ClInclude Include="WingGoomba.h">
+      <Filter>GameObjects\MovableObjects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="FirePiranhaPlant.h">
       <Filter>GameObjects\MovableObjects\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

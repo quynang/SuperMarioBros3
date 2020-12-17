@@ -135,6 +135,7 @@
     <ClCompile Include="FallingState.cpp" />
     <ClCompile Include="FallingWhileFlyingState.cpp" />
     <ClCompile Include="FireBall.cpp" />
+    <ClCompile Include="FirePiranhaPlant.cpp" />
     <ClCompile Include="FloatingBrick.cpp" />
     <ClCompile Include="FlyingState.cpp" />
     <ClCompile Include="GameEffects.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="FallingState.h" />
     <ClInclude Include="FallingWhileFlyingState.h" />
     <ClInclude Include="FireBall.h" />
+    <ClInclude Include="FirePiranhaPlant.h" />
     <ClInclude Include="FloatingBrick.h" />
     <ClInclude Include="FlyingState.h" />
     <ClInclude Include="GameEffects.h" />
