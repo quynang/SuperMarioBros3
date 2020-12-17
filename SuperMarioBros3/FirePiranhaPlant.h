@@ -20,18 +20,21 @@
 #define BBOX_HEIGHT_FIRE_PLANT	32
 
 #define STATE_HIDDEN	100
-
 #define STATE_COME_OUT	200
 #define STATE_LOOK	300
 #define STATE_FIRE	400
 
+#define MIN_DISTANCE_TO_START	140
+#define MAX_CHARGE_Y	32
+#define MAX_TIME_LOOK	1000
+#define MAX_TIME_FIRE	200
 
 
 class FirePiranhaPlant : public Enemy
 {
 	int state;
 	int step;
-	bool action = false;
+	bool start_action = false;
 	float charge_y;
 	float time_look = 0;
 	bool is_look_up;

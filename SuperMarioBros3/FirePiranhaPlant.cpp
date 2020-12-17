@@ -1,7 +1,7 @@
 #include "FirePiranhaPlant.h"
 #include "Utils.h"
 #include "PlayScence.h"
-#include "EffectFactory.h"
+
 FirePiranhaPlant::FirePiranhaPlant()
 {
 	this->nx = 1;
@@ -28,10 +28,10 @@ void FirePiranhaPlant::Update(DWORD dt)
 	float player_x, player_y;
 	((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->GetPosition(player_x, player_y);
 
-	if (abs(this->x - player_x) < 150 && action == false)
+	if (abs(this->x - player_x) < MIN_DISTANCE_TO_START && start_action == false)
 	{
 		this->x - player_x > 0 ? this->nx = -1 : this->nx = 1;
-		action = true;
+		start_action = true;
 		SetState(STATE_COME_OUT);
 	}
 	
@@ -39,7 +39,7 @@ void FirePiranhaPlant::Update(DWORD dt)
 	if (state == STATE_COME_OUT) {
 		charge_y += abs(dy);
 
-		if (charge_y >= 32)
+		if (charge_y >= MAX_CHARGE_Y)
 		{	
 			SetState(STATE_LOOK);
 			charge_y = 0;
@@ -50,7 +50,7 @@ void FirePiranhaPlant::Update(DWORD dt)
 	{
 		time_look += dt;
 		this->startLook();
-		if (time_look > 1000) {
+		if (time_look > MAX_TIME_LOOK) {
 			time_look = 0;
 			SetState(STATE_FIRE);
 		}
@@ -61,7 +61,7 @@ void FirePiranhaPlant::Update(DWORD dt)
 	{
 		time_fire += dt;
 		this->startFire();
-		if (time_fire > 100) {
+		if (time_fire > MAX_TIME_FIRE) {
 			SetState(STATE_HIDDEN);
 			time_fire = 0;
 		};
@@ -71,11 +71,11 @@ void FirePiranhaPlant::Update(DWORD dt)
 	{
 		charge_y += abs(dy);
 
-		if (charge_y >= 32)
+		if (charge_y >= MAX_CHARGE_Y)
 		{	
 			charge_y = 0;
 			vy = 0;
-			action = false;
+			start_action = false;
 		}
 	}
 		
@@ -89,30 +89,30 @@ void FirePiranhaPlant::Render()
 	{
 
 	case STATE_COME_OUT:
-		this->nx > 0 ? ani_index = INDEX_ANI_RIGHT_COME_OUT : ani_index = INDEX_ANI_LEFT_COME_OUT;
+		ani_index = this->nx > 0 ? INDEX_ANI_RIGHT_COME_OUT : INDEX_ANI_LEFT_COME_OUT;
 		break;
 	case STATE_LOOK:
 
 		if (is_look_up) {
-			this->nx > 0 ?  ani_index = INDEX_ANI_RIGHT_LOOK_UP :  ani_index = INDEX_ANI_LEFT_LOOK_UP;
+			ani_index = this->nx > 0 ? INDEX_ANI_RIGHT_LOOK_UP : INDEX_ANI_LEFT_LOOK_UP;
 		}
 		else {
-			this->nx > 0 ?  ani_index = INDEX_ANI_RIGHT_LOOK_DOWN :  ani_index = INDEX_ANI_LEFT_LOOK_DOWN;
+			ani_index = this->nx > 0 ? INDEX_ANI_RIGHT_LOOK_DOWN : INDEX_ANI_LEFT_LOOK_DOWN;
 		}
 		break;
 
 	case STATE_FIRE:
 
 		if (is_fire_up) {
-			this->nx > 0 ?  ani_index = INDEX_ANI_RIGHT_FIRE_UP :  ani_index = INDEX_ANI_LEFT_FIRE_UP;
+			ani_index = this->nx > 0 ? INDEX_ANI_RIGHT_FIRE_UP : INDEX_ANI_LEFT_FIRE_UP;
 		}
 		else {
-			this->nx > 0 ?  ani_index = INDEX_ANI_RIGHT_FIRE_DOWN :  ani_index = INDEX_ANI_LEFT_FIRE_DOWN;
+			ani_index = this->nx > 0 ? INDEX_ANI_RIGHT_FIRE_DOWN : INDEX_ANI_LEFT_FIRE_DOWN;
 		}
 		break;
 
 	case STATE_HIDDEN:
-		this->nx > 0 ?  (ani_index = INDEX_ANI_RIGHT_COME_OUT) : (ani_index = INDEX_ANI_LEFT_COME_OUT);
+		ani_index = this->nx > 0 ? INDEX_ANI_RIGHT_COME_OUT : INDEX_ANI_LEFT_COME_OUT;
 		break;
 	}
 	
