@@ -3,7 +3,7 @@
 map-world-1-1.txt
 [GRID]
 #width	height	cell_size
-2816	432	200
+2816	432	210
 [TEXTURES]
 0	textures\mario-1.png	255	255	255
 20	textures\misc.png	166	185	255
@@ -362,6 +362,10 @@ map-world-1-1.txt
 92007	487	215	501	239	10
 92008	470	215	484	239	10
 
+#=========== Piranha Plant ============
+92009	446	250	462	273	10
+92010	465	249	481	273	10	0	1
+
 # ani_id	sprite1_id	time1	sprite2_id	time2	...
 [ANIMATIONS]
 # ==== MARIO =========
@@ -537,7 +541,6 @@ map-world-1-1.txt
 #throw 2 left
 119	12028	100
 
-
 #die
 599	10099	100
 
@@ -630,6 +633,24 @@ map-world-1-1.txt
 #fire down
 1109	90005	100
 
+#=======Koopa Paratroopa======================
+#left
+1200	91001	50	91002	50	91003	50	91004	50
+#right
+1201	91005	50	91006	50	91007	50	91008	50
+#hiding in shell
+1202	91009	100
+#sliding
+1203	91010	100	91011	100	91012	100
+#lost wing
+#left
+1204	91013	100	91014	100
+#right
+1205	91015	100	91016	100
+#========= GREEN PIPE=============
+1301	30004	100
+1302	30005	100
+
 
 #========= Green Fire Piranha Plant==========
 #left
@@ -655,23 +676,9 @@ map-world-1-1.txt
 #fire down
 1409	92005	100
 
-#=======Koopa Paratroopa======================
-#left
-1200	91001	50	91002	50	91003	50	91004	50
-#right
-1201	91005	50	91006	50	91007	50	91008	50
-#hiding in shell
-1202	91009	100
-#sliding
-1203	91010	100	91011	100	91012	100
-#lost wing
-#left
-1204	91013	100	91014	100
-#right
-1205	91015	100	91016	100
-#========= GREEN PIPE=============
-1301	30004	100
-1302	30005	100
+#===Pirahan Plant =====
+1410	92009	100	92010	100
+
 # id	ani1	ani2	ani3
 [ANIMATION_SETS]
 # MARIO
@@ -710,6 +717,8 @@ map-world-1-1.txt
 
 #========= Green Fire Piranha Plant==========
 19	1400	1401	1402	1403	1404	1405	1406	1407	1408	1409
+#========Piranha Plant==========
+20	1410
 [OBJECTS]
 # type	x	y	ani_set_id	extra_settings per object type
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba
@@ -933,17 +942,19 @@ map-world-1-1.txt
 #koopa paratropa
 11	245	280	17
 
+#koopa paratropa
+11	245	280	17
+
+#============ plant===========
+13	1800	385	20
+#============fire green plant===========
+12	1864	368	19
 #============fire plant===========
 10	360	368	16
 
 #=========== PIPE ==========
-4	352	368	18	3	1
-
 4	1792	384	18	2	1
-
-#============fire green plant===========
-12	1864	368	19
-
+4	352	368	18	3	1
 4	1856	368	18	3	1
 4	2256	112	18	13	1
 4	2256	368	18	3	1
