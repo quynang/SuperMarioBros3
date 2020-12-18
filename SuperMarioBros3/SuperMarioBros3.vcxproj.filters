@@ -133,6 +133,9 @@
     <ClCompile Include="PlantFireBullet.cpp">
       <Filter>GameObjects\MovableObjects\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="KoopaParatroopa.cpp">
+      <Filter>GameObjects\MovableObjects\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -286,6 +289,9 @@
       <Filter>GameObjects\MovableObjects\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="PlantFireBullet.h">
+      <Filter>GameObjects\MovableObjects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaParatroopa.h">
       <Filter>GameObjects\MovableObjects\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

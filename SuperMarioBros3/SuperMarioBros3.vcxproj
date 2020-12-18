@@ -147,6 +147,7 @@
     <ClCompile Include="ItemFactory.cpp" />
     <ClCompile Include="JumpingState.cpp" />
     <ClCompile Include="KickState.cpp" />
+    <ClCompile Include="KoopaParatroopa.cpp" />
     <ClCompile Include="Koopas.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MarioTypeUp.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="ItemFactory.h" />
     <ClInclude Include="JumpingState.h" />
     <ClInclude Include="KickState.h" />
+    <ClInclude Include="KoopaParatroopa.h" />
     <ClInclude Include="Koopas.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MarioState.h" />
