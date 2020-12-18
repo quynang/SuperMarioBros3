@@ -10,9 +10,10 @@
 #define INDEX_ANI_FIRE_BULLET_RIGHT	1
 
 #define MAX_SPEED_Y	0.13f
-
+#define MAX_X	150.0f
 class PlantFireBullet : public MovableObject
 {
+	float charge_x = 0;
 public:
 	PlantFireBullet();
 	PlantFireBullet(float x, float y, int nx);

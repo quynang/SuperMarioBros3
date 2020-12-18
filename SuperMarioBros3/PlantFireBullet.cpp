@@ -22,6 +22,10 @@ void PlantFireBullet::Update(DWORD dt) {
 	MovableObject::Update(dt);
 	x += dx;
 	y += dy;
+	charge_x += abs(dx);
+
+	if (charge_x >= MAX_X)
+		this->is_dead = true;
 
 }
 
