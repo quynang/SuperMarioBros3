@@ -346,6 +346,21 @@ map-world-1-1.txt
 #right
 91015	624	129	640	156	10
 91016	646	130	662	156	10
+#========= Green Fire Piranha Plant==========
+#left
+#fire down
+92001	396	215	412	239	10
+#look down
+92002	413	215	429	239	10
+#fire up
+92003	430	215	446	239	10
+#look up
+92004	447	215	463	239	10
+#right
+92005	521	215	536	239	10
+92006	504	215	520	239	10
+92007	487	215	501	239	10
+92008	470	215	484	239	10
 
 # ani_id	sprite1_id	time1	sprite2_id	time2	...
 [ANIMATIONS]
@@ -615,6 +630,31 @@ map-world-1-1.txt
 #fire down
 1109	90005	100
 
+
+#========= Green Fire Piranha Plant==========
+#left
+#come out
+1400	92002	100
+#look up
+1401	92004	100
+#look down
+1402	92002	100
+#fire up
+1403	92003	100
+#fire down
+1404	92001	100
+#right
+#come out
+1405	92006	100
+#look up
+1406	92008	100
+#look down
+1407	92006	100
+#fire up
+1408	92007	100
+#fire down
+1409	92005	100
+
 #=======Koopa Paratroopa======================
 #left
 1200	91001	50	91002	50	91003	50	91004	50
@@ -667,6 +707,9 @@ map-world-1-1.txt
 #=======Koopa Paratroopa======================
 17	1200	1201	1202	1203	1204	1205
 18	1301	1302
+
+#========= Green Fire Piranha Plant==========
+19	1400	1401	1402	1403	1404	1405	1406	1407	1408	1409
 [OBJECTS]
 # type	x	y	ani_set_id	extra_settings per object type
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba
@@ -886,7 +929,7 @@ map-world-1-1.txt
 3	860	350	3
 
 #wing goomba
-#9	245	350	15
+9	245	350	15
 #koopa paratropa
 11	245	280	17
 
@@ -895,12 +938,17 @@ map-world-1-1.txt
 
 #=========== PIPE ==========
 4	352	368	18	3	1
+
 4	1792	384	18	2	1
+
+#============fire green plant===========
+12	1864	368	19
+
 4	1856	368	18	3	1
 4	2256	112	18	13	1
 4	2256	368	18	3	1
 4	2320	384	18	2	1
-4	623	400	18	1	1
+4	623	400	18	1	3
 
 #=======Floating Brick========
 #id	x	y	ani_set_id	hidden_iem_type
