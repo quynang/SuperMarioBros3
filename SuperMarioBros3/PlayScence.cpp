@@ -212,7 +212,8 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_GREEN_PIPE: 
 		{
 			int size_height = atoi(tokens[4].c_str());
-			obj = new CGreenPipe(size_height);
+			int type = atoi(tokens[5].c_str());
+			obj = new CGreenPipe(size_height, type);
 		}
 		break;
 	case OBJECT_TYPE_COIN_50: 

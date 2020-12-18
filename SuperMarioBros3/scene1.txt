@@ -6,7 +6,7 @@ map-world-1-1.txt
 2816	432	200
 [TEXTURES]
 0	textures\mario-1.png	255	255	255
-20	textures\misc.png	176	224	248
+20	textures\misc.png	166	185	255
 10	textures\enemies.png	3	26	110
 30	textures\misc.png	166	185	255
 40	textures\fireball.png	255	255	255
@@ -207,6 +207,12 @@ map-world-1-1.txt
 30002	25	14	41	29	10
 #die
 30003	45	21	61	29	10
+
+#===GREEN PIPE======
+#up
+30004	190	360	222	392	20
+#down
+30005	247	360	279	392	20
 
 #===========FLOATING BRICK================
 #question mark
@@ -623,7 +629,9 @@ map-world-1-1.txt
 1204	91013	100	91014	100
 #right
 1205	91015	100	91016	100
-
+#========= GREEN PIPE=============
+1301	30004	100
+1302	30005	100
 # id	ani1	ani2	ani3
 [ANIMATION_SETS]
 # MARIO
@@ -658,6 +666,7 @@ map-world-1-1.txt
 16	1100	1101	1102	1103	1104	1105	1106	1107	1108	1109
 #=======Koopa Paratroopa======================
 17	1200	1201	1202	1203	1204	1205
+18	1301	1302
 [OBJECTS]
 # type	x	y	ani_set_id	extra_settings per object type
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba
@@ -880,16 +889,18 @@ map-world-1-1.txt
 #9	245	350	15
 #koopa paratropa
 11	245	280	17
-#=========== PIPE ==========
-4	352	368	0	3
-4	1792	384	0	2
-4	1856	368	0	3
-4	2256	112	0	13
-4	2256	368	0	3
-4	2320	384	0	2
-4	623	400	0	1
+
 #============fire plant===========
 10	360	368	16
+
+#=========== PIPE ==========
+4	352	368	18	3	1
+4	1792	384	18	2	1
+4	1856	368	18	3	1
+4	2256	112	18	13	1
+4	2256	368	18	3	1
+4	2320	384	18	2	1
+4	623	400	18	1	1
 
 #=======Floating Brick========
 #id	x	y	ani_set_id	hidden_iem_type
