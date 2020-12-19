@@ -38,7 +38,7 @@ class MarioState;
 
 #define DISTANCE_FROM_HEAD_TO_HAND	14
 
-#define MARIO_UNTOUCHABLE_TIME 5000
+#define MARIO_UNTOUCHABLE_TIME 1000
 #define TIME_ANI_SMACKING_TAIL	25
 
 #define TIME_ANI_THROW	25
@@ -104,6 +104,7 @@ public:
 	void Reset();
 	void setIsVisible(bool value) { this->is_visible = value; }
 	int getCurrentType() { return type; }
+	void isHurted();
 
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 };

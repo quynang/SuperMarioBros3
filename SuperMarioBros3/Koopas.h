@@ -33,4 +33,5 @@ public:
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
 	void handleJumpingOn();
+	void handleIsKicked(int nx);
 };

@@ -3,3 +3,7 @@
 void Enemy::handleJumpingOn() {
 
 }
+
+void Enemy::handleIsKicked(int nx) {
+
+}

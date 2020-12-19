@@ -7,5 +7,8 @@ protected:
 	bool can_be_picked_up = false;
 	bool can_be_jumped_on = true;
 public:
+	bool canBeJumpedOn() { return this->can_be_jumped_on; }
+	bool canBeKicked() { return this->can_be_kicked; }
 	virtual void handleJumpingOn();
+	virtual void handleIsKicked(int nx);
 };

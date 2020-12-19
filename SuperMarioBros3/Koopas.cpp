@@ -2,6 +2,7 @@
 #include "BigBox.h"
 #include "Ground.h"
 #include "FloatingBrick.h"
+#include "PlayScence.h"
 #include "Utils.h"
 CKoopas::CKoopas()
 {
@@ -156,8 +157,27 @@ void CKoopas::Update(DWORD dt)
 }
 
 void CKoopas::handleJumpingOn() {
+	switch (state)
+	{
+	case KOOPAS_STATE_WALKING:
+		SetState(KOOPAS_STATE_HIDE_IN_SHELL);
+		break;
+	case KOOPAS_STATE_HIDE_IN_SHELL:
+	{
+		float player_x, player_y;
+		int nx_ = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->getNx();
+		this->nx = nx_;
+		SetState(KOOPAS_STATE_SLIDING);
+	}
+	break;
+		
 
+	}	
+}
 
+void CKoopas::handleIsKicked(int nx) {
+	this->nx = nx;
+	SetState(KOOPAS_STATE_SLIDING);
 }
 
 void CKoopas::Render()
@@ -190,6 +210,7 @@ void CKoopas::SetState(int state)
 	switch (state)
 	{
 	case KOOPAS_STATE_HIDE_IN_SHELL:
+		this->can_be_kicked = true;
 		y += KOOPAS_BBOX_HEIGHT - KOOPAS_BBOX_HEIGHT_SHELL;
 		vx = 0;
 		vy = 0;

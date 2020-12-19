@@ -8,6 +8,7 @@ FirePiranhaGreenPlant::FirePiranhaGreenPlant()
 	this->nx = 1;
 	this->vx = 0;
 	this->vy = 0;
+	this->can_be_jumped_on = false;
 	this->state = STATE_HIDDEN;
 }
 

@@ -302,13 +302,13 @@ void CMario::processCollision() {
 		y += dy;
 	
 	}
-	else {
+	else 
+	{
 
 		float min_tx, min_ty, nx = 0, ny;
 		float rdx = 0; 
 		float rdy = 0;
 		
-
 		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
 
 		x += min_tx*dx + nx*0.4f;
@@ -320,6 +320,10 @@ void CMario::processCollision() {
 		for (UINT i = 0; i < coEventsResult.size(); i++)
 		{
 			LPCOLLISIONEVENT e = coEventsResult[i];
+			//For the case that object can jump on top of mario
+			if (e->ny > 0)
+				y -= 0.4f;
+
 			if (dynamic_cast<StaticObject*>(e->obj))
 			{
 				if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))// Bug fix
@@ -349,6 +353,7 @@ void CMario::processCollision() {
 					super_leaf->GetPosition(_x, _y);
 					EffectFactory::GetInstance()->create(SMOKE, _x, _y);
 				}
+
 				else if (dynamic_cast<CFloatingBrick *>(e->obj))
 				{
 					CFloatingBrick *floatingBrick = dynamic_cast<CFloatingBrick *>(e->obj);
@@ -358,10 +363,10 @@ void CMario::processCollision() {
 						if (state->current_state != FALLING)
 							state = new FallingState();
 
-						if (floatingBrick->GetState() != STATIC_STATE) {
+						if (floatingBrick->GetState() != STATIC_STATE)
+						{
 							floatingBrick->SetState(BOUNCING_STATE);
 						}
-					
 					}
 				}
 
@@ -371,21 +376,35 @@ void CMario::processCollision() {
 
 					if (e->ny < 0)
 					{
-						enemy->handleJumpingOn();
-						state = new BouncingState();
+						if (enemy->canBeJumpedOn())
+						{
+							enemy->handleJumpingOn();
+							state = new BouncingState();
+						}
+						else
+						{
+							this->isHurted();
+						}
+					}
+
+					else if (e->ny > 0)
+					{
+						this->isHurted();
 					}
 
 					else if (e->nx != 0)
 					{
 						if (untouchable == 0)
 						{
-
-							if (type > MARIO_TYPE_SMALL)
+							if (enemy->canBeKicked())
 							{
-								type = MARIO_TYPE_SMALL;
-								StartUntouchable();
+								enemy->handleIsKicked(-e->nx);
+								state = new KickState();
 							}
-
+							else
+							{
+								this->isHurted();
+							}
 						}
 					}
 				}
@@ -395,4 +414,21 @@ void CMario::processCollision() {
 
 	// clean up collision events
 	for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
+}
+
+
+void CMario::isHurted() {
+
+	StartUntouchable();
+
+	switch (this->type)
+	{
+		case MARIO_TYPE_RACCOON:
+			SetType(MARIO_TYPE_BIG);
+			break;
+		case MARIO_TYPE_BIG:
+			SetType(MARIO_TYPE_SMALL);
+			break;
+	}
+	
 }
