@@ -132,6 +132,7 @@
     <ClCompile Include="Coin100.cpp" />
     <ClCompile Include="Coin50.cpp" />
     <ClCompile Include="EffectFatory.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FallingState.cpp" />
     <ClCompile Include="FallingWhileFlyingState.cpp" />
     <ClCompile Include="FireBall.cpp" />

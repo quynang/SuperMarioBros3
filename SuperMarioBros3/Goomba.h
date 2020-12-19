@@ -26,7 +26,7 @@ class CGoomba : public Enemy
 public:
 
 	CGoomba();
-	void handleIsTrampled();
+	void handleJumpingOn();
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
 };

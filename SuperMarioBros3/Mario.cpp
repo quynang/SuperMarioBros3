@@ -371,7 +371,7 @@ void CMario::processCollision() {
 
 					if (e->ny < 0)
 					{
-						enemy->handleIsTrampled();
+						enemy->handleJumpingOn();
 						state = new BouncingState();
 					}
 

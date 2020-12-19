@@ -155,6 +155,10 @@ void CKoopas::Update(DWORD dt)
 
 }
 
+void CKoopas::handleJumpingOn() {
+
+
+}
 
 void CKoopas::Render()
 {

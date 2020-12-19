@@ -105,7 +105,7 @@ void CGoomba::SetState(int state)
 	}
 }
 
-void CGoomba::handleIsTrampled() {
+void CGoomba::handleJumpingOn() {
 	if(this->state != GOOMBA_STATE_DIE)
 		this->SetState(GOOMBA_STATE_DIE);
 }

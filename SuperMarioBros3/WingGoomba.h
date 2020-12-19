@@ -53,7 +53,7 @@ public:
 	int step;
 	void setStep(int step);
 	WingGoomba();
-	void handleIsTrampled();
+	void handleJumpingOn();
 	void JumpToNextStep() { step = step + 1000; }
 	void setType(int type) { this->type = type; }
 	int GetState() { return this->state; }

@@ -164,6 +164,6 @@ void KoopaParatroopa::SetState(int state)
 
 }
 
-void KoopaParatroopa::handleIsTrampled() {
+void KoopaParatroopa::handleJumpingOn() {
 	
 }

@@ -23,5 +23,4 @@ public:
 	virtual void Render();
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
-	void handleIsTrampled() {};
 };

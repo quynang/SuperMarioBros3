@@ -212,7 +212,7 @@ void WingGoomba::setStep(int step) {
 	this->step = step;
 }
 
-void WingGoomba::handleIsTrampled() {
+void WingGoomba::handleJumpingOn() {
 	switch (type) {
 		case TYPE_HAS_WING:
 			this->type = TYPE_LOST_WING;

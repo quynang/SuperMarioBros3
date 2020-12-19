@@ -2,7 +2,10 @@
 #include "MovableObject.h"
 
 class Enemy : public MovableObject {
+protected:
+	bool can_be_kicked = false;
+	bool can_be_picked_up = false;
+	bool can_be_jumped_on = true;
 public:
-	bool can_be_trumped = true;
-	virtual void handleIsTrampled() = 0;
+	virtual void handleJumpingOn();
 };

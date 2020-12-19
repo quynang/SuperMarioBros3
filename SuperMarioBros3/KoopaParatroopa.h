@@ -41,7 +41,7 @@ public:
 	virtual void Render();
 	int type;
 	int state;
-	void handleIsTrampled();
+	void handleJumpingOn();
 	void setType(int type) { this->type = type; }
 	int GetState() { return this->state; }
 	virtual void SetState(int state);

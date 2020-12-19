@@ -52,5 +52,4 @@ public:
 	void startFire();
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
-	void handleIsTrampled() {};
 };
