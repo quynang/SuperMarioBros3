@@ -14,7 +14,10 @@ class CMario;
 #define FIRE_MARIO_ANI_FALLING_RIGHT	73
 #define FIRE_MARIO_ANI_FALLING_LEFT	74
 
+#define SLOW_FALLING_ANI_LEFT	85
+#define SLOW_FALLING_ANI_RIGHT	86
 class FallingState : public MarioState {
+	bool slow_falling = false;
 
 public:
 
