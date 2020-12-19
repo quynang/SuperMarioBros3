@@ -1,11 +1,13 @@
 #include "MarioTypeUp.h"
 #include "PlayScence.h"
+#include "EffectFactory.h"
 MarioTypeUp::MarioTypeUp(float x, float y, int nx) {
 	this->x = x;
 	this->y = y;
 	this->nx = nx;
 	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
 	SetAnimationSet(animation_sets->Get(MARIO_TYPE_UP_ANI_SET_ID));
+	EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - 10, 1000);
 }
 
 void MarioTypeUp::Update(DWORD dt) {

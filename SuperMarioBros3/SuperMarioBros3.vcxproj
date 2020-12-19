@@ -158,6 +158,7 @@
     <ClCompile Include="PlantFireBullet.cpp" />
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Smoke.cpp" />
+    <ClCompile Include="StaticObject.cpp" />
     <ClCompile Include="SuperLeaf.cpp" />
     <ClCompile Include="TailSmacking_2_State.cpp" />
     <ClCompile Include="TailSmacking_1_State.cpp" />

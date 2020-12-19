@@ -11,7 +11,7 @@ class CBigBox : public StaticObject
 	int size_height;
 
 public:
-	CBigBox(int s_w, int s_h) { size_width = s_w;  size_height = s_h; };
+	CBigBox(int s_w, int s_h) { size_width = s_w;  size_height = s_h; this->ignore_collide_nx = true; };
 	virtual void Render();
 	virtual void GetBoundingBox(float &l, float &t, float &r, float &b);
 };

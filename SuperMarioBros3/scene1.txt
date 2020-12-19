@@ -939,8 +939,6 @@ map-world-1-1.txt
 
 #wing goomba
 9	245	350	15
-#koopa paratropa
-11	245	280	17
 
 #koopa paratropa
 11	245	280	17

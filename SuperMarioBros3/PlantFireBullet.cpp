@@ -15,7 +15,6 @@ PlantFireBullet::PlantFireBullet(float x, float y, int nx) {
 	this->vx = SPEED_X_FIRE_BULLET*nx;
 	this->vy = calculateSpeedY();
 	((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddObject(this);
-
 }
 
 void PlantFireBullet::Update(DWORD dt) {

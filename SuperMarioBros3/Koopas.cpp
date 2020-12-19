@@ -34,7 +34,7 @@ void CKoopas::Update(DWORD dt)
 
 		coEvents.clear();
 
-		CalcPotentialCollisions(&coStaticObjects, coEvents);
+		CalcPotentialCollisions(&coObjects, coEvents);
 
 		if (coEvents.size() == 0)
 		{
@@ -151,7 +151,7 @@ void CKoopas::Update(DWORD dt)
 		}
 	}
 
-	coStaticObjects.clear();
+	coObjects.clear();
 
 }
 

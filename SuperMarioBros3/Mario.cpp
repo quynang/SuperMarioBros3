@@ -71,10 +71,8 @@ void CMario::Update(DWORD dt)
 		untouchable = 0;
 	}
 
-	processCollisionWithMovableObject();
-	processCollisionWithStaticObject();
+	processCollision();
 	
-
 	if (x < 0) x = 0;
 		
 	if (item_holding != NULL)
@@ -82,8 +80,8 @@ void CMario::Update(DWORD dt)
 
 	if (state->current_state == TAIL_SMACKING_2)
 		handleTailAttacking();
-	coStaticObjects.clear();
-	coMovableObjects.clear();
+
+	coObjects.clear();
 }
 
 void CMario::Render()
@@ -204,10 +202,10 @@ void CMario::handleTailAttacking() {
 
 	RECT tail_rect = this->getTailRect();
 
-	for (UINT i = 0; i < coMovableObjects.size(); i++) {
+	for (UINT i = 0; i < coObjects.size(); i++) {
 		RECT obj_rect;
 		float l, t, r, b;
-		coMovableObjects.at(i)->GetBoundingBox(l, t, r, b);
+		coObjects.at(i)->GetBoundingBox(l, t, r, b);
 		obj_rect.top = t;
 		obj_rect.left = l;
 		obj_rect.right = r;
@@ -215,9 +213,9 @@ void CMario::handleTailAttacking() {
 
 		bool isOverlapping = CGame::GetInstance()->isColliding(tail_rect, obj_rect);
 
-		if (isOverlapping && dynamic_cast<CGoomba*>(coMovableObjects.at(i))) {
+		if (isOverlapping && dynamic_cast<CGoomba*>(coObjects.at(i))) {
 
-			CGoomba *goomba = dynamic_cast<CGoomba *>(coMovableObjects.at(i));
+			CGoomba *goomba = dynamic_cast<CGoomba *>(coObjects.at(i));
 		
 			if (goomba->GetState()!= GOOMBA_STATE_DIE)
 			{
@@ -286,13 +284,17 @@ void CMario::Reset()
 	SetSpeed(0, 0);
 }
 
-void CMario::processCollisionWithStaticObject() {
+void CMario::processCollision() {
+
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
-
 	coEvents.clear();
 
-	CalcPotentialCollisions(&coStaticObjects, coEvents);
+	CalcPotentialCollisions(&coObjects, coEvents);
+
+	float min_tx, min_ty, nx = 0, ny;
+	float rdx = 0; 
+	float rdy = 0;
 
 	if (coEvents.size()==0)
 	{
@@ -300,12 +302,12 @@ void CMario::processCollisionWithStaticObject() {
 		y += dy;
 	
 	}
+	else {
 
-	else
-	{
 		float min_tx, min_ty, nx = 0, ny;
 		float rdx = 0; 
 		float rdy = 0;
+		
 
 		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
 
@@ -318,233 +320,79 @@ void CMario::processCollisionWithStaticObject() {
 		for (UINT i = 0; i < coEventsResult.size(); i++)
 		{
 			LPCOLLISIONEVENT e = coEventsResult[i];
-
-			if (dynamic_cast<CGround *>(e->obj))
+			if (dynamic_cast<StaticObject*>(e->obj))
 			{
-
 				if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))// Bug fix
 					state = new IdleState();
-			}
-			else if (dynamic_cast<BreakableBrick *>(e->obj))
-			{
-
-				if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))// Bug fix
-					state = new IdleState();
-			}
-			else if (dynamic_cast<CBigBox *>(e->obj))  
-			{
-				if (e->ny < 0 &&  (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))
-				{
-					state = new IdleState();
-				}
-			}
-
-			else if (dynamic_cast<CFloatingBrick *>(e->obj))
-			{
-				CFloatingBrick *floatingBrick = dynamic_cast<CFloatingBrick *>(e->obj);
-
-				if (e->ny > 0) {
-
-					y += e->t*dy + e->ny*0.4f;
-					vy += MARIO_GRAVITY*dt;
-
-					if (state->current_state != FALLING)
-						state = new FallingState();
-
-					if (floatingBrick->GetState() != STATIC_STATE) {
-						floatingBrick->SetState(BOUNCING_STATE);
-					}
-					
-				}
-			}
-
-			else if (dynamic_cast<CGreenPipe *>(e->obj))
-			{
-				if (e->ny < 0 &&  (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))
-				{
-					state = new IdleState();
-				}
-			}
-
-			else if (dynamic_cast<Coin50 *>(e->obj))
-			{
-				Coin50 *coin_50 = dynamic_cast<Coin50 *>(e->obj);
-				coin_50->is_dead = true;
-			}
-		
-		}
-	}
-
-	// clean up collision events
-	for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
-
-}
-
-void CMario::processCollisionWithMovableObject() {
-
-	vector<LPCOLLISIONEVENT> coEvents;
-	vector<LPCOLLISIONEVENT> coEventsResult;
-
-
-	coEvents.clear();
-
-	CalcPotentialCollisions(&coMovableObjects, coEvents);
-
-	float min_tx, min_ty, nx = 0, ny;
-	float rdx = 0; 
-	float rdy = 0;
-
-	FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
-
-
-
-	for (UINT i = 0; i < coEventsResult.size(); i++)
-	{
-		LPCOLLISIONEVENT e = coEventsResult[i];
-
-		if (dynamic_cast<CGoomba *>(e->obj))
-		{
-			CGoomba *goomba = dynamic_cast<CGoomba *>(e->obj);
-
-			if (e->ny < 0)
-			{
-				if (goomba->GetState() != GOOMBA_STATE_DIE)
-				{
-					goomba->SetState(GOOMBA_STATE_DIE);
-					state = new BouncingState();
-				}
-			}
-			else if (e->nx != 0)
-			{
-				if (untouchable==0)
-				{
-					if (goomba->GetState()!=GOOMBA_STATE_DIE)
-					{
-						if (type > MARIO_TYPE_SMALL)
-						{
-							type = MARIO_TYPE_SMALL;
-							StartUntouchable();
-						}
-						
-					}
-				}
-			}
-
-		} else if (dynamic_cast<CKoopas *>(e->obj))
-
-		{
-			CKoopas *koopas = dynamic_cast<CKoopas *>(e->obj);
-
-			if (e->ny < 0)
-			{
-				if (koopas->GetState() != KOOPAS_STATE_HIDE_IN_SHELL)
-				{
-					state = new BouncingState();
-						
-					koopas->SetState(KOOPAS_STATE_HIDE_IN_SHELL);
-				}
-					
-				else if (koopas->GetState() == KOOPAS_STATE_HIDE_IN_SHELL)
-				{
-					koopas->nx = this->nx;
-					koopas->SetState(KOOPAS_STATE_SLIDING);
-
-				}
-			}
-			else if (e->nx != 0)
-			{
-				if (koopas->GetState() == KOOPAS_STATE_HIDE_IN_SHELL)
-				{
-					if (!can_pick_item)
-					{
-						state = new KickState();
-						koopas->nx = - e->nx;
-						koopas->SetState(KOOPAS_STATE_SLIDING);
-					}
-					else
-					{
-						state = new HoldingState();
-						item_holding = koopas;
-						((CKoopas*)item_holding)->TurnOffUpdation();
-					}
-
-				}
-			}
-				
-		}
-
-		else if (dynamic_cast<CPortal *>(e->obj))
-		{
-			CPortal *p = dynamic_cast<CPortal *>(e->obj);
-			CGame::GetInstance()->SwitchScene(p->GetSceneId());
-		}
-
-		else if (dynamic_cast<Mushroom *>(e->obj))  
-		{
-			Mushroom *mushroom = dynamic_cast<Mushroom *>(e->obj);
-			mushroom->is_dead = true;
-			SetType(MARIO_TYPE_BIG);
-			state = new IdleState();
-			EffectFactory::GetInstance()->create(MARIO_TYPE_UP, this->x, this->y, this->nx);
-			y = y - (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT);
-		}
-
-		else if (dynamic_cast<SuperLeaf *>(e->obj))  
-		{
-			SuperLeaf *super_leaf = dynamic_cast<SuperLeaf *>(e->obj);
-			super_leaf->is_dead = true;
-			SetType(MARIO_TYPE_RACCOON);
-			float _x, _y;
-			super_leaf->GetPosition(_x, _y);
-			EffectFactory::GetInstance()->create(SMOKE, _x, _y);
-		}
-
-		else if (dynamic_cast<CFloatingBrick *>(e->obj))
-		{
-				
-			CFloatingBrick *floatingBrick = dynamic_cast<CFloatingBrick *>(e->obj);
-
-			if (e->ny > 0) {
-
-				y += e->t*dy + e->ny*0.4f;
-				vy += MARIO_GRAVITY*dt;
-
-				if (state->current_state != FALLING)
+				else if (e->ny > 0 && state->current_state == JUMPING)
 					state = new FallingState();
-
-				if (floatingBrick->GetState() != STATIC_STATE) {
-					floatingBrick->SetState(BOUNCING_STATE);
-				}
-					
-					
 			}
-		}
 
-		else if (dynamic_cast<CGreenPipe *>(e->obj))
-		{
-			if (e->ny < 0 &&  (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))
+			else
 			{
-				state = new IdleState();
-				x += dx;
-			}
-		}
-		if (dynamic_cast<WingGoomba*>(e->obj))
-		{
-			WingGoomba* w_goomba = dynamic_cast<WingGoomba*>(e->obj);
-
-			if (e->ny < 0)
-			{
-				if (w_goomba->GetState() != WING_GOOMBA_STATE_DEAD)
+				if (dynamic_cast<Mushroom*>(e->obj))
 				{
-					w_goomba->handleIsTrampled();
-					state = new BouncingState();
+					Mushroom* mushroom = dynamic_cast<Mushroom*>(e->obj);
+					mushroom->is_dead = true;
+					SetType(MARIO_TYPE_BIG);
+					state = new IdleState();
+					EffectFactory::GetInstance()->create(MARIO_TYPE_UP, this->x, this->y, this->nx);
+					y = y - (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT);
+				}
+
+				else if (dynamic_cast<SuperLeaf*>(e->obj))
+				{
+					SuperLeaf* super_leaf = dynamic_cast<SuperLeaf*>(e->obj);
+					super_leaf->is_dead = true;
+					SetType(MARIO_TYPE_RACCOON);
+					float _x, _y;
+					super_leaf->GetPosition(_x, _y);
+					EffectFactory::GetInstance()->create(SMOKE, _x, _y);
+				}
+				else if (dynamic_cast<CFloatingBrick *>(e->obj))
+				{
+					CFloatingBrick *floatingBrick = dynamic_cast<CFloatingBrick *>(e->obj);
+
+					if (e->ny > 0) {
+
+						if (state->current_state != FALLING)
+							state = new FallingState();
+
+						if (floatingBrick->GetState() != STATIC_STATE) {
+							floatingBrick->SetState(BOUNCING_STATE);
+						}
+					
+					}
+				}
+
+				else if (dynamic_cast<Enemy*>(e->obj))
+				{
+					Enemy* enemy = dynamic_cast<Enemy*>(e->obj);
+
+					if (e->ny < 0)
+					{
+						enemy->handleIsTrampled();
+						state = new BouncingState();
+					}
+
+					else if (e->nx != 0)
+					{
+						if (untouchable == 0)
+						{
+
+							if (type > MARIO_TYPE_SMALL)
+							{
+								type = MARIO_TYPE_SMALL;
+								StartUntouchable();
+							}
+
+						}
+					}
 				}
 			}
 		}
 	}
-	
 
 	// clean up collision events
 	for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
-
 }

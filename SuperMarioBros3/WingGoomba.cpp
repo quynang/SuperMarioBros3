@@ -4,6 +4,7 @@
 #include "FloatingBrick.h"
 #include "Utils.h"
 #include "PlayScence.h"
+#include "EffectFactory.h"
 WingGoomba::WingGoomba()
 {
 	this->type = TYPE_HAS_WING;
@@ -48,7 +49,7 @@ void WingGoomba::Update(DWORD dt)
 	
 	coEvents.clear();
 
-	CalcPotentialCollisions(&coStaticObjects, coEvents);
+	CalcPotentialCollisions(&coObjects, coEvents);
 	
 	if (coEvents.size()==0)
 	{
@@ -83,7 +84,7 @@ void WingGoomba::Update(DWORD dt)
 		if(state != WING_GOOMBA_STATE_DEAD) SetState(WING_GOOMBA_STATE_WALKING);
 	}
 
-	coStaticObjects.clear();
+	coObjects.clear();
 
 
 	//Looping step
@@ -216,9 +217,13 @@ void WingGoomba::handleIsTrampled() {
 		case TYPE_HAS_WING:
 			this->type = TYPE_LOST_WING;
 			this->SetState(WING_GOOMBA_STATE_WALKING);
+			EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - 10, 400);
 			break;
 		case TYPE_LOST_WING:
-			this->SetState(WING_GOOMBA_STATE_DEAD);
+			if (this->state != WING_GOOMBA_STATE_DEAD) {
+				this->SetState(WING_GOOMBA_STATE_DEAD);
+				EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - 10, 800);
+			}
 			break;
 	}
 }

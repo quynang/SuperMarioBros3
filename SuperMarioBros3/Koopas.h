@@ -32,4 +32,5 @@ public:
 	void TurnOnUpdation() { update_flag = 1; };
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
+	void handleIsTrampled() {};
 };

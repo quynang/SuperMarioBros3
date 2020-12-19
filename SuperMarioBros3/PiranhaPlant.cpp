@@ -5,6 +5,7 @@ PiranhaPlant::PiranhaPlant()
 {
 	this->nx = 1;
 	SetState(PIRANHA_STATE_MOVE_UP);
+	this->can_be_trumped = false;
 }
 
 void PiranhaPlant::GetBoundingBox(float& left, float& top, float& right, float& bottom)

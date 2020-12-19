@@ -34,6 +34,7 @@ void KoopaParatroopa::Update(DWORD dt)
 {
 	
 	Enemy::Update(dt);
+
 	if(state != PARATROPA_STATE_JUMPING) vy += PARATROPA_GRAVITY;
 
 	vector<LPCOLLISIONEVENT> coEvents;
@@ -42,7 +43,7 @@ void KoopaParatroopa::Update(DWORD dt)
 	
 	coEvents.clear();
 
-	CalcPotentialCollisions(&coStaticObjects, coEvents);
+	CalcPotentialCollisions(&coObjects, coEvents);
 	
 	if (coEvents.size()==0)
 	{
@@ -80,19 +81,18 @@ void KoopaParatroopa::Update(DWORD dt)
 				this->nx = e->nx;
 				this->vx = this->nx * PARATROPA_WALKING_SPEED;
 			}
-				
-		
+			
 		}
-
 	}
 
 	if (this->state == PARATROPA_STATE_JUMPING) jumping_time += dt;
+
 	if (jumping_time >= MAX_JUMPING_TIME) {
 		jumping_time = 0;
 		SetState(PARATROPA_STATE_FALLING);
 	}
 		
-	coStaticObjects.clear();
+	coObjects.clear();
 
 
 }

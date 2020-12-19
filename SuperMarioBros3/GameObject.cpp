@@ -27,6 +27,10 @@ void CGameObject::Update(DWORD dt)
 void CGameObject::AddCoObjects(vector<LPGAMEOBJECT>* coObjects) {
 	
 }
+
+void CGameObject::AddCoObject(LPGAMEOBJECT coObject) {
+	
+}
 /*
 	Extension of original SweptAABB to deal with two moving objects
 */
@@ -107,8 +111,7 @@ void CGameObject::FilterCollision(
 	{
 		LPCOLLISIONEVENT c = coEvents[i];
 
-		//TODO: Refactor here. Define list object we going to ignore proccessing collide by nx.
-		if (c->t < min_tx && c->nx != 0 && !dynamic_cast<CBigBox *>(c->obj) && !dynamic_cast<CGround *>(c->obj)) {
+		if (c->t < min_tx && c->nx != 0 && !c->obj->isIgnoreCollideNx()) {
 			min_tx = c->t; nx = c->nx; min_ix = i; rdx = c->dx;
 		}
 

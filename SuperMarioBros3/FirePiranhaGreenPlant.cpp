@@ -9,6 +9,7 @@ FirePiranhaGreenPlant::FirePiranhaGreenPlant()
 	this->vx = 0;
 	this->vy = 0;
 	this->state = STATE_HIDDEN;
+	this->can_be_trumped = false;
 }
 
 void FirePiranhaGreenPlant::GetBoundingBox(float& left, float& top, float& right, float& bottom)

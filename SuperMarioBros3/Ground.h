@@ -9,5 +9,6 @@ class CGround : public StaticObject
 {
 public:
 	virtual void Render();
+	CGround() { this->ignore_collide_nx = true; }
 	virtual void GetBoundingBox(float &l, float &t, float &r, float &b);
 };

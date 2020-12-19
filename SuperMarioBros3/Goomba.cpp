@@ -1,6 +1,7 @@
 #include "Goomba.h"
 #include "Utils.h"
 #include "EffectFactory.h"
+#include "Game.h"
 CGoomba::CGoomba()
 {
 	this->nx = -1;
@@ -22,6 +23,11 @@ void CGoomba::GetBoundingBox(float &left, float &top, float &right, float &botto
 
 void CGoomba::Update(DWORD dt)
 {
+	float _x, _y;
+	CGame::GetInstance()->GetCamPos(_x, _y);
+	if ((this->x - _x) < 360) start_action = true;
+
+	if (!start_action) return;
 
 	MovableObject::Update(dt);
 	vy += GOOMBA_GRAVITY * dt;
@@ -34,7 +40,7 @@ void CGoomba::Update(DWORD dt)
 
 	coEvents.clear();
 
-	CalcPotentialCollisions(&coStaticObjects, coEvents);
+	CalcPotentialCollisions(&coObjects, coEvents);
 	
 	if (coEvents.size()==0)
 	{
@@ -68,7 +74,7 @@ void CGoomba::Update(DWORD dt)
 		}
 	}
 
-	coStaticObjects.clear();
+	coObjects.clear();
 }
 
 void CGoomba::Render()
@@ -97,4 +103,9 @@ void CGoomba::SetState(int state)
 		case GOOMBA_STATE_WALKING:
 			vx = this->nx*GOOMBA_WALKING_SPEED;
 	}
+}
+
+void CGoomba::handleIsTrampled() {
+	if(this->state != GOOMBA_STATE_DIE)
+		this->SetState(GOOMBA_STATE_DIE);
 }

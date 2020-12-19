@@ -21,10 +21,12 @@ class CGoomba : public Enemy
 	virtual void Update(DWORD dt);
 	virtual void Render();
 	int state;
+	bool start_action = false;
 	float counter_time = 0;
 public:
 
 	CGoomba();
+	void handleIsTrampled();
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
 };

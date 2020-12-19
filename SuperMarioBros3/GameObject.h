@@ -60,18 +60,23 @@ public:
 
 	DWORD dt;
 
+	bool ignore_collide_nx = false;
+
 	LPANIMATION_SET animation_set;
 
 
-public: 
+public:
+	virtual void AddCoObjects(vector<LPGAMEOBJECT>* coObjects = NULL);
+	virtual void AddCoObject(LPGAMEOBJECT coObject);
 	void SetPosition(float x, float y) { this->x = x, this->y = y; }
 	void SetSpeed(float vx, float vy) { this->vx = vx, this->vy = vy; }
 	void GetPosition(float &x, float &y) { x = this->x; y = this->y; }
 	void GetSpeed(float &vx, float &vy) { vx = this->vx; vy = this->vy; }
-	virtual void AddCoObjects(vector<LPGAMEOBJECT>* coObjects = NULL);
+	
 	void RenderBoundingBox();
+	bool isIgnoreCollideNx() { return ignore_collide_nx; }
 	D3DXVECTOR3 GetPosition() { D3DXVECTOR3 p; p.x = x; p.y = y; return p; };
-
+	
 	void SetAnimationSet(LPANIMATION_SET ani_set) { animation_set = ani_set; }
 
 	LPCOLLISIONEVENT SweptAABBEx(LPGAMEOBJECT coO);

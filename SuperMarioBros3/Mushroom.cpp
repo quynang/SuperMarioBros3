@@ -42,7 +42,7 @@ void Mushroom::Update(DWORD dt)
 
 		coEvents.clear();
 
-		CalcPotentialCollisions(&coStaticObjects, coEvents);
+		CalcPotentialCollisions(&coObjects, coEvents);
 
 		if (coEvents.size() == 0)
 		{
@@ -76,7 +76,7 @@ void Mushroom::Update(DWORD dt)
 			}
 		}
 
-		coStaticObjects.clear();
+		coObjects.clear();
 	}
 }
 

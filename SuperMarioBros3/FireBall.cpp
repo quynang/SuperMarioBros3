@@ -42,7 +42,7 @@ void FireBall::Update(DWORD dt) {
 
 	coEvents.clear();
 
-	CalcPotentialCollisions(&coStaticObjects, coEvents);
+	CalcPotentialCollisions(&coObjects, coEvents);
 
 	if (coEvents.size()==0)
 	{
@@ -75,7 +75,7 @@ void FireBall::Update(DWORD dt) {
 
 		}
 	}
-
+	coObjects.clear();
 
 }
 

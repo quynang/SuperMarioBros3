@@ -17,7 +17,7 @@
 #define ITEM_TYPE_COIN	0
 #define ITEM_TYPE_SUPER	1
 
-class CFloatingBrick : public StaticObject
+class CFloatingBrick : public MovableObject
 {
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	virtual void Update(DWORD dt);

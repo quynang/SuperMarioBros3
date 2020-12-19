@@ -3,19 +3,11 @@
 
 class MovableObject : public CGameObject {
 protected:
-	vector<LPGAMEOBJECT> coStaticObjects;
-	vector<LPGAMEOBJECT> coMovableObjects;
-
+	vector<LPGAMEOBJECT> coObjects;
 public:
 
-	void AddCoObjects(vector<LPGAMEOBJECT>* coObjects);
+	void AddCoObjects(vector<LPGAMEOBJECT>* objects);
 
-	void AddCoStaticObject(LPGAMEOBJECT obj) {
-		coStaticObjects.push_back(obj);
-	}
-	void AddCoMovableObject(LPGAMEOBJECT obj) {
-		coMovableObjects.push_back(obj);
-	}
-
+	void AddCoObject(LPGAMEOBJECT obj);
 
 };

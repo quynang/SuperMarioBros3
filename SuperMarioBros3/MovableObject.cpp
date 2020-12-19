@@ -1,19 +1,13 @@
 #include "MovableObject.h"
 #include "StaticObject.h"
-void MovableObject::AddCoObjects(vector<LPGAMEOBJECT>* coObjects) {
+void MovableObject::AddCoObjects(vector<LPGAMEOBJECT>* objects) {
 
-	for (size_t i = 0; i < coObjects->size(); i++) {
-		if (dynamic_cast<MovableObject*>(coObjects->at(i)))
-		{
-			MovableObject* m_obj = dynamic_cast<MovableObject*>(coObjects->at(i));
-			coMovableObjects.push_back(m_obj);
-			m_obj->AddCoMovableObject(this);
-		}
-
-		else if (dynamic_cast<StaticObject*>(coObjects->at(i)))
-		{
-			StaticObject* s_obj = dynamic_cast<StaticObject*>(coObjects->at(i));
-			coStaticObjects.push_back(s_obj);
-		}
+	for (size_t i = 0; i < objects->size(); i++) {
+		this->coObjects.push_back(objects->at(i));
+		objects->at(i)->AddCoObject(this);
 	}
+}
+
+void MovableObject::AddCoObject(LPGAMEOBJECT obj) {
+	this->coObjects.push_back(obj);
 }

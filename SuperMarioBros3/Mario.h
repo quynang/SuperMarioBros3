@@ -85,8 +85,7 @@ class CMario : public MovableObject
 	friend class Throw_1_State;
 	friend class Throw_2_State;
 	CGameObject* item_holding = NULL;
-	void processCollisionWithStaticObject();
-	void processCollisionWithMovableObject();
+	void processCollision();
 public:
 
 	CMario(float x = 0.0f, float y = 0.0f);
