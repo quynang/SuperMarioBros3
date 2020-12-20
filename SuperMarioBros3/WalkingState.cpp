@@ -54,7 +54,7 @@ void WalkingState::handleKeyState(CMario& mario, BYTE* states) {
 	}
 
 	
-	if ((states[DIK_S] & 0x80) > 0) {
+	if ((states[DIK_A] & 0x80) > 0) {
 		mario.can_pick_item = 1;
 	}
 	else
@@ -77,31 +77,72 @@ void WalkingState::update(CMario& mario, DWORD dt) {
 int WalkingState::getAni(CMario& mario) {
 
 	int ani = -1;
-
-	if (mario.nx > 0)
+	if (mario.is_holding)
 	{
-		switch (mario.type)
+		if (mario.nx > 0)
 		{
+			switch (mario.type)
+			{
+				case MARIO_TYPE_SMALL:
+					ani = MARIO_ANI_SMALL_HOLDING_WALKING_RIGHT;
+					break;
+				case MARIO_TYPE_BIG:
+					ani = MARIO_ANI_BIG_HOLDING_WALKING_RIGHT;
+					break;
+				case MARIO_TYPE_RACCOON:
+					ani = RACCOON_MARIO_ANI_HOLDING_WALKING_RIGHT;
+					break;
+				case MARIO_TYPE_FIRE:
+					ani = FIRE_MARIO_ANI_HOLDING_WALKING_RIGHT;
+					break;
+			}
+		}
+		else
+		{
+			switch (mario.type)
+			{
+				case MARIO_TYPE_SMALL:
+					ani = MARIO_ANI_SMALL_HOLDING_WALKING_LEFT;
+					break;
+				case MARIO_TYPE_BIG:
+					ani = MARIO_ANI_BIG_HOLDING_WALKING_LEFT;
+					break;
+				case MARIO_TYPE_RACCOON:
+					ani = RACCOON_MARIO_ANI_HOLDING_WALKING_LEFT;
+					break;
+				case MARIO_TYPE_FIRE:
+					ani = FIRE_MARIO_ANI_HOLDING_WALKING_LEFT;
+					break;
+			}
+		}
+
+	}
+	else
+	{
+		if (mario.nx > 0)
+		{
+			switch (mario.type)
+			{
 			case MARIO_TYPE_SMALL:
-				mario.power >= 4 ? ani = MARIO_ANI_SMALL_RUNNING_RIGHT: ani = MARIO_ANI_SMALL_WALKING_RIGHT;
+				mario.power >= 4 ? ani = MARIO_ANI_SMALL_RUNNING_RIGHT : ani = MARIO_ANI_SMALL_WALKING_RIGHT;
 				break;
 			case MARIO_TYPE_BIG:
 				mario.power >= 4 ? ani = MARIO_ANI_BIG_RUNNING_RIGHT : ani = MARIO_ANI_BIG_WALKING_RIGHT;
 				break;
 			case MARIO_TYPE_RACCOON:
-				mario.power >= 4 ? ani = RACCOON_MARIO_ANI_RUNNING_RIGHT: ani = RACCOON_MARIO_ANI_WALKING_RIGHT;
+				mario.power >= 4 ? ani = RACCOON_MARIO_ANI_RUNNING_RIGHT : ani = RACCOON_MARIO_ANI_WALKING_RIGHT;
 				break;
 			case MARIO_TYPE_FIRE:
-				mario.power >= 4 ? ani = FIRE_MARIO_ANI_RUNNING_RIGHT: ani = FIRE_MARIO_ANI_WALKING_RIGHT;
+				mario.power >= 4 ? ani = FIRE_MARIO_ANI_RUNNING_RIGHT : ani = FIRE_MARIO_ANI_WALKING_RIGHT;
 				break;
+			}
 		}
-	}
-	else
-	{
-		switch (mario.type)
+		else
 		{
+			switch (mario.type)
+			{
 			case MARIO_TYPE_SMALL:
-				mario.power >= 4 ? ani = MARIO_ANI_SMALL_RUNNING_LEFT: ani = MARIO_ANI_SMALL_WALKING_LEFT;
+				mario.power >= 4 ? ani = MARIO_ANI_SMALL_RUNNING_LEFT : ani = MARIO_ANI_SMALL_WALKING_LEFT;
 				break;
 			case MARIO_TYPE_BIG:
 				mario.power >= 4 ? ani = MARIO_ANI_BIG_RUNNING_LEFT : ani = MARIO_ANI_BIG_WALKING_LEFT;
@@ -112,6 +153,7 @@ int WalkingState::getAni(CMario& mario) {
 			case MARIO_TYPE_FIRE:
 				mario.power >= 4 ? ani = FIRE_MARIO_ANI_RUNNING_LEFT : ani = FIRE_MARIO_ANI_WALKING_LEFT;
 				break;
+			}
 		}
 	}
 

@@ -68,6 +68,7 @@ class CMario : public MovableObject
 	float start_y;
 	int power = 0;
 	int can_pick_item = 0;
+	bool is_holding = false;
 	bool is_visible = true;
 
 	MarioState * state;

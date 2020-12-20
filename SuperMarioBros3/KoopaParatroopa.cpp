@@ -165,5 +165,6 @@ void KoopaParatroopa::SetState(int state)
 }
 
 void KoopaParatroopa::handleJumpingOn() {
-	
+	if (this->type == PARATROPA_TYPE_HAS_WING)
+		setType(PARATROPA_TYPE_LOST_WING);
 }

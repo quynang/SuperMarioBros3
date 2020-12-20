@@ -2,9 +2,6 @@
 #include "MarioState.h"
 class CMario;
 
-#define MARIO_ANI_TAIL_SMACKING_3_RIGHT	63
-#define MARIO_ANI_TAIL_SMACKING_3_LEFT	64
-
 class TailSmacking_3_State : public MarioState {
 	float counter_time = 0;
 public:

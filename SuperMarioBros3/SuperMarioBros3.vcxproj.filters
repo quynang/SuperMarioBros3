@@ -49,9 +49,6 @@
     <ClCompile Include="FlyingState.cpp">
       <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
-    <ClCompile Include="HoldingState.cpp">
-      <Filter>GameObjects\MovableObjects\Player\States</Filter>
-    </ClCompile>
     <ClCompile Include="IdleState.cpp">
       <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
@@ -198,9 +195,6 @@
     <ClInclude Include="FlyingState.h">
       <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
-    <ClInclude Include="HoldingState.h">
-      <Filter>GameObjects\MovableObjects\Player\States</Filter>
-    </ClInclude>
     <ClInclude Include="IdleState.h">
       <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
@@ -312,6 +306,7 @@
     <ClInclude Include="PiranhaPlant.h">
       <Filter>GameObjects\MovableObjects\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="Const.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

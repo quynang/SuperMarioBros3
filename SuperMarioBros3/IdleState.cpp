@@ -8,7 +8,14 @@
 #include "Utils.h"
 
 void IdleState::handleOnKeyUp(CMario& mario, int keyCode) {
+	switch (keyCode)
+	{
 	
+	case DIK_A:
+		mario.is_holding = false;
+		mario.can_pick_item = false;
+		break;
+	}	
 };
 
 void IdleState::handleOnKeyDown(CMario& mario, int keyCode) {
@@ -55,16 +62,16 @@ int IdleState::getAni(CMario& mario) {
 		switch (mario.type)
 		{
 		case MARIO_TYPE_SMALL:
-			ani = MARIO_ANI_SMALL_IDLE_RIGHT;
+			ani = mario.is_holding ? MARIO_ANI_IDLE_SMALL_HOLDING_RIGHT : MARIO_ANI_SMALL_IDLE_RIGHT;
 			break;
 		case MARIO_TYPE_BIG:
-			ani = MARIO_ANI_BIG_IDLE_RIGHT;
+			ani =  mario.is_holding ? MARIO_ANI_IDLE_BIG_HOLDING_RIGHT : MARIO_ANI_BIG_IDLE_RIGHT;
 			break;
 		case MARIO_TYPE_RACCOON:
-			ani = RACCOON_MARIO_ANI_IDLE_RIGHT;
+			ani =  mario.is_holding ? RACCOON_MARIO_ANI_IDLE_HOLDING_RIGHT : RACCOON_MARIO_ANI_IDLE_RIGHT;
 			break;
 		case MARIO_TYPE_FIRE:
-			ani = FIRE_MARIO_ANI_IDLE_RIGHT;
+			ani =  mario.is_holding ? FIRE_MARIO_ANI_IDLE_HOLDING_RIGHT : FIRE_MARIO_ANI_IDLE_RIGHT;
 			break;
 		}
 	}
@@ -74,16 +81,16 @@ int IdleState::getAni(CMario& mario) {
 		switch (mario.type)
 		{
 		case MARIO_TYPE_SMALL:
-			ani = MARIO_ANI_SMALL_IDLE_LEFT;
+			ani = mario.is_holding ? MARIO_ANI_IDLE_SMALL_HOLDING_LEFT : MARIO_ANI_SMALL_IDLE_LEFT;
 			break;
 		case MARIO_TYPE_BIG:
-			ani = MARIO_ANI_BIG_IDLE_LEFT;
+			ani =  mario.is_holding ? MARIO_ANI_IDLE_BIG_HOLDING_LEFT : MARIO_ANI_BIG_IDLE_LEFT;
 			break;
 		case MARIO_TYPE_RACCOON:
-			ani = RACCOON_MARIO_ANI_IDLE_LEFT;
+			ani =  mario.is_holding ? RACCOON_MARIO_ANI_IDLE_HOLDING_LEFT : RACCOON_MARIO_ANI_IDLE_LEFT;
 			break;
 		case MARIO_TYPE_FIRE:
-			ani = FIRE_MARIO_ANI_IDLE_LEFT;
+			ani =  mario.is_holding ? FIRE_MARIO_ANI_IDLE_HOLDING_LEFT : FIRE_MARIO_ANI_IDLE_LEFT;
 			break;
 		}
 	}

@@ -31,7 +31,6 @@
 #include "Throw_1_State.h"
 #include "Throw_2_State.h"
 #include "KickState.h"
-#include "HoldingState.h"
 #include "IdleState.h"
 #include "FallingState.h"
 #include "BouncingState.h"
@@ -63,6 +62,7 @@ void CMario::Update(DWORD dt)
 		((CKoopas*)item_holding)->TurnOnUpdation();
 		((CKoopas*)item_holding)->SetState(KOOPAS_STATE_SLIDING);
 		item_holding = NULL;
+		is_holding = false;
 	}
 
 	if (GetTickCount() - untouchable_start > MARIO_UNTOUCHABLE_TIME) 
@@ -251,9 +251,6 @@ void CMario::SetState(int state) {
 	case KICK:
 		this->state = new KickState();
 		break;
-	case HOLDING:
-		this->state = new HoldingState();
-		break;
 	case TAIL_SMACKING_1:
 		this->state = new TailSmacking_1_State();
 		break;
@@ -269,7 +266,6 @@ void CMario::SetState(int state) {
 	case THROW_2:
 		this->state = new Throw_2_State();
 		break;
-
 	}
 }
 
@@ -331,7 +327,6 @@ void CMario::processCollision() {
 				else if (e->ny > 0 && state->current_state == JUMPING)
 					state = new FallingState();
 			}
-
 			else
 			{
 				if (dynamic_cast<Mushroom*>(e->obj))
@@ -394,9 +389,15 @@ void CMario::processCollision() {
 
 					else if (e->nx != 0)
 					{
+						if (enemy->canBePickedUp() && this->can_pick_item)
+						{
+							this->is_holding = true;
+							this->item_holding = enemy;
+							((CKoopas*)item_holding)->TurnOffUpdation();
+						}
 						if (untouchable == 0)
 						{
-							if (enemy->canBeKicked())
+							if (enemy->canBeKicked() && !this->can_pick_item)
 							{
 								enemy->handleIsKicked(-e->nx);
 								state = new KickState();

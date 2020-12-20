@@ -6,7 +6,7 @@
 #include "Utils.h"
 CKoopas::CKoopas()
 {
-	SetState(KOOPAS_STATE_WALKING);
+	SetState(KOOPAS_STATE_HIDE_IN_SHELL);
 	this->nx = 1;
 }
 
@@ -89,7 +89,6 @@ void CKoopas::Update(DWORD dt)
 							vy = 0;
 
 						}
-
 					}
 
 					else if (e->nx != 0) {
@@ -144,11 +143,7 @@ void CKoopas::Update(DWORD dt)
 						vx = e->nx * KOOPAS_SLIDING_SPEED;
 					}
 				}
-
-
 			}
-
-
 		}
 	}
 
@@ -211,14 +206,18 @@ void CKoopas::SetState(int state)
 	{
 	case KOOPAS_STATE_HIDE_IN_SHELL:
 		this->can_be_kicked = true;
+		this->can_be_picked_up = true;
 		y += KOOPAS_BBOX_HEIGHT - KOOPAS_BBOX_HEIGHT_SHELL;
 		vx = 0;
 		vy = 0;
 		break;
 	case KOOPAS_STATE_WALKING:
+		this->can_be_picked_up = false;
 		vx = this->nx*KOOPAS_WALKING_SPEED;
 		break;
 	case KOOPAS_STATE_SLIDING:
+		this->can_be_kicked = false;
+		this->can_be_picked_up = false;
 		vx = this->nx*KOOPAS_SLIDING_SPEED;
 		break;
 

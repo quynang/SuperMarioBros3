@@ -2,8 +2,6 @@
 #include "MarioState.h"
 class CMario;
 
-#define FIRE_MARIO_ANI_THROW_2_RIGHT	83
-#define FIRE_MARIO_ANI_THROW_2_LEFT	84
 
 class Throw_2_State : public MarioState {
 	float counter_time = 0;

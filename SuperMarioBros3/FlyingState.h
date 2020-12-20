@@ -1,7 +1,6 @@
 #pragma once
 #include "MarioState.h"
-#define RACCOON_MARIO_ANI_FLYING_STATE_RIGHT	33
-#define RACCOON_MARIO_ANI_FLYING_STATE_LEFT	34
+
 #define MAX_TIME	2.0f
 class FlyingState : public MarioState
 {

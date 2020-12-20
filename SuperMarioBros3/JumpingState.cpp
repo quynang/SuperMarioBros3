@@ -55,11 +55,51 @@ void JumpingState::update(CMario& mario, DWORD dt) {
 int JumpingState::getAni(CMario& mario) {
 
 	int ani = -1;
-
-	if (mario.nx > 0)
-	{
-		switch (mario.type)
+	if (mario.is_holding) {
+		if (mario.nx > 0)
 		{
+			switch (mario.type)
+			{
+			case MARIO_TYPE_SMALL:
+				ani = SMALL_MARIO_ANI_FALLING_AND_JUMPING_WHEN_HOLDING_RIGHT;
+				break;
+			case MARIO_TYPE_BIG:
+				ani = BIG_MARIO_ANI_FALLING_AND_JUMPING_WHEN_HOLDING_RIGHT;
+				break;
+			case MARIO_TYPE_RACCOON:
+				ani = RACCOON_MARIO_ANI_FALLING_AND_JUMPING_WHEN_HOLDING_RIGHT;
+				break;
+			case MARIO_TYPE_FIRE:
+				ani = FIRE_MARIO_ANI_FALLING_AND_JUMPING_WHEN_HOLDING_RIGHT;
+				break;
+			}
+		}
+
+		else
+		{
+			switch (mario.type)
+			{
+			case MARIO_TYPE_SMALL:
+				ani = SMALL_MARIO_ANI_FALLING_AND_JUMPING_WHEN_HOLDING_LEFT;
+				break;
+			case MARIO_TYPE_BIG:
+				ani = BIG_MARIO_ANI_FALLING_AND_JUMPING_WHEN_HOLDING_LEFT;
+				break;
+			case MARIO_TYPE_RACCOON:
+				ani = RACCOON_MARIO_ANI_FALLING_AND_JUMPING_WHEN_HOLDING_LEFT;
+				break;
+			case MARIO_TYPE_FIRE:
+				ani = FIRE_MARIO_ANI_FALLING_AND_JUMPING_WHEN_HOLDING_LEFT;
+				break;
+			}
+		}
+	}
+	else
+	{
+		if (mario.nx > 0)
+		{
+			switch (mario.type)
+			{
 			case MARIO_TYPE_SMALL:
 				ani = MARIO_ANI_SMALL_JUMPING_RIGHT;
 				break;
@@ -72,13 +112,13 @@ int JumpingState::getAni(CMario& mario) {
 			case MARIO_TYPE_FIRE:
 				ani = FIRE_MARIO_ANI_JUMPING_RIGHT;
 				break;
+			}
 		}
-	}
-		
-	else
-	{
-		switch (mario.type)
+
+		else
 		{
+			switch (mario.type)
+			{
 			case MARIO_TYPE_SMALL:
 				ani = MARIO_ANI_SMALL_JUMPING_LEFT;
 				break;
@@ -91,8 +131,8 @@ int JumpingState::getAni(CMario& mario) {
 			case MARIO_TYPE_FIRE:
 				ani = FIRE_MARIO_ANI_JUMPING_LEFT;
 				break;
+			}
 		}
 	}
-
 	return ani;
 }

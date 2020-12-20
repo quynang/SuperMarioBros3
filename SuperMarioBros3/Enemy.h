@@ -9,6 +9,7 @@ protected:
 public:
 	bool canBeJumpedOn() { return this->can_be_jumped_on; }
 	bool canBeKicked() { return this->can_be_kicked; }
+	bool canBePickedUp() { return this->can_be_picked_up; }
 	virtual void handleJumpingOn();
 	virtual void handleIsKicked(int nx);
 };

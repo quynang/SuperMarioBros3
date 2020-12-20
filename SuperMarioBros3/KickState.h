@@ -3,15 +3,6 @@
 #include "Utils.h"
 class CMario;
 
-#define MARIO_ANI_SMALL_KICK_RIGHT		39
-#define MARIO_ANI_SMALL_KICK_LEFT			40
-#define MARIO_ANI_BIG_KICK_RIGHT		41
-#define MARIO_ANI_BIG_KICK_LEFT			42
-#define RACCOON_MARIO_ANI_KICK_RIGHT	43
-#define RACCOON_MARIO_ANI_KICK_LEFT	44
-#define FIRE_MARIO_ANI_KICK_RIGHT	75
-#define FIRE_MARIO_ANI_KICK_LEFT	76
-
 #define KICK_ACTION_TIME 0.07f
 
 class KickState : public MarioState {

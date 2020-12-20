@@ -1,5 +1,6 @@
 #pragma once
 #include "Mario.h"
+#include "Const.h"
 #include "Utils.h"
 class CMario; //TODO: Why this line avoid circular denpendency ? How it work. Are there any efficent way for that?
 
