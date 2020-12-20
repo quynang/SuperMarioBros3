@@ -1,6 +1,7 @@
 #include "BreakableBrick.h"
 #include "Utils.h"
 #include "ItemFactory.h"
+#include "EffectFactory.h"
 
 void BreakableBrick::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
@@ -18,7 +19,6 @@ void BreakableBrick::Update(DWORD dt)
 
 void BreakableBrick::Render()
 {
-	
 	animation_set->at(0)->Render(x,y);
 	//RenderBoundingBox();	
 }
@@ -26,8 +26,12 @@ void BreakableBrick::Render()
 void BreakableBrick::SetState(int state)
 {
 	this->state = state;
-	
 }
 
 void BreakableBrick::ProduceItem() {
+}
+
+void BreakableBrick::handleIsBroken() {
+	if(!is_dead) EffectFactory::GetInstance()->create(BROKEN, this->x + 8, this->y - 8);
+	this->is_dead = true;
 }

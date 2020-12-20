@@ -18,4 +18,5 @@ public:
 	void ProduceItem();
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
+	void handleIsBroken();
 };

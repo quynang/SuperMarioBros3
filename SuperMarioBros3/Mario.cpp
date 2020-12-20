@@ -221,8 +221,12 @@ void CMario::handleTailAttacking() {
 			{
 				goomba->SetState(GOOMBA_STATE_DIE);
 
-			}
-			
+			}		
+		}
+
+		else if (isOverlapping && dynamic_cast<BreakableBrick*>(coObjects.at(i))) {
+			BreakableBrick *breakable_brick = dynamic_cast<BreakableBrick *>(coObjects.at(i));
+			breakable_brick->handleIsBroken();
 		}
 	}
 }
