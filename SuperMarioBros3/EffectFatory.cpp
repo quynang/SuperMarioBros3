@@ -3,6 +3,7 @@
 #include "Coin100.h"
 #include "TextNumber.h"
 #include "MarioTypeUp.h"
+#include "Broken.h"
 #include "Smoke.h"
 #include "Utils.h"
 
@@ -42,6 +43,13 @@ Effect* EffectFactory::create(int effect_type, float x, float y, int extra_param
 	case SMOKE:
 		{
 			Effect *effect = new Smoke(x, y);
+			GameEffects::GetInstance()->addEffect(effect);
+			return effect;
+			break;
+		}
+	case BROKEN:
+		{
+			Effect *effect = new Broken(x, y);
 			GameEffects::GetInstance()->addEffect(effect);
 			return effect;
 			break;

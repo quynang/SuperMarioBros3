@@ -129,6 +129,7 @@
     <ClCompile Include="BigBox.cpp" />
     <ClCompile Include="BreakableBrick.cpp" />
     <ClCompile Include="Brick.cpp" />
+    <ClCompile Include="Broken.cpp" />
     <ClCompile Include="Coin100.cpp" />
     <ClCompile Include="Coin50.cpp" />
     <ClCompile Include="EffectFatory.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="BouncingState.h" />
     <ClInclude Include="BreakableBrick.h" />
     <ClInclude Include="Brick.h" />
+    <ClInclude Include="Broken.h" />
     <ClInclude Include="Coin100.h" />
     <ClInclude Include="Coin50.h" />
     <ClInclude Include="Const.h" />

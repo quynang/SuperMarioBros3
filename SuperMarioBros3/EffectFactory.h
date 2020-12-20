@@ -6,6 +6,7 @@
 #define TEXT_NUMBER	2
 #define MARIO_TYPE_UP	3
 #define SMOKE	4
+#define BROKEN	5
 class EffectFactory {
 	static EffectFactory* _instance;
 public:

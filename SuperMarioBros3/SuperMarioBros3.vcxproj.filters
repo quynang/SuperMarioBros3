@@ -145,6 +145,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>GameObjects\MovableObjects\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Broken.cpp">
+      <Filter>GameEffects\Effects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -307,6 +310,9 @@
       <Filter>GameObjects\MovableObjects\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Const.h" />
+    <ClInclude Include="Broken.h">
+      <Filter>GameEffects\Effects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">
