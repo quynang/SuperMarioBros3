@@ -88,9 +88,6 @@
     <ClCompile Include="Mushroom.cpp">
       <Filter>GameObjects\MovableObjects\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Coin50.cpp">
-      <Filter>GameObjects\StaticObjects</Filter>
-    </ClCompile>
     <ClCompile Include="GameEffects.cpp">
       <Filter>GameEffects</Filter>
     </ClCompile>
@@ -147,6 +144,12 @@
     </ClCompile>
     <ClCompile Include="Broken.cpp">
       <Filter>GameEffects\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin50.cpp">
+      <Filter>GameObjects\MovableObjects\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="FloatingBrick_2.cpp">
+      <Filter>GameObjects\StaticObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -249,9 +252,6 @@
     <ClInclude Include="Mushroom.h">
       <Filter>GameObjects\MovableObjects\Items</Filter>
     </ClInclude>
-    <ClInclude Include="Coin50.h">
-      <Filter>GameObjects\StaticObjects</Filter>
-    </ClInclude>
     <ClInclude Include="GameEffects.h">
       <Filter>GameEffects</Filter>
     </ClInclude>
@@ -312,6 +312,15 @@
     <ClInclude Include="Const.h" />
     <ClInclude Include="Broken.h">
       <Filter>GameEffects\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin50.h">
+      <Filter>GameObjects\MovableObjects\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatingBrick_2.h">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GreenMushroom.h">
+      <Filter>GameObjects\MovableObjects\Items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

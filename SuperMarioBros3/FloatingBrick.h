@@ -19,9 +19,10 @@
 
 class CFloatingBrick : public MovableObject
 {
-	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
-	virtual void Update(DWORD dt);
-	virtual void Render();
+protected:
+	void GetBoundingBox(float &left, float &top, float &right, float &bottom);
+	void Update(DWORD dt);
+	void Render();
 	int state;
 	int item_type;
 

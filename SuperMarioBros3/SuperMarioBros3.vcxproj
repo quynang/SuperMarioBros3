@@ -140,6 +140,7 @@
     <ClCompile Include="FirePiranhaGreenPlant.cpp" />
     <ClCompile Include="FirePiranhaPlant.cpp" />
     <ClCompile Include="FloatingBrick.cpp" />
+    <ClCompile Include="FloatingBrick_2.cpp" />
     <ClCompile Include="FlyingState.cpp" />
     <ClCompile Include="GameEffects.cpp" />
     <ClCompile Include="GreenPipe.cpp" />
@@ -200,8 +201,10 @@
     <ClInclude Include="FirePiranhaGreenPlant.h" />
     <ClInclude Include="FirePiranhaPlant.h" />
     <ClInclude Include="FloatingBrick.h" />
+    <ClInclude Include="FloatingBrick_2.h" />
     <ClInclude Include="FlyingState.h" />
     <ClInclude Include="GameEffects.h" />
+    <ClInclude Include="GreenMushroom.h" />
     <ClInclude Include="GreenPipe.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Ground.h" />

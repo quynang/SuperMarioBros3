@@ -15,13 +15,14 @@
 #define MUSHROOM_BBOX_HEIGHT	16
 class Mushroom : public Item
 {
+protected:
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	virtual void Update(DWORD dt);
 	virtual void Render();
 	float	charge_y = 0;
 	int state;
 public:
-
+	Mushroom();
 	Mushroom(float x, float y);
 	int GetState() { return this->state; }
 	virtual void SetState(int state);

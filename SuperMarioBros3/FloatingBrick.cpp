@@ -82,7 +82,11 @@ void CFloatingBrick::ProduceItem() {
 	if (item_type == ITEM_TYPE_COIN) {
 		EffectFactory::GetInstance()->create(COIN_100, this->x, this->y - 10);
 
-	} else {
+	}
+	else if (item_type == GREEN_MUSHROOM) {
+		ItemFactory::GetInstance()->create(GREEN_MUSHROOM, this->x, this->y);
+	}
+	else {
 		switch (current_mario_type)
 		{
 		case MARIO_TYPE_SMALL:
