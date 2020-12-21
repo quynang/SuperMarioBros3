@@ -10,6 +10,7 @@ class BreakableBrick : public StaticObject
 	virtual void Update(DWORD dt);
 	virtual void Render();
 	int state;
+	bool visible = true;
 	int item_type;
 
 public:

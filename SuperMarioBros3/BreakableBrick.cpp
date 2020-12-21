@@ -5,6 +5,7 @@
 
 void BreakableBrick::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
+	if (!this->visible) return;
 	left = x;
 	top = y;
 	right = x + BREAKABLE_BRICK_BBOX_WIDTH;
@@ -16,10 +17,10 @@ void BreakableBrick::Update(DWORD dt)
 
 }
 
-
 void BreakableBrick::Render()
 {
-	animation_set->at(0)->Render(x,y);
+	if(this->visible)
+		animation_set->at(0)->Render(x,y);
 	//RenderBoundingBox();	
 }
 
@@ -30,7 +31,7 @@ void BreakableBrick::SetState(int state)
 
 void BreakableBrick::ProduceItem() {
 	ItemFactory::GetInstance()->create(ITEM_COIN_50, this->x, this->y);
-	this->is_dead = true;
+	this->visible = false;
 }
 
 void BreakableBrick::handleIsBroken() {
