@@ -5,6 +5,7 @@
 #define	SUPER_LEAF	2
 #define COIN_50	3
 #define GREEN_MUSHROOM	4
+#define BUTTON_P	5
 class ItemFactory {
 	static ItemFactory* _instance;
 public:

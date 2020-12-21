@@ -2,6 +2,7 @@
 #include "SuperLeaf.h"
 #include "Mushroom.h"
 #include "GreenMushroom.h"
+#include "ButtonP.h"
 #include "PlayScence.h"
 #include "coin50.h"
 #include "Utils.h"
@@ -44,6 +45,13 @@ Item* ItemFactory::create(int item_type, float x, float y) {
 			Item* green_mushroom = new GreenMushroom(x, y);
 			((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddObjectIntoBeginning(green_mushroom);
 			return green_mushroom;
+			break;
+		}
+	case BUTTON_P:
+		{
+			Item* button_p = new ButtonP(x, y);
+			((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddObjectIntoBeginning(button_p);
+			return button_p;
 			break;
 		}
 	default:

@@ -151,6 +151,9 @@
     <ClCompile Include="FloatingBrick_2.cpp">
       <Filter>GameObjects\StaticObjects</Filter>
     </ClCompile>
+    <ClCompile Include="ButtonP.cpp">
+      <Filter>GameObjects\MovableObjects\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -320,6 +323,9 @@
       <Filter>GameObjects\StaticObjects</Filter>
     </ClInclude>
     <ClInclude Include="GreenMushroom.h">
+      <Filter>GameObjects\MovableObjects\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonP.h">
       <Filter>GameObjects\MovableObjects\Items</Filter>
     </ClInclude>
   </ItemGroup>

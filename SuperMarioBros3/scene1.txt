@@ -377,6 +377,9 @@ map-world-1-1.txt
 92009	446	250	462	273	10
 92010	465	249	481	273	10	0	1
 
+#============ Button P==============
+93000	178	144	194	160	30
+93001	200	153	216	160	30
 # ani_id	sprite1_id	time1	sprite2_id	time2	...
 [ANIMATIONS]
 # ==== MARIO =========
@@ -638,7 +641,7 @@ map-world-1-1.txt
 #=========SMOKE EFFECT==========
 1015	70019	100	70020	100	70021	100	70022	100
 #broken effect =============
-1016	70050	100	70051	100
+1016	70050	25	70051	25
 #=========Fire Piranha Plant==========
 #left
 #come out
@@ -709,7 +712,9 @@ map-world-1-1.txt
 
 #===Pirahan Plant =====
 1410	92009	100	92010	100
-
+#============ Button P==============
+1411	93000	100
+1412	93001	100
 # id	ani1	ani2	ani3
 [ANIMATION_SETS]
 # MARIO
@@ -756,12 +761,14 @@ map-world-1-1.txt
 22	1012	802
 #=========red mush room========
 23	908
+#============ Button P==============
+24	1411	1412
 [OBJECTS]
 # type	x	y	ani_set_id	extra_settings per object type
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba
 # BRICK 
 # MARIO
-0	1986	250	1
+0	1800	250	1
 
 # --- platform (hint: I created the list using Excel!) ----
 1	0	416	0
@@ -1053,7 +1060,7 @@ map-world-1-1.txt
 8	1984	368	12
 8	2000	368	12
 8	2016	368	12
-14	2032	368	22	4
+14	2032	368	22	5
 8	2096	384	12
 8	2096	400	12
 8	2112	400	12

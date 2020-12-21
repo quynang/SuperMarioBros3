@@ -14,6 +14,7 @@
 #include "Textures.h"
 #include "Coin50.h"
 #include "Mushroom.h"
+#include "ButtonP.h"
 #include "BreakableBrick.h"
 #include "EffectFactory.h"
 #include "PlayScence.h"
@@ -352,6 +353,14 @@ void CMario::processCollision() {
 					super_leaf->GetPosition(_x, _y);
 					EffectFactory::GetInstance()->create(SMOKE, _x, _y);
 				}
+				else if (dynamic_cast<ButtonP*>(e->obj))
+				{
+					if (e->ny < 0)
+					{
+						ButtonP* button_p = dynamic_cast<ButtonP*>(e->obj);
+						button_p->handlePressed();
+					}
+				}
 
 				else if (dynamic_cast<CFloatingBrick *>(e->obj))
 				{
@@ -366,6 +375,10 @@ void CMario::processCollision() {
 						{
 							floatingBrick->SetState(BOUNCING_STATE);
 						}
+					}
+					else if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))// Bug fix
+					{
+						state = new IdleState();
 					}
 				}
 
