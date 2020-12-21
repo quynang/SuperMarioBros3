@@ -337,21 +337,17 @@ void CMario::processCollision() {
 				if (dynamic_cast<Mushroom*>(e->obj))
 				{
 					Mushroom* mushroom = dynamic_cast<Mushroom*>(e->obj);
-					mushroom->is_dead = true;
+					mushroom->handleIsCollected(this->x, this->y, this->nx);
 					SetType(MARIO_TYPE_BIG);
 					state = new IdleState();
-					EffectFactory::GetInstance()->create(MARIO_TYPE_UP, this->x, this->y, this->nx);
 					y = y - (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT);
 				}
 
 				else if (dynamic_cast<SuperLeaf*>(e->obj))
 				{
 					SuperLeaf* super_leaf = dynamic_cast<SuperLeaf*>(e->obj);
-					super_leaf->is_dead = true;
+					super_leaf->handleIsCollected();
 					SetType(MARIO_TYPE_RACCOON);
-					float _x, _y;
-					super_leaf->GetPosition(_x, _y);
-					EffectFactory::GetInstance()->create(SMOKE, _x, _y);
 				}
 				else if (dynamic_cast<ButtonP*>(e->obj))
 				{

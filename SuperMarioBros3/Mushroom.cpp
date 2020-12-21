@@ -1,4 +1,5 @@
 #include "Mushroom.h"
+#include "EffectFactory.h"
 #include "Utils.h"
 
 Mushroom::Mushroom(float x, float y)
@@ -22,7 +23,6 @@ void Mushroom::GetBoundingBox(float &left, float &top, float &right, float &bott
 
 void Mushroom::Update(DWORD dt)
 {
-
 	if (this->state == MUSHROOM_STATE_SPROUT) {
 		vy = MUSHROOM_SPROUT_SPEED_Y;
 		MovableObject::Update(dt);
@@ -101,5 +101,14 @@ void Mushroom::SetState(int state)
 	case MUSHROOM_STATE_COLLECTED:
 		this->is_dead = true;
 		break;
+	}
+}
+
+void Mushroom::handleIsCollected(float x, float y, int nx)
+{
+	if (!is_dead)
+	{
+		EffectFactory::GetInstance()->create(MARIO_TYPE_UP, x, y, nx);
+		this->is_dead = true;
 	}
 }

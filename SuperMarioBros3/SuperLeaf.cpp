@@ -1,4 +1,5 @@
 #include "SuperLeaf.h"
+#include "EffectFactory.h"
 #include "Utils.h"
 
 SuperLeaf::SuperLeaf(float x, float y)
@@ -73,4 +74,14 @@ void SuperLeaf::SetState(int state)
 		vy = SUPER_LEAF_SPEED_Y;
 	}
 	
+}
+
+void SuperLeaf::handleIsCollected()
+{
+	if (!is_dead)
+	{
+		EffectFactory::GetInstance()->create(SMOKE, this->x, this->y);
+		this->is_dead = true;
+
+	}
 }

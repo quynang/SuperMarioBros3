@@ -31,4 +31,5 @@ public:
 	SuperLeaf(float x, float y);
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
+	void handleIsCollected();
 };
