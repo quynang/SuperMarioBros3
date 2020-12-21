@@ -102,6 +102,7 @@ public:
 	RECT getTailRect();
 	void getPositionOfHandWhenThrowing(float& x, float& y);
 	void SetState(int state);
+	void handleCollectItem(int item_type);
 	void Reset();
 	void setIsVisible(bool value) { this->is_visible = value; }
 	int getCurrentType() { return type; }

@@ -332,35 +332,70 @@ void CMario::processCollision() {
 				else if (e->ny > 0 && state->current_state == JUMPING)
 					state = new FallingState();
 			}
-			else
+			else if (dynamic_cast<Item*>(e->obj))
 			{
-				if (dynamic_cast<Mushroom*>(e->obj))
-				{
-					Mushroom* mushroom = dynamic_cast<Mushroom*>(e->obj);
-					mushroom->handleIsCollected(this->x, this->y, this->nx);
-					SetType(MARIO_TYPE_BIG);
-					state = new IdleState();
-					y = y - (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT);
-				}
+				Item* item = dynamic_cast<Item*>(e->obj);
+				item->handleIsCollected();
+				this->handleCollectItem(item->type);
+			}
+			else if (dynamic_cast<Enemy*>(e->obj))
+			{
+				Enemy* enemy = dynamic_cast<Enemy*>(e->obj);
 
-				else if (dynamic_cast<SuperLeaf*>(e->obj))
+				if (e->ny < 0)
 				{
-					SuperLeaf* super_leaf = dynamic_cast<SuperLeaf*>(e->obj);
-					super_leaf->handleIsCollected();
-					SetType(MARIO_TYPE_RACCOON);
-				}
-				else if (dynamic_cast<ButtonP*>(e->obj))
-				{
-					if (e->ny < 0)
+					if (enemy->canBeJumpedOn())
 					{
-						ButtonP* button_p = dynamic_cast<ButtonP*>(e->obj);
-						button_p->handlePressed();
+						enemy->handleJumpingOn();
+						state = new BouncingState();
+					}
+					else
+					{
+						this->isHurted();
 					}
 				}
 
-				else if (dynamic_cast<CFloatingBrick *>(e->obj))
+				else if (e->ny > 0)
 				{
-					CFloatingBrick *floatingBrick = dynamic_cast<CFloatingBrick *>(e->obj);
+					this->isHurted();
+				}
+
+				else if (e->nx != 0)
+				{
+					if (enemy->canBePickedUp() && this->can_pick_item)
+					{
+						this->is_holding = true;
+						this->item_holding = enemy;
+						((CKoopas*)item_holding)->TurnOffUpdation();
+					}
+					if (untouchable == 0)
+					{
+						if (enemy->canBeKicked() && !this->can_pick_item)
+						{
+							enemy->handleIsKicked(-e->nx);
+							state = new KickState();
+						}
+						else
+						{
+							this->isHurted();
+						}
+					}
+				}
+			}
+			else //For other object type.
+			{
+				if (dynamic_cast<ButtonP*>(e->obj))
+				{
+					if (e->ny < 0)
+					{
+						ButtonP* button = dynamic_cast<ButtonP*>(e->obj);
+						button->handlePressed();
+					}
+				}
+
+				else if (dynamic_cast<CFloatingBrick*>(e->obj))
+				{
+					CFloatingBrick* floatingBrick = dynamic_cast<CFloatingBrick*>(e->obj);
 
 					if (e->ny > 0) {
 
@@ -375,51 +410,6 @@ void CMario::processCollision() {
 					else if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))// Bug fix
 					{
 						state = new IdleState();
-					}
-				}
-
-				else if (dynamic_cast<Enemy*>(e->obj))
-				{
-					Enemy* enemy = dynamic_cast<Enemy*>(e->obj);
-
-					if (e->ny < 0)
-					{
-						if (enemy->canBeJumpedOn())
-						{
-							enemy->handleJumpingOn();
-							state = new BouncingState();
-						}
-						else
-						{
-							this->isHurted();
-						}
-					}
-
-					else if (e->ny > 0)
-					{
-						this->isHurted();
-					}
-
-					else if (e->nx != 0)
-					{
-						if (enemy->canBePickedUp() && this->can_pick_item)
-						{
-							this->is_holding = true;
-							this->item_holding = enemy;
-							((CKoopas*)item_holding)->TurnOffUpdation();
-						}
-						if (untouchable == 0)
-						{
-							if (enemy->canBeKicked() && !this->can_pick_item)
-							{
-								enemy->handleIsKicked(-e->nx);
-								state = new KickState();
-							}
-							else
-							{
-								this->isHurted();
-							}
-						}
 					}
 				}
 			}
@@ -443,6 +433,19 @@ void CMario::isHurted() {
 		case MARIO_TYPE_BIG:
 			SetType(MARIO_TYPE_SMALL);
 			break;
+	}	
+}
+
+void CMario::handleCollectItem(int item_type)
+{
+	switch (item_type)
+	{
+	case ITEM_RED_MUSHROOM:
+		SetType(MARIO_TYPE_BIG);
+		break;
+	case ITEM_SUPER_LEAF:
+		SetType(MARIO_TYPE_RACCOON);
+		break;
 	}
-	
+
 }

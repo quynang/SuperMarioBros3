@@ -768,7 +768,7 @@ map-world-1-1.txt
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba
 # BRICK 
 # MARIO
-0	1800	250	1
+0	0	250	1
 
 # --- platform (hint: I created the list using Excel!) ----
 1	0	416	0
@@ -1060,7 +1060,7 @@ map-world-1-1.txt
 8	1984	368	12
 8	2000	368	12
 8	2016	368	12
-14	2032	368	22	5
+14	2032	368	22	2
 8	2096	384	12
 8	2096	400	12
 8	2112	400	12

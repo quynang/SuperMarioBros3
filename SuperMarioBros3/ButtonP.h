@@ -1,6 +1,6 @@
 #pragma once
 #include "Utils.h"
-#include "Item.h"
+#include "MovableObject.h"
 
 #define BUTTON_P_BBOX_WIDTH  16
 #define	BUTTON_P_BBOX_HEIGHT 16
@@ -18,7 +18,7 @@
 
 #define MAX_Y	14
 
-class ButtonP : public Item
+class ButtonP : public MovableObject
 {
 	int state;
 	float charge_y = 0;

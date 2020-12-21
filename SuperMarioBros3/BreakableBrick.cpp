@@ -29,7 +29,7 @@ void BreakableBrick::SetState(int state)
 }
 
 void BreakableBrick::ProduceItem() {
-	ItemFactory::GetInstance()->create(COIN_50, this->x, this->y);
+	ItemFactory::GetInstance()->create(ITEM_COIN_50, this->x, this->y);
 	this->is_dead = true;
 }
 

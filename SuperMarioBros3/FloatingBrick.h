@@ -14,8 +14,11 @@
 #define BOUNCE_SPEED_Y	0.6f
 
 //Item type
-#define ITEM_TYPE_COIN	0
-#define ITEM_TYPE_SUPER	1
+#define BRICK_ITEM_TYPE_COIN_EFFECT	0
+#define BRICK_ITEM_TYPE_DYNAMIC	1
+#define BRICK_ITEM_TYPE_BUTTON_P	2
+#define BRICK_ITEM_TYPE_GREEN_MUSHROOM	3
+#define BRICK_ITEM_TYPE_GREEN_MUSHROOM	4
 
 class CFloatingBrick : public MovableObject
 {

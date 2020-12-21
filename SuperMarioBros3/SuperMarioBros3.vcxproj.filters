@@ -154,6 +154,9 @@
     <ClCompile Include="ButtonP.cpp">
       <Filter>GameObjects\MovableObjects\Items</Filter>
     </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>GameObjects\MovableObjects\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />

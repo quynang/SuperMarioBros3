@@ -27,7 +27,6 @@ class SuperLeaf : public Item
 	float	charge_x = 0;
 	int state;
 public:
-
 	SuperLeaf(float x, float y);
 	int GetState() { return this->state; }
 	virtual void SetState(int state);

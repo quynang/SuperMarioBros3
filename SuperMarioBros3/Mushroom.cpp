@@ -11,6 +11,7 @@ Mushroom::Mushroom(float x, float y)
 	this->nx = 1;
 	this->state = MUSHROOM_STATE_SPROUT;
 	this->vy = MUSHROOM_SPROUT_SPEED_Y;
+	this->type = ITEM_RED_MUSHROOM;
 }
 
 void Mushroom::GetBoundingBox(float &left, float &top, float &right, float &bottom)
@@ -104,11 +105,10 @@ void Mushroom::SetState(int state)
 	}
 }
 
-void Mushroom::handleIsCollected(float x, float y, int nx)
+void Mushroom::handleIsCollected()
 {
 	if (!is_dead)
 	{
-		EffectFactory::GetInstance()->create(MARIO_TYPE_UP, x, y, nx);
 		this->is_dead = true;
 	}
 }

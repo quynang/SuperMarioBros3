@@ -10,6 +10,7 @@ SuperLeaf::SuperLeaf(float x, float y)
 	this->y = y;
 	this->nx = 1;
 	SetState(SUPER_LEAF_STATE_BOUNCING);
+	this->type = ITEM_SUPER_LEAF;
 }
 
 void SuperLeaf::GetBoundingBox(float &left, float &top, float &right, float &bottom)

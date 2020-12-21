@@ -2,6 +2,7 @@
 #include "Utils.h"
 #include "Mushroom.h"
 #include "EffectFactory.h"
+#include "ButtonP.h"
 #include "ItemFactory.h"
 #include "PlayScence.h"
 
@@ -76,28 +77,34 @@ void CFloatingBrick::SetState(int state)
 }
 
 void CFloatingBrick::ProduceItem() {
+
 	CMario *mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 	int current_mario_type = mario->getCurrentType();
 
-	if (item_type == ITEM_TYPE_COIN) {
+	switch (this->item_type)
+	{
+	case BRICK_ITEM_TYPE_COIN_EFFECT:
 		EffectFactory::GetInstance()->create(COIN_100, this->x, this->y - 10);
-
-	}
-	else if (item_type == GREEN_MUSHROOM) {
-		ItemFactory::GetInstance()->create(GREEN_MUSHROOM, this->x, this->y);
-	}
-	else if (item_type == BUTTON_P) {
-		ItemFactory::GetInstance()->create(BUTTON_P, this->x, this->y);
-	}
-	else {
-		switch (current_mario_type)
+		break;
+	case BRICK_ITEM_TYPE_DYNAMIC:
 		{
-		case MARIO_TYPE_SMALL:
-			ItemFactory::GetInstance()->create(MUSHROOM, this->x, this->y);
-			break;
-		case MARIO_TYPE_BIG:
-			ItemFactory::GetInstance()->create(SUPER_LEAF, this->x, this->y - 6);
-			break;
-		};
+			switch (current_mario_type)
+			{
+			case MARIO_TYPE_SMALL:
+				ItemFactory::GetInstance()->create(ITEM_RED_MUSHROOM, this->x, this->y);
+				break;
+			case MARIO_TYPE_BIG:
+				ItemFactory::GetInstance()->create(ITEM_SUPER_LEAF, this->x, this->y - 6);
+				break;
+			};
+		}
+		break;
+	case BRICK_ITEM_TYPE_GREEN_MUSHROOM:
+		ItemFactory::GetInstance()->create(ITEM_GREEN_MUSHROOM, this->x, this->y);
+		break;
+	case BRICK_ITEM_TYPE_BUTTON_P:
+		ButtonP* button_p = new ButtonP(this->x, this->y);
+		break;
+
 	}
 }

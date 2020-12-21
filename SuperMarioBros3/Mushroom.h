@@ -26,5 +26,5 @@ public:
 	Mushroom(float x, float y);
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
-	void handleIsCollected(float x, float y, int nx);
+	void handleIsCollected();
 };

@@ -7,6 +7,8 @@ ButtonP::ButtonP(float x, float y) {
 	this->x = x;
 	this->y = y;
 	SetState(BUTTON_P_STATE_MOVE_UP);
+	((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddObjectIntoBeginning(this);
+
 }
 
 void ButtonP::Render()

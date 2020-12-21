@@ -6,6 +6,7 @@ Coin50::Coin50(float x, float y) {
 	SetAnimationSet(animation_sets->Get(COIN_50_ANI_SET_ID));
 	this->x = x;
 	this->y = y;
+	this->type = ITEM_COIN_50;
 }
 
 void Coin50::Render()
@@ -20,4 +21,9 @@ void Coin50::GetBoundingBox(float &l, float &t, float &r, float &b)
 	t = y;
 	r = x + COIN_50_BOX_WIDTH;
 	b = y + COIN_50_BOX_HEIGHT;
+}
+
+void Coin50::handleIsCollected() {
+	if (!is_dead)
+		this->is_dead = true;
 }
