@@ -443,4 +443,9 @@ void CPlayScenceKeyHandler::KeyState(BYTE *states)
 	CGame *game = CGame::GetInstance();
 	CMario* mario = ((CPlayScene*)scence)->GetPlayer();
 	mario->handleKeyState(states);
-}	
+}
+
+void CPlayScene::findGameObjectsByTag(string tagName, vector<LPGAMEOBJECT> &resultObjects)
+{
+	m_grid->findGameObjectsByTag(tagName, resultObjects);
+}

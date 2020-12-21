@@ -203,3 +203,22 @@ void Grid::removeUnitFromCell(LPUNIT unit) {
     unit->prev_ = NULL;
     unit->ownerCell = NULL;
 }
+
+void Grid::findGameObjectsByTag(string tagName, vector<LPGAMEOBJECT>& resultObjects)
+{
+    for (size_t i = 0; i < m_cells.size(); i++) {
+
+        int x = i % m_numXCells;
+        int y = i / m_numXCells;
+
+        Cell& cell = m_cells[i];
+
+        Unit *temp = cell.head;
+
+        while (temp != NULL) {
+            if (temp->object->tag.compare(tagName) == 0)
+                resultObjects.push_back(temp->object);
+            temp = temp->next_;
+        }
+    }
+}

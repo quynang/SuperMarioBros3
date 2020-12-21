@@ -13,6 +13,7 @@ class BreakableBrick : public StaticObject
 	int item_type;
 
 public:
+	BreakableBrick() { this->tag = "BREAKABLE_BRICK"; }
 	float countY_ = 0;
 	float init_y;
 	void ProduceItem();

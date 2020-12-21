@@ -31,6 +31,7 @@ public:
     void handleUpdate(DWORD dt);
     void handleRender();    
     void removeUnitFromCell(LPUNIT unit);
+    void findGameObjectsByTag(string tagName, vector<LPGAMEOBJECT>& resultObjects);
 
 private:
    

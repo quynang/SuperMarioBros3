@@ -55,6 +55,7 @@ public:
 	float vy;
 
 	int nx;
+	string tag;
 	
 	bool is_dead = false;
 

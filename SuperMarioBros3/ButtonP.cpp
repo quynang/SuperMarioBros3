@@ -1,4 +1,6 @@
 #include "ButtonP.h"
+#include "PlayScence.h"
+#include "BreakableBrick.h"
 ButtonP::ButtonP(float x, float y) {
 	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
 	SetAnimationSet(animation_sets->Get(BUTTON_P_ANI_SET_ID));
@@ -74,6 +76,11 @@ void ButtonP::handlePressed() {
 	if (this->state != BUTTON_P_STATE_PRESSED)
 	{
 		SetState(BUTTON_P_STATE_PRESSED);
-	}
-		
+		vector<LPGAMEOBJECT> breakable_bricks;
+		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->findGameObjectsByTag("BREAKABLE_BRICK", breakable_bricks);
+		for (size_t i = 0; i < breakable_bricks.size(); i++)
+		{
+			((BreakableBrick*)breakable_bricks.at(i))->ProduceItem();
+		}
+	}	
 }

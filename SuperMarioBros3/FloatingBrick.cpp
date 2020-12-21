@@ -86,6 +86,9 @@ void CFloatingBrick::ProduceItem() {
 	else if (item_type == GREEN_MUSHROOM) {
 		ItemFactory::GetInstance()->create(GREEN_MUSHROOM, this->x, this->y);
 	}
+	else if (item_type == BUTTON_P) {
+		ItemFactory::GetInstance()->create(BUTTON_P, this->x, this->y);
+	}
 	else {
 		switch (current_mario_type)
 		{

@@ -37,6 +37,7 @@ public:
 	virtual void Update(DWORD dt);
 	virtual void Render();
 	virtual void Unload();
+	void findGameObjectsByTag(string tagName, vector<LPGAMEOBJECT> &resultObjects);
 
 	void turnOffGameObjectUpdate() { this->is_update = false; }
 	void turnOnGameObjectUpdate() { this->is_update = true; }
