@@ -1,7 +1,7 @@
 #pragma once
 #include "MarioState.h"
 
-#define JUMP_HEIGHT 60
+#define JUMP_HEIGHT 64
 
 class JumpingState : public MarioState {
 	float jump_height;
