@@ -37,6 +37,7 @@ void CGame::Init(HWND hWnd)
 
 	screen_height = r.bottom + 1;
 	screen_width = r.right + 1;
+	DebugOut(L"Screen with: %d \n", screen_width);
 
 	d3d->CreateDevice(
 		D3DADAPTER_DEFAULT,
@@ -66,6 +67,17 @@ void CGame::Init(HWND hWnd)
 void CGame::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha, float dx, float dy)
 {
 	D3DXVECTOR3 p(x - dx - cam_x, y - dy - cam_y, 0);
+	RECT r; 
+	r.left = left;
+	r.top = top;
+	r.right = right;
+	r.bottom = bottom;
+	spriteHandler->Draw(texture, &r, NULL, &p, D3DCOLOR_ARGB(alpha, 255, 255, 255));
+}
+
+void CGame::DrawOnScreen(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha)
+{
+	D3DXVECTOR3 p(x, y, 0);
 	RECT r; 
 	r.left = left;
 	r.top = top;

@@ -768,7 +768,7 @@ map-world-1-1.txt
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba
 # BRICK 
 # MARIO
-0	0	250	1
+0	50	250	1
 
 # --- platform (hint: I created the list using Excel!) ----
 1	0	416	0
@@ -1064,3 +1064,21 @@ map-world-1-1.txt
 8	2096	384	12
 8	2096	400	12
 8	2112	400	12
+
+
+
+#===========HUB=====================
+[TEXTURES]
+1000	textures\HUB.png	81	255	191
+# id	left	top	right	bottom	texture_id
+[SPRITES]
+0	12	128	164	156	1000
+-1	172	128	244	156	1000
+-2	91	162	99	169	1000
+-3	64	162	72	169	1000
+-4	100	162	115	169	1000
+-5	73	162	88	169	1000
+-6	16	161	32	168	1000
+-7	16	171	32	178	1000
+[FONT]
+121	textures\font-2.png	12	8	2

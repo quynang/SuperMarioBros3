@@ -19,6 +19,8 @@
 #include "FloatingBrick_2.h"
 #include "FirePiranhaGreenPlant.h"
 #include "KoopaParatroopa.h"
+#include "HUB.h"
+#include "Font.h"
 using namespace std;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath):
@@ -40,6 +42,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 #define SCENE_SECTION_OBJECTS	6
 #define SCENE_SECTION_MAP	7
 #define SCENE_SECTION_GRID	8
+#define SCENE_SECTION_FONT	9
 
 #define OBJECT_TYPE_MARIO	0
 #define OBJECT_TYPE_GROUND	1
@@ -277,6 +280,17 @@ void CPlayScene::_ParseSection_MAP(string line)
 	
 }
 
+void CPlayScene::_ParseSection_FONT(string line)
+{
+	vector<string> tokens = split(line);
+	int id = atoi(tokens[0].c_str());
+	LPCWSTR filePath = ToLPCWSTR(tokens[1].c_str());
+	int num_cols = atoi(tokens[2].c_str());
+	int fontSize = atoi(tokens[3].c_str());
+	int sprite_spacing = atoi(tokens[4].c_str());
+	Font::GetInstance()->Load(id, filePath, num_cols, fontSize, sprite_spacing);
+}
+
 void CPlayScene::Load()
 {
 	DebugOut(L"[INFO] Start loading scene resources from : %s \n", sceneFilePath);
@@ -307,6 +321,8 @@ void CPlayScene::Load()
 			section = SCENE_SECTION_MAP; continue; }
 		if (line == "[GRID]") { 
 			section = SCENE_SECTION_GRID; continue; }
+		if (line == "[FONT]") { 
+			section = SCENE_SECTION_FONT; continue; }
 		if (line[0] == '[') { section = SCENE_SECTION_UNKNOWN; continue; }	
 
 		//
@@ -321,12 +337,14 @@ void CPlayScene::Load()
 			case SCENE_SECTION_OBJECTS: _ParseSection_OBJECTS(line); break;
 			case SCENE_SECTION_MAP: _ParseSection_MAP(line); break;
 			case SCENE_SECTION_GRID: _ParseSection_GRID(line); break;
+			case SCENE_SECTION_FONT: _ParseSection_FONT(line); break;
 		}
 	}
 
 	f.close();
 
 	CTextures::GetInstance()->Add(ID_TEX_BBOX, L"textures\\bbox.png", D3DCOLOR_XRGB(255, 255, 255));
+
 
 	DebugOut(L"[INFO] Done loading scene resources %s\n", sceneFilePath);
 }
@@ -353,6 +371,11 @@ void CPlayScene::Update(DWORD dt)
 		if (cy < 0) cy = 0;
 
 		CGame::GetInstance()->SetCamPos(cx, cy /*cy*/);
+
+
+		timeGone +=  dt;
+		int timeRemain =  timeLimit - (int) timeGone / 1000;
+		HUB::GetInstance()->Update(timeRemain);
 	}
 
 	GameEffects::GetInstance()->Update(dt);
@@ -374,6 +397,7 @@ void CPlayScene::Render()
 	CMap::GetInstance()->Render();
 	m_grid->handleRender();
 	GameEffects::GetInstance()->Render();
+	HUB::GetInstance()->Render();
 	
 }
 

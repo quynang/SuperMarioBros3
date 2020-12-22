@@ -143,10 +143,12 @@
     <ClCompile Include="FloatingBrick.cpp" />
     <ClCompile Include="FloatingBrick_2.cpp" />
     <ClCompile Include="FlyingState.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameEffects.cpp" />
     <ClCompile Include="GreenPipe.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="HUB.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemFactory.cpp" />
@@ -206,11 +208,13 @@
     <ClInclude Include="FloatingBrick.h" />
     <ClInclude Include="FloatingBrick_2.h" />
     <ClInclude Include="FlyingState.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="GameEffects.h" />
     <ClInclude Include="GreenMushroom.h" />
     <ClInclude Include="GreenPipe.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Ground.h" />
+    <ClInclude Include="HUB.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemFactory.h" />

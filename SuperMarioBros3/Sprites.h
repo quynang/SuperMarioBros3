@@ -19,6 +19,7 @@ public:
 	CSprite(int id, int left, int top, int right, int bottom, LPDIRECT3DTEXTURE9 tex, float dx, float dy);
 
 	void Draw(float x, float y, int alpha = 255);
+	void DrawOnScreen(float x, float y, int alpha = 255);
 };
 
 typedef CSprite * LPSPRITE;

@@ -157,6 +157,12 @@
     <ClCompile Include="Item.cpp">
       <Filter>GameObjects\MovableObjects\Items</Filter>
     </ClCompile>
+    <ClCompile Include="HUB.cpp">
+      <Filter>HUB</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>HUB</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -331,6 +337,12 @@
     <ClInclude Include="ButtonP.h">
       <Filter>GameObjects\MovableObjects\Items</Filter>
     </ClInclude>
+    <ClInclude Include="HUB.h">
+      <Filter>HUB</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>HUB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">
@@ -365,6 +377,9 @@
     </Filter>
     <Filter Include="GameEffects\Effects">
       <UniqueIdentifier>{2fcfbc5f-4c56-4b97-9d52-baa6d8535eff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HUB">
+      <UniqueIdentifier>{01e3312a-4b4b-4869-b4ba-037805141d77}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

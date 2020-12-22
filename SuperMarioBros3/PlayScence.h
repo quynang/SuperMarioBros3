@@ -28,6 +28,9 @@ protected:
 	void _ParseSection_OBJECTS(string line);
 	void _ParseSection_MAP(string line);
 	void _ParseSection_GRID(string line);
+	void _ParseSection_FONT(string line);
+	int timeLimit = 265;
+	DWORD timeGone = 0;
 	
 public: 
 	CPlayScene(int id, LPCWSTR filePath);

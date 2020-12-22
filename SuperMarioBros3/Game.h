@@ -39,7 +39,7 @@ class CGame
 	int cam_y = 0;
 
 	int screen_width;
-	int screen_height; 
+	int screen_height;
 
 	unordered_map<int, LPSCENE> scenes;
 	int current_scene; 
@@ -52,7 +52,7 @@ public:
 	void SetKeyHandler(LPKEYEVENTHANDLER handler) { keyHandler = handler; }
 	void Init(HWND hWnd);
 	void Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha, float dx = 0.0f, float dy = 0.0f);
-
+	void DrawOnScreen(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha);
 	int IsKeyDown(int KeyCode);
 	void ProcessKeyboard();
 

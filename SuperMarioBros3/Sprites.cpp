@@ -28,6 +28,12 @@ void CSprite::Draw(float x, float y, int alpha)
 	game->Draw(x, y, texture, left, top, right, bottom, alpha, dx, dy);
 }
 
+void CSprite::DrawOnScreen(float x, float y, int alpha)
+{
+	CGame * game = CGame::GetInstance();
+	game->DrawOnScreen(x, y, texture, left, top, right, bottom, alpha);
+}
+
 void CSprites::Add(int id, int left, int top, int right, int bottom, LPDIRECT3DTEXTURE9 tex, float dx, float dy)
 {
 	LPSPRITE s = new CSprite(id, left, top, right, bottom, tex, dx, dy);

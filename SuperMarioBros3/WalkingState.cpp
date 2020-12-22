@@ -50,7 +50,7 @@ void WalkingState::handleKeyState(CMario& mario, BYTE* states) {
 	}
 
 	if ((states[DIK_A] & 0x80) > 0) {
-		mario.vx = 1.5 * mario.vx;
+		in_speed_run = 1;
 	}
 
 	
@@ -67,7 +67,11 @@ void WalkingState::update(CMario& mario, DWORD dt) {
 
 	mario.vx = MARIO_WALKING_SPEED * mario.nx;
 	if (in_speed_run)
+	{
+		mario.vx = 1.5* MARIO_WALKING_SPEED * mario.nx;
 		counter_time += dt;
+	}
+		
 		
 	
 	mario.power = (int) ((counter_time/1000) / 0.1);
