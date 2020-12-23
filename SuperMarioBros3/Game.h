@@ -35,9 +35,6 @@ class CGame
 
 	LPKEYEVENTHANDLER keyHandler;
 
-	int cam_x = 0;
-	int cam_y = 0;
-
 	int screen_width;
 	int screen_height;
 
@@ -55,11 +52,9 @@ public:
 	void DrawOnScreen(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha);
 	int IsKeyDown(int KeyCode);
 	void ProcessKeyboard();
-
 	void Load(LPCWSTR gameFile);
 	LPSCENE GetCurrentScene() { return scenes[current_scene]; }
 	void SwitchScene(int scene_id);
-
 	int GetScreenWidth() { return screen_width; }
 	int GetScreenHeight() { return screen_height; }
 
@@ -81,11 +76,7 @@ public:
 	LPDIRECT3DDEVICE9 GetDirect3DDevice() { return this->d3ddv; }
 	LPDIRECT3DSURFACE9 GetBackBuffer() { return backBuffer; }
 	LPD3DXSPRITE GetSpriteHandler() { return this->spriteHandler; }
-
 	static bool isColliding(const RECT& object, const RECT& other);
-
-	void SetCamPos(float x, float y) { cam_x = x; cam_y = y; }
-	void GetCamPos(float& x, float& y) { x = cam_x; y = cam_y; }
 
 	static CGame * GetInstance();
 
