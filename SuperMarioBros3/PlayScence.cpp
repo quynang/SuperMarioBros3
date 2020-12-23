@@ -21,7 +21,9 @@
 #include "KoopaParatroopa.h"
 #include "HUB.h"
 #include "Font.h"
+#include "Brick.h"
 #include "Camera.h"
+
 using namespace std;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath):
@@ -60,6 +62,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 #define OBJECT_TYPE_FIRE_GREEN_PLANT	12
 #define OBJECT_TYPE_PIRANHA_PLANT	13
 #define OBJECT_TYPE_FLOATING_BRICK_2	14
+#define OBJECT_TYPE_BRICK	15
 
 
 #define OBJECT_TYPE_PORTAL	50
@@ -197,11 +200,21 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_GROUND: obj = new CGround(); break;
 	case OBJECT_TYPE_GOOMBA: obj = new CGoomba(); break;
 	case OBJECT_TYPE_KOOPAS: obj = new CKoopas(); break;
+	case OBJECT_TYPE_COIN_50: obj = new Coin50(); break;
+	case BREAKABLE_BRICK: obj = new BreakableBrick(); break;
+	case OBJECT_TYPE_WING_GOOMBA: obj = new WingGoomba(); break;
+	case OBJECT_TYPE_FIRE_PLANT: obj = new FirePiranhaPlant(); break;
+	case OBJECT_TYPE_KOOPA_PARATROPA: obj = new KoopaParatroopa(); break;
+	case OBJECT_TYPE_FIRE_GREEN_PLANT: obj = new FirePiranhaGreenPlant(); break;
+	case OBJECT_TYPE_PIRANHA_PLANT:obj = new PiranhaPlant(); break;
+	case OBJECT_TYPE_BRICK:obj = new Brick(); break;
+
 	case OBJECT_TYPE_FLOATING_BRICK: {
 		int item_type = atoi(tokens[4].c_str());
 		obj = new CFloatingBrick(y, item_type);
 		break;
 	}
+
 	case OBJECT_TYPE_PORTAL:
 		{	
 			float r = atof(tokens[4].c_str());
@@ -226,27 +239,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 			obj = new CGreenPipe(size_height, type);
 		}
 		break;
-	case OBJECT_TYPE_COIN_50: 
-		obj = new Coin50();
-		break;
-	case BREAKABLE_BRICK: 
-		obj = new BreakableBrick();
-		break;
-	case OBJECT_TYPE_WING_GOOMBA: 
-		obj = new WingGoomba();
-		break;
-	case OBJECT_TYPE_FIRE_PLANT: 
-		obj = new FirePiranhaPlant();
-		break;
-	case OBJECT_TYPE_KOOPA_PARATROPA: 
-		obj = new KoopaParatroopa();
-		break;
-	case OBJECT_TYPE_FIRE_GREEN_PLANT: 
-		obj = new FirePiranhaGreenPlant();
-		break;
-	case OBJECT_TYPE_PIRANHA_PLANT:
-		obj = new PiranhaPlant();
-		break;
+
 	case OBJECT_TYPE_FLOATING_BRICK_2:
 	{
 		int item_type = atoi(tokens[4].c_str());
