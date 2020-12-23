@@ -352,11 +352,9 @@ void CPlayScene::Update(DWORD dt)
 
 		if (player == NULL) return;
 
-		
-
 		timeGone +=  dt;
 		int timeRemain =  timeLimit - (int) timeGone / 1000;
-		HUB::GetInstance()->Update(timeRemain);
+		HUB::GetInstance()->Update(timeRemain, score);
 	}
 	Camera::GetInstance()->Update();
 	GameEffects::GetInstance()->Update(dt);

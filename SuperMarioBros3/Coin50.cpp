@@ -1,4 +1,5 @@
 #include "Coin50.h"
+#include "PlayScence.h"
 
 
 Coin50::Coin50(float x, float y) {
@@ -25,5 +26,9 @@ void Coin50::GetBoundingBox(float &l, float &t, float &r, float &b)
 
 void Coin50::handleIsCollected() {
 	if (!is_dead)
+	{
+		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(100);
 		this->is_dead = true;
+	}
+		
 }

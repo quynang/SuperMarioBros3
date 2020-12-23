@@ -2,6 +2,9 @@
 #include "Utils.h"
 #include "EffectFactory.h"
 #include "Game.h"
+#include "Camera.h"
+#include "PlayScence.h"
+
 CGoomba::CGoomba()
 {
 	this->nx = -1;
@@ -23,11 +26,6 @@ void CGoomba::GetBoundingBox(float &left, float &top, float &right, float &botto
 
 void CGoomba::Update(DWORD dt)
 {
-	float _x, _y;
-	CGame::GetInstance()->GetCamPos(_x, _y);
-	if ((this->x - _x) < 360) start_action = true;
-
-	if (!start_action) return;
 
 	MovableObject::Update(dt);
 	vy += GOOMBA_GRAVITY * dt;
@@ -96,7 +94,6 @@ void CGoomba::SetState(int state)
 	{
 		case GOOMBA_STATE_DIE:
 			y += GOOMBA_BBOX_HEIGHT - GOOMBA_BBOX_HEIGHT_DIE;
-			EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - 10, 100);
 			vx = 0;
 			vy = 0;
 			break;
@@ -106,6 +103,11 @@ void CGoomba::SetState(int state)
 }
 
 void CGoomba::handleJumpingOn() {
-	if(this->state != GOOMBA_STATE_DIE)
+	if (this->state != GOOMBA_STATE_DIE)
+	{
+		EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - 10, 100);
 		this->SetState(GOOMBA_STATE_DIE);
+		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(100);
+	}
+		
 }

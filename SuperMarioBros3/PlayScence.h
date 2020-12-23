@@ -31,6 +31,7 @@ protected:
 	void _ParseSection_FONT(string line);
 	int timeLimit = 265;
 	DWORD timeGone = 0;
+	int score = 0;
 	
 public: 
 	CPlayScene(int id, LPCWSTR filePath);
@@ -41,11 +42,10 @@ public:
 	virtual void Render();
 	virtual void Unload();
 	void findGameObjectsByTag(string tagName, vector<LPGAMEOBJECT> &resultObjects);
-
 	void turnOffGameObjectUpdate() { this->is_update = false; }
 	void turnOnGameObjectUpdate() { this->is_update = true; }
-	
-	CMario * GetPlayer() { return player; } 
+	CMario * GetPlayer() { return player; }
+	void UpdateScore(int score) { this->score += score; }
 
 	//friend class CPlayScenceKeyHandler;
 };

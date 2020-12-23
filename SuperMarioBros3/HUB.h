@@ -19,9 +19,10 @@ class HUB
 	HUB();
 	float x = 0, y = 0;
 	string timeString;
+	string score;
 public:
 	
 	void Render();
-	void Update(int time);
+	void Update(int time, int score);
 	static HUB* GetInstance();
 };

@@ -1,6 +1,7 @@
 #include "Mushroom.h"
 #include "EffectFactory.h"
 #include "Utils.h"
+#include "PlayScence.h"
 
 Mushroom::Mushroom(float x, float y)
 {
@@ -109,6 +110,7 @@ void Mushroom::handleIsCollected()
 {
 	if (!is_dead)
 	{
+		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(1000);
 		this->is_dead = true;
 	}
 }

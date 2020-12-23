@@ -218,11 +218,13 @@ void WingGoomba::handleJumpingOn() {
 			this->type = TYPE_LOST_WING;
 			this->SetState(WING_GOOMBA_STATE_WALKING);
 			EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - 10, 400);
+			((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(400);
 			break;
 		case TYPE_LOST_WING:
 			if (this->state != WING_GOOMBA_STATE_DEAD) {
 				this->SetState(WING_GOOMBA_STATE_DEAD);
 				EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - 10, 800);
+				((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(800);
 			}
 			break;
 	}

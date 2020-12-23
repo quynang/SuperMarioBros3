@@ -37,11 +37,16 @@ void HUB::Render()
 	CSprites::GetInstance()->Get(BLACK_P_TEXTURE_ID)->DrawOnScreen(100, y + 10, 255);
 	CSprites::GetInstance()->Get(M_TEXTURE_ID)->DrawOnScreen(9, y + 18, 255);
 	Font::GetInstance()->Draw(this->timeString, 130, y + 18);
+	Font::GetInstance()->Draw(this->score, 51, y + 18);
 }
 
-void HUB::Update(int time)
+void HUB::Update(int time, int score)
 {
-	timeString = to_string(time);
-	while (timeString.length() < 3)
-		timeString = "0" + timeString;
+	this->timeString = to_string(time);
+	this->score = to_string(score);
+
+	while (this->timeString.length() < 3)
+		this->timeString = "0" + timeString;
+	while (this->score.length() < 7)
+		this->score = "0" + this->score;
 }
