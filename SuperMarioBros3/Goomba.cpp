@@ -26,8 +26,7 @@ void CGoomba::GetBoundingBox(float &left, float &top, float &right, float &botto
 
 void CGoomba::Update(DWORD dt)
 {
-
-	MovableObject::Update(dt);
+	Enemy::Update(dt);
 	vy += GOOMBA_GRAVITY * dt;
 
 	if (this->state == GOOMBA_STATE_DIE) counter_time += dt;

@@ -8,7 +8,7 @@
 
 KoopaParatroopa::KoopaParatroopa()
 {
-	this->nx = -1;
+	this->nx = 1;
 	this->vx = this->nx*PARATROPA_WALKING_SPEED;
 	this->type = PARATROPA_TYPE_HAS_WING;
 	this->SetState(PARATROPA_STATE_FALLING);
@@ -34,7 +34,29 @@ void KoopaParatroopa::Update(DWORD dt)
 {
 	
 	Enemy::Update(dt);
+	
+	if (dx != 0 && first_update_flag)
+	{
 
+		
+		float player_x, player_y;
+		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->GetPosition(player_x, player_y);
+	
+	
+		if (player_x - this->x >= 0) {
+			
+			this->nx = 1;
+			dx = abs(dx);
+		}
+		else
+		{
+			dx = -dx;
+			this->nx = -1;
+		}
+
+		first_update_flag = false;
+	}
+	
 	if(state != PARATROPA_STATE_JUMPING) vy += PARATROPA_GRAVITY;
 
 	vector<LPCOLLISIONEVENT> coEvents;
@@ -94,7 +116,6 @@ void KoopaParatroopa::Update(DWORD dt)
 		
 	coObjects.clear();
 
-
 }
 
 
@@ -142,7 +163,7 @@ void KoopaParatroopa::SetState(int state)
 	switch (state)
 	{
 	case PARATROPA_STATE_WALKING:
-		vy = this->nx * PARATROPA_WALKING_SPEED;
+		vx = this->nx * PARATROPA_WALKING_SPEED;
 		break;
 	case PARATROPA_STATE_FALLING:
 		vy = PARATROPA_GRAVITY;

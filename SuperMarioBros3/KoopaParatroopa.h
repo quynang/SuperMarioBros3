@@ -34,6 +34,7 @@
 class KoopaParatroopa : public Enemy
 {
 	float jumping_time = 0;
+	bool first_update_flag = true;
 public:
 	KoopaParatroopa();
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);

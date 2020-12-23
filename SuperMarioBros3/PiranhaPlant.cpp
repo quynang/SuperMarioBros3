@@ -19,7 +19,7 @@ void PiranhaPlant::GetBoundingBox(float& left, float& top, float& right, float& 
 
 void PiranhaPlant::Update(DWORD dt)
 {
-	Enemy::Update(dt);
+	MovableObject::Update(dt);
 	y += dy;
 	x += 0;
 

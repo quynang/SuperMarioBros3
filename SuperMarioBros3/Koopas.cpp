@@ -6,7 +6,7 @@
 #include "Utils.h"
 CKoopas::CKoopas()
 {
-	SetState(KOOPAS_STATE_HIDE_IN_SHELL);
+	SetState(KOOPAS_STATE_WALKING);
 	this->nx = 1;
 }
 

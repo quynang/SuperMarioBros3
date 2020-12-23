@@ -403,6 +403,7 @@ void CMario::processCollision() {
 						if (floatingBrick->GetState() != STATIC_STATE)
 						{
 							floatingBrick->SetState(BOUNCING_STATE);
+							((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(100);
 						}
 					}
 					else if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))// Bug fix

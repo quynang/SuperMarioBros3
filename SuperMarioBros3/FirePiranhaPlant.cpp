@@ -24,7 +24,7 @@ void FirePiranhaPlant::GetBoundingBox(float& left, float& top, float& right, flo
 void FirePiranhaPlant::Update(DWORD dt)
 {
 
-	Enemy::Update(dt);
+	MovableObject::Update(dt);
 	y += dy;
 	x += 0;
 	float player_x, player_y;

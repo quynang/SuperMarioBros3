@@ -12,4 +12,5 @@ public:
 	bool canBePickedUp() { return this->can_be_picked_up; }
 	virtual void handleJumpingOn();
 	virtual void handleIsKicked(int nx);
+	virtual void Update(DWORD dt);
 };
