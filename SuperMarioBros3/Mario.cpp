@@ -368,17 +368,14 @@ void CMario::processCollision() {
 						this->item_holding = enemy;
 						((CKoopas*)item_holding)->TurnOffUpdation();
 					}
-					if (untouchable == 0)
+					else if (enemy->canBeKicked() && !this->can_pick_item)
 					{
-						if (enemy->canBeKicked() && !this->can_pick_item)
-						{
-							enemy->handleIsKicked(-e->nx);
-							state = new KickState();
-						}
-						else
-						{
-							this->isHurted();
-						}
+						enemy->handleIsKicked(-e->nx);
+						state = new KickState();
+					}
+					else
+					{
+						this->isHurted();
 					}
 				}
 			}
@@ -390,6 +387,7 @@ void CMario::processCollision() {
 					{
 						ButtonP* button = dynamic_cast<ButtonP*>(e->obj);
 						button->handlePressed();
+						state = new IdleState();
 					}
 				}
 
@@ -423,8 +421,8 @@ void CMario::processCollision() {
 
 void CMario::isHurted() {
 
-	StartUntouchable();
-
+	if (untouchable) return;
+	
 	switch (this->type)
 	{
 		case MARIO_TYPE_RACCOON:
@@ -434,6 +432,9 @@ void CMario::isHurted() {
 			SetType(MARIO_TYPE_SMALL);
 			break;
 	}	
+	
+	StartUntouchable();
+
 }
 
 void CMario::handleCollectItem(int item_type)
