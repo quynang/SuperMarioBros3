@@ -3,7 +3,7 @@
 
 #include "Game.h"
 #include "Utils.h"
-
+#include "Camera.h"
 #include "PlayScence.h"
 
 CGame * CGame::__instance = NULL;
@@ -37,8 +37,7 @@ void CGame::Init(HWND hWnd)
 
 	screen_height = r.bottom + 1;
 	screen_width = r.right + 1;
-	DebugOut(L"Screen with: %d \n", screen_width);
-
+	
 	d3d->CreateDevice(
 		D3DADAPTER_DEFAULT,
 		D3DDEVTYPE_HAL,
@@ -66,7 +65,10 @@ void CGame::Init(HWND hWnd)
 */
 void CGame::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha, float dx, float dy)
 {
-	D3DXVECTOR3 p(x - dx - cam_x, y - dy - cam_y, 0);
+	float cx, cy;
+	Camera::GetInstance()->GetCamPosition(cx, cy);
+	
+	D3DXVECTOR3 p(x - dx - (int)cx, y - dy - (int) cy, 0);
 	RECT r; 
 	r.left = left;
 	r.top = top;

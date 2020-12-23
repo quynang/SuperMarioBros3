@@ -4,10 +4,13 @@
 #include "Font.h"
 #include <string>
 #include "Textures.h"
+#include "Camera.h"
+#include "Utils.h"
 HUB* HUB::_instance = NULL;
 HUB::HUB() {
 
 	CTextures::GetInstance()->Add(BLACK_BACKGROUND_TEXTURE_ID, L"textures\\BlackBackGround.png", D3DCOLOR_XRGB(255, 255, 255));
+	this->y = Camera::GetInstance()->getHeight();
 }
 HUB* HUB::GetInstance()
 {
@@ -22,19 +25,18 @@ void HUB::Render()
 
 	CGame *game = CGame::GetInstance();
 	int screen_width = 	game->GetScreenWidth();
-
-	game->DrawOnScreen(0, BOTTOM_Y, blackBackGround, 0, 0, screen_width, 50, 255);
-	CSprites::GetInstance()->Get(HUB_SPRITE_ID)->DrawOnScreen(5, BOTTOM_Y + 3, 255);
-	CSprites::GetInstance()->Get(CARD_SPRITE_ID)->DrawOnScreen(160, 203, 255);
+	game->DrawOnScreen(x, y, blackBackGround, 0, 0, screen_width, 50, 255);
+	CSprites::GetInstance()->Get(HUB_SPRITE_ID)->DrawOnScreen(x + 5, y + 3, 255);
+	CSprites::GetInstance()->Get(CARD_SPRITE_ID)->DrawOnScreen(160, y + 3, 255);
 
 	for (int i = 0; i < 6; i++)
 	{
-		CSprites::GetInstance()->Get(BLACK_TRIANGLE_TEXTURE_ID)->DrawOnScreen(51 + i*8, BOTTOM_Y + 10, 255);
+		CSprites::GetInstance()->Get(BLACK_TRIANGLE_TEXTURE_ID)->DrawOnScreen(51 + i*8, y + 10, 255);
 	}
 
-	CSprites::GetInstance()->Get(BLACK_P_TEXTURE_ID)->DrawOnScreen(100, BOTTOM_Y + 10, 255);
-	CSprites::GetInstance()->Get(M_TEXTURE_ID)->DrawOnScreen(9, BOTTOM_Y + 18, 255);
-	Font::GetInstance()->Draw(this->timeString, 130, BOTTOM_Y + 18);
+	CSprites::GetInstance()->Get(BLACK_P_TEXTURE_ID)->DrawOnScreen(100, y + 10, 255);
+	CSprites::GetInstance()->Get(M_TEXTURE_ID)->DrawOnScreen(9, y + 18, 255);
+	Font::GetInstance()->Draw(this->timeString, 130, y + 18);
 }
 
 void HUB::Update(int time)

@@ -17,6 +17,7 @@ class HUB
 {
 	static HUB* _instance;
 	HUB();
+	float x = 0, y = 0;
 	string timeString;
 public:
 	

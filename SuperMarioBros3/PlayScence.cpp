@@ -21,6 +21,7 @@
 #include "KoopaParatroopa.h"
 #include "HUB.h"
 #include "Font.h"
+#include "Camera.h"
 using namespace std;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath):
@@ -356,28 +357,15 @@ void CPlayScene::Update(DWORD dt)
 
 		m_grid->handleUpdate(dt);
 
-		if (player == NULL) return; 
+		if (player == NULL) return;
 
-		float cx, cy;
-		player->GetPosition(cx, cy);
-
-		CGame *game = CGame::GetInstance();
-		cx -= game->GetScreenWidth() / 2;
-		cy -= game->GetScreenHeight() / 2;
-		if (cx < 0) cx = 0;
-		if (cx + 320 > CMap::GetInstance()->getWidth()) cx = CMap::GetInstance()->getWidth() - 320;
-
-		if (cy > 230) cy = 230;
-		if (cy < 0) cy = 0;
-
-		CGame::GetInstance()->SetCamPos(cx, cy /*cy*/);
-
+		
 
 		timeGone +=  dt;
 		int timeRemain =  timeLimit - (int) timeGone / 1000;
 		HUB::GetInstance()->Update(timeRemain);
 	}
-
+	Camera::GetInstance()->Update();
 	GameEffects::GetInstance()->Update(dt);
 }
 

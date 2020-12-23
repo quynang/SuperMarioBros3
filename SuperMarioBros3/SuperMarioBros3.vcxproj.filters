@@ -163,6 +163,7 @@
     <ClCompile Include="Font.cpp">
       <Filter>HUB</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -343,6 +344,7 @@
     <ClInclude Include="Font.h">
       <Filter>HUB</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

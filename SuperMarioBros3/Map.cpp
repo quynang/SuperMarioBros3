@@ -1,6 +1,7 @@
 #include "Map.h"
 #include "Utils.h"
 #include "Game.h"
+#include "Camera.h"
 CMap::CMap()
 {
 
@@ -93,20 +94,23 @@ int CMap::valueAt(int i, int j) {
 }
 
 void CMap::Render() {
+
     int numCols = this->mapMatrix.at(0).size();
     int numRows = this->mapMatrix.size();
     float _cx, _cy;
-    int screenWidth = CGame::GetInstance()->GetScreenWidth();
-    int screenHeight = CGame::GetInstance()->GetScreenHeight();
-    CGame::GetInstance()->GetCamPos(_cx, _cy);
+    int camWidth = Camera::GetInstance()->getWidth();
+    int camHeight = Camera::GetInstance()->getHeight();
+    Camera::GetInstance()->GetCamPosition( _cx, _cy);
+
     
+ 
     int cellStartX = _cx / FRAME_SIZE;
     int cellStartY = _cy / FRAME_SIZE;
     
     //Vẽ tất cả các ô nằm trong camera. Cho dù nó chỉ chiếm một phần nhỏ
     //đi nữa thì ta vẫn vẽ lên. Nên ta dùng ceil ở chỗ này
-    int cellEndX = ceil((float) (_cx + screenWidth) / FRAME_SIZE);
-    int cellEndY = ceil((float) (_cy + screenHeight) / FRAME_SIZE);
+    int cellEndX = ceil((float) (_cx + camWidth) / FRAME_SIZE);
+    int cellEndY = ceil((float) (_cy + camHeight) / FRAME_SIZE);
 
 
     if (cellEndX > numCols) cellEndX = numCols;
@@ -134,5 +138,5 @@ void CMap::Clear() {
    }
 
    mapMatrix.clear();
-
+   
 }
