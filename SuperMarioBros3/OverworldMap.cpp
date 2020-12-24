@@ -6,28 +6,23 @@
 #include "Utils.h"
 using namespace std;
 
-#define BACKGROUND_MAP_X	5
-#define BACKGROUND_MAP_Y	20
+#define BACKGROUND_MARGIN_X	5
+#define BACKGROUND_MARGIN_Y	20
+
+#define SCENE_SECTION_UNKNOWN -1
+#define SCENE_SECTION_TEXTURES 0
+#define SCENE_SECTION_SPRITES 1
+#define SCENE_SECTION_ANIMATIONS 2
+#define SCENE_SECTION_FONT	3
+#define SCENE_SECTION_BACKGROUND_ANI	4
+#define SCENE_SECTION_POINTS	5
+#define MAX_SCENE_LINE 1024
 
 OverworldMap::OverworldMap(int id, LPCWSTR filePath):
 	CScene(id, filePath)
 {
 	key_handler = new OverworldMapKeyHandler(this);
 }
-
-#define SCENE_SECTION_UNKNOWN -1
-#define SCENE_SECTION_TEXTURES 2
-#define SCENE_SECTION_SPRITES 3
-#define SCENE_SECTION_ANIMATIONS 4
-#define SCENE_SECTION_ANIMATION_SETS	5
-#define SCENE_SECTION_OBJECTS	6
-#define SCENE_SECTION_MAP	7
-#define SCENE_SECTION_GRID	8
-#define SCENE_SECTION_FONT	9
-#define SCENE_SECTION_BACKGROUND_ANI	10
-#define SCENE_SECTION_POINTS	11
-#define MAX_SCENE_LINE 1024
-
 
 void OverworldMap::_ParseSection_TEXTURES(string line)
 {
@@ -194,9 +189,9 @@ void OverworldMap::Render()
 {
 	for (size_t i = 0; i < background_ani.size(); i++)
 	{
-		CAnimations::GetInstance()->Get(background_ani.at(i)->ani_id)->Render(background_ani.at(i)->x + BACKGROUND_MAP_X , background_ani.at(i)->y + BACKGROUND_MAP_Y);
+		CAnimations::GetInstance()->Get(background_ani.at(i)->ani_id)->Render(background_ani.at(i)->x + BACKGROUND_MARGIN_X , background_ani.at(i)->y + BACKGROUND_MARGIN_Y);
 	}
-	CAnimations::GetInstance()->Get(mario->ani_id)->Render(mario->x + BACKGROUND_MAP_X ,mario->y + BACKGROUND_MAP_Y);
+	CAnimations::GetInstance()->Get(mario->ani_id)->Render(mario->x + BACKGROUND_MARGIN_X ,mario->y + BACKGROUND_MARGIN_Y);
 	HUB::GetInstance()->Render();
 }
 
