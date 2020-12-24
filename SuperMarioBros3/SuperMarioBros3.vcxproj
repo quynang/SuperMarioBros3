@@ -134,6 +134,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Coin100.cpp" />
     <ClCompile Include="Coin50.cpp" />
+    <ClCompile Include="DieSate.cpp" />
     <ClCompile Include="EffectFatory.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FallingState.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="Coin100.h" />
     <ClInclude Include="Coin50.h" />
     <ClInclude Include="Const.h" />
+    <ClInclude Include="DieState.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectFactory.h" />
     <ClInclude Include="Enemy.h" />

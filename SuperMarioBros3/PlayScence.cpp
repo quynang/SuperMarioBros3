@@ -23,19 +23,7 @@
 #include "Font.h"
 #include "Brick.h"
 #include "Camera.h"
-
 using namespace std;
-
-CPlayScene::CPlayScene(int id, LPCWSTR filePath):
-	CScene(id, filePath)
-{
-	key_handler = new CPlayScenceKeyHandler(this);
-}
-
-/*
-	Load scene resources from scene file (textures, sprites, animations and objects)
-	See scene1.txt, scene2.txt for detail format specification
-*/
 
 #define SCENE_SECTION_UNKNOWN -1
 #define SCENE_SECTION_TEXTURES 2
@@ -69,6 +57,14 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 
 #define MAX_SCENE_LINE 1024
 
+#define	OVER_WORD_MAP_SCENE_ID	2
+#define PLAY_SCENE_ID	1
+
+CPlayScene::CPlayScene(int id, LPCWSTR filePath):
+	CScene(id, filePath)
+{
+	key_handler = new CPlayScenceKeyHandler(this);
+}
 
 void CPlayScene::_ParseSection_TEXTURES(string line)
 {
@@ -345,13 +341,22 @@ void CPlayScene::Load()
 
 void CPlayScene::Update(DWORD dt)
 {
-
 	if (is_update) {
 
 		m_grid->handleUpdate(dt);
 
 		if (player == NULL) return;
 
+		float player_x, player_y;
+
+		player->GetPosition(player_x, player_y);
+
+		if (player_y - 100 > CMap::GetInstance()->getHeight())
+		{
+			CGame::GetInstance()->SwitchScene(OVER_WORD_MAP_SCENE_ID);
+			return;
+		}
+		
 		timeGone +=  dt;
 		int timeRemain =  timeLimit - (int) timeGone / 1000;
 		HUB::GetInstance()->Update(timeRemain, score);
@@ -432,10 +437,10 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 			mario->SetType(MARIO_TYPE_FIRE);
 			break;
 		case DIK_R:
-			game->SwitchScene(1);
+			game->SwitchScene(PLAY_SCENE_ID);
 			break;
 		case DIK_T:
-			game->SwitchScene(2);
+			game->SwitchScene(OVER_WORD_MAP_SCENE_ID);
 			break;
 		}
 	}

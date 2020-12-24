@@ -35,6 +35,7 @@
 #include "IdleState.h"
 #include "FallingState.h"
 #include "BouncingState.h"
+#include "DieState.h"
 
 
 CMario::CMario(float x, float y) : MovableObject()
@@ -71,8 +72,17 @@ void CMario::Update(DWORD dt)
 		untouchable_start = 0;
 		untouchable = 0;
 	}
+	if (state->current_state == DIE)
+	{
+		x += dx;
+		y += dy;
+	}
 
-	processCollision();
+	else
+	{
+		processCollision();
+	}
+	
 	
 	if (x < 0) x = 0;
 		
@@ -432,6 +442,9 @@ void CMario::isHurted() {
 		case MARIO_TYPE_BIG:
 			SetType(MARIO_TYPE_SMALL);
 			break;
+		case MARIO_TYPE_SMALL:
+			state = new DieState();
+			return;
 	}	
 	
 	StartUntouchable();

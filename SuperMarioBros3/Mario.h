@@ -57,6 +57,7 @@ class MarioState;
 #define THROW_1	1012
 #define THROW_2	1013
 #define BOUNCING	1014
+#define DIE	1015
 
 class CMario : public MovableObject
 {

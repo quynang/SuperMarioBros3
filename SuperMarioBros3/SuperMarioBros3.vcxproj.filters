@@ -165,6 +165,9 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="OverworldMap.cpp" />
+    <ClCompile Include="DieSate.cpp">
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -347,6 +350,9 @@
     </ClInclude>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="OverworldMap.h" />
+    <ClInclude Include="DieState.h">
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">
