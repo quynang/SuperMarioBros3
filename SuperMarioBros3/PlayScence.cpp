@@ -431,6 +431,9 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 	case DIK_R:
 		game->SwitchScene(1);
 		break;
+	case DIK_T:
+		game->SwitchScene(2);
+		break;
 	}
 }
 

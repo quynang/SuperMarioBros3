@@ -21,7 +21,7 @@ class HUB
 	string timeString;
 	string score;
 public:
-	
+	void clear() { _instance = NULL; delete _instance; }
 	void Render();
 	void Update(int time, int score);
 	static HUB* GetInstance();

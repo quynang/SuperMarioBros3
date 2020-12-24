@@ -12,6 +12,7 @@ private:
 	float x = 0, y = 0;
 	Camera();
 public:
+	void Clear() { _instance = NULL; delete _instance; };
 	void Update();
 	int getWidth() { return this->width; }
 	int getHeight() { return this->height; }

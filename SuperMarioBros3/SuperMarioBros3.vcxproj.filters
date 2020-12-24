@@ -164,6 +164,7 @@
       <Filter>HUB</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="OverworldMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -345,6 +346,7 @@
       <Filter>HUB</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="OverworldMap.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">
