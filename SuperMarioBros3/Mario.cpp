@@ -443,7 +443,12 @@ void CMario::handleCollectItem(int item_type)
 	switch (item_type)
 	{
 	case ITEM_RED_MUSHROOM:
-		SetType(MARIO_TYPE_BIG);
+		{
+			SetType(MARIO_TYPE_BIG);
+			EffectFactory::GetInstance()->create(MARIO_TYPE_UP, this->x, this->y, this->nx);
+			this->y -= (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT);
+			this->state = new IdleState();
+		};
 		break;
 	case ITEM_SUPER_LEAF:
 		SetType(MARIO_TYPE_RACCOON);

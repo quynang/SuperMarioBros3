@@ -81,8 +81,7 @@ void SuperLeaf::handleIsCollected()
 {
 	if (!is_dead)
 	{
-		EffectFactory::GetInstance()->create(SMOKE, this->x, this->y);
 		this->is_dead = true;
-
+		EffectFactory::GetInstance()->create(SMOKE, this->x, this->y);
 	}
 }

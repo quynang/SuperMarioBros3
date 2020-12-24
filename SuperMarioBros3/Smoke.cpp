@@ -15,7 +15,7 @@ void Smoke::Update(DWORD dt) {
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->setIsVisible(false);
 	}
 	counter_time += dt;
-	if (counter_time >= 600) {
+	if (counter_time >= 400) {
 		this->is_finished = true;
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->turnOnGameObjectUpdate();
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->setIsVisible(true);
