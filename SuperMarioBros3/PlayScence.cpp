@@ -419,33 +419,29 @@ void  CPlayScene::AddObjectIntoBeginning(LPGAMEOBJECT obj) {
 
 void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 {
-	if (!((CPlayScene*)scence)->isNormalProcessUpdating())
-		return;
-	else {
-		CGame* game = CGame::GetInstance();
-		CMario* mario = ((CPlayScene*)scence)->GetPlayer();
-		mario->handleOnKeyDown(KeyCode);
-		switch (KeyCode)
-		{
-		case DIK_1:
-			mario->SetType(MARIO_TYPE_SMALL);
-			break;
-		case DIK_2:
-			mario->SetType(MARIO_TYPE_BIG);
-			break;
-		case DIK_3:
-			mario->SetType(MARIO_TYPE_RACCOON);
-			break;
-		case DIK_4:
-			mario->SetType(MARIO_TYPE_FIRE);
-			break;
-		case DIK_R:
-			game->SwitchScene(PLAY_SCENE_ID);
-			break;
-		case DIK_T:
-			game->SwitchScene(OVER_WORD_MAP_SCENE_ID);
-			break;
-		}
+	CGame* game = CGame::GetInstance();
+	CMario* mario = ((CPlayScene*)scence)->GetPlayer();
+	mario->handleOnKeyDown(KeyCode);
+	switch (KeyCode)
+	{
+	case DIK_1:
+		mario->SetType(MARIO_TYPE_SMALL);
+		break;
+	case DIK_2:
+		mario->SetType(MARIO_TYPE_BIG);
+		break;
+	case DIK_3:
+		mario->SetType(MARIO_TYPE_RACCOON);
+		break;
+	case DIK_4:
+		mario->SetType(MARIO_TYPE_FIRE);
+		break;
+	case DIK_R:
+		game->SwitchScene(PLAY_SCENE_ID);
+		break;
+	case DIK_T:
+		game->SwitchScene(OVER_WORD_MAP_SCENE_ID);
+		break;
 	}
 }
 
@@ -457,14 +453,11 @@ void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 
 void CPlayScenceKeyHandler::KeyState(BYTE *states)
 {
-	if (!((CPlayScene*)scence)->isNormalProcessUpdating())
-		return;
-	else {
-		CGame *game = CGame::GetInstance();
-		CMario* mario = ((CPlayScene*)scence)->GetPlayer();
-		mario->handleKeyState(states);
-	}
-	
+
+	CGame *game = CGame::GetInstance();
+	CMario* mario = ((CPlayScene*)scence)->GetPlayer();
+	mario->handleKeyState(states);
+
 }
 
 void CPlayScene::findGameObjectsByTag(string tagName, vector<LPGAMEOBJECT> &resultObjects)

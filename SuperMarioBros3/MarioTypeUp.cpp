@@ -8,6 +8,7 @@ MarioTypeUp::MarioTypeUp(float x, float y, int nx) {
 	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
 	SetAnimationSet(animation_sets->Get(MARIO_TYPE_UP_ANI_SET_ID));
 	EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - 10, 1000);
+	CGame::GetInstance()->DisableKeyboard();
 }
 
 void MarioTypeUp::Update(DWORD dt) {
@@ -20,6 +21,7 @@ void MarioTypeUp::Update(DWORD dt) {
 	counter_time += dt;
 	if (counter_time >= 600) {
 		this->is_finished = true;
+		CGame::GetInstance()->EnableKeyboard();
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->turnOnGameObjectUpdate();
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->setIsVisible(true);
 	}

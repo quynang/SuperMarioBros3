@@ -5,6 +5,7 @@ Smoke::Smoke(float x, float y) {
 	this->y = y;
 	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
 	SetAnimationSet(animation_sets->Get(SMOKE_ANI_SET_ID));
+	CGame::GetInstance()->DisableKeyboard();
 }
 
 void Smoke::Update(DWORD dt) {
@@ -17,6 +18,7 @@ void Smoke::Update(DWORD dt) {
 	counter_time += dt;
 	if (counter_time >= 400) {
 		this->is_finished = true;
+		CGame::GetInstance()->EnableKeyboard();
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->turnOnGameObjectUpdate();
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->setIsVisible(true);
 	}

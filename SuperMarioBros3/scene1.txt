@@ -790,7 +790,7 @@ map-world-1-1.txt
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba
 # BRICK 
 # MARIO
-0	2650	250	1
+0	25	250	1
 
 # --- platform (hint: I created the list using Excel!) ----
 1	0	416	0
