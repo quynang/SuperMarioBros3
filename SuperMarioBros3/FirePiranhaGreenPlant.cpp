@@ -171,3 +171,9 @@ void FirePiranhaGreenPlant::startFire() {
 	if (!bullet_was_thrown) PlantFireBullet* fire_bullet = new PlantFireBullet(this->x, this->y, this->nx);
 	bullet_was_thrown = true;
 }
+
+void FirePiranhaGreenPlant::handleIsAttacked()
+{
+	if(this->state != STATE_HIDDEN)
+		this->is_dead = true;
+}

@@ -229,3 +229,15 @@ void WingGoomba::handleJumpingOn() {
 			break;
 	}
 }
+
+
+void WingGoomba::handleIsAttacked()
+{
+	if (this->state != WING_GOOMBA_STATE_DEAD)
+	{
+		SetState(WING_GOOMBA_STATE_DEAD);
+		EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - 10, 800);
+		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(800);
+	}
+	
+}

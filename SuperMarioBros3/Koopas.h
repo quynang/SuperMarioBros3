@@ -25,13 +25,15 @@ class CKoopas : public Enemy
 	virtual void Update(DWORD dt);
 	virtual void Render();
 	int state;
+
 public:
-	int update_flag = 1;
 	CKoopas();
+	int update_flag = 1;
 	void TurnOffUpdation() { update_flag = 0; };
 	void TurnOnUpdation() { update_flag = 1; };
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
 	void handleJumpingOn();
 	void handleIsKicked(int nx);
+	void handleIsAttacked();
 };

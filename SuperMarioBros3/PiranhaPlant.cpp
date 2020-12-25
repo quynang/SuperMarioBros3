@@ -93,3 +93,9 @@ void PiranhaPlant::SetState(int state)
 		break;
 	}
 }
+
+void PiranhaPlant::handleIsAttacked()
+{
+	if(this->state != PIRANHA_STATE_HIDDEN)
+		this->is_dead = true;
+}

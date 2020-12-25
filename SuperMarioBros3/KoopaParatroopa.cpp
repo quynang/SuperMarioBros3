@@ -189,3 +189,12 @@ void KoopaParatroopa::handleJumpingOn() {
 	if (this->type == PARATROPA_TYPE_HAS_WING)
 		setType(PARATROPA_TYPE_LOST_WING);
 }
+
+void KoopaParatroopa::handleIsAttacked() {
+
+	if (this->state != PARATROPA_STATE_HIDING_IN_SHELL)
+	{
+		this->type = PARATROPA_TYPE_LOST_WING;
+		SetState(PARATROPA_STATE_HIDING_IN_SHELL);
+	}
+}

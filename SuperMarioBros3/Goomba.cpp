@@ -95,6 +95,8 @@ void CGoomba::SetState(int state)
 			y += GOOMBA_BBOX_HEIGHT - GOOMBA_BBOX_HEIGHT_DIE;
 			vx = 0;
 			vy = 0;
+			EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - 10, 100);
+			((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(100);
 			break;
 		case GOOMBA_STATE_WALKING:
 			vx = this->nx*GOOMBA_WALKING_SPEED;
@@ -102,11 +104,15 @@ void CGoomba::SetState(int state)
 }
 
 void CGoomba::handleJumpingOn() {
+
 	if (this->state != GOOMBA_STATE_DIE)
 	{
-		EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - 10, 100);
 		this->SetState(GOOMBA_STATE_DIE);
-		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(100);
-	}
-		
+	}		
+}
+
+void CGoomba::handleIsAttacked() {
+
+	if (this->state != GOOMBA_STATE_DIE)
+		SetState(GOOMBA_STATE_DIE);
 }

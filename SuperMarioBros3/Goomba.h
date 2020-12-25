@@ -29,4 +29,5 @@ public:
 	void handleJumpingOn();
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
+	void handleIsAttacked();
 };

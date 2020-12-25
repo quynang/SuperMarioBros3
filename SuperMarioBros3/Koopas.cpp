@@ -212,6 +212,7 @@ void CKoopas::SetState(int state)
 		vy = 0;
 		break;
 	case KOOPAS_STATE_WALKING:
+		this->can_be_kicked = false;
 		this->can_be_picked_up = false;
 		vx = this->nx*KOOPAS_WALKING_SPEED;
 		break;
@@ -222,5 +223,10 @@ void CKoopas::SetState(int state)
 		break;
 
 	}
+}
 
+void CKoopas::handleIsAttacked() {
+
+	if (this->state != KOOPAS_STATE_HIDE_IN_SHELL)
+		SetState(KOOPAS_STATE_HIDE_IN_SHELL);
 }

@@ -46,4 +46,5 @@ public:
 	void setType(int type) { this->type = type; }
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
+	void handleIsAttacked();
 };

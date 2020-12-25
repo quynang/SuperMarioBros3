@@ -83,7 +83,6 @@ void CMario::Update(DWORD dt)
 		processCollision();
 	}
 	
-	
 	if (x < 0) x = 0;
 		
 	if (item_holding != NULL)
@@ -214,6 +213,7 @@ void CMario::handleTailAttacking() {
 	RECT tail_rect = this->getTailRect();
 
 	for (UINT i = 0; i < coObjects.size(); i++) {
+
 		RECT obj_rect;
 		float l, t, r, b;
 		coObjects.at(i)->GetBoundingBox(l, t, r, b);
@@ -224,15 +224,8 @@ void CMario::handleTailAttacking() {
 
 		bool isOverlapping = CGame::GetInstance()->isColliding(tail_rect, obj_rect);
 
-		if (isOverlapping && dynamic_cast<CGoomba*>(coObjects.at(i))) {
-
-			CGoomba *goomba = dynamic_cast<CGoomba *>(coObjects.at(i));
-		
-			if (goomba->GetState()!= GOOMBA_STATE_DIE)
-			{
-				goomba->SetState(GOOMBA_STATE_DIE);
-
-			}		
+		if (isOverlapping && dynamic_cast<Enemy*>(coObjects.at(i))) {
+			((Enemy*)coObjects.at(i))->handleIsAttacked();
 		}
 
 		else if (isOverlapping && dynamic_cast<BreakableBrick*>(coObjects.at(i))) {
