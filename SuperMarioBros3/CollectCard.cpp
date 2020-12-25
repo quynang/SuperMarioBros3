@@ -12,14 +12,14 @@ CollectCard::CollectCard(float x, float y, int card_type) {
 
 void CollectCard::Update(DWORD dt) {
 	counter_time += dt;
-	if (counter_time > 100)
+	if (counter_time > 200)
 		SetStep(STEP_DRAWING_TEXT_1);
 
-	if (counter_time > 200) {
+	if (counter_time > 400) {
 		SetStep(STEP_DRAWING_TEXT_2);
 	}
 
-	if (counter_time > 400)
+	if (counter_time > 2000)
 	{
 		this->is_finished = true;
 		CGame::GetInstance()->SwitchScene(2);
