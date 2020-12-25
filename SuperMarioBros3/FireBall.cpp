@@ -6,6 +6,7 @@
 #include "BigBox.h"
 #include "GreenPipe.h"
 #include "Koopas.h"
+#include "FloatingBrick.h"
 
 #define PI 3.14159265
 
@@ -64,13 +65,36 @@ void FireBall::Update(DWORD dt) {
 		for (UINT i = 0; i < coEventsResult.size(); i++)
 		{
 			LPCOLLISIONEVENT e = coEventsResult[i];
-			if (dynamic_cast<CGround*>(e->obj)) {
+			if (dynamic_cast<StaticObject*>(e->obj))
+			{
+				if (e->ny < 0)
+				{
+					this->angle = 38;
+					this->time_elapsed = 0;
+				}
 				//Reset and change angle
-				this->angle = 38;
-				this->time_elapsed = 0;
+				else {
+					is_dead = true;
+				}
 			}
-			else {
+
+			if (dynamic_cast<Enemy*>(e->obj))
+			{
+				((Enemy*)e->obj)->handleIsAttacked();
 				is_dead = true;
+			}
+			
+			else if (dynamic_cast<CFloatingBrick*>(e->obj))
+			{
+				if (e->ny < 0)
+				{
+					this->angle = 38;
+					this->time_elapsed = 0;
+				}
+				//Reset and change angle
+				else {
+					is_dead = true;
+				}
 			}
 
 		}
