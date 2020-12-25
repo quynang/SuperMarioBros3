@@ -256,6 +256,7 @@ void OverworldMap::Unload()
 		 delete p;
 	   } 
 	points.clear();
+	current_point = 0;
 }
 
 
