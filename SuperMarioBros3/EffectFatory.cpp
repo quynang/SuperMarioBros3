@@ -6,6 +6,7 @@
 #include "Broken.h"
 #include "Smoke.h"
 #include "Utils.h"
+#include "CollectCard.h"
 
 EffectFactory *EffectFactory::_instance = NULL;
 
@@ -50,6 +51,13 @@ Effect* EffectFactory::create(int effect_type, float x, float y, int extra_param
 	case BROKEN:
 		{
 			Effect *effect = new Broken(x, y);
+			GameEffects::GetInstance()->addEffect(effect);
+			return effect;
+			break;
+		}
+	case COLLECT_CARD:
+		{
+			Effect *effect = new CollectCard(x, y, extra_param);
 			GameEffects::GetInstance()->addEffect(effect);
 			return effect;
 			break;

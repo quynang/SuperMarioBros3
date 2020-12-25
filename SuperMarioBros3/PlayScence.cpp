@@ -22,6 +22,7 @@
 #include "HUB.h"
 #include "Font.h"
 #include "Brick.h"
+#include "BlockRandomItem.h"
 #include "Camera.h"
 using namespace std;
 
@@ -51,6 +52,7 @@ using namespace std;
 #define OBJECT_TYPE_PIRANHA_PLANT	13
 #define OBJECT_TYPE_FLOATING_BRICK_2	14
 #define OBJECT_TYPE_BRICK	15
+#define OBJECT_TYPE_BLOCK_RANDOM_ITEM	16
 
 
 #define OBJECT_TYPE_PORTAL	50
@@ -202,8 +204,9 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_FIRE_PLANT: obj = new FirePiranhaPlant(); break;
 	case OBJECT_TYPE_KOOPA_PARATROPA: obj = new KoopaParatroopa(); break;
 	case OBJECT_TYPE_FIRE_GREEN_PLANT: obj = new FirePiranhaGreenPlant(); break;
-	case OBJECT_TYPE_PIRANHA_PLANT:obj = new PiranhaPlant(); break;
-	case OBJECT_TYPE_BRICK:obj = new Brick(); break;
+	case OBJECT_TYPE_PIRANHA_PLANT: obj = new PiranhaPlant(); break;
+	case OBJECT_TYPE_BRICK: obj = new Brick(); break;
+	case OBJECT_TYPE_BLOCK_RANDOM_ITEM: obj = new BlockRandomItem(); break;
 
 	case OBJECT_TYPE_FLOATING_BRICK: {
 		int item_type = atoi(tokens[4].c_str());

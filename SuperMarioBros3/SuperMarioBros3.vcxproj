@@ -127,6 +127,7 @@
   <ItemGroup>
     <ClCompile Include="Animations.cpp" />
     <ClCompile Include="BigBox.cpp" />
+    <ClCompile Include="BlockRandomItem.cpp" />
     <ClCompile Include="BreakableBrick.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Broken.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Coin100.cpp" />
     <ClCompile Include="Coin50.cpp" />
+    <ClCompile Include="CollectCard.cpp" />
     <ClCompile Include="DieSate.cpp" />
     <ClCompile Include="EffectFatory.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -192,6 +194,7 @@
   <ItemGroup>
     <ClInclude Include="Animations.h" />
     <ClInclude Include="BigBox.h" />
+    <ClInclude Include="BlockRandomItem.h" />
     <ClInclude Include="BouncingState.h" />
     <ClInclude Include="BreakableBrick.h" />
     <ClInclude Include="Brick.h" />
@@ -200,6 +203,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Coin100.h" />
     <ClInclude Include="Coin50.h" />
+    <ClInclude Include="CollectCard.h" />
     <ClInclude Include="Const.h" />
     <ClInclude Include="DieState.h" />
     <ClInclude Include="Effect.h" />

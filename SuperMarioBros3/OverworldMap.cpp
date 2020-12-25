@@ -53,6 +53,7 @@ void OverworldMap::_ParseSection_POINTS(string line)
 	int canMoveLeft  = atoi(tokens[6].c_str());
 	Point* point = new Point(scene_id, x, y, canMoveUp, canMoveRight, canMoveDown, canMoveLeft);
 	this->points.push_back(point);
+	
 }
 
 void OverworldMap::_ParseSection_BACKGROUND_ANI(string line)
@@ -250,6 +251,11 @@ void OverworldMap::handleMarioMoveLeft()
 
 void OverworldMap::Unload()
 {
+	for (auto p : points)
+	   {
+		 delete p;
+	   } 
+	points.clear();
 }
 
 

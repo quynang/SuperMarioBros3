@@ -168,6 +168,12 @@
     <ClCompile Include="DieSate.cpp">
       <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
+    <ClCompile Include="BlockRandomItem.cpp">
+      <Filter>GameObjects\MovableObjects\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="CollectCard.cpp">
+      <Filter>GameEffects\Effects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -352,6 +358,12 @@
     <ClInclude Include="OverworldMap.h" />
     <ClInclude Include="DieState.h">
       <Filter>GameObjects\MovableObjects\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockRandomItem.h">
+      <Filter>GameObjects\MovableObjects\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="CollectCard.h">
+      <Filter>GameEffects\Effects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

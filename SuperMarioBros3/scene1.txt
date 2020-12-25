@@ -13,6 +13,7 @@ map-world-1-1.txt
 50	textures\number-effect.png	255	150	255
 60	textures\effects.png	176	224	248
 70	textures\enemies-2.png	0	128	128
+1000	textures\HUB.png	81	255	191
 # id	left	top	right	bottom	texture_id
 [SPRITES]
 # ===============BIG MARIO=============
@@ -380,6 +381,20 @@ map-world-1-1.txt
 #============ Button P==============
 93000	178	144	194	160	30
 93001	200	153	216	160	30
+
+#=========BLOCK RANDOM ITEM=========
+#star
+94000	201	121	217	137	30
+#mushroom
+94001	286	121	302	137	30
+#plant
+94002	309	121	325	137	30
+#star card
+94003	232	159	255	186	1000
+#plant card
+94004	208	159	231	186	1000
+#mush room card
+94005	184	159	207	186	1000
 # ani_id	sprite1_id	time1	sprite2_id	time2	...
 [ANIMATIONS]
 # ==== MARIO =========
@@ -715,6 +730,11 @@ map-world-1-1.txt
 #============ Button P==============
 1411	93000	100
 1412	93001	100
+#=========BLOCK RANDOM ITEM=========
+1450	94000	100
+1451	94001	100
+1452	94002	100
+
 # id	ani1	ani2	ani3
 [ANIMATION_SETS]
 # MARIO
@@ -763,12 +783,14 @@ map-world-1-1.txt
 23	908
 #============ Button P==============
 24	1411	1412
+#=========BLOCK RANDOM ITEM=========
+25	1450	1451	1452
 [OBJECTS]
 # type	x	y	ani_set_id	extra_settings per object type
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba
 # BRICK 
 # MARIO
-0	25	250	1
+0	2650	250	1
 
 # --- platform (hint: I created the list using Excel!) ----
 1	0	416	0
@@ -1092,9 +1114,11 @@ map-world-1-1.txt
 15	1680	384	0
 15	1680	400	0
 15	1696	400	0
+
+#===Block random item==========
+16	2688	336	25
 #===========HUB=====================
-[TEXTURES]
-1000	textures\HUB.png	81	255	191
+
 # id	left	top	right	bottom	texture_id
 [SPRITES]
 0	12	128	164	156	1000
