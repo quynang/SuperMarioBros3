@@ -27,14 +27,22 @@ void FirePiranhaPlant::Update(DWORD dt)
 	MovableObject::Update(dt);
 	y += dy;
 	x += 0;
-	float player_x, player_y;
-	((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->GetPosition(player_x, player_y);
+	
+	float ml, mt, mr, mb;
+	((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->GetBoundingBox(ml, mt, mr, mb);
 
-	float current_distance_x = abs(this->x - player_x);
+	float current_distance_x;
+	if (ml - this->x > 0)
+	{
+		current_distance_x = ml - (this->x + BBOX_WIDTH_FIRE_PLANT);
+	}
+	else {
+		current_distance_x =  this->x - mr;
+	}
 
 	if (current_distance_x < MAX_DISTANCE_TO_START && current_distance_x > MIN_DISTANCE_TO_START && start_action == false)
 	{
-		this->x - player_x > 0 ? this->nx = -1 : this->nx = 1;
+		this->x - ml > 0 ? this->nx = -1 : this->nx = 1;
 		start_action = true;
 		SetState(STATE_COME_OUT);
 	}
@@ -168,7 +176,7 @@ void FirePiranhaPlant::startLook() {
 
 void FirePiranhaPlant::startFire() {
 	is_fire_up = is_look_up;
-	if (!bullet_was_thrown) PlantFireBullet* fire_bullet = new PlantFireBullet(this->x, this->y, this->nx);
+	if (!bullet_was_thrown) PlantFireBullet* fire_bullet = new PlantFireBullet(nx > 0 ? this->x + BBOX_WIDTH_FIRE_PLANT : this->x, this->y, this->nx);
 	bullet_was_thrown = true;
 }
 

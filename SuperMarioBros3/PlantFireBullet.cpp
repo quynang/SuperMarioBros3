@@ -1,6 +1,7 @@
 #include "PlantFireBullet.h"
 #include "PlayScence.h"
 #include <math.h>
+#define DELTA_Y	15
 
 PlantFireBullet::PlantFireBullet() {
 
@@ -56,7 +57,7 @@ float PlantFireBullet::calculateSpeedY() {
 	((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->GetPosition(player_x, player_y);
 
 	float current_distance_x = this->x - player_x;
-	float current_distance_y = this->y - player_y;
+	float current_distance_y = this->y - (player_y - DELTA_Y);
 	float speed_y = (current_distance_y / current_distance_x) * this->vx;
 	if (speed_y > MAX_SPEED_Y) speed_y = MAX_SPEED_Y;
 

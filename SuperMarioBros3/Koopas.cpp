@@ -182,6 +182,7 @@ void CKoopas::SetState(int state)
 	}
 }
 
+
 void CKoopas::handleIsAttacked() {
 
 	if (this->state != KOOPAS_STATE_HIDE_IN_SHELL)
