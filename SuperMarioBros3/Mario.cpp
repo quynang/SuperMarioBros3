@@ -55,11 +55,8 @@ void CMario::Update(DWORD dt)
 	CGameObject::Update(dt);
 	vy += MARIO_GRAVITY * dt;
 
-
-
 	if (!can_pick_item && item_holding != NULL)
 	{
-		//TODO: What if item picked is not Koopas ?
 		state = new KickState();
 		((CKoopas*)item_holding)->TurnOnUpdation();
 		((CKoopas*)item_holding)->SetState(KOOPAS_STATE_SLIDING);
@@ -67,11 +64,12 @@ void CMario::Update(DWORD dt)
 		is_holding = false;
 	}
 
-	if (GetTickCount() - untouchable_start > MARIO_UNTOUCHABLE_TIME) 
+	if (GetTickCount() - untouchable_start > MARIO_UNTOUCHABLE_TIME)
 	{
 		untouchable_start = 0;
 		untouchable = 0;
 	}
+
 	if (state->current_state == DIE)
 	{
 		x += dx;
@@ -92,6 +90,7 @@ void CMario::Update(DWORD dt)
 		handleTailAttacking();
 
 	coObjects.clear();
+
 }
 
 void CMario::Render()
@@ -111,8 +110,6 @@ void CMario::Render()
 		LPDIRECT3DTEXTURE9 bbox = CTextures::GetInstance()->Get(ID_TEX_BBOX);
 		CGame::GetInstance()->Draw(tail_rect.left, tail_rect.top, bbox, 0, 0, TAIL_BBOX_WIDTH, TAIL_BBOX_HEIGHT, 150);
 	}*/
-	
-
 }
 
 
@@ -315,8 +312,8 @@ void CMario::processCollision() {
 		
 		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
 
-		x += min_tx*dx + nx*0.4f;
-		y += min_ty*dy + ny*0.4f;
+		x += min_tx*dx + nx*0.1f;
+		y += min_ty*dy + ny*0.1f;
 
 		if (nx!=0) vx = 0;
 		if (ny!=0) vy = 0;

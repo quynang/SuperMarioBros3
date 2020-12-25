@@ -22,7 +22,7 @@ void DieState::update(CMario& mario, DWORD dt) {
 	mario.vy = -0.3f;
 	counter_time += dt;
 	if (counter_time > 120)
-		mario.vy = 0.2f;
+		mario.vy = 0.3f;
 };
 
 int DieState::getAni(CMario& mario) {

@@ -66,6 +66,7 @@ void WalkingState::handleKeyState(CMario& mario, BYTE* states) {
 void WalkingState::update(CMario& mario, DWORD dt) {
 
 	mario.vx = MARIO_WALKING_SPEED * mario.nx;
+	mario.vy += MARIO_GRAVITY;
 	if (in_speed_run)
 	{
 		mario.vx = 1.5* MARIO_WALKING_SPEED * mario.nx;

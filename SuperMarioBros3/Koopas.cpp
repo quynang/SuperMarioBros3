@@ -2,6 +2,7 @@
 #include "BigBox.h"
 #include "Ground.h"
 #include "FloatingBrick.h"
+#include "BreakableBrick.h"
 #include "PlayScence.h"
 #include "Utils.h"
 CKoopas::CKoopas()
@@ -27,8 +28,8 @@ void CKoopas::Update(DWORD dt)
 {
 	if (update_flag) {
 		MovableObject::Update(dt);
-
-		vy += dt * KOOPAS_GRAVITY;
+		if(this->state != KOOPAS_STATE_HIDE_IN_SHELL)
+			vy += dt * KOOPAS_GRAVITY;
 
 		vector<LPCOLLISIONEVENT> coEvents;
 		vector<LPCOLLISIONEVENT> coEventsResult;
@@ -43,11 +44,8 @@ void CKoopas::Update(DWORD dt)
 			y += dy;
 
 		}
-
 		else
 		{
-
-
 			float min_tx, min_ty, nx = 0, ny;
 			float rdx = 0;
 			float rdy = 0;
@@ -55,7 +53,7 @@ void CKoopas::Update(DWORD dt)
 			FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
 
 			x += min_tx * dx + nx * 0.1f;
-			y += min_ty * dy + ny * 0.2f;
+			y += min_ty * dy + ny * 0.1f;
 
 			if (nx != 0) vx = 0;
 			if (ny != 0) vy = 0;
@@ -63,84 +61,43 @@ void CKoopas::Update(DWORD dt)
 			for (UINT i = 0; i < coEventsResult.size(); i++)
 			{
 				LPCOLLISIONEVENT e = coEventsResult[i];
-
-				if (dynamic_cast<CBigBox*>(e->obj))
+				if (e->ny < 0)
 				{
-
-					if (e->ny < 0) {
-						if (state == KOOPAS_STATE_WALKING)
-						{
-							CBigBox* bigbox = dynamic_cast<CBigBox*>(e->obj);
-
-							float l, t, r, b;
-
-							bigbox->GetBoundingBox(l, t, r, b);
-
-							if (x + KOOPAS_BBOX_WIDTH > r || x < l)
-							{
-								this->nx = -this->nx;
-								vx = this->nx * KOOPAS_WALKING_SPEED;
-							}
-						}
-
-						else if (state == KOOPAS_STATE_SLIDING)
-						{
-							vx = this->nx * KOOPAS_SLIDING_SPEED;
-							vy = 0;
-
-						}
-					}
-
-					else if (e->nx != 0) {
-
-						if (state == KOOPAS_STATE_WALKING)
-						{
-							x += dx;
-							vx = -e->nx * KOOPAS_WALKING_SPEED;
-
-
-						}
-						else {
-
-							vx = -e->nx * KOOPAS_SLIDING_SPEED;
-							x += dx;
-						}
-
-					}
-
-				}
-
-				else if (dynamic_cast<CGround*>(e->obj)) {
-					if (state == KOOPAS_STATE_WALKING && e->nx != 0)
+					if (this->state == KOOPAS_STATE_WALKING)
 					{
-						vx = -e->nx * KOOPAS_WALKING_SPEED;
-
-					}
-					else if (state == KOOPAS_STATE_SLIDING && e->nx != 0) {
-
-						vx = -e->nx * KOOPAS_SLIDING_SPEED;
-
-					}
-				}
-				else if (dynamic_cast<CFloatingBrick*>(e->obj)) {
-					if (state == KOOPAS_STATE_SLIDING) {
-						if (e->nx != 0) {
-							CFloatingBrick* brick = dynamic_cast<CFloatingBrick*>(e->obj);
-							brick->SetState(STATIC_STATE);
-							vx =  e->nx * KOOPAS_SLIDING_SPEED;
+						float l, t, r, b;
+						e->obj->GetBoundingBox(l, t, r, b);
+						if ((x + KOOPAS_BBOX_WIDTH/2 > r) || (x + KOOPAS_BBOX_WIDTH - KOOPAS_BBOX_WIDTH/2 < l))
+						{
+							this->nx = -this->nx;
+							vx = this->nx * KOOPAS_WALKING_SPEED;
 						}
 					}
 				}
-				else {
-					//For another object. vy = 0. update vx
-					if (state == KOOPAS_STATE_WALKING)
+
+				else if (e->nx != 0)
+				{
+					this->nx = e->nx;
+
+					if (state == KOOPAS_STATE_SLIDING)
 					{
-						vx = e->nx * KOOPAS_WALKING_SPEED;
-
+						vx = this->nx * KOOPAS_SLIDING_SPEED;
 					}
-					else if (state == KOOPAS_STATE_SLIDING) {
+					else
+					{
+						vx = this->nx * KOOPAS_WALKING_SPEED;
+					}
+					
+					if (state == KOOPAS_STATE_SLIDING)
+					{
+						if(dynamic_cast<CFloatingBrick*>(e->obj))
+							((CFloatingBrick*)(e->obj))->SetState(STATIC_STATE);
 
-						vx = e->nx * KOOPAS_SLIDING_SPEED;
+						if(dynamic_cast<BreakableBrick*>(e->obj))
+							((BreakableBrick*)(e->obj))->handleIsBroken();
+
+						if(dynamic_cast<Enemy*>(e->obj))
+							((Enemy*)(e->obj))->handleIsAttacked();
 					}
 				}
 			}
@@ -181,7 +138,7 @@ void CKoopas::Render()
 	switch (state)
 	{
 	case KOOPAS_STATE_WALKING:
-		if (vx > 0)
+		if (nx > 0)
 			ani = KOOPAS_ANI_WALKING_RIGHT;
 		else
 			ani = KOOPAS_ANI_WALKING_LEFT;
@@ -196,7 +153,7 @@ void CKoopas::Render()
 	
 	animation_set->at(ani)->Render(x, y);
 
-	//RenderBoundingBox();
+	RenderBoundingBox();
 }
 
 void CKoopas::SetState(int state)
@@ -207,9 +164,9 @@ void CKoopas::SetState(int state)
 	case KOOPAS_STATE_HIDE_IN_SHELL:
 		this->can_be_kicked = true;
 		this->can_be_picked_up = true;
+		vy = 0;
 		y += KOOPAS_BBOX_HEIGHT - KOOPAS_BBOX_HEIGHT_SHELL;
 		vx = 0;
-		vy = 0;
 		break;
 	case KOOPAS_STATE_WALKING:
 		this->can_be_kicked = false;
