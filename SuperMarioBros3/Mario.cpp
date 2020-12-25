@@ -82,6 +82,11 @@ void CMario::Update(DWORD dt)
 	}
 	
 	if (x < 0) x = 0;
+	if (x > CMap::GetInstance()->getWidth() - MARIO_BIG_BBOX_WIDTH)
+	{
+		state = new IdleState();
+		x = CMap::GetInstance()->getWidth() - MARIO_BIG_BBOX_WIDTH;
+	}
 		
 	if (item_holding != NULL)
 		SetPosForItemPicked();
