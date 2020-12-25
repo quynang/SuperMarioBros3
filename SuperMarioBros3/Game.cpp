@@ -9,7 +9,6 @@
 #include "HUB.h"
 #include "Font.h"
 #include "Camera.h"
-
 CGame * CGame::__instance = NULL;
 
 /*
@@ -166,6 +165,7 @@ void CGame::InitKeyboard()
 
 void CGame::ProcessKeyboard()
 {
+	if (is_disable_keyboard) return;
 	HRESULT hr; 
 
 	// Collect all key states first
@@ -430,5 +430,6 @@ void CGame::SwitchScene(int scene_id)
 	current_scene = scene_id;
 	LPSCENE s = scenes[scene_id];
 	CGame::GetInstance()->SetKeyHandler(s->GetKeyEventHandler());
+	is_disable_keyboard = false;
 	s->Load();	
 }
