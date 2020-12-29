@@ -24,3 +24,13 @@ void Enemy::Update(DWORD dt) {
 	if (abs(this->x - player_x) < 140 && player_y - this->y < -50) return;
 	MovableObject::Update(dt);
 }
+
+
+void Enemy::TurnOffUpdation()
+{
+	this->is_updating = false;
+}
+void Enemy::TurnOnUpdation()
+{
+	this->is_updating = true;
+}

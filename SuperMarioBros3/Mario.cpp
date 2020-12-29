@@ -60,8 +60,8 @@ void CMario::Update(DWORD dt)
 	if (!can_pick_item && item_holding != NULL)
 	{
 		state = new KickState();
-		((CKoopas*)item_holding)->TurnOnUpdation();
-		((CKoopas*)item_holding)->SetState(KOOPAS_STATE_SLIDING);
+		((Enemy*)item_holding)->TurnOnUpdation();
+		((Enemy*)item_holding)->handleIsKicked(this->nx);
 		item_holding = NULL;
 		is_holding = false;
 	}
@@ -373,7 +373,7 @@ void CMario::processCollision() {
 					{
 						this->is_holding = true;
 						this->item_holding = enemy;
-						((CKoopas*)item_holding)->TurnOffUpdation();
+						((Enemy*)e->obj)->TurnOffUpdation();
 					}
 					else if (enemy->canBeKicked() && !this->can_pick_item)
 					{

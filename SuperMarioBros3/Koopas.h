@@ -27,9 +27,6 @@ class CKoopas : public Enemy
 
 public:
 	CKoopas();
-	int update_flag = 1;
-	void TurnOffUpdation() { update_flag = 0; };
-	void TurnOnUpdation() { update_flag = 1; };
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
 	void handleJumpingOn();

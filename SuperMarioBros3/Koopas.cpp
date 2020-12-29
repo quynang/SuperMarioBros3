@@ -26,83 +26,84 @@ void CKoopas::GetBoundingBox(float &left, float &top, float &right, float &botto
 
 void CKoopas::Update(DWORD dt)
 {
-	if (update_flag) {
-		MovableObject::Update(dt);
-		if(this->state != KOOPAS_STATE_HIDE_IN_SHELL)
-			vy += dt * KOOPAS_GRAVITY;
+	if (!is_updating) return;
 
-		vector<LPCOLLISIONEVENT> coEvents;
-		vector<LPCOLLISIONEVENT> coEventsResult;
+	MovableObject::Update(dt);
+	if(this->state != KOOPAS_STATE_HIDE_IN_SHELL)
+		vy += dt * KOOPAS_GRAVITY;
 
-		coEvents.clear();
+	vector<LPCOLLISIONEVENT> coEvents;
+	vector<LPCOLLISIONEVENT> coEventsResult;
 
-		CalcPotentialCollisions(&coObjects, coEvents);
+	coEvents.clear();
 
-		if (coEvents.size() == 0)
+	CalcPotentialCollisions(&coObjects, coEvents);
+
+	if (coEvents.size() == 0)
+	{
+		x += dx;
+		y += dy;
+
+	}
+	else
+	{
+		float min_tx, min_ty, nx = 0, ny;
+		float rdx = 0;
+		float rdy = 0;
+
+		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
+
+		x += min_tx * dx + nx * 0.1f;
+		y += min_ty * dy + ny * 0.1f;
+
+		if (nx != 0) vx = 0;
+		if (ny != 0) vy = 0;
+
+		for (UINT i = 0; i < coEventsResult.size(); i++)
 		{
-			x += dx;
-			y += dy;
-
-		}
-		else
-		{
-			float min_tx, min_ty, nx = 0, ny;
-			float rdx = 0;
-			float rdy = 0;
-
-			FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
-
-			x += min_tx * dx + nx * 0.1f;
-			y += min_ty * dy + ny * 0.1f;
-
-			if (nx != 0) vx = 0;
-			if (ny != 0) vy = 0;
-
-			for (UINT i = 0; i < coEventsResult.size(); i++)
+			LPCOLLISIONEVENT e = coEventsResult[i];
+			if (e->ny < 0)
 			{
-				LPCOLLISIONEVENT e = coEventsResult[i];
-				if (e->ny < 0)
+				if (this->state == KOOPAS_STATE_WALKING)
 				{
-					if (this->state == KOOPAS_STATE_WALKING)
+					float l, t, r, b;
+					e->obj->GetBoundingBox(l, t, r, b);
+					if ((x + KOOPAS_BBOX_WIDTH/2 > r) || (x + KOOPAS_BBOX_WIDTH - KOOPAS_BBOX_WIDTH/2 < l))
 					{
-						float l, t, r, b;
-						e->obj->GetBoundingBox(l, t, r, b);
-						if ((x + KOOPAS_BBOX_WIDTH/2 > r) || (x + KOOPAS_BBOX_WIDTH - KOOPAS_BBOX_WIDTH/2 < l))
-						{
-							this->nx = -this->nx;
-							vx = this->nx * KOOPAS_WALKING_SPEED;
-						}
-					}
-				}
-
-				else if (e->nx != 0)
-				{
-					this->nx = e->nx;
-
-					if (state == KOOPAS_STATE_SLIDING)
-					{
-						vx = this->nx * KOOPAS_SLIDING_SPEED;
-					}
-					else
-					{
+						this->nx = -this->nx;
 						vx = this->nx * KOOPAS_WALKING_SPEED;
 					}
+				}
+			}
+
+			else if (e->nx != 0)
+			{
+				this->nx = e->nx;
+
+				if (state == KOOPAS_STATE_SLIDING)
+				{
+					vx = this->nx * KOOPAS_SLIDING_SPEED;
+				}
+				else
+				{
+					vx = this->nx * KOOPAS_WALKING_SPEED;
+				}
 					
-					if (state == KOOPAS_STATE_SLIDING)
-					{
-						if(dynamic_cast<CFloatingBrick*>(e->obj))
-							((CFloatingBrick*)(e->obj))->SetState(STATIC_STATE);
+				if (state == KOOPAS_STATE_SLIDING)
+				{
+					if(dynamic_cast<CFloatingBrick*>(e->obj))
+						((CFloatingBrick*)(e->obj))->SetState(STATIC_STATE);
 
-						if(dynamic_cast<BreakableBrick*>(e->obj))
-							((BreakableBrick*)(e->obj))->handleIsBroken();
+					if(dynamic_cast<BreakableBrick*>(e->obj))
+						((BreakableBrick*)(e->obj))->handleIsBroken();
 
-						if(dynamic_cast<Enemy*>(e->obj))
-							((Enemy*)(e->obj))->handleIsAttacked();
-					}
+					if(dynamic_cast<Enemy*>(e->obj))
+						((Enemy*)(e->obj))->handleIsAttacked();
 				}
 			}
 		}
 	}
+
 
 	coObjects.clear();
 
