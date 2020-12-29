@@ -55,6 +55,8 @@ void CMario::Update(DWORD dt)
 	CGameObject::Update(dt);
 	vy += MARIO_GRAVITY * dt;
 
+	updatePower(dt);
+
 	if (!can_pick_item && item_holding != NULL)
 	{
 		state = new KickState();
@@ -462,5 +464,26 @@ void CMario::handleCollectItem(int item_type)
 		SetType(MARIO_TYPE_RACCOON);
 		break;
 	}
+}
 
+void CMario::updatePower(DWORD dt)
+{
+	if (is_running)
+	{
+		running_time += dt;		
+		if (running_time > TIME_POWER_STEP*MAX_POWER)
+			running_time = TIME_POWER_STEP*MAX_POWER;
+	}
+	else
+	{
+		running_time -= dt;
+		if (running_time < 0)
+			running_time = 0;
+	}
+
+	power = running_time / TIME_POWER_STEP;
+	if (power > MAX_POWER)
+	{
+		power = MAX_POWER;
+	}
 }

@@ -59,6 +59,9 @@ class MarioState;
 #define BOUNCING	1014
 #define DIE	1015
 
+#define MAX_POWER	7
+#define TIME_POWER_STEP	70
+
 class CMario : public MovableObject
 {
 	int type;
@@ -67,10 +70,12 @@ class CMario : public MovableObject
 
 	float start_x;			// initial position of Mario at scene
 	float start_y;
-	int power = 0;
+	
+	bool is_running;
 	int can_pick_item = 0;
 	bool is_holding = false;
 	bool is_visible = true;
+	float running_time;
 
 	MarioState * state;
 	friend class WalkingState;
@@ -89,7 +94,7 @@ class CMario : public MovableObject
 	CGameObject* item_holding = NULL;
 	void processCollision();
 public:
-
+	int power = 0;
 	CMario(float x = 0.0f, float y = 0.0f);
 	virtual void Update(DWORD dt);
 	virtual void Render();
@@ -108,6 +113,7 @@ public:
 	void setIsVisible(bool value) { this->is_visible = value; }
 	int getCurrentType() { return type; }
 	void isHurted();
+	void updatePower(DWORD dt);
 
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 };

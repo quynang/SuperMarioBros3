@@ -14,6 +14,7 @@ void IdleState::handleOnKeyUp(CMario& mario, int keyCode) {
 	case DIK_A:
 		mario.is_holding = false;
 		mario.can_pick_item = false;
+		mario.is_running = false;
 		break;
 	}	
 };

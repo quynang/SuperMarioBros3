@@ -34,14 +34,23 @@ void HUB::Render()
 		CSprites::GetInstance()->Get(BLACK_TRIANGLE_TEXTURE_ID)->DrawOnScreen(51 + i*8, y + 10, 255);
 	}
 
+	for (int i = 0; i < power - 1; i++)
+	{
+		CSprites::GetInstance()->Get(WHITE_TRIANGLE_TEXTURE_ID)->DrawOnScreen(51 + i*8, y + 10, 255);
+	}
 	CSprites::GetInstance()->Get(BLACK_P_TEXTURE_ID)->DrawOnScreen(100, y + 10, 255);
+	if (power == 7)
+	{
+		CSprites::GetInstance()->Get(WHITE_P_TEXTURE_ID)->DrawOnScreen(100, y + 10, 255);
+	}
 	CSprites::GetInstance()->Get(M_TEXTURE_ID)->DrawOnScreen(9, y + 18, 255);
 	Font::GetInstance()->Draw(this->timeString, 130, y + 18);
 	Font::GetInstance()->Draw(this->score, 51, y + 18);
 }
 
-void HUB::Update(int time, int score)
+void HUB::Update(int time, int score, int power)
 {
+	this->power = power;
 	this->timeString = to_string(time);
 	this->score = to_string(score);
 
@@ -49,4 +58,5 @@ void HUB::Update(int time, int score)
 		this->timeString = "0" + timeString;
 	while (this->score.length() < 7)
 		this->score = "0" + this->score;
+
 }

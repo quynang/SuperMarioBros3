@@ -183,7 +183,7 @@ void OverworldMap::Load()
 
 void OverworldMap::Update(DWORD dt)
 {
-	HUB::GetInstance()->Update(0, 0);
+	HUB::GetInstance()->Update(0, 0, 0);
 }
 
 void OverworldMap::Render()
