@@ -8,7 +8,9 @@ void FallingState::handleOnKeyUp(CMario& mario, int keyCode) {
 	case DIK_X:
 		slow_falling = false;
 		break;
-		
+	case DIK_RIGHT:
+	case DIK_LEFT:
+		mario.vx = 0;
 	}
 };
 
@@ -25,6 +27,14 @@ void FallingState::handleOnKeyDown(CMario& mario, int keyCode) {
 void FallingState::handleKeyState(CMario& mario, BYTE* states) {
 	if ((states[DIK_X] & 0x80) > 0) {
 		slow_falling = true;
+	}
+	if ((states[DIK_RIGHT] & 0x80) > 0) {
+		mario.nx = 1;
+		mario.vx = MARIO_WALKING_SPEED*mario.nx;
+	}
+	if ((states[DIK_LEFT] & 0x80) > 0) {
+		mario.nx = -1;
+		mario.vx = MARIO_WALKING_SPEED*mario.nx;
 	}
 };
 
