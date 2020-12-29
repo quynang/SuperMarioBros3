@@ -23,15 +23,14 @@ void WalkingState::handleOnKeyUp(CMario& mario, int keyCode) {
 void WalkingState::handleOnKeyDown(CMario& mario, int keyCode) {
 	switch (keyCode)
 	{
-	case DIK_S:
+	case DIK_X:
 		if (mario.power == 7 && mario.type == MARIO_TYPE_RACCOON)
 			mario.state = new FlyingState();
-		else
-			mario.state = new JumpingState();
-		break;
 	case DIK_A:
 		mario.is_running = true;
 		break;
+	case DIK_S:
+		mario.state = new JumpingState();
 
 	}
 };

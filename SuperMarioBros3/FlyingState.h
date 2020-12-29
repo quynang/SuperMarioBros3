@@ -1,10 +1,11 @@
 #pragma once
 #include "MarioState.h"
 
-#define MAX_TIME	2.0f
+#define MAX_TIME	1800
 class FlyingState : public MarioState
 {
 	float counter_time = 0;
+	bool stop_flap_tail = false;
 public:
 	FlyingState() { current_state = FLYING; };
 	void handleOnKeyUp(CMario& mario, int keyCode);
