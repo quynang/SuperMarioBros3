@@ -309,6 +309,8 @@ void CMario::processCollision() {
 		x += dx;
 		y += dy;
 	
+		if (state->current_state == WALKING)
+			state = new FallingState();
 	}
 	else 
 	{
