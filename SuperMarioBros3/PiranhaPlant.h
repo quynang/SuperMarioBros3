@@ -10,12 +10,16 @@
 #define PIRANHA_STATE_HIDDEN	300
 #define PIRANHA_STATE_WAITING	400
 
+#define MIN_DISTANCE_TO_START	20
+#define MAX_DISTANCE_TO_START	140
+
 #define MAX_TIME_TO_SWICTH_ACTION	800
 class PiranhaPlant : public Enemy
 {
 	int state;
 	float charge_y = 0;
 	float counter_time = 0;
+	bool start_action = false;
 public:
 	PiranhaPlant();
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);

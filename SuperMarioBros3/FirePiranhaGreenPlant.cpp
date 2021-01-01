@@ -74,19 +74,29 @@ void FirePiranhaGreenPlant::Update(DWORD dt)
 		time_fire += dt;
 		this->startFire();
 		if (time_fire > MAX_TIME_FIRE) {
-			SetState(STATE_HIDDEN);
+			SetState(STATE_MOVE_DOWN);
 			time_fire = 0;
 		};
 	}
 
-	if (state == STATE_HIDDEN)
+	if (state == STATE_MOVE_DOWN)
 	{
 		charge_y += abs(dy);
 		bullet_was_thrown = false;
 		if (charge_y >= MAX_CHARGE_Y)
 		{	
 			charge_y = 0;
-			vy = 0;
+			SetState(STATE_HIDDEN);
+		}
+	}
+
+	if (state == STATE_HIDDEN)
+	{
+		if (start_action) time_hide += dt;
+
+		if (time_hide > MAX_TIME_HIDE && start_action)
+		{
+			time_hide = 0;
 			start_action = false;
 		}
 	}
@@ -123,6 +133,9 @@ void FirePiranhaGreenPlant::Render()
 		}
 		break;
 
+	case STATE_MOVE_DOWN:
+		ani_index = this->nx > 0 ? INDEX_ANI_RIGHT_COME_OUT : INDEX_ANI_LEFT_COME_OUT;
+		break;
 	case STATE_HIDDEN:
 		ani_index = this->nx > 0 ? INDEX_ANI_RIGHT_COME_OUT : INDEX_ANI_LEFT_COME_OUT;
 		break;
@@ -149,8 +162,11 @@ void FirePiranhaGreenPlant::SetState(int state)
 	case STATE_FIRE:
 		vy = 0;
 		break;
-	case STATE_HIDDEN:
+	case STATE_MOVE_DOWN:
 		vy = SPEED_COME_OUT;
+		break;
+	case STATE_HIDDEN:
+		vy = 0;
 		break;
 	}
 	

@@ -1,10 +1,11 @@
 #include "PiranhaPlant.h"
+#include "PlayScence.h"
 #include "Utils.h"
 
 PiranhaPlant::PiranhaPlant()
 {
 	this->nx = 1;
-	SetState(PIRANHA_STATE_MOVE_UP);
+	SetState(PIRANHA_STATE_HIDDEN);
 	this->can_be_jumped_on = false;
 }
 
@@ -22,6 +23,23 @@ void PiranhaPlant::Update(DWORD dt)
 	MovableObject::Update(dt);
 	y += dy;
 	x += 0;
+	float ml, mt, mr, mb;
+	((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->GetBoundingBox(ml, mt, mr, mb);
+
+	float current_distance_x;
+	if (ml - this->x > 0)
+	{
+		current_distance_x = ml - (this->x + PIRANHA_BBOX_WIDTH);
+	}
+	else {
+		current_distance_x =  this->x - mr;
+	}
+
+	if (current_distance_x < MAX_DISTANCE_TO_START && current_distance_x > MIN_DISTANCE_TO_START && start_action == false)
+	{
+		start_action = true;
+		SetState(PIRANHA_STATE_MOVE_UP);
+	}
 
 	//Looping state.
 	if (this->state == PIRANHA_STATE_MOVE_UP)
@@ -59,8 +77,9 @@ void PiranhaPlant::Update(DWORD dt)
 		counter_time += dt;
 		if (counter_time >= MAX_TIME_TO_SWICTH_ACTION)
 		{
-			SetState(PIRANHA_STATE_MOVE_UP);
+
 			counter_time = 0;
+			start_action = false;
 		}
 	}
 		

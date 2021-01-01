@@ -14,7 +14,7 @@
 #define INDEX_ANI_RIGHT_FIRE_UP	8
 #define INDEX_ANI_RIGHT_FIRE_DOWN	9
 
-#define SPEED_COME_OUT	0.05f
+#define SPEED_COME_OUT	0.15f
 
 #define BBOX_WIDTH_FIRE_PLANT	16
 #define BBOX_HEIGHT_FIRE_PLANT	32
@@ -23,12 +23,14 @@
 #define STATE_COME_OUT	200
 #define STATE_LOOK	300
 #define STATE_FIRE	400
+#define STATE_MOVE_DOWN	500
 
 #define MIN_DISTANCE_TO_START	40
 #define MAX_DISTANCE_TO_START	140
 #define MAX_CHARGE_Y	32
 #define MAX_TIME_LOOK	500
 #define MAX_TIME_FIRE	200
+#define MAX_TIME_HIDE	600
 
 
 class FirePiranhaPlant : public Enemy
@@ -40,6 +42,7 @@ class FirePiranhaPlant : public Enemy
 	float time_look = 0;
 	bool is_look_up;
 	bool is_fire_up;
+	float time_hide;
 	float time_fire;
 	bool bullet_was_thrown = false;
 public:
