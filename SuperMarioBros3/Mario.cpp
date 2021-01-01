@@ -20,6 +20,7 @@
 #include "PlayScence.h"
 #include "SuperLeaf.h"
 #include "WingGoomba.h"
+#include "PlantFireBullet.h"
 
 //TODO: How to haven't to include state here.
 #include "WalkingState.h"
@@ -425,6 +426,10 @@ void CMario::processCollision() {
 					{
 						state = new IdleState();
 					}
+				}
+				else if (dynamic_cast<PlantFireBullet*>(e->obj))
+				{
+					this->isHurted();
 				}
 			}
 		}
