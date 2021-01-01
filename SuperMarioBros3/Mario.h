@@ -95,6 +95,7 @@ class CMario : public MovableObject
 	void processCollision();
 public:
 	int power = 0;
+	bool mission_passed = false;
 	CMario(float x = 0.0f, float y = 0.0f);
 	virtual void Update(DWORD dt);
 	virtual void Render();

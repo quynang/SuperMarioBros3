@@ -51,6 +51,12 @@ CMario::CMario(float x, float y) : MovableObject()
 
 void CMario::Update(DWORD dt)
 {
+
+	if (mission_passed) {
+		state = new WalkingState();
+		//return;
+	}
+		
 	state->update(*this, dt);
 	CGameObject::Update(dt);
 	vy += MARIO_GRAVITY * dt;

@@ -36,7 +36,7 @@ void BlockRandomItem::handleIsCollected() {
 		CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 		mario->SetPosition(x, y + 20);
 		mario->nx = 1;
-		mario->SetState(WALKING);
+		mario->mission_passed = true;
 		EffectFactory::GetInstance()->create(COLLECT_CARD, x, y, current_item);
 	}
 	
