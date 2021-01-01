@@ -85,6 +85,7 @@ void CFloatingBrick::ProduceItem() {
 	{
 	case BRICK_ITEM_TYPE_COIN_EFFECT:
 		EffectFactory::GetInstance()->create(COIN_100, this->x, this->y - 10);
+		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateMoney(1);
 		break;
 	case BRICK_ITEM_TYPE_DYNAMIC:
 		{

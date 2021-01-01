@@ -32,6 +32,7 @@ protected:
 	int timeLimit = 265;
 	DWORD timeGone = 0;
 	int score = 0;
+	int money = 0;
 	
 public: 
 	CPlayScene(int id, LPCWSTR filePath);
@@ -46,6 +47,7 @@ public:
 	void turnOnGameObjectUpdate() { this->is_update = true; }
 	CMario * GetPlayer() { return player; }
 	void UpdateScore(int score) { this->score += score; }
+	void UpdateMoney(int money) { this->money += money; }
 
 	//friend class CPlayScenceKeyHandler;
 };

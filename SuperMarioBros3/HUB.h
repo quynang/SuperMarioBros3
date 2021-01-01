@@ -20,10 +20,11 @@ class HUB
 	float x = 0, y = 0;
 	string timeString;
 	string score;
+	string money;
 	int power = 0;
 public:
 	void clear() { _instance = NULL; delete _instance; }
 	void Render();
-	void Update(int time, int score, int power);
+	void Update(int time, int score, int power, int money);
 	static HUB* GetInstance();
 };

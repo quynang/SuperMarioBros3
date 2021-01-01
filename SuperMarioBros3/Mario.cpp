@@ -342,7 +342,7 @@ void CMario::processCollision() {
 
 			if (dynamic_cast<StaticObject*>(e->obj))
 			{
-				if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))// Bug fix
+				if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FLYING))// Bug fix
 					state = new IdleState();
 				else if (e->ny > 0 && state->current_state == JUMPING)
 					state = new FallingState();

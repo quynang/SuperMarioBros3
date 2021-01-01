@@ -46,12 +46,14 @@ void HUB::Render()
 	CSprites::GetInstance()->Get(M_TEXTURE_ID)->DrawOnScreen(9, y + 18, 255);
 	Font::GetInstance()->Draw(this->timeString, 130, y + 18);
 	Font::GetInstance()->Draw(this->score, 51, y + 18);
+	Font::GetInstance()->Draw(this->money, 138, y + 10);
 }
 
-void HUB::Update(int time, int score, int power)
+void HUB::Update(int time, int score, int power, int money)
 {
 	this->power = power;
 	this->timeString = to_string(time);
+	this->money = to_string(money);
 	this->score = to_string(score);
 
 	while (this->timeString.length() < 3)

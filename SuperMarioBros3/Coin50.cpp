@@ -28,6 +28,7 @@ void Coin50::handleIsCollected() {
 	if (!is_dead)
 	{
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(100);
+		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateMoney(1);
 		this->is_dead = true;
 	}
 		
