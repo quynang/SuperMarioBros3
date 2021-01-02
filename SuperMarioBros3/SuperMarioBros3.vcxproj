@@ -154,6 +154,7 @@
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="HUB.cpp" />
     <ClCompile Include="IdleState.cpp" />
+    <ClCompile Include="IntroScene.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemFactory.cpp" />
     <ClCompile Include="JumpingState.cpp" />
@@ -225,6 +226,7 @@
     <ClInclude Include="Ground.h" />
     <ClInclude Include="HUB.h" />
     <ClInclude Include="IdleState.h" />
+    <ClInclude Include="IntroScene.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemFactory.h" />
     <ClInclude Include="JumpingState.h" />

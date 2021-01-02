@@ -6,7 +6,6 @@
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PlayScence.cpp" />
     <ClCompile Include="Scence.cpp" />
     <ClCompile Include="Sprites.cpp" />
     <ClCompile Include="Textures.cpp" />
@@ -164,7 +163,6 @@
       <Filter>HUB</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="OverworldMap.cpp" />
     <ClCompile Include="DieSate.cpp">
       <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
@@ -174,6 +172,15 @@
     <ClCompile Include="CollectCard.cpp">
       <Filter>GameEffects\Effects</Filter>
     </ClCompile>
+    <ClCompile Include="OverworldMap.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScence.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -181,7 +188,6 @@
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="KeyEventHandler.h" />
-    <ClInclude Include="PlayScence.h" />
     <ClInclude Include="Scence.h" />
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="Textures.h" />
@@ -355,7 +361,6 @@
       <Filter>HUB</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="OverworldMap.h" />
     <ClInclude Include="DieState.h">
       <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
@@ -364,6 +369,15 @@
     </ClInclude>
     <ClInclude Include="CollectCard.h">
       <Filter>GameEffects\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="OverworldMap.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScence.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroScene.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -402,6 +416,9 @@
     </Filter>
     <Filter Include="HUB">
       <UniqueIdentifier>{01e3312a-4b4b-4869-b4ba-037805141d77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{361455b7-4743-4ae4-bd8a-41a7cc51634f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

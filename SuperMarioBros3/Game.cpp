@@ -9,7 +9,14 @@
 #include "HUB.h"
 #include "Font.h"
 #include "Camera.h"
+#include "IntroScene.h"
 CGame * CGame::__instance = NULL;
+
+#define INTRO_SCENE_ID	1
+#define WORLD_MAP_SCENE_ID	2
+#define PLAYSCENE_ID	3
+
+
 
 /*
 	Initialize DirectX, create a Direct3D device for rendering within the window, initial Sprite library for 
@@ -363,17 +370,29 @@ void CGame::_ParseSection_SCENES(string line)
 	if (tokens.size() < 2) return;
 	int id = atoi(tokens[0].c_str());
 	LPCWSTR path = ToLPCWSTR(tokens[1]);
-	if (id == 1)
+
+	switch (id)
 	{
-		LPSCENE scene = new CPlayScene(id, path);
-		scenes[id] = scene;
+	case INTRO_SCENE_ID:
+		{
+			LPSCENE intro_scene = new IntroScene(id, path);
+			this->scenes[id] = intro_scene;
+		
+		}
+		break;
+	case WORLD_MAP_SCENE_ID:
+		{
+			LPSCENE world_map_scene = new OverworldMap(id, path);
+			this->scenes[id] = world_map_scene;
+		}
+		break;
+	case PLAYSCENE_ID:
+		{
+			LPSCENE play_scene = new CPlayScene(id, path);
+			this->scenes[id] = play_scene;
+		}
+		break;
 	}
-	else {
-		LPSCENE scene = new OverworldMap(id, path);
-		scenes[id] = scene;
-	}
-	
-	
 }
 
 /*
