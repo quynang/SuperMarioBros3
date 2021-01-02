@@ -790,7 +790,7 @@ map-world-1-1.txt
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba
 # BRICK 
 # MARIO
-0	25	250	1
+0	50	250	1
 
 # --- platform (hint: I created the list using Excel!) ----
 1	0	416	0
@@ -1052,7 +1052,7 @@ map-world-1-1.txt
 14	1440	128	22	4
 #========= KOOPAS=====
 6	532	352	5
-6	2095	350	5
+6	2092	350	5
 #coin 50
 7	1073	320	9
 7	1105	288	9

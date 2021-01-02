@@ -422,7 +422,7 @@ void CMario::processCollision() {
 							((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(100);
 						}
 					}
-					else if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FALLING_WHILE_FLYING))// Bug fix
+					else if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FLYING))// Bug fix
 					{
 						state = new IdleState();
 					}
@@ -474,7 +474,17 @@ void CMario::handleCollectItem(int item_type)
 		};
 		break;
 	case ITEM_SUPER_LEAF:
-		SetType(MARIO_TYPE_RACCOON);
+		if (type == MARIO_TYPE_BIG)
+		{
+			SetType(MARIO_TYPE_RACCOON);
+			EffectFactory::GetInstance()->create(SMOKE, this->x, this->y);
+		}
+		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(1000);
+		break;
+	case ITEM_GREEN_MUSHROOM:
+		{
+			((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(1000);
+		};
 		break;
 	}
 }

@@ -30,11 +30,11 @@ void FallingState::handleKeyState(CMario& mario, BYTE* states) {
 	}
 	if ((states[DIK_RIGHT] & 0x80) > 0) {
 		mario.nx = 1;
-		mario.vx = MARIO_WALKING_SPEED*mario.nx;
+		mario.vx = slow_falling ? 0.15 * mario.nx : MARIO_WALKING_SPEED * mario.nx;
 	}
 	if ((states[DIK_LEFT] & 0x80) > 0) {
 		mario.nx = -1;
-		mario.vx = MARIO_WALKING_SPEED*mario.nx;
+		mario.vx = slow_falling ? 0.15 * mario.nx : MARIO_WALKING_SPEED * mario.nx;
 	}
 };
 

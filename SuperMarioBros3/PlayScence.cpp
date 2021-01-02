@@ -60,7 +60,7 @@ using namespace std;
 #define MAX_SCENE_LINE 1024
 
 #define	OVER_WORD_MAP_SCENE_ID	2
-#define PLAY_SCENE_ID	1
+#define PLAY_SCENE_ID	3
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 	CScene(id, filePath)

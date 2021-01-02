@@ -97,6 +97,9 @@ void CFloatingBrick::ProduceItem() {
 			case MARIO_TYPE_BIG:
 				ItemFactory::GetInstance()->create(ITEM_SUPER_LEAF, this->x, this->y - 6);
 				break;
+			case MARIO_TYPE_RACCOON:
+				ItemFactory::GetInstance()->create(ITEM_SUPER_LEAF, this->x, this->y - 6);
+				break;
 			};
 		}
 		break;

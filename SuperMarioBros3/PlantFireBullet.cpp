@@ -1,7 +1,7 @@
 #include "PlantFireBullet.h"
 #include "PlayScence.h"
 #include <math.h>
-#define DELTA_Y	15
+#define DELTA_Y	20
 
 PlantFireBullet::PlantFireBullet() {
 

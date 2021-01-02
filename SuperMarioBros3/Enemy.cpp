@@ -21,7 +21,7 @@ void Enemy::Update(DWORD dt) {
 	float player_x, player_y;
 	mario->GetPosition(player_x, player_y);
 	if (abs(this->x - player_x) > 140) return;
-	if (abs(this->x - player_x) < 140 && player_y - this->y < -50) return;
+	if (abs(this->x - player_x) < 140 && player_y - this->y < -60) return;
 	MovableObject::Update(dt);
 }
 
