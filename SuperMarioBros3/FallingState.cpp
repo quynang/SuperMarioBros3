@@ -40,9 +40,7 @@ void FallingState::handleKeyState(CMario& mario, BYTE* states) {
 
 void FallingState::update(CMario& mario, DWORD dt) {
 	if (slow_falling && mario.type == MARIO_TYPE_RACCOON)
-		mario.vy = MARIO_GRAVITY*dt;
-	else 
-		mario.vy += MARIO_GRAVITY*dt;
+		mario.vy = MARIO_GRAVITY * dt;
 
 };
 
