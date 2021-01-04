@@ -1,4 +1,6 @@
 #include "Mushroom.h"
+#include "FloatingBrick.h"
+#include "FloatingBrick_2.h"
 #include "EffectFactory.h"
 #include "Utils.h"
 #include "PlayScence.h"
@@ -69,11 +71,20 @@ void Mushroom::Update(DWORD dt)
 			for (UINT i = 0; i < coEventsResult.size(); i++)
 			{
 				LPCOLLISIONEVENT e = coEventsResult[i];
-				if (e->nx != 0)
+
+				if (dynamic_cast<StaticObject*>(e->obj) || dynamic_cast<CFloatingBrick*>(e->obj) || dynamic_cast<FloatingBrick_2*>(e->obj))
 				{
-					this->nx = -this->nx;
-					this->vx = this->nx * MUSHROOM_MOVING_SPEED;
+					if (e->nx != 0)
+					{
+						this->nx = -this->nx;
+						this->vx = this->nx * MUSHROOM_MOVING_SPEED;
+					}
 				}
+				else {
+					vx = this->nx * MUSHROOM_MOVING_SPEED;
+					vy += MUSHROOM_GRAVITY;
+				}
+				
 			
 			}
 		}
