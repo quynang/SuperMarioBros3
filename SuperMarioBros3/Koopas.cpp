@@ -9,6 +9,7 @@ CKoopas::CKoopas()
 {
 	SetState(KOOPAS_STATE_WALKING);
 	this->nx = 1;
+	SetAnimationSetById(KOOPAS_ANI_SET_ID);
 }
 
 void CKoopas::GetBoundingBox(float &left, float &top, float &right, float &bottom)

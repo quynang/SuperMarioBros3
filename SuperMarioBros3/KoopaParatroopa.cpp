@@ -12,7 +12,7 @@ KoopaParatroopa::KoopaParatroopa()
 	this->vx = this->nx*PARATROPA_WALKING_SPEED;
 	this->type = PARATROPA_TYPE_HAS_WING;
 	this->SetState(PARATROPA_STATE_FALLING);
-	
+	SetAnimationSetById(PARATROPA_ANI_SET_ID);
 }
 
 void KoopaParatroopa::GetBoundingBox(float& left, float& top, float& right, float& bottom)

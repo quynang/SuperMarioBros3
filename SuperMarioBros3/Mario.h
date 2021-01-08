@@ -2,7 +2,8 @@
 #include "MovableObject.h"
 #include "MarioState.h"
 class MarioState;
-   
+
+#define MARIO_ANI_SET_ID 1
 #define MARIO_WALKING_SPEED		0.3f 
 //0.1f
 #define MARIO_JUMP_SPEED_Y		0.4f
@@ -71,7 +72,7 @@ class CMario : public MovableObject
 	float start_x;			// initial position of Mario at scene
 	float start_y;
 	
-	bool is_running;
+	bool is_running = false;
 	int can_pick_item = 0;
 	bool is_holding = false;
 	bool is_visible = true;
@@ -96,7 +97,7 @@ class CMario : public MovableObject
 public:
 	int power = 0;
 	bool mission_passed = false;
-	CMario(float x = 0.0f, float y = 0.0f);
+	CMario();
 	virtual void Update(DWORD dt);
 	virtual void Render();
 	void handleOnKeyUp(int keyCode);

@@ -7,8 +7,7 @@
 
 Mushroom::Mushroom(float x, float y)
 {
-	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
-	SetAnimationSet(animation_sets->Get(ITEMS_ANI_SET));
+	SetAnimationSetById(ITEMS_ANI_SET);
 	this->x = x;
 	this->y = y;
 	this->nx = 1;

@@ -44,7 +44,7 @@ struct CCollisionEvent
 class CGameObject
 {
 public:
-
+	int id;
 	float x; 
 	float y;
 
@@ -66,6 +66,7 @@ public:
 	LPANIMATION_SET animation_set;
 
 
+
 public:
 	virtual void AddCoObjects(vector<LPGAMEOBJECT>* coObjects = NULL);
 	virtual void AddCoObject(LPGAMEOBJECT coObject);
@@ -79,6 +80,10 @@ public:
 	D3DXVECTOR3 GetPosition() { D3DXVECTOR3 p; p.x = x; p.y = y; return p; };
 	
 	void SetAnimationSet(LPANIMATION_SET ani_set) { animation_set = ani_set; }
+	void SetAnimationSetById(int ani_id) { SetAnimationSet(CAnimationSets::GetInstance()->Get(ani_id)); }
+
+	virtual void SetInitInfoFromStringLine(string line);
+	void SetId(int id) { this->id = id; }
 
 	LPCOLLISIONEVENT SweptAABBEx(LPGAMEOBJECT coO);
 	void CalcPotentialCollisions(vector<LPGAMEOBJECT> *coObjects, vector<LPCOLLISIONEVENT> &coEvents);

@@ -8,8 +8,7 @@ PlantFireBullet::PlantFireBullet() {
 }
 
 PlantFireBullet::PlantFireBullet(float x, float y, int nx) {
-	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
-	SetAnimationSet(animation_sets->Get(ANI_SET_ID_FIRE_BULLET));
+	SetAnimationSetById(ANI_SET_ID_FIRE_BULLET);
 	this->x = x;
 	this->y = y;
 	this->nx = nx;

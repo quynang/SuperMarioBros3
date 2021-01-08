@@ -1,7 +1,7 @@
 #pragma once
-
 #include "Enemy.h"
 
+#define	FIRE_PIRANHA_PLANT_ANI_SET_ID	16
 #define INDEX_ANI_LEFT_COME_OUT	0
 #define INDEX_ANI_LEFT_LOOK_UP	1
 #define INDEX_ANI_LEFT_LOOK_DOWN	2

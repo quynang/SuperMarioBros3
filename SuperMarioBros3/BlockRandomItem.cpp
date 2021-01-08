@@ -5,8 +5,8 @@ void BlockRandomItem::GetBoundingBox(float &l, float &t, float &r, float &b)
 {
 	l = x;
 	t = y;
-	r = x + BRICK_BBOX_WIDTH;
-	b = y + BRICK_BBOX_HEIGHT;
+	r = x + BLOCK_RANDOM_ITEM_BBOX_WIDTH;
+	b = y + BLOCK_RANDOM_ITEM_BBOX_HEIGHT;
 }
 
 void BlockRandomItem::Update(DWORD dt)
@@ -27,7 +27,7 @@ void BlockRandomItem::Render()
 {
 	if (is_collected) return;
 	int ani = current_item;
-	animation_set->at(ani)->Render(x, y);
+	animation_set->at(ani)->Render(x + 5, y + 5);
 }
 
 void BlockRandomItem::handleIsCollected() {

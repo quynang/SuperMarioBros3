@@ -1,5 +1,5 @@
 #include "GreenPipe.h"
-
+#include "Utils.h"
 void CGreenPipe::Render()
 {
 	if (type == GREEN_PIPE_TYPE_UP)
@@ -17,4 +17,13 @@ void CGreenPipe::GetBoundingBox(float &l, float &t, float &r, float &b)
 	t = y;
 	r = x + BOX_PIPE_WIDTH;
 	b = y + FRAME_SIZE*size_height;
+}
+
+void CGreenPipe::SetInitInfoFromStringLine(string line)
+{
+	vector<string> tokens = split(line);
+	int size_height = atoi(tokens[4].c_str());
+	int type = atoi(tokens[5].c_str());
+	this->size_height = size_height;
+	this->type = type;
 }

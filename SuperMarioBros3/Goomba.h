@@ -1,6 +1,7 @@
 #pragma once
 #include "Enemy.h"
 
+#define	GOOMBA_ANI_SET_ID	3
 #define GOOMBA_WALKING_SPEED 0.1f;
 #define GOOMBA_GRAVITY			0.001f
 

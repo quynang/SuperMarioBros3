@@ -39,14 +39,11 @@
 #include "DieState.h"
 
 
-CMario::CMario(float x, float y) : MovableObject()
+CMario::CMario() : MovableObject()
 {
+	SetAnimationSetById(MARIO_ANI_SET_ID);
 	type = MARIO_TYPE_SMALL;
 	untouchable = 0;
-	start_x = x; 
-	start_y = y;
-	this->x = x; 
-	this->y = y;
 	state = new FallingState();
 }
 

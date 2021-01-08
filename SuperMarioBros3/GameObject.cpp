@@ -144,6 +144,13 @@ void CGameObject::RenderBoundingBox()
 }
 
 
+void CGameObject::SetInitInfoFromStringLine(string line)
+{
+
+}
+
+
+
 CGameObject::~CGameObject()
 {
 

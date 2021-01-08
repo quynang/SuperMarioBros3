@@ -1,5 +1,6 @@
 #pragma once
 #include "StaticObject.h"
+
 #define BREAKABLE_BRICK_ANI_SET_ID	12
 #define BREAKABLE_BRICK_BBOX_WIDTH	16
 #define BREAKABLE_BRICK_BBOX_HEIGHT	16
@@ -14,7 +15,7 @@ class BreakableBrick : public StaticObject
 	int item_type;
 
 public:
-	BreakableBrick() { this->tag = "BREAKABLE_BRICK"; }
+	BreakableBrick() { this->tag = "BREAKABLE_BRICK"; SetAnimationSetById(BREAKABLE_BRICK_ANI_SET_ID); }
 	float countY_ = 0;
 	float init_y;
 	void ProduceItem();

@@ -1,6 +1,7 @@
 #pragma once
-
 #include "Enemy.h"
+
+#define	PARATROPA_ANI_SET_ID	17	 
 
 #define PARATROPA_ANI_INDEX_WALKING_LEFT	0
 #define PARATROPA_ANI_INDEX_WALKING_RIGHT	1

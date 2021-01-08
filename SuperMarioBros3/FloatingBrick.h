@@ -1,5 +1,7 @@
 #pragma once
 #include "StaticObject.h"
+
+#define FLOATING_BRICK_ANI_SET_ID	4
 #define BOUNCING_STATE	100
 #define REBOUNDING_STATE	200
 #define STATIC_STATE	300
@@ -18,7 +20,6 @@
 #define BRICK_ITEM_TYPE_DYNAMIC	1
 #define BRICK_ITEM_TYPE_BUTTON_P	2
 #define BRICK_ITEM_TYPE_GREEN_MUSHROOM	3
-#define BRICK_ITEM_TYPE_GREEN_MUSHROOM	4
 
 class CFloatingBrick : public MovableObject
 {
@@ -33,7 +34,9 @@ public:
 	float countY_ = 0;
 	float init_y;
 	void ProduceItem();
-	CFloatingBrick(float init_y, int item_type) { this->init_y = init_y; this->item_type = item_type; };
+	CFloatingBrick() { this->SetAnimationSetById(FLOATING_BRICK_ANI_SET_ID); };
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
+	void SetInitInfoFromStringLine(string line);
+
 };

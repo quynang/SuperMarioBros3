@@ -4,8 +4,7 @@
 
 SuperLeaf::SuperLeaf(float x, float y)
 {
-	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
-	SetAnimationSet(animation_sets->Get(SUPER_LEAF_ANI_SET_ID));
+	SetAnimationSetById(SUPER_LEAF_ANI_SET_ID);
 	this->x = x;
 	this->y = y;
 	this->nx = 1;

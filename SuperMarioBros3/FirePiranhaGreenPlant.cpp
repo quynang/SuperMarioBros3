@@ -10,6 +10,7 @@ FirePiranhaGreenPlant::FirePiranhaGreenPlant()
 	this->vy = 0;
 	this->can_be_jumped_on = false;
 	this->state = STATE_HIDDEN;
+	SetAnimationSetById(FIRE_PIRANHA_GREEN_PLANT_ANI_SET_ID);
 }
 
 void FirePiranhaGreenPlant::GetBoundingBox(float& left, float& top, float& right, float& bottom)

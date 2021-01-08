@@ -1,7 +1,7 @@
 #pragma once
-
 #include "Enemy.h"
 
+#define WING_GOOMBA_ANI_SET_ID	15
 #define WING_GOOMBA_WALKING_SPEED 0.08f;
 #define WING_GOOMBA_GRAVITY	0.07f;
 #define	DEBOUNCING_SPEED_Y	-0.2f

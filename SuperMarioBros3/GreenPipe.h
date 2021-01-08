@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "StaticObject.h"
 
+#define GREEND_PIPE_ANI_SET_ID	18
 #define GREEN_PIPE_ANI_UP	0
 #define GREEN_PIPE_ANI_DOWN	1
 #define BOX_PIPE_WIDTH 32
@@ -12,10 +13,11 @@
 #define GREEN_PIPE_TYPE_NONE_ANI	3
 class CGreenPipe : public StaticObject
 {
-	int size_height;
-	int type;
+	int size_height = 0;
+	int type = 0;
 public:
-	CGreenPipe(int s_h, int type) { this->size_height = s_h; this->type = type; };
+	CGreenPipe() { SetAnimationSetById(GREEND_PIPE_ANI_SET_ID); };
 	virtual void Render();
 	virtual void GetBoundingBox(float &l, float &t, float &r, float &b);
+	void SetInitInfoFromStringLine(string line);
 };

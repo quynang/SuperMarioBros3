@@ -5,8 +5,7 @@ class GreenMushroom : public Mushroom
 {
 public:
 	GreenMushroom(float x, float y) : Mushroom(x, y) {
-		CAnimationSets* animation_sets = CAnimationSets::GetInstance();
-		SetAnimationSet(animation_sets->Get(GREEN_MUSHROOM_ANI_SET_ID));
+		SetAnimationSetById(GREEN_MUSHROOM_ANI_SET_ID);
 		this->type = ITEM_GREEN_MUSHROOM;
 	};
 	

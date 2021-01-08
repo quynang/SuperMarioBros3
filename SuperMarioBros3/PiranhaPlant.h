@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Enemy.h"
+
+#define PIRANHA_PLANT_ANI_SET_ID	20
 #define PIRANHA_BBOX_WIDTH	16
 #define PIRANHA_BBOX_HEIGHT	24
 #define PIRANHA_SPEED_Y 0.08f

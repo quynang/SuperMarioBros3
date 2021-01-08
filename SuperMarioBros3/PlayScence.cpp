@@ -36,26 +36,24 @@ using namespace std;
 #define SCENE_SECTION_GRID	8
 #define SCENE_SECTION_FONT	9
 
-#define OBJECT_TYPE_MARIO	0
-#define OBJECT_TYPE_GROUND	1
-#define OBJECT_TYPE_BIG_BOX	2
-#define OBJECT_TYPE_GOOMBA	3
-#define OBJECT_TYPE_GREEN_PIPE	4
-#define OBJECT_TYPE_FLOATING_BRICK	5
-#define OBJECT_TYPE_KOOPAS	6
-#define OBJECT_TYPE_COIN_50	7
-#define BREAKABLE_BRICK	8
-#define OBJECT_TYPE_WING_GOOMBA	9
-#define OBJECT_TYPE_FIRE_PLANT	10
-#define OBJECT_TYPE_KOOPA_PARATROPA	11
-#define OBJECT_TYPE_FIRE_GREEN_PLANT	12
-#define OBJECT_TYPE_PIRANHA_PLANT	13
-#define OBJECT_TYPE_FLOATING_BRICK_2	14
-#define OBJECT_TYPE_BRICK	15
-#define OBJECT_TYPE_BLOCK_RANDOM_ITEM	16
+#define OBJECT_TYPE_BIG_BOX	100
+#define OBJECT_TYPE_PIPE	101
+#define OBJECT_TYPE_BLOCK_RANDOM_ITEM	125
+#define OBJECT_TYPE_GOOMBA	111
+#define OBJECT_TYPE_BRICK	112
+#define OBJECT_TYPE_FLOATING_BRICK	113
+#define OBJECT_TYPE_FLOATING_BRICK_2	114
+#define OBJECT_TYPE_GROUND	115
+#define OBJECT_TYPE_PIRANHA_PLANT	116
+#define OBJECT_TYPE_FIRE_PIRANHA_PLANT	117
+#define OBJECT_TYPE_FIRE_PIRANHA_PLANT_GREEN	118
+#define OBJECT_TYPE_COIN	119
+#define OBJECT_TYPE_MARIO	120
+#define OBJECT_TYPE_KOOPAS	121
+#define OBJECT_TYPE_PARATROPA	122
+#define OBJECT_TYPE_WING_GOOMBA	123
+#define OBJECT_TYPE_BREAKABLE_BRICK	124
 
-
-#define OBJECT_TYPE_PORTAL	50
 
 #define MAX_SCENE_LINE 1024
 
@@ -167,17 +165,13 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 {
 	vector<string> tokens = split(line);
 
-	//DebugOut(L"--> %s\n",ToWSTR(line).c_str());
-
 	if (tokens.size() < 3) return; // skip invalid lines - an object set must have at least id, x, y
 
-	int object_type = atoi(tokens[0].c_str());
-	float x = atof(tokens[1].c_str());
-	float y = atof(tokens[2].c_str());
+	int id = atoi(tokens[0].c_str());
+	int object_type = atoi(tokens[1].c_str());
+	float x = atof(tokens[2].c_str());
+	float y = atof(tokens[3].c_str());
 
-	int ani_set_id = atoi(tokens[3].c_str());
-
-	CAnimationSets * animation_sets = CAnimationSets::GetInstance();
 
 	CGameObject *obj = NULL;
 
@@ -189,77 +183,40 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 			DebugOut(L"[ERROR] MARIO object was created before!\n");
 			return;
 		}
-		obj = new CMario(x,y); 
+		obj = new CMario(); 
 		player = (CMario*)obj;  
 
 		DebugOut(L"[INFO] Player object created!\n");
-		break;
+	break;
 
 	case OBJECT_TYPE_GROUND: obj = new CGround(); break;
 	case OBJECT_TYPE_GOOMBA: obj = new CGoomba(); break;
 	case OBJECT_TYPE_KOOPAS: obj = new CKoopas(); break;
-	case OBJECT_TYPE_COIN_50: obj = new Coin50(); break;
-	case BREAKABLE_BRICK: obj = new BreakableBrick(); break;
+	case OBJECT_TYPE_COIN: obj = new Coin50(); break;
+	case OBJECT_TYPE_BREAKABLE_BRICK: obj = new BreakableBrick(); break;
 	case OBJECT_TYPE_WING_GOOMBA: obj = new WingGoomba(); break;
-	case OBJECT_TYPE_FIRE_PLANT: obj = new FirePiranhaPlant(); break;
-	case OBJECT_TYPE_KOOPA_PARATROPA: obj = new KoopaParatroopa(); break;
-	case OBJECT_TYPE_FIRE_GREEN_PLANT: obj = new FirePiranhaGreenPlant(); break;
+	case OBJECT_TYPE_FIRE_PIRANHA_PLANT: obj = new FirePiranhaPlant(); break;
+	case OBJECT_TYPE_PARATROPA: obj = new KoopaParatroopa(); break;
+	case OBJECT_TYPE_FIRE_PIRANHA_PLANT_GREEN: obj = new FirePiranhaGreenPlant(); break;
 	case OBJECT_TYPE_PIRANHA_PLANT: obj = new PiranhaPlant(); break;
 	case OBJECT_TYPE_BRICK: obj = new Brick(); break;
 	case OBJECT_TYPE_BLOCK_RANDOM_ITEM: obj = new BlockRandomItem(); break;
-
-	case OBJECT_TYPE_FLOATING_BRICK: {
-		int item_type = atoi(tokens[4].c_str());
-		obj = new CFloatingBrick(y, item_type);
-		break;
-	}
-
-	case OBJECT_TYPE_PORTAL:
-		{	
-			float r = atof(tokens[4].c_str());
-			float b = atof(tokens[5].c_str());
-			int scene_id = atoi(tokens[6].c_str());
-			obj = new CPortal(x, y, r, b, scene_id);
-		}
-		break;
-
-	case OBJECT_TYPE_BIG_BOX: 
-		{
-			int size_width = atoi(tokens[4].c_str());
-			int size_height = atoi(tokens[5].c_str());
-			obj = new CBigBox(size_width, size_height);
-		}
-		break;
-
-	case OBJECT_TYPE_GREEN_PIPE: 
-		{
-			int size_height = atoi(tokens[4].c_str());
-			int type = atoi(tokens[5].c_str());
-			obj = new CGreenPipe(size_height, type);
-		}
-		break;
-
-	case OBJECT_TYPE_FLOATING_BRICK_2:
-	{
-		int item_type = atoi(tokens[4].c_str());
-		obj = new FloatingBrick_2(y, item_type);
-		break;
-	}
-		
+	case OBJECT_TYPE_FLOATING_BRICK: obj = new CFloatingBrick(); break;
+	case OBJECT_TYPE_BIG_BOX: obj = new CBigBox(); break;
+	case OBJECT_TYPE_PIPE: obj = new CGreenPipe(); break;
+	case OBJECT_TYPE_FLOATING_BRICK_2: obj = new FloatingBrick_2(); break;	
 	default:
 		DebugOut(L"[ERR] Invalid object type: %d\n", object_type);
 		return;
 	}
 
-	// General object setup
+	obj->SetId(id);
 	obj->SetPosition(x, y);
-	if (ani_set_id != 0) {
-		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
-		obj->SetAnimationSet(ani_set);
-	}
+	obj->SetInitInfoFromStringLine(line);
 	
 	LPUNIT unit = new Unit();
 	unit->object = obj;
+
 	m_grid->addUnitToLastOfCell(unit);
 
 	objects.push_back(obj);
@@ -440,7 +397,7 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 		game->SwitchScene(PLAY_SCENE_ID);
 		break;
 	case DIK_T:
-		game->SwitchScene(OVER_WORD_MAP_SCENE_ID);
+		mario->SetPosition(250, 2070);
 		break;
 	}
 }

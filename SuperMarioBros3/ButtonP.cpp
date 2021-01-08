@@ -2,8 +2,7 @@
 #include "PlayScence.h"
 #include "BreakableBrick.h"
 ButtonP::ButtonP(float x, float y) {
-	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
-	SetAnimationSet(animation_sets->Get(BUTTON_P_ANI_SET_ID));
+	SetAnimationSetById(BUTTON_P_ANI_SET_ID);
 	this->x = x;
 	this->y = y;
 	SetState(BUTTON_P_STATE_MOVE_UP);

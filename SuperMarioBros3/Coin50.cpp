@@ -3,8 +3,7 @@
 
 
 Coin50::Coin50(float x, float y) {
-	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
-	SetAnimationSet(animation_sets->Get(COIN_50_ANI_SET_ID));
+	SetAnimationSetById(COIN_50_ANI_SET_ID);
 	this->x = x;
 	this->y = y;
 	this->type = ITEM_COIN_50;

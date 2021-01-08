@@ -2,6 +2,7 @@
 
 #include "Enemy.h"
 
+#define KOOPAS_ANI_SET_ID	5
 #define KOOPAS_WALKING_SPEED 0.07f;
 #define KOOPAS_SLIDING_SPEED 0.4f;
 #define KOOPAS_GRAVITY	0.015f;

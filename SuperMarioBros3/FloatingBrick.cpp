@@ -112,3 +112,12 @@ void CFloatingBrick::ProduceItem() {
 
 	}
 }
+
+void CFloatingBrick::SetInitInfoFromStringLine(string line)
+{
+	vector<string> tokens = split(line);
+	int init_y = atoi(tokens[3].c_str());
+	int item_type = atoi(tokens[4].c_str());
+	this->init_y = init_y;
+	this->item_type = item_type;
+}

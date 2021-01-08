@@ -10,6 +10,7 @@ WingGoomba::WingGoomba()
 	this->type = TYPE_HAS_WING;
 	this->SetState(WING_GOOMBA_STATE_WALKING);
 	setStep(STEP_JUMPING_NONE);
+	SetAnimationSetById(WING_GOOMBA_ANI_SET_ID);
 	
 }
 

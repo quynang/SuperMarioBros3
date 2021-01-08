@@ -7,6 +7,7 @@ PiranhaPlant::PiranhaPlant()
 	this->nx = 1;
 	SetState(PIRANHA_STATE_HIDDEN);
 	this->can_be_jumped_on = false;
+	SetAnimationSetById(PIRANHA_PLANT_ANI_SET_ID);
 }
 
 void PiranhaPlant::GetBoundingBox(float& left, float& top, float& right, float& bottom)
