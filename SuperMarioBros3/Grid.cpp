@@ -1,14 +1,23 @@
 #include "Grid.h"
 #include "Utils.h"
+#include <fstream>
+#include "PlayScence.h"
 
-Grid::Grid(int width, int height, int cellSize) {
+#define GRID_SECTION_UNKNOWN -1
+#define MAX_GRID_LINE   1024
+#define GRID_SECTION_INFO   1
+#define GRID_SECTION_CELLS  2
 
-	this->m_cellSize = cellSize;
+Grid::Grid(LPCWSTR filePath) {
+
+    this->filePath = filePath;
+
+	/*this->m_cellSize = cellSize;
 	this->m_width = width;
 	this->m_height = height;
 	this->m_numXCells = (int) width / cellSize;
 	this->m_numYCells = (int)height / cellSize;
-    this->m_cells.resize(m_numYCells * m_numXCells);
+    this->m_cells.resize(m_numYCells * m_numXCells);*/
 }
 
 void Grid::addUnitToFirstOfCell(LPUNIT unit) {
@@ -221,4 +230,69 @@ void Grid::findGameObjectsByTag(string tagName, vector<LPGAMEOBJECT>& resultObje
             temp = temp->next_;
         }
     }
+}
+
+void Grid::_parseSection_INFO(string line)
+{
+    vector<string> tokens = split(line);
+
+    int numXCells = atoi(tokens[0].c_str());
+    int numYCells = atoi(tokens[1].c_str());
+    int cellSize = atoi(tokens[2].c_str());
+
+    this->m_numXCells = numXCells;
+    this->m_numYCells = numYCells;
+    this->m_cellSize = cellSize;
+    this->m_cells.resize(numYCells * numXCells);
+
+}
+
+void Grid::_parseSection_CELLS(string line)
+{
+    vector<string> tokens = split(line);
+
+    int x = atoi(tokens[0].c_str());
+    int y = atoi(tokens[1].c_str());
+    Cell* cell = this->getCell(x, y);
+    int index_flag = 2;
+
+    while (index_flag < tokens.size())
+    {
+        int object_id = atoi(tokens[index_flag].c_str());
+        CGameObject* obj = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->findObjectById(object_id);
+        Unit* unit = new Unit();
+        unit->object = obj;
+        this->addUnitToSpecificCell(unit, cell);
+        index_flag++;
+    }
+}
+
+void Grid::Load()
+{
+    DebugOut(L"[INFO] Start loading grid from file: %s \n", filePath);
+
+    ifstream f;
+    f.open(this->filePath);
+
+    int section = GRID_SECTION_UNKNOWN;
+
+    char str[MAX_GRID_LINE];
+
+    while (f.getline(str, MAX_GRID_LINE))
+    {
+        string line(str);
+
+        if (line[0] == '#') continue;	// skip comment lines
+
+        if (line == "[INFO]") { section = GRID_SECTION_INFO; continue; }
+        if (line == "[CELLS]") { section = GRID_SECTION_CELLS; continue; }
+
+        switch (section)
+        {
+        case GRID_SECTION_INFO: _parseSection_INFO(line); break;
+        case GRID_SECTION_CELLS: _parseSection_CELLS(line); break;
+        }
+
+    }
+    f.close();
 }

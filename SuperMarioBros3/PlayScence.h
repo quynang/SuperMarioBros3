@@ -43,6 +43,7 @@ public:
 	virtual void Render();
 	virtual void Unload();
 	void findGameObjectsByTag(string tagName, vector<LPGAMEOBJECT> &resultObjects);
+	CGameObject* findObjectById(int id);
 	void turnOffGameObjectUpdate() { this->is_update = false; }
 	void turnOnGameObjectUpdate() { this->is_update = true; }
 	CMario * GetPlayer() { return player; }

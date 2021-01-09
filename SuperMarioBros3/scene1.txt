@@ -1,8 +1,6 @@
 # 	id	file_path	transparent_color_r	g	b
 [MAP]
 map-world-1-1.txt
-[GRID]
-#width	height	cell_size
 2816	432	210
 [TEXTURES]
 0	textures\mario-1.png	255	255	255
@@ -1091,3 +1089,5 @@ map-world-1-1.txt
 [FONT]
 #texture_id 	file_path	num_cols	font_size 	sprite_spacing
 121	textures\font-2.png	12	8	2
+[GRID]
+grid-world-1-1.txt

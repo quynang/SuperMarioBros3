@@ -172,7 +172,6 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	float x = atof(tokens[2].c_str());
 	float y = atof(tokens[3].c_str());
 
-
 	CGameObject *obj = NULL;
 
 	switch (object_type)
@@ -213,12 +212,6 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	obj->SetId(id);
 	obj->SetPosition(x, y);
 	obj->SetInitInfoFromStringLine(line);
-	
-	LPUNIT unit = new Unit();
-	unit->object = obj;
-
-	m_grid->addUnitToLastOfCell(unit);
-
 	objects.push_back(obj);
 }
 
@@ -326,15 +319,9 @@ void CPlayScene::Update(DWORD dt)
 }
 
 void CPlayScene::_ParseSection_GRID(string line) {
-	vector<string> tokens = split(line);
-
-	if (tokens.size() < 2) return; // skip invalid lines - an animation set must at least id and one animation id
-
-	int width = atoi(tokens[0].c_str());
-	int height = atoi(tokens[1].c_str());
-	int cell_size = atoi(tokens[2].c_str());
-
-	m_grid = new Grid(width, height, cell_size);
+	LPCWSTR path = ToLPCWSTR(line);
+	m_grid = new Grid(path);
+	m_grid->Load();
 }
 void CPlayScene::Render()
 {
@@ -420,4 +407,16 @@ void CPlayScenceKeyHandler::KeyState(BYTE *states)
 void CPlayScene::findGameObjectsByTag(string tagName, vector<LPGAMEOBJECT> &resultObjects)
 {
 	m_grid->findGameObjectsByTag(tagName, resultObjects);
+}
+
+CGameObject* CPlayScene::findObjectById(int id)
+{
+    for (size_t i = 0; i < objects.size(); i++)
+    {
+        if (objects.at(i)->id == id)
+        {
+            return objects.at(i);
+            break;
+        }     
+    }
 }

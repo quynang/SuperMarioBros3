@@ -11,14 +11,18 @@ struct Cell {
 };
 
 class Grid {
+    LPCWSTR filePath;
 public:
 
-    Grid(int width, int height, int cellSize);
+    Grid(LPCWSTR filePath);
     ~Grid();
 
     void addUnitToLastOfCell(LPUNIT unit);
     void addUnitToSpecificCell(LPUNIT unit, Cell* cell);
     void addUnitToFirstOfCell(LPUNIT unit);
+    void Load();
+    void _parseSection_INFO(string line);
+    void _parseSection_CELLS(string line);
 
     // Gets cell based on cell coordinates
     Cell* getCell(int x, int y);
