@@ -153,7 +153,7 @@ void IntroSceneKeyHandler::OnKeyDown(int KeyCode)
 	switch (KeyCode)
 	{
 		case DIK_S:
-			CGame::GetInstance()->SwitchScene(2);
+			CGame::GetInstance()->SwitchScene(0);
 			break;
 	}
 }

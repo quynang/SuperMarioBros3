@@ -22,7 +22,7 @@ void CollectCard::Update(DWORD dt) {
 	if (counter_time > 2000)
 	{
 		this->is_finished = true;
-		CGame::GetInstance()->SwitchScene(2);
+		CGame::GetInstance()->SwitchScene(0);
 	}
 		
 };

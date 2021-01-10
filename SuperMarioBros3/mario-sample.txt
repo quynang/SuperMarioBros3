@@ -1,8 +1,0 @@
-[SETTINGS]
-start	1
-#scene list
-[SCENES]
-1	intro-scene.txt
-2	over-world-map.txt
-3	scene1.txt
-

@@ -12,9 +12,9 @@
 #include "IntroScene.h"
 CGame * CGame::__instance = NULL;
 
-#define INTRO_SCENE_ID	1
-#define WORLD_MAP_SCENE_ID	2
-#define PLAYSCENE_ID	3
+#define INTRO_SCENE_ID	-1
+#define WORLD_MAP_SCENE_ID	0
+#define PLAYSCENE_ID	1
 
 
 

@@ -1,6 +1,6 @@
 # 	id	file_path	transparent_color_r	g	b
 [MAP]
-map-world-1-1.txt
+scenes\1-1\map.txt
 2816	432	210
 [TEXTURES]
 0	textures\mario-1.png	255	255	255
@@ -786,9 +786,9 @@ map-world-1-1.txt
 24	1411	1412
 #=========BLOCK RANDOM ITEM=========
 25	1450	1451	1452
+
+
 [OBJECTS]
-
-
 #id	type	x	y	ani_set_id	extra_settings per object type
 # type: 0 = Mario , 1 = Ground, 2 = BigBox, 3 = Goomba
 # MARIO
@@ -1090,4 +1090,4 @@ map-world-1-1.txt
 #texture_id 	file_path	num_cols	font_size 	sprite_spacing
 121	textures\font-2.png	12	8	2
 [GRID]
-grid-world-1-1.txt
+scenes\1-1\grid.txt
