@@ -38,21 +38,21 @@ using namespace std;
 
 #define OBJECT_TYPE_BIG_BOX	100
 #define OBJECT_TYPE_PIPE	101
-#define OBJECT_TYPE_BLOCK_RANDOM_ITEM	125
-#define OBJECT_TYPE_GOOMBA	111
-#define OBJECT_TYPE_BRICK	112
-#define OBJECT_TYPE_FLOATING_BRICK	113
-#define OBJECT_TYPE_FLOATING_BRICK_2	114
-#define OBJECT_TYPE_GROUND	115
-#define OBJECT_TYPE_PIRANHA_PLANT	116
-#define OBJECT_TYPE_FIRE_PIRANHA_PLANT	117
-#define OBJECT_TYPE_FIRE_PIRANHA_PLANT_GREEN	118
-#define OBJECT_TYPE_COIN	119
-#define OBJECT_TYPE_MARIO	120
-#define OBJECT_TYPE_KOOPAS	121
-#define OBJECT_TYPE_PARATROPA	122
-#define OBJECT_TYPE_WING_GOOMBA	123
-#define OBJECT_TYPE_BREAKABLE_BRICK	124
+#define OBJECT_TYPE_GOOMBA	1
+#define OBJECT_TYPE_BRICK	2
+#define OBJECT_TYPE_FLOATING_BRICK	3
+#define OBJECT_TYPE_FLOATING_BRICK_2	4
+#define OBJECT_TYPE_GROUND	5
+#define OBJECT_TYPE_PIRANHA_PLANT	6
+#define OBJECT_TYPE_FIRE_PIRANHA_PLANT	7
+#define OBJECT_TYPE_FIRE_PIRANHA_PLANT_GREEN	8
+#define OBJECT_TYPE_COIN	9
+#define OBJECT_TYPE_MARIO	10
+#define OBJECT_TYPE_KOOPAS	11
+#define OBJECT_TYPE_PARATROPA	12
+#define OBJECT_TYPE_WING_GOOMBA	13
+#define OBJECT_TYPE_BREAKABLE_BRICK	14
+#define OBJECT_TYPE_BLOCK_RANDOM_ITEM	15
 
 
 #define MAX_SCENE_LINE 1024
@@ -365,7 +365,8 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 {
 	CGame* game = CGame::GetInstance();
 	CMario* mario = ((CPlayScene*)scence)->GetPlayer();
-	mario->handleOnKeyDown(KeyCode);
+	if(mario)
+		mario->handleOnKeyDown(KeyCode);
 	switch (KeyCode)
 	{
 	case DIK_1:
@@ -392,7 +393,8 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 {
 	CMario* mario = ((CPlayScene*)scence)->GetPlayer();
-	mario->handleOnKeyUp(KeyCode);
+	if(mario)
+		mario->handleOnKeyUp(KeyCode);
 }
 
 void CPlayScenceKeyHandler::KeyState(BYTE *states)
@@ -400,7 +402,8 @@ void CPlayScenceKeyHandler::KeyState(BYTE *states)
 
 	CGame *game = CGame::GetInstance();
 	CMario* mario = ((CPlayScene*)scence)->GetPlayer();
-	mario->handleKeyState(states);
+	if(mario)
+		mario->handleKeyState(states);
 
 }
 
