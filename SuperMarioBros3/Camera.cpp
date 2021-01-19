@@ -23,13 +23,24 @@ void Camera::Update()
 {
 	CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 	CMap* map = CMap::GetInstance();
+
 	float player_x, player_y;
 	mario->GetPosition(player_x, player_y);
 	
 	this->x = player_x - this->width / 2;
-	//this->y = CMap::GetInstance()->getHeight() - this->height;
 
-	this->y = player_y - this->height / 2;
+	this->y = CMap::GetInstance()->getHeight() - this->height;
+	if(mario->getCurrentState() == FLYING)
+		this->y = player_y - this->height / 2;
+	if(player_y < 200)
+		this->y = player_y - this->height / 2;
+	if (mario->getCurrentState() == FALLING && mario->flag)
+	{		
+		this->y = player_y - this->height / 2;
+	}
+	if (player_y >= 350) mario->flag = false;
+
+
 	
 
 	if (x < 0) x = 0;

@@ -23,6 +23,7 @@
 #include "Font.h"
 #include "Brick.h"
 #include "BlockRandomItem.h"
+#include "MovingBar.h"
 #include "Camera.h"
 using namespace std;
 
@@ -53,6 +54,7 @@ using namespace std;
 #define OBJECT_TYPE_WING_GOOMBA	13
 #define OBJECT_TYPE_BREAKABLE_BRICK	14
 #define OBJECT_TYPE_BLOCK_RANDOM_ITEM	15
+#define OBJECT_TYPE_MOVING_BAR	16
 
 
 #define MAX_SCENE_LINE 1024
@@ -203,7 +205,8 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_FLOATING_BRICK: obj = new CFloatingBrick(); break;
 	case OBJECT_TYPE_BIG_BOX: obj = new CBigBox(); break;
 	case OBJECT_TYPE_PIPE: obj = new CGreenPipe(); break;
-	case OBJECT_TYPE_FLOATING_BRICK_2: obj = new FloatingBrick_2(); break;	
+	case OBJECT_TYPE_FLOATING_BRICK_2: obj = new FloatingBrick_2(); break;
+	case OBJECT_TYPE_MOVING_BAR: obj = new MovingBar(); break;
 	default:
 		DebugOut(L"[ERR] Invalid object type: %d\n", object_type);
 		return;

@@ -21,6 +21,7 @@
 #include "SuperLeaf.h"
 #include "WingGoomba.h"
 #include "PlantFireBullet.h"
+#include "MovingBar.h"
 
 //TODO: How to haven't to include state here.
 #include "WalkingState.h"
@@ -49,6 +50,7 @@ CMario::CMario() : MovableObject()
 
 void CMario::Update(DWORD dt)
 {
+	if (this->y < 140) this->flag = true;
 
 	if (mission_passed) {
 		state = new WalkingState();
@@ -240,6 +242,11 @@ void CMario::handleTailAttacking() {
 			BreakableBrick *breakable_brick = dynamic_cast<BreakableBrick *>(coObjects.at(i));
 			breakable_brick->handleIsBroken();
 		}
+
+		else if (isOverlapping && dynamic_cast<CFloatingBrick*>(coObjects.at(i))) {
+			CFloatingBrick *floating_brick = dynamic_cast<CFloatingBrick *>(coObjects.at(i));
+			floating_brick->SetState(BOUNCING_STATE);
+		}
 	}
 }
 
@@ -411,6 +418,8 @@ void CMario::processCollision() {
 					if (e->ny > 0) {
 
 						if (state->current_state != FALLING)
+
+
 							state = new FallingState();
 
 						if (floatingBrick->GetState() != STATIC_STATE)
@@ -427,6 +436,23 @@ void CMario::processCollision() {
 				else if (dynamic_cast<PlantFireBullet*>(e->obj))
 				{
 					this->isHurted();
+				}
+				else if (dynamic_cast<MovingBar*>(e->obj))
+				{
+					MovingBar* moving_bar = dynamic_cast<MovingBar*>(e->obj);
+
+					if (e->ny > 0) {
+
+						if (state->current_state != FALLING)
+							state = new FallingState();
+
+					}
+
+					else if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FLYING))// Bug fix
+					{
+						state = new IdleState();
+						moving_bar->SetState(MOVING_BAR_STATE_FALLING);
+					}
 				}
 			}
 		}
@@ -506,4 +532,9 @@ void CMario::updatePower(DWORD dt)
 	{
 		power = MAX_POWER;
 	}
+}
+int CMario::getCurrentState() {
+	if (this->state != NULL)
+		return this->state->current_state;
+	else return -1;
 }

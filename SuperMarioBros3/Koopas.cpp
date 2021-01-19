@@ -149,7 +149,7 @@ void CKoopas::Render()
 		ani = KOOPAS_ANI_HIDE_IN_SHELL;
 		break;
 	case KOOPAS_STATE_SLIDING: 
-		ani = KOOPAS_ANI_HIDE_IN_SHELL;
+		ani = KOOPAS_ANI_SLIDING;
 		break;
 	}
 	

@@ -18,6 +18,7 @@
 #define KOOPAS_ANI_WALKING_RIGHT 0
 #define KOOPAS_ANI_WALKING_LEFT 1
 #define KOOPAS_ANI_HIDE_IN_SHELL	2
+#define KOOPAS_ANI_SLIDING	3
 
 class CKoopas : public Enemy
 {

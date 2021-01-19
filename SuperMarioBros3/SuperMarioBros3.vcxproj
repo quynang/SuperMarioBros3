@@ -164,6 +164,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MarioTypeUp.cpp" />
     <ClCompile Include="MovableObject.cpp" />
+    <ClCompile Include="MovingBar.cpp" />
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="OverworldMap.cpp" />
     <ClCompile Include="PiranhaPlant.cpp" />
@@ -237,6 +238,7 @@
     <ClInclude Include="MarioState.h" />
     <ClInclude Include="MarioTypeUp.h" />
     <ClInclude Include="MovableObject.h" />
+    <ClInclude Include="MovingBar.h" />
     <ClInclude Include="Mushroom.h" />
     <ClInclude Include="OverworldMap.h" />
     <ClInclude Include="PiranhaPlant.h" />

@@ -181,6 +181,9 @@
     <ClCompile Include="IntroScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="MovingBar.cpp">
+      <Filter>GameObjects\MovableObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -378,6 +381,9 @@
     </ClInclude>
     <ClInclude Include="IntroScene.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingBar.h">
+      <Filter>GameObjects\MovableObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

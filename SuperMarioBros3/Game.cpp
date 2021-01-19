@@ -15,6 +15,7 @@ CGame * CGame::__instance = NULL;
 #define INTRO_SCENE_ID	-1
 #define WORLD_MAP_SCENE_ID	0
 #define PLAYSCENE_ID	1
+#define WORLD_1_4_ID	4
 
 
 
@@ -387,6 +388,12 @@ void CGame::_ParseSection_SCENES(string line)
 		}
 		break;
 	case PLAYSCENE_ID:
+		{
+			LPSCENE play_scene = new CPlayScene(id, path);
+			this->scenes[id] = play_scene;
+		}
+		break;
+	case WORLD_1_4_ID:
 		{
 			LPSCENE play_scene = new CPlayScene(id, path);
 			this->scenes[id] = play_scene;

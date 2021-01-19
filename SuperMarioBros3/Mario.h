@@ -78,7 +78,7 @@ class CMario : public MovableObject
 	bool is_visible = true;
 	float running_time;
 
-	MarioState * state;
+	MarioState * state = NULL;
 	friend class WalkingState;
 	friend class IdleState;
 	friend class JumpingState;
@@ -116,6 +116,8 @@ public:
 	int getCurrentType() { return type; }
 	void isHurted();
 	void updatePower(DWORD dt);
+	int getCurrentState();
+	bool flag = false;
 
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 };
