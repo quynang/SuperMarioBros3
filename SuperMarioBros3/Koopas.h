@@ -3,9 +3,10 @@
 #include "Enemy.h"
 
 #define KOOPAS_ANI_SET_ID	5
-#define KOOPAS_WALKING_SPEED 0.07f;
-#define KOOPAS_SLIDING_SPEED 0.4f;
-#define KOOPAS_GRAVITY	0.015f;
+#define KOOPAS_WALKING_SPEED 0.07f
+#define KOOPAS_SLIDING_SPEED 0.4f
+#define KOOPAS_GRAVITY	0.015f
+#define MAX_TIME_HIDING	2000
 
 #define KOOPAS_BBOX_WIDTH 16
 #define KOOPAS_BBOX_HEIGHT 26
@@ -26,6 +27,7 @@ class CKoopas : public Enemy
 	virtual void Update(DWORD dt);
 	virtual void Render();
 	int state;
+	float counter_time = 0;
 
 public:
 	CKoopas();

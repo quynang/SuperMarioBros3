@@ -30,8 +30,21 @@ void CKoopas::Update(DWORD dt)
 	if (!is_updating) return;
 
 	MovableObject::Update(dt);
+
 	if(this->state != KOOPAS_STATE_HIDE_IN_SHELL)
 		vy += dt * KOOPAS_GRAVITY;
+
+	if (this->state == KOOPAS_STATE_HIDE_IN_SHELL)
+	{
+		counter_time += dt;
+
+		if (counter_time >= MAX_TIME_HIDING)
+		{
+			counter_time = 0;
+			y -= KOOPAS_BBOX_HEIGHT - KOOPAS_BBOX_HEIGHT_SHELL;
+			SetState(KOOPAS_STATE_WALKING);
+		}	
+	}
 
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
@@ -117,16 +130,17 @@ void CKoopas::handleJumpingOn() {
 		SetState(KOOPAS_STATE_HIDE_IN_SHELL);
 		break;
 	case KOOPAS_STATE_HIDE_IN_SHELL:
-	{
-		float player_x, player_y;
-		int nx_ = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->getNx();
-		this->nx = nx_;
-		SetState(KOOPAS_STATE_SLIDING);
+		{
+			float player_x, player_y;
+			int nx_ = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->getNx();
+			this->nx = nx_;
+			SetState(KOOPAS_STATE_SLIDING);
+		}
+		break;
+	case KOOPAS_STATE_SLIDING:
+		SetState(KOOPAS_STATE_HIDE_IN_SHELL);
+		break;
 	}
-	break;
-		
-
-	}	
 }
 
 void CKoopas::handleIsKicked(int nx) {
@@ -160,6 +174,7 @@ void CKoopas::Render()
 
 void CKoopas::SetState(int state)
 {
+	int current_state = this->state;
 	this->state = state;
 	switch (state)
 	{
@@ -167,7 +182,7 @@ void CKoopas::SetState(int state)
 		this->can_be_kicked = true;
 		this->can_be_picked_up = true;
 		vy = 0;
-		y += KOOPAS_BBOX_HEIGHT - KOOPAS_BBOX_HEIGHT_SHELL;
+		if(current_state == KOOPAS_STATE_WALKING) y += KOOPAS_BBOX_HEIGHT - KOOPAS_BBOX_HEIGHT_SHELL;
 		vx = 0;
 		break;
 	case KOOPAS_STATE_WALKING:
