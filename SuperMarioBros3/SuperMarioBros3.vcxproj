@@ -125,6 +125,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BrickAbstract.cpp" />
     <ClCompile Include="Animations.cpp" />
     <ClCompile Include="BigBox.cpp" />
     <ClCompile Include="BlockRandomItem.cpp" />
@@ -194,6 +195,7 @@
     <ClCompile Include="WingGoomba.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BrickAbstract.h" />
     <ClInclude Include="Animations.h" />
     <ClInclude Include="BigBox.h" />
     <ClInclude Include="BlockRandomItem.h" />

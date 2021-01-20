@@ -1,5 +1,5 @@
 #pragma once
-#include "StaticObject.h"
+#include "BrickAbstract.h"
 
 #define FLOATING_BRICK_ANI_SET_ID	4
 #define BOUNCING_STATE	100
@@ -21,22 +21,24 @@
 #define BRICK_ITEM_TYPE_BUTTON_P	2
 #define BRICK_ITEM_TYPE_GREEN_MUSHROOM	3
 
-class CFloatingBrick : public MovableObject
+class CFloatingBrick : public BrickAbstract
 {
 protected:
 	void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	void Update(DWORD dt);
 	void Render();
-	int state;
-	int item_type;
+	int state = 0;
+	int item_type = 0;
 
 public:
 	float countY_ = 0;
-	float init_y;
+	float init_y = 0;
 	void ProduceItem();
 	CFloatingBrick() { this->SetAnimationSetById(FLOATING_BRICK_ANI_SET_ID); };
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
-	void SetInitInfoFromStringLine(string line);
+	virtual void SetInitInfoFromStringLine(string line);
+	virtual void handleWasHitByHeadOfMario();
+	virtual void handleWasAttacked();
 
 };

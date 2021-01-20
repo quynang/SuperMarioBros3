@@ -121,3 +121,18 @@ void CFloatingBrick::SetInitInfoFromStringLine(string line)
 	this->init_y = init_y;
 	this->item_type = item_type;
 }
+void CFloatingBrick::handleWasHitByHeadOfMario()
+{
+	if (this->state != STATIC_STATE)
+	{
+		SetState(BOUNCING_STATE);
+	}
+
+}
+void CFloatingBrick::handleWasAttacked()
+{
+	if (this->state != STATIC_STATE)
+	{
+		SetState(STATIC_STATE);
+	}
+}

@@ -34,8 +34,16 @@ void BreakableBrick::ProduceItem() {
 	this->visible = false;
 }
 
-void BreakableBrick::handleIsBroken() {
+void BreakableBrick::handleWasAttacked() {
 	if (!is_dead)
 	EffectFactory::GetInstance()->create(BROKEN, this->x + 8, this->y - 8);
 	this->is_dead = true;	
 }
+
+void BreakableBrick::handleWasHitByHeadOfMario() {
+	if (!is_dead)
+	EffectFactory::GetInstance()->create(BROKEN, this->x + 8, this->y - 8);
+	this->is_dead = true;	
+}
+
+

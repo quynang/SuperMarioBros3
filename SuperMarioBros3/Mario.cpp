@@ -8,14 +8,13 @@
 #include "Goomba.h"
 #include "Portal.h"
 #include "Ground.h"
-#include "FloatingBrick.h"
 #include "Koopas.h"
 #include "GreenPipe.h"
 #include "Textures.h"
 #include "Coin50.h"
 #include "Mushroom.h"
 #include "ButtonP.h"
-#include "BreakableBrick.h"
+#include "BrickAbstract.h"
 #include "EffectFactory.h"
 #include "PlayScence.h"
 #include "SuperLeaf.h"
@@ -238,14 +237,9 @@ void CMario::handleTailAttacking() {
 			((Enemy*)coObjects.at(i))->handleIsAttacked();
 		}
 
-		else if (isOverlapping && dynamic_cast<BreakableBrick*>(coObjects.at(i))) {
-			BreakableBrick *breakable_brick = dynamic_cast<BreakableBrick *>(coObjects.at(i));
-			breakable_brick->handleIsBroken();
-		}
-
-		else if (isOverlapping && dynamic_cast<CFloatingBrick*>(coObjects.at(i))) {
-			CFloatingBrick *floating_brick = dynamic_cast<CFloatingBrick *>(coObjects.at(i));
-			floating_brick->SetState(BOUNCING_STATE);
+		else if (isOverlapping && dynamic_cast<BrickAbstract*>(coObjects.at(i))) {
+			BrickAbstract *brick = dynamic_cast<BrickAbstract *>(coObjects.at(i));
+			brick->handleWasAttacked();
 		}
 	}
 }
@@ -411,23 +405,20 @@ void CMario::processCollision() {
 					}
 				}
 
-				else if (dynamic_cast<CFloatingBrick*>(e->obj))
+				else if (dynamic_cast<BrickAbstract*>(e->obj))
 				{
-					CFloatingBrick* floatingBrick = dynamic_cast<CFloatingBrick*>(e->obj);
+					BrickAbstract* action_brick = dynamic_cast<BrickAbstract*>(e->obj);
 
 					if (e->ny > 0) {
 
 						if (state->current_state != FALLING)
-
-
 							state = new FallingState();
+						
+						action_brick->handleWasHitByHeadOfMario();
+						((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(100);
 
-						if (floatingBrick->GetState() != STATIC_STATE)
-						{
-							floatingBrick->SetState(BOUNCING_STATE);
-							((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(100);
-						}
 					}
+
 					else if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FLYING))// Bug fix
 					{
 						state = new IdleState();

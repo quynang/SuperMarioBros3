@@ -1,8 +1,7 @@
 #include "Koopas.h"
 #include "BigBox.h"
 #include "Ground.h"
-#include "FloatingBrick.h"
-#include "BreakableBrick.h"
+#include "BrickAbstract.h"
 #include "PlayScence.h"
 #include "Utils.h"
 CKoopas::CKoopas()
@@ -105,11 +104,8 @@ void CKoopas::Update(DWORD dt)
 					
 				if (state == KOOPAS_STATE_SLIDING)
 				{
-					if(dynamic_cast<CFloatingBrick*>(e->obj))
-						((CFloatingBrick*)(e->obj))->SetState(STATIC_STATE);
-
-					if(dynamic_cast<BreakableBrick*>(e->obj))
-						((BreakableBrick*)(e->obj))->handleIsBroken();
+					if(dynamic_cast<BrickAbstract*>(e->obj))
+						((BrickAbstract*)(e->obj))->handleWasAttacked();
 
 					if(dynamic_cast<Enemy*>(e->obj))
 						((Enemy*)(e->obj))->handleIsAttacked();

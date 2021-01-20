@@ -1,11 +1,11 @@
 #pragma once
-#include "StaticObject.h"
+#include "BrickAbstract.h"
 
 #define BREAKABLE_BRICK_ANI_SET_ID	12
 #define BREAKABLE_BRICK_BBOX_WIDTH	16
 #define BREAKABLE_BRICK_BBOX_HEIGHT	16
 
-class BreakableBrick : public StaticObject
+class BreakableBrick : public BrickAbstract
 {
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	virtual void Update(DWORD dt);
@@ -21,5 +21,7 @@ public:
 	void ProduceItem();
 	int GetState() { return this->state; }
 	virtual void SetState(int state);
-	void handleIsBroken();
+	virtual void handleWasHitByHeadOfMario();
+	virtual void handleWasAttacked();
+
 };
