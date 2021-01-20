@@ -376,18 +376,37 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 		mario->SetType(MARIO_TYPE_SMALL);
 		break;
 	case DIK_2:
+		if (mario->getCurrentType() == MARIO_TYPE_SMALL)
+		{
+			float player_x, player_y;
+			mario->GetPosition(player_x, player_y);
+			mario->SetPosition(player_x, player_y - (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT));
+		}
 		mario->SetType(MARIO_TYPE_BIG);
 		break;
 	case DIK_3:
+		if (mario->getCurrentType() == MARIO_TYPE_SMALL)
+		{
+			float player_x, player_y;
+			mario->GetPosition(player_x, player_y);
+			mario->SetPosition(player_x, player_y - (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT));
+		}
 		mario->SetType(MARIO_TYPE_RACCOON);
 		break;
 	case DIK_4:
+		if (mario->getCurrentType() == MARIO_TYPE_SMALL)
+		{
+			float player_x, player_y;
+			mario->GetPosition(player_x, player_y);
+			mario->SetPosition(player_x, player_y - (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT));
+		}
 		mario->SetType(MARIO_TYPE_FIRE);
 		break;
 	case DIK_R:
 		game->SwitchScene(PLAY_SCENE_ID);
 		break;
 	case DIK_T:
+		//Arbitrary position.
 		mario->SetPosition(250, 2070);
 		break;
 	}
