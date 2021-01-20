@@ -5,7 +5,9 @@
 #include "TailSmacking_1_State.h"
 #include "Throw_1_State.h"
 #include "FireBall.h"
+#include "PlayScence.h"
 #include "Utils.h"
+#include "Game.h"
 
 void IdleState::handleOnKeyUp(CMario& mario, int keyCode) {
 	switch (keyCode)
@@ -28,9 +30,16 @@ void IdleState::handleOnKeyDown(CMario& mario, int keyCode) {
 		break;
 	case DIK_A:
 		if (mario.type == MARIO_TYPE_RACCOON)
+		{
 			mario.state = new TailSmacking_1_State();
+		}
 		else if (mario.type == MARIO_TYPE_FIRE)
-			mario.state = new Throw_1_State();
+		{
+			vector<LPGAMEOBJECT> fire_balls;
+			((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->findGameObjectsByTag("FIRE_BALL", fire_balls);
+			if(fire_balls.size() < 2) mario.state = new Throw_1_State();
+		}
+			
 		break;
 	}
 

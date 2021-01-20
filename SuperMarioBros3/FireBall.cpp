@@ -6,6 +6,7 @@
 #include "BigBox.h"
 #include "GreenPipe.h"
 #include "Koopas.h"
+#include "Camera.h"
 #include "FloatingBrick.h"
 
 #define PI 3.14159265
@@ -21,6 +22,7 @@ FireBall::FireBall(float x, float y, int nx) {
 	this->y = y;
 	this->angle = 0;
 	this->nx = nx;
+	this->tag = "FIRE_BALL";
 	((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddObject(this);
 }
 
@@ -28,6 +30,13 @@ void FireBall::Update(DWORD dt) {
 
 	MovableObject::Update(dt);
 	time_elapsed += dt;
+	Camera* camera = Camera::GetInstance();
+	float cam_x, cam_y;
+	camera->GetCamPosition(cam_x, cam_y);
+	if (this->x - cam_x < 0) this->is_dead = true;
+	if (cam_x + camera->getWidth() - this->x < 0) this->is_dead = true;
+	if (this->y - cam_y < 0) this->is_dead = true;
+	if (this->y + camera->getHeight() - this->y < 0) this->is_dead = true;
 
 	//Apply projectile motion
 	//Reference https://en.wikipedia.org/wiki/Projectile_motion
