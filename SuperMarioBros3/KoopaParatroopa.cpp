@@ -8,8 +8,6 @@
 
 KoopaParatroopa::KoopaParatroopa()
 {
-	this->nx = 1;
-	this->vx = this->nx*PARATROPA_WALKING_SPEED;
 	this->type = PARATROPA_TYPE_HAS_WING;
 	this->SetState(PARATROPA_STATE_FALLING);
 	SetAnimationSetById(PARATROPA_ANI_SET_ID);
@@ -32,16 +30,12 @@ void KoopaParatroopa::GetBoundingBox(float& left, float& top, float& right, floa
 
 void KoopaParatroopa::Update(DWORD dt)
 {
-	
 	Enemy::Update(dt);
 	
 	if (dx != 0 && first_update_flag)
 	{
-
-		
 		float player_x, player_y;
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->GetPosition(player_x, player_y);
-	
 	
 		if (player_x - this->x >= 0) {
 			
@@ -58,6 +52,17 @@ void KoopaParatroopa::Update(DWORD dt)
 	}
 	
 	if(state != PARATROPA_STATE_JUMPING) vy += PARATROPA_GRAVITY;
+
+	if (state == PARATROPA_STATE_HIDING_IN_SHELL)
+	{
+		counter_time += dt;
+		if (counter_time >= MAX_TIME_HIDING)
+		{
+			counter_time = 0;
+			y -= PARATROPA_BBOX_HEIGHT - PARATROPA_SHELL_BBOX_HEIGHT;
+			SetState(PARATROPA_STATE_WALKING);
+		}
+	}
 
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
@@ -93,25 +98,28 @@ void KoopaParatroopa::Update(DWORD dt)
 		{
 			LPCOLLISIONEVENT e = coEventsResult[i];
 			if (e->ny < 0) {
-				this->vx = this->nx * PARATROPA_WALKING_SPEED;
-				if(this->type != PARATROPA_TYPE_LOST_WING ) SetState(PARATROPA_STATE_JUMPING);
+				if(this->type == PARATROPA_TYPE_HAS_WING ) SetState(PARATROPA_STATE_JUMPING);
 			}
 				
 			else if (e->ny > 0)
 				SetState(PARATROPA_STATE_FALLING);
 			else if (e->nx != 0) {
 				this->nx = e->nx;
-				this->vx = this->nx * PARATROPA_WALKING_SPEED;
+				if(dynamic_cast<Enemy*>(e->obj))
+					((Enemy*)(e->obj))->handleIsAttacked();
 			}
 			
 		}
 	}
 
-	if (this->state == PARATROPA_STATE_JUMPING) jumping_time += dt;
+	if (this->state == PARATROPA_STATE_JUMPING)
+	{
+		jumping_time += dt;
 
-	if (jumping_time >= MAX_JUMPING_TIME) {
-		jumping_time = 0;
-		SetState(PARATROPA_STATE_FALLING);
+		if (jumping_time >= MAX_JUMPING_TIME) {
+			jumping_time = 0;
+			SetState(PARATROPA_STATE_FALLING);
+		}
 	}
 		
 	coObjects.clear();
@@ -164,20 +172,28 @@ void KoopaParatroopa::SetState(int state)
 	{
 	case PARATROPA_STATE_WALKING:
 		vx = this->nx * PARATROPA_WALKING_SPEED;
+		this->can_be_kicked = false;
+		this->can_be_picked_up = false;
 		break;
 	case PARATROPA_STATE_FALLING:
 		vy = PARATROPA_GRAVITY;
+		vx = this->nx * PARATROPA_WALKING_SPEED;
 		jumping_time = 0;
 		break;
 
 	case PARATROPA_STATE_JUMPING:
 		vy = PARATROPA_JUMPING_SPEED;
+		vx = this->nx * PARATROPA_WALKING_SPEED;
 		break;
 	case PARATROPA_STATE_HIDING_IN_SHELL:
+		this->can_be_kicked = true;
+		this->can_be_picked_up = true;
 		vx = 0;
 		break;
 	case PARATROPA_STATE_SLIDING:
-		vx = PARATROPA_SLIDING_SPEED;
+		this->can_be_kicked = false;
+		this->can_be_picked_up = false;
+		vx = this->nx * PARATROPA_SLIDING_SPEED;
 		break;
 	default:
 		break;
@@ -187,7 +203,16 @@ void KoopaParatroopa::SetState(int state)
 
 void KoopaParatroopa::handleJumpingOn() {
 	if (this->type == PARATROPA_TYPE_HAS_WING)
+	{
 		setType(PARATROPA_TYPE_LOST_WING);
+	}
+	else
+	{
+		if (this->state != PARATROPA_STATE_HIDING_IN_SHELL)
+			SetState(PARATROPA_STATE_HIDING_IN_SHELL);
+		else if (this->state == PARATROPA_STATE_HIDING_IN_SHELL)
+			SetState(PARATROPA_STATE_SLIDING);
+	}
 }
 
 void KoopaParatroopa::handleIsAttacked() {
@@ -197,4 +222,10 @@ void KoopaParatroopa::handleIsAttacked() {
 		this->type = PARATROPA_TYPE_LOST_WING;
 		SetState(PARATROPA_STATE_HIDING_IN_SHELL);
 	}
+}
+
+
+void KoopaParatroopa::handleIsKicked(int nx) {
+	this->nx = nx;
+	SetState(PARATROPA_STATE_SLIDING);
 }
