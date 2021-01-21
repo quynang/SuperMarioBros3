@@ -7,6 +7,7 @@
 #define SMOKE	4
 #define BROKEN	5
 #define COLLECT_CARD	6
+#define ENTERING_PIPE	7
 class EffectFactory {
 	static EffectFactory* _instance;
 public:

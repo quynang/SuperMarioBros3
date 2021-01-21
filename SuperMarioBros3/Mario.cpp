@@ -21,7 +21,7 @@
 #include "WingGoomba.h"
 #include "PlantFireBullet.h"
 #include "MovingBar.h"
-
+#include "GreenPipe.h"
 //TODO: How to haven't to include state here.
 #include "WalkingState.h"
 #include "JumpingState.h"
@@ -342,7 +342,23 @@ void CMario::processCollision() {
 			if (dynamic_cast<StaticObject*>(e->obj))
 			{
 				if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FLYING))// Bug fix
-					state = new IdleState();
+				{
+					if (dynamic_cast<CGreenPipe*>(e->obj))
+					{
+						if (((CGreenPipe*)e->obj)->getType() == GREEN_PIPE_TYPE_CAN_ENTERING)
+						{
+							float pipe_x, pipe_y;
+							e->obj->GetPosition(pipe_x, pipe_y);
+							EffectFactory::GetInstance()->create(ENTERING_PIPE, pipe_x + BOX_PIPE_WIDTH/3, this->y, this->type);
+						}
+						else
+							state = new IdleState();
+							
+					}	
+					else
+						state = new IdleState();
+				}
+					
 				else if (e->ny > 0 && state->current_state == JUMPING)
 					state = new FallingState();
 			}

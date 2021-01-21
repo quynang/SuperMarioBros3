@@ -7,6 +7,7 @@
 #include "Smoke.h"
 #include "Utils.h"
 #include "CollectCard.h"
+#include "EnteringPipe.h"
 
 EffectFactory *EffectFactory::_instance = NULL;
 
@@ -58,6 +59,13 @@ Effect* EffectFactory::create(int effect_type, float x, float y, int extra_param
 	case COLLECT_CARD:
 		{
 			Effect *effect = new CollectCard(x, y, extra_param);
+			GameEffects::GetInstance()->addEffect(effect);
+			return effect;
+			break;
+		}
+	case ENTERING_PIPE:
+		{
+			Effect *effect = new EnteringPipe(x, y, extra_param);
 			GameEffects::GetInstance()->addEffect(effect);
 			return effect;
 			break;

@@ -329,8 +329,10 @@ void CPlayScene::_ParseSection_GRID(string line) {
 void CPlayScene::Render()
 {
 	CMap::GetInstance()->Render();
+	GameEffects::GetInstance()->RenderByZIndex(0);
 	m_grid->handleRender();
-	GameEffects::GetInstance()->Render();
+	GameEffects::GetInstance()->RenderByZIndex(1);
+	
 	HUB::GetInstance()->Render();
 	
 }

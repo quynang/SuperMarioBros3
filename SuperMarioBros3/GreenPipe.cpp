@@ -1,8 +1,9 @@
 #include "GreenPipe.h"
 #include "Utils.h"
+
 void CGreenPipe::Render()
 {
-	if (type == GREEN_PIPE_TYPE_UP)
+	if (type == GREEN_PIPE_TYPE_UP || type == GREEN_PIPE_TYPE_CAN_ENTERING)
 		animation_set->at(GREEN_PIPE_ANI_UP)->Render(x, y);
 
 	else if (type == GREEN_PIPE_TYPE_DOWN)
