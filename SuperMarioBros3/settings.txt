@@ -1,5 +1,5 @@
 [SETTINGS]
-start	1
+start	6
 #scene list
 [SCENES]
 -1	scenes\intro\data.txt
@@ -7,3 +7,4 @@ start	1
 1	scenes\1-1\data.txt
 4	scenes\1-4\data.txt
 5	scenes\1-1-pipe\data.txt
+6	scenes\1-4-pipe\data.txt

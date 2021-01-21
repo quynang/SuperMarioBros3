@@ -21,7 +21,7 @@ using namespace std;
 #define PLAYSCENE_ID	1
 #define WORLD_1_4_ID	4
 #define SCENE_1_1_PIPE	5
-
+#define SCENE_1_4_PIPE	6
 
 class CGame
 {

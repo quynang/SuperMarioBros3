@@ -399,6 +399,12 @@ void CGame::_ParseSection_SCENES(string line)
 			this->scenes[id] = play_scene;
 		}
 		break;
+	case SCENE_1_4_PIPE:
+		{
+			LPSCENE play_scene = new CPlayScene(id, path);
+			this->scenes[id] = play_scene;
+		}
+		break;
 	}
 }
 
@@ -447,7 +453,7 @@ void CGame::SwitchScene(int scene_id)
 
 	current_mario_type = MARIO_TYPE_SMALL;
 
-	if (current_scene == PLAYSCENE_ID || current_scene == WORLD_1_4_ID || current_scene == SCENE_1_1_PIPE)
+	if (current_scene == PLAYSCENE_ID || current_scene == WORLD_1_4_ID || current_scene == SCENE_1_1_PIPE || current_scene == SCENE_1_4_PIPE)
 	{
 		CMario* player = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 		if (player != NULL)

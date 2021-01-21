@@ -416,6 +416,11 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 		//mario->SetPosition(250, 2070);
 		CGame::GetInstance()->SwitchScene(4);
 		break;
+	case DIK_J:
+		//Arbitrary position.
+		mario->SetPosition(2010, 86);
+		//CGame::GetInstance()->SwitchScene(4);
+		break;
 	}
 }
 
