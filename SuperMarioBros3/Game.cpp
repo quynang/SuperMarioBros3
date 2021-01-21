@@ -453,7 +453,19 @@ void CGame::SwitchScene(int scene_id)
 {
 	DebugOut(L"[INFO] Switching to scene %d\n", scene_id);
 
+	current_mario_type = MARIO_TYPE_SMALL;
+
+	if (current_scene == PLAYSCENE_ID || current_scene == WORLD_1_4_ID || current_scene == SCENE_1_1_PIPE)
+	{
+		CMario* player = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+		if (player != NULL)
+		{
+			current_mario_type = player->getCurrentType();
+		}
+	}
+	
 	scenes[current_scene]->Unload();
+	
 
 	CTextures::GetInstance()->Clear();
 	CSprites::GetInstance()->Clear();
@@ -466,5 +478,48 @@ void CGame::SwitchScene(int scene_id)
 	LPSCENE s = scenes[scene_id];
 	CGame::GetInstance()->SetKeyHandler(s->GetKeyEventHandler());
 	is_disable_keyboard = false;
-	s->Load();	
+	s->Load();
+	
+	if (scene_id != INTRO_SCENE_ID && scene_id != WORLD_MAP_SCENE_ID)
+		((CPlayScene*)this->GetCurrentScene())->GetPlayer()->SetType(current_mario_type);
+}
+
+void CGame::SwitchSceneAndSetPosition(int scene_id, float x, float y)
+{
+	DebugOut(L"[INFO] Switching to scene %d\n", scene_id);
+
+	current_mario_type = MARIO_TYPE_SMALL;
+
+	if (current_scene == PLAYSCENE_ID || current_scene == WORLD_1_4_ID || current_scene == SCENE_1_1_PIPE)
+	{
+		CMario* player = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+		if (player != NULL)
+		{
+			current_mario_type = player->getCurrentType();
+		}
+	}
+	
+	scenes[current_scene]->Unload();
+	
+
+	CTextures::GetInstance()->Clear();
+	CSprites::GetInstance()->Clear();
+	CAnimations::GetInstance()->Clear();
+	HUB::GetInstance()->clear();
+	Camera::GetInstance()->Clear();
+	CMap::GetInstance()->Clear();
+	GameEffects::GetInstance()->Clear();
+	current_scene = scene_id;
+	LPSCENE s = scenes[scene_id];
+	CGame::GetInstance()->SetKeyHandler(s->GetKeyEventHandler());
+	is_disable_keyboard = false;
+	s->Load();
+	
+	if (scene_id != INTRO_SCENE_ID && scene_id != WORLD_MAP_SCENE_ID)
+	{
+		CMario* mario = ((CPlayScene*)this->GetCurrentScene())->GetPlayer();
+		mario->SetType(current_mario_type);
+		mario->SetPosition(x, y);
+		mario->SetState(FALLING);
+	}
 }

@@ -24,6 +24,7 @@
 #include "Brick.h"
 #include "BlockRandomItem.h"
 #include "MovingBar.h"
+#include "PipeExit.h"
 #include "Camera.h"
 using namespace std;
 
@@ -39,6 +40,7 @@ using namespace std;
 
 #define OBJECT_TYPE_BIG_BOX	100
 #define OBJECT_TYPE_PIPE	101
+#define OBJECT_TYPE_PIPE_EXIT	102
 #define OBJECT_TYPE_GOOMBA	1
 #define OBJECT_TYPE_BRICK	2
 #define OBJECT_TYPE_FLOATING_BRICK	3
@@ -61,6 +63,8 @@ using namespace std;
 
 #define	OVER_WORD_MAP_SCENE_ID	0
 #define PLAY_SCENE_ID	1
+
+#define MAX_OUT_OF_MAP	100
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 	CScene(id, filePath)
@@ -207,6 +211,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_PIPE: obj = new CGreenPipe(); break;
 	case OBJECT_TYPE_FLOATING_BRICK_2: obj = new FloatingBrick_2(); break;
 	case OBJECT_TYPE_MOVING_BAR: obj = new MovingBar(); break;
+	case OBJECT_TYPE_PIPE_EXIT: obj = new PipeExit(); break;
 	default:
 		DebugOut(L"[ERR] Invalid object type: %d\n", object_type);
 		return;
@@ -239,6 +244,7 @@ void CPlayScene::_ParseSection_FONT(string line)
 
 void CPlayScene::Load()
 {
+	this->is_update = true;
 	DebugOut(L"[INFO] Start loading scene resources from : %s \n", sceneFilePath);
 
 	ifstream f;
@@ -307,8 +313,10 @@ void CPlayScene::Update(DWORD dt)
 
 		player->GetPosition(player_x, player_y);
 
-		if (player_y - 100 > CMap::GetInstance()->getHeight())
+		
+		if (player_y - CMap::GetInstance()->getHeight() >= MAX_OUT_OF_MAP)
 		{
+			player->SetType(MARIO_TYPE_SMALL);
 			CGame::GetInstance()->SwitchScene(OVER_WORD_MAP_SCENE_ID);
 			return;
 		}
@@ -343,12 +351,8 @@ void CPlayScene::Render()
 
 void CPlayScene::Unload()
 {
-	for (int i = 0; i < objects.size(); i++)
-		delete objects[i];
-
 	objects.clear();
 	player = NULL;
-
 	DebugOut(L"[INFO] Scene %s unloaded! \n", sceneFilePath);
 }
 
@@ -409,7 +413,8 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 		break;
 	case DIK_T:
 		//Arbitrary position.
-		mario->SetPosition(250, 2070);
+		//mario->SetPosition(250, 2070);
+		CGame::GetInstance()->SwitchScene(4);
 		break;
 	}
 }

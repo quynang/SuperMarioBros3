@@ -39,7 +39,8 @@ class CGame
 	int screen_height;
 
 	unordered_map<int, LPSCENE> scenes;
-	int current_scene; 
+	int current_scene;
+	int current_mario_type;
 	bool is_disable_keyboard = false;
 
 	void _ParseSection_SETTINGS(string line);
@@ -58,6 +59,7 @@ public:
 	void Load(LPCWSTR gameFile);
 	LPSCENE GetCurrentScene() { return scenes[current_scene]; }
 	void SwitchScene(int scene_id);
+	void SwitchSceneAndSetPosition(int scene_id, float x, float y);
 	int GetScreenWidth() { return screen_width; }
 	int GetScreenHeight() { return screen_height; }
 

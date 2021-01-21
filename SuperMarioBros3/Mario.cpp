@@ -22,6 +22,7 @@
 #include "PlantFireBullet.h"
 #include "MovingBar.h"
 #include "GreenPipe.h"
+#include "PipeExit.h"
 //TODO: How to haven't to include state here.
 #include "WalkingState.h"
 #include "JumpingState.h"
@@ -361,7 +362,25 @@ void CMario::processCollision() {
 				}
 					
 				else if (e->ny > 0 && state->current_state == JUMPING)
-					state = new FallingState();
+				{
+					if (dynamic_cast<PipeExit*>(e->obj))
+					{	
+						int scene_id;
+						float new_x, new_y;
+						((PipeExit*)e->obj)->getExitInfo(scene_id, new_x, new_y);
+						((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->turnOffGameObjectUpdate();
+						CGame::GetInstance()->SwitchSceneAndSetPosition(scene_id, new_x, new_y);
+						return;
+						
+					}
+					else
+					{
+						state = new FallingState();
+
+					}
+					
+				}
+					
 			}
 			else if (dynamic_cast<Item*>(e->obj))
 			{
