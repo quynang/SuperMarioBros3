@@ -13,14 +13,6 @@
 #include "GameEffects.h"
 CGame * CGame::__instance = NULL;
 
-#define INTRO_SCENE_ID	-1
-#define WORLD_MAP_SCENE_ID	0
-#define PLAYSCENE_ID	1
-#define WORLD_1_4_ID	4
-#define SCENE_1_1_PIPE	5
-
-
-
 /*
 	Initialize DirectX, create a Direct3D device for rendering within the window, initial Sprite library for 
 	rendering 2D images

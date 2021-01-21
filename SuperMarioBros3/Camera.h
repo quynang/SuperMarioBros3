@@ -13,7 +13,7 @@ private:
 	Camera();
 public:
 	void Clear() { _instance = NULL; delete _instance; };
-	void Update();
+	void Update(DWORD dt);
 	int getWidth() { return this->width; }
 	int getHeight() { return this->height; }
 	void GetCamPosition(float& x, float& y) { x = this->x; y = this->y; };

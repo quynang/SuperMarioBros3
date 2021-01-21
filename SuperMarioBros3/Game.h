@@ -16,6 +16,13 @@ using namespace std;
 
 #define KEYBOARD_BUFFER_SIZE 1024
 
+#define INTRO_SCENE_ID	-1
+#define WORLD_MAP_SCENE_ID	0
+#define PLAYSCENE_ID	1
+#define WORLD_1_4_ID	4
+#define SCENE_1_1_PIPE	5
+
+
 class CGame
 {
 	static CGame * __instance;
@@ -57,6 +64,7 @@ public:
 	int IsKeyDown(int KeyCode);
 	void ProcessKeyboard();
 	void Load(LPCWSTR gameFile);
+	int GetCurrentSceneId() { return this->current_scene; }
 	LPSCENE GetCurrentScene() { return scenes[current_scene]; }
 	void SwitchScene(int scene_id);
 	void SwitchSceneAndSetPosition(int scene_id, float x, float y);
