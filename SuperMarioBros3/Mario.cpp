@@ -349,7 +349,8 @@ void CMario::processCollision() {
 						{
 							float pipe_x, pipe_y;
 							e->obj->GetPosition(pipe_x, pipe_y);
-							EffectFactory::GetInstance()->create(ENTERING_PIPE, pipe_x + BOX_PIPE_WIDTH/3, this->y, this->type);
+							int sub_scene_id = ((CGreenPipe*)e->obj)->getSubSceneId();
+							EffectFactory::GetInstance()->create(ENTERING_PIPE, pipe_x + BOX_PIPE_WIDTH/3, this->y, sub_scene_id);
 						}
 						else
 							state = new IdleState();

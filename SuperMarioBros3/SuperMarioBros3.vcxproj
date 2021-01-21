@@ -140,6 +140,7 @@
     <ClCompile Include="DieSate.cpp" />
     <ClCompile Include="EffectFatory.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnteringPipe.cpp" />
     <ClCompile Include="FallingState.cpp" />
     <ClCompile Include="FallingWhileFlyingState.cpp" />
     <ClCompile Include="FireBall.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="MovingBar.cpp" />
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="OverworldMap.cpp" />
+    <ClCompile Include="PipeExit.cpp" />
     <ClCompile Include="PiranhaPlant.cpp" />
     <ClCompile Include="PlantFireBullet.cpp" />
     <ClCompile Include="Portal.cpp" />
@@ -213,6 +215,7 @@
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectFactory.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnteringPipe.h" />
     <ClInclude Include="FallingState.h" />
     <ClInclude Include="FallingWhileFlyingState.h" />
     <ClInclude Include="FireBall.h" />
@@ -243,6 +246,7 @@
     <ClInclude Include="MovingBar.h" />
     <ClInclude Include="Mushroom.h" />
     <ClInclude Include="OverworldMap.h" />
+    <ClInclude Include="PipeExit.h" />
     <ClInclude Include="PiranhaPlant.h" />
     <ClInclude Include="PlantFireBullet.h" />
     <ClInclude Include="Portal.h" />

@@ -187,6 +187,12 @@
     <ClCompile Include="BrickAbstract.cpp">
       <Filter>GameObjects\MovableObjects\Bricks</Filter>
     </ClCompile>
+    <ClCompile Include="EnteringPipe.cpp">
+      <Filter>GameEffects\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="PipeExit.cpp">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -390,6 +396,12 @@
     </ClInclude>
     <ClInclude Include="BrickAbstract.h">
       <Filter>GameObjects\MovableObjects\Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="EnteringPipe.h">
+      <Filter>GameEffects\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="PipeExit.h">
+      <Filter>GameObjects\StaticObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

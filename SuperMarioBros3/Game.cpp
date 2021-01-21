@@ -10,12 +10,14 @@
 #include "Font.h"
 #include "Camera.h"
 #include "IntroScene.h"
+#include "GameEffects.h"
 CGame * CGame::__instance = NULL;
 
 #define INTRO_SCENE_ID	-1
 #define WORLD_MAP_SCENE_ID	0
 #define PLAYSCENE_ID	1
 #define WORLD_1_4_ID	4
+#define SCENE_1_1_PIPE	5
 
 
 
@@ -399,6 +401,12 @@ void CGame::_ParseSection_SCENES(string line)
 			this->scenes[id] = play_scene;
 		}
 		break;
+	case SCENE_1_1_PIPE:
+		{
+			LPSCENE play_scene = new CPlayScene(id, path);
+			this->scenes[id] = play_scene;
+		}
+		break;
 	}
 }
 
@@ -453,6 +461,7 @@ void CGame::SwitchScene(int scene_id)
 	HUB::GetInstance()->clear();
 	Camera::GetInstance()->Clear();
 	CMap::GetInstance()->Clear();
+	GameEffects::GetInstance()->Clear();
 	current_scene = scene_id;
 	LPSCENE s = scenes[scene_id];
 	CGame::GetInstance()->SetKeyHandler(s->GetKeyEventHandler());
