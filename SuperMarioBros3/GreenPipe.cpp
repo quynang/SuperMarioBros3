@@ -25,6 +25,8 @@ void CGreenPipe::SetInitInfoFromStringLine(string line)
 	vector<string> tokens = split(line);
 	int size_height = atoi(tokens[4].c_str());
 	int type = atoi(tokens[5].c_str());
+	if (tokens.size() > 6)
+		sub_scene_id = atoi(tokens[6].c_str());
 	this->size_height = size_height;
 	this->type = type;
 }

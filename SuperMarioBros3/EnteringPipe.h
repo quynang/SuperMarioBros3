@@ -12,11 +12,11 @@
 #define MARIO_TYPE_FIRE	4
 class EnteringPipe : public Effect
 {
-	int mario_type;
+	int scence_id;
 	float counter_time = 0;
 	float counter_y = 0;
 public:
-	EnteringPipe(float x, float y, int mario_type);
+	EnteringPipe(float x, float y, int scence_id);
 	void Update(DWORD dt);
 	void Render();
 

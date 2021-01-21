@@ -1,11 +1,11 @@
 #include "EnteringPipe.h"
 #include "PlayScence.h"
 #include "EffectFactory.h"
-EnteringPipe::EnteringPipe(float x, float y, int mario_type) {
+EnteringPipe::EnteringPipe(float x, float y, int scence_id) {
 	this->x = x;
 	this->y = y;
 	this->zIndex = 0;
-	this->mario_type = mario_type;
+	this->scence_id = scence_id;
 	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
 	SetAnimationSet(animation_sets->Get(ENTERING_PIPE_ANI_SET_ID));
 	CGame::GetInstance()->DisableKeyboard();
@@ -29,14 +29,15 @@ void EnteringPipe::Update(DWORD dt) {
 	if (counter_time >= 600) {
 		CGame::GetInstance()->EnableKeyboard();
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->turnOnGameObjectUpdate();
-		CGame::GetInstance()->SwitchScene(5);
+		CGame::GetInstance()->SwitchScene(scence_id);
 	}
 };
 
 void EnteringPipe::Render() {
 	if (this->is_finished) return;
 	int ani = -1;
-	switch (mario_type)
+	int mario_current_type = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->getCurrentType();
+	switch (mario_current_type)
 	{
 	case MARIO_TYPE_SMALL:
 		ani = MARIO_TYPE_SMALL_INDEX;

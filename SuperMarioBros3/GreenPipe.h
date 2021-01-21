@@ -16,10 +16,12 @@ class CGreenPipe : public StaticObject
 {
 	int size_height = 0;
 	int type = 0;
+	int sub_scene_id = -1;
 public:
 	CGreenPipe() { SetAnimationSetById(GREEND_PIPE_ANI_SET_ID); };
 	virtual void Render();
 	int getType() { return this->type; };
+	int getSubSceneId() { return this->sub_scene_id; }
 	virtual void GetBoundingBox(float &l, float &t, float &r, float &b);
 	void SetInitInfoFromStringLine(string line);
 };
