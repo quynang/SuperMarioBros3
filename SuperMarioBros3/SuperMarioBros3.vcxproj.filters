@@ -193,6 +193,9 @@
     <ClCompile Include="PipeExit.cpp">
       <Filter>GameObjects\StaticObjects</Filter>
     </ClCompile>
+    <ClCompile Include="StandOnMovingBarState.cpp">
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -402,6 +405,9 @@
     </ClInclude>
     <ClInclude Include="PipeExit.h">
       <Filter>GameObjects\StaticObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="StandOnMovingBarState.h">
+      <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

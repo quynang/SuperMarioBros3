@@ -59,6 +59,7 @@ class MarioState;
 #define THROW_2	1013
 #define BOUNCING	1014
 #define DIE	1015
+#define STAND_ON_MOVING_BAR	1016
 
 #define MAX_POWER	7
 #define TIME_POWER_STEP	70
@@ -92,6 +93,7 @@ class CMario : public MovableObject
 	friend class TailSmacking_3_State;
 	friend class Throw_1_State;
 	friend class Throw_2_State;
+	friend class StandOnMovingBarState;
 	CGameObject* item_holding = NULL;
 	void processCollision();
 public:

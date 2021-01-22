@@ -38,6 +38,7 @@
 #include "FallingState.h"
 #include "BouncingState.h"
 #include "DieState.h"
+#include "StandOnMovingBarState.h"
 
 
 CMario::CMario() : MovableObject()
@@ -470,14 +471,14 @@ void CMario::processCollision() {
 
 					if (e->ny > 0) {
 
-						if (state->current_state != FALLING)
-							state = new FallingState();
+						/*if (state->current_state != FALLING)
+							state = new StandOnMovingBarState();*/
 
 					}
 
 					else if (e->ny < 0 && (state->current_state == FALLING || state->current_state == FLYING))// Bug fix
 					{
-						state = new IdleState();
+						state = new StandOnMovingBarState();
 						moving_bar->SetState(MOVING_BAR_STATE_FALLING);
 					}
 				}
