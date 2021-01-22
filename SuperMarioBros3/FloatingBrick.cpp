@@ -132,6 +132,7 @@ void CFloatingBrick::handleWasHitByHeadOfMario()
 }
 void CFloatingBrick::handleWasAttacked()
 {
+	count_item--;
 	if (this->state != STATIC_STATE)
 	{
 		SetState(STATIC_STATE);
