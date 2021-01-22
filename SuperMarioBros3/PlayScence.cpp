@@ -25,6 +25,7 @@
 #include "BlockRandomItem.h"
 #include "MovingBar.h"
 #include "PipeExit.h"
+#include "FlyParatroopa.h"
 #include "Camera.h"
 using namespace std;
 
@@ -57,6 +58,7 @@ using namespace std;
 #define OBJECT_TYPE_BREAKABLE_BRICK	14
 #define OBJECT_TYPE_BLOCK_RANDOM_ITEM	15
 #define OBJECT_TYPE_MOVING_BAR	16
+#define OBJECT_TYPE_FLY_PARATROOPA	17
 
 
 #define MAX_SCENE_LINE 1024
@@ -212,6 +214,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_FLOATING_BRICK_2: obj = new FloatingBrick_2(); break;
 	case OBJECT_TYPE_MOVING_BAR: obj = new MovingBar(); break;
 	case OBJECT_TYPE_PIPE_EXIT: obj = new PipeExit(); break;
+	case OBJECT_TYPE_FLY_PARATROOPA: obj = new FlyParatroopa(); break;
 	default:
 		DebugOut(L"[ERR] Invalid object type: %d\n", object_type);
 		return;
@@ -420,7 +423,7 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 		break;
 	case DIK_J:
 		//Arbitrary position.
-		mario->SetPosition(2010, 86);
+		mario->SetPosition(1800, 86);
 		//CGame::GetInstance()->SwitchScene(4);
 		break;
 	}

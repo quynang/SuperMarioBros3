@@ -198,6 +198,9 @@
     <ClCompile Include="Scence.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="FlyParatroopa.cpp">
+      <Filter>GameObjects\MovableObjects\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -412,6 +415,9 @@
     </ClInclude>
     <ClInclude Include="Scence.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyParatroopa.h">
+      <Filter>GameObjects\MovableObjects\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

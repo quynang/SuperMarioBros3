@@ -149,6 +149,7 @@
     <ClCompile Include="FloatingBrick.cpp" />
     <ClCompile Include="FloatingBrick_2.cpp" />
     <ClCompile Include="FlyingState.cpp" />
+    <ClCompile Include="FlyParatroopa.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameEffects.cpp" />
     <ClCompile Include="GreenPipe.cpp" />
@@ -225,6 +226,7 @@
     <ClInclude Include="FloatingBrick.h" />
     <ClInclude Include="FloatingBrick_2.h" />
     <ClInclude Include="FlyingState.h" />
+    <ClInclude Include="FlyParatroopa.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameEffects.h" />
     <ClInclude Include="GreenMushroom.h" />
