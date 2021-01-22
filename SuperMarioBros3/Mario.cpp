@@ -330,6 +330,8 @@ void CMario::processCollision() {
 
 		x += min_tx*dx + nx*0.1f;
 		y += min_ty*dy + ny*0.1f;
+		float pre_vx = vx;
+		float pre_vy = vy;
 
 		if (nx!=0) vx = 0;
 		if (ny!=0) vy = 0;
@@ -388,6 +390,8 @@ void CMario::processCollision() {
 				Item* item = dynamic_cast<Item*>(e->obj);
 				item->handleIsCollected();
 				this->handleCollectItem(item->type);
+				vx = pre_vx;
+				vy = pre_vy;
 			}
 			else if (dynamic_cast<Enemy*>(e->obj))
 			{
