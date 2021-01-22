@@ -4,6 +4,7 @@
 #include "BrickAbstract.h"
 #include "PlayScence.h"
 #include "Utils.h"
+#include "Boundary.h"
 CKoopas::CKoopas()
 {
 	SetState(KOOPAS_STATE_WALKING);
@@ -27,7 +28,7 @@ void CKoopas::GetBoundingBox(float &left, float &top, float &right, float &botto
 void CKoopas::Update(DWORD dt)
 {
 	if (!is_updating) return;
-
+	proccessOverlapping();
 	MovableObject::Update(dt);
 
 	if(this->state != KOOPAS_STATE_HIDE_IN_SHELL)
@@ -75,21 +76,7 @@ void CKoopas::Update(DWORD dt)
 		for (UINT i = 0; i < coEventsResult.size(); i++)
 		{
 			LPCOLLISIONEVENT e = coEventsResult[i];
-			if (e->ny < 0)
-			{
-				if (this->state == KOOPAS_STATE_WALKING)
-				{
-					float l, t, r, b;
-					e->obj->GetBoundingBox(l, t, r, b);
-					if ((x + KOOPAS_BBOX_WIDTH/2 > r) || (x + KOOPAS_BBOX_WIDTH - KOOPAS_BBOX_WIDTH/2 < l))
-					{
-						this->nx = -this->nx;
-						vx = this->nx * KOOPAS_WALKING_SPEED;
-					}
-				}
-			}
-
-			else if (e->nx != 0)
+			if (e->nx != 0)
 			{
 				this->nx = e->nx;
 
@@ -114,6 +101,7 @@ void CKoopas::Update(DWORD dt)
 		}
 	}
 
+	
 
 	coObjects.clear();
 
@@ -200,4 +188,34 @@ void CKoopas::handleIsAttacked() {
 
 	if (this->state != KOOPAS_STATE_HIDE_IN_SHELL)
 		SetState(KOOPAS_STATE_HIDE_IN_SHELL);
+}
+
+void CKoopas::proccessOverlapping()
+{
+	RECT koopas_rect;
+	float m_l, m_t, m_r, m_b;
+	GetBoundingBox(m_l, m_t, m_r, m_b);
+
+	koopas_rect.top = m_t;
+	koopas_rect.left = m_l;
+	koopas_rect.right = m_r;
+	koopas_rect.bottom = m_b;
+
+	for (size_t i = 0; i < coObjects.size(); i++)
+	{
+		RECT obj_rect;
+		float l, t, r, b;
+		coObjects.at(i)->GetBoundingBox(l, t, r, b);
+		obj_rect.top = t;
+		obj_rect.left = l;
+		obj_rect.right = r;
+		obj_rect.bottom = b;
+
+		bool isOverlapping = CGame::GetInstance()->isColliding(koopas_rect, obj_rect);
+
+		if (isOverlapping && dynamic_cast<Boundary*>(coObjects.at(i)) && this->state == KOOPAS_STATE_WALKING) {
+			this->nx = ((Boundary*)coObjects.at(i))->getDirection();
+			vx = this->nx * KOOPAS_WALKING_SPEED;
+		}
+	}
 }

@@ -199,6 +199,7 @@
     <ClCompile Include="WingGoomba.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Boundary.h" />
     <ClInclude Include="BrickAbstract.h" />
     <ClInclude Include="Animations.h" />
     <ClInclude Include="BigBox.h" />

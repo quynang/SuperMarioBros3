@@ -28,6 +28,7 @@ class CKoopas : public Enemy
 	virtual void Render();
 	int state;
 	float counter_time = 0;
+	void proccessOverlapping();
 
 public:
 	CKoopas();

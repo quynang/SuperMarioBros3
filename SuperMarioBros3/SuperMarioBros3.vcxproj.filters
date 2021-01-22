@@ -419,6 +419,9 @@
     <ClInclude Include="FlyParatroopa.h">
       <Filter>GameObjects\MovableObjects\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="Boundary.h">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

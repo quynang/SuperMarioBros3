@@ -26,6 +26,7 @@
 #include "MovingBar.h"
 #include "PipeExit.h"
 #include "FlyParatroopa.h"
+#include "Boundary.h"
 #include "Camera.h"
 using namespace std;
 
@@ -42,6 +43,7 @@ using namespace std;
 #define OBJECT_TYPE_BIG_BOX	100
 #define OBJECT_TYPE_PIPE	101
 #define OBJECT_TYPE_PIPE_EXIT	102
+#define OBJECT_TYPE_BOUNDARY	103
 #define OBJECT_TYPE_GOOMBA	1
 #define OBJECT_TYPE_BRICK	2
 #define OBJECT_TYPE_FLOATING_BRICK	3
@@ -215,6 +217,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_MOVING_BAR: obj = new MovingBar(); break;
 	case OBJECT_TYPE_PIPE_EXIT: obj = new PipeExit(); break;
 	case OBJECT_TYPE_FLY_PARATROOPA: obj = new FlyParatroopa(); break;
+	case OBJECT_TYPE_BOUNDARY: obj = new Boundary(); break;
 	default:
 		DebugOut(L"[ERR] Invalid object type: %d\n", object_type);
 		return;
