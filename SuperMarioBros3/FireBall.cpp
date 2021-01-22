@@ -93,7 +93,7 @@ void FireBall::Update(DWORD dt) {
 				is_dead = true;
 			}
 			
-			else if (dynamic_cast<CFloatingBrick*>(e->obj))
+			else if (dynamic_cast<BrickAbstract*>(e->obj))
 			{
 				if (e->ny < 0)
 				{
