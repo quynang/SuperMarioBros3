@@ -1,6 +1,6 @@
 #pragma once
 #include "Effect.h"
-#define ENTERING_PIPE_ANI_SET_ID	26
+#define ENTERING_PIPE_ANI_SET_ID	27
 #define MARIO_TYPE_SMALL_INDEX	0
 #define MARIO_TYPE_BIG_INDEX	1
 #define MARIO_TYPE_RACCOON_INDEX	2

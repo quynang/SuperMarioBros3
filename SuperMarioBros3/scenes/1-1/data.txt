@@ -807,7 +807,7 @@ scenes\1-1\map.txt
 #=========BLOCK RANDOM ITEM=========
 25	1450	1451	1452
 #======Entering pipe effect=======
-26	1017	1018	1019	1020
+27	1017	1018	1019	1020
 
 [OBJECTS]
 1	5	0	416
