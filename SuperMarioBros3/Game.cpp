@@ -452,7 +452,8 @@ void CGame::SwitchScene(int scene_id)
 	DebugOut(L"[INFO] Switching to scene %d\n", scene_id);
 
 	current_mario_type = MARIO_TYPE_SMALL;
-
+	int score = 0, money = 0;
+	DWORD timeGone;
 	if (current_scene == PLAYSCENE_ID || current_scene == WORLD_1_4_ID || current_scene == SCENE_1_1_PIPE || current_scene == SCENE_1_4_PIPE)
 	{
 		CMario* player = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
@@ -462,6 +463,9 @@ void CGame::SwitchScene(int scene_id)
 		}
 	}
 	
+	this->GetCurrentScene()->GetHUBInfo(score, money, timeGone);
+	if (scene_id != SCENE_1_1_PIPE && scene_id != SCENE_1_4_PIPE)
+		timeGone = 0;
 	scenes[current_scene]->Unload();
 	
 
@@ -479,7 +483,12 @@ void CGame::SwitchScene(int scene_id)
 	s->Load();
 	
 	if (scene_id != INTRO_SCENE_ID && scene_id != WORLD_MAP_SCENE_ID)
+	{
 		((CPlayScene*)this->GetCurrentScene())->GetPlayer()->SetType(current_mario_type);
+	}
+
+	this->GetCurrentScene()->SetHUBInfo(score, money, timeGone);
+		
 }
 
 void CGame::SwitchSceneAndSetPosition(int scene_id, float x, float y)
@@ -487,6 +496,9 @@ void CGame::SwitchSceneAndSetPosition(int scene_id, float x, float y)
 	DebugOut(L"[INFO] Switching to scene %d\n", scene_id);
 
 	current_mario_type = MARIO_TYPE_SMALL;
+	int score, money;
+	DWORD timeGone;
+	this->GetCurrentScene()->GetHUBInfo(score, money, timeGone);
 
 	if (current_scene == PLAYSCENE_ID || current_scene == WORLD_1_4_ID || current_scene == SCENE_1_1_PIPE)
 	{
@@ -495,6 +507,8 @@ void CGame::SwitchSceneAndSetPosition(int scene_id, float x, float y)
 		{
 			current_mario_type = player->getCurrentType();
 		}
+		
+
 	}
 	
 	scenes[current_scene]->Unload();
@@ -519,5 +533,6 @@ void CGame::SwitchSceneAndSetPosition(int scene_id, float x, float y)
 		mario->SetType(current_mario_type);
 		mario->SetPosition(x, y);
 		mario->SetState(FALLING);
+		this->GetCurrentScene()->SetHUBInfo(score, money, timeGone);
 	}
 }

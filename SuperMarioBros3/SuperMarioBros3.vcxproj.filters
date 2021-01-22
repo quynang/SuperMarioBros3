@@ -6,7 +6,6 @@
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Scence.cpp" />
     <ClCompile Include="Sprites.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="GameObject.cpp">
@@ -196,6 +195,9 @@
     <ClCompile Include="StandOnMovingBarState.cpp">
       <Filter>GameObjects\MovableObjects\Player\States</Filter>
     </ClCompile>
+    <ClCompile Include="Scence.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
@@ -203,7 +205,6 @@
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="KeyEventHandler.h" />
-    <ClInclude Include="Scence.h" />
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="GameObject.h">
@@ -408,6 +409,9 @@
     </ClInclude>
     <ClInclude Include="StandOnMovingBarState.h">
       <Filter>GameObjects\MovableObjects\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Scence.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

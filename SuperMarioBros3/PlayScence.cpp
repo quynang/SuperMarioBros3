@@ -317,6 +317,7 @@ void CPlayScene::Update(DWORD dt)
 		if (player_y - CMap::GetInstance()->getHeight() >= MAX_OUT_OF_MAP)
 		{
 			player->SetType(MARIO_TYPE_SMALL);
+			this->ResetHUBInfo();
 			CGame::GetInstance()->SwitchScene(OVER_WORD_MAP_SCENE_ID);
 			return;
 		}
@@ -353,6 +354,7 @@ void CPlayScene::Unload()
 {
 	objects.clear();
 	player = NULL;
+	timeGone = 0;
 	DebugOut(L"[INFO] Scene %s unloaded! \n", sceneFilePath);
 }
 
