@@ -29,6 +29,7 @@ protected:
 	void Render();
 	int state = 0;
 	int item_type = 0;
+	int count_item = 1;
 
 public:
 	float countY_ = 0;

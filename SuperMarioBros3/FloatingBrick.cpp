@@ -48,7 +48,7 @@ void CFloatingBrick::Render()
 	
 	int ani = BRICK_ANI_QUESTION_MARK;
 
-	if (this->state == STATIC_STATE) {
+	if (this->state == STATIC_STATE && count_item <= 0) {
 		ani = BRICK_ANI_COLLECTED;
 	}
 	
@@ -120,13 +120,14 @@ void CFloatingBrick::SetInitInfoFromStringLine(string line)
 	int item_type = atoi(tokens[4].c_str());
 	this->init_y = init_y;
 	this->item_type = item_type;
+	if(tokens.size() > 5)
+		this->count_item = atoi(tokens[5].c_str());
 }
 void CFloatingBrick::handleWasHitByHeadOfMario()
 {
-	if (this->state != STATIC_STATE)
-	{
+	count_item--;
+	if(count_item >= 0)
 		SetState(BOUNCING_STATE);
-	}
 
 }
 void CFloatingBrick::handleWasAttacked()
