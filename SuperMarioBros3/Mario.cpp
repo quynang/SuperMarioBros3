@@ -79,6 +79,8 @@ void CMario::Update(DWORD dt)
 		untouchable = 0;
 	}
 
+	proccessOverlapping();
+
 	if (state->current_state == DIE)
 	{
 		x += dx;
@@ -385,14 +387,6 @@ void CMario::processCollision() {
 				}
 					
 			}
-			else if (dynamic_cast<Item*>(e->obj))
-			{
-				Item* item = dynamic_cast<Item*>(e->obj);
-				item->handleIsCollected();
-				this->handleCollectItem(item->type);
-				vx = pre_vx;
-				vy = pre_vy;
-			}
 			else if (dynamic_cast<Enemy*>(e->obj))
 			{
 				Enemy* enemy = dynamic_cast<Enemy*>(e->obj);
@@ -569,4 +563,36 @@ int CMario::getCurrentState() {
 	if (this->state != NULL)
 		return this->state->current_state;
 	else return -1;
+}
+
+void CMario::proccessOverlapping()
+{
+	RECT mario_rect;
+	float m_l, m_t, m_r, m_b;
+	GetBoundingBox(m_l, m_t, m_r, m_b);
+
+	mario_rect.top = m_t;
+	mario_rect.left = m_l;
+	mario_rect.right = m_r;
+	mario_rect.bottom = m_b;
+
+	for (size_t i = 0; i < coObjects.size(); i++)
+	{
+		RECT obj_rect;
+		float l, t, r, b;
+		coObjects.at(i)->GetBoundingBox(l, t, r, b);
+		obj_rect.top = t;
+		obj_rect.left = l;
+		obj_rect.right = r;
+		obj_rect.bottom = b;
+
+		bool isOverlapping = CGame::GetInstance()->isColliding(mario_rect, obj_rect);
+
+		if (isOverlapping && dynamic_cast<Item*>(coObjects.at(i))) {
+			Item* item = dynamic_cast<Item*>(coObjects.at(i));
+			item->handleIsCollected();
+			if(!item->isCollected())
+				this->handleCollectItem(item->type);
+		}
+	}
 }

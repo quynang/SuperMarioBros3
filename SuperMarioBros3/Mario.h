@@ -96,6 +96,7 @@ class CMario : public MovableObject
 	friend class StandOnMovingBarState;
 	CGameObject* item_holding = NULL;
 	void processCollision();
+	void proccessOverlapping();
 public:
 	int power = 0;
 	bool mission_passed = false;

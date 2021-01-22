@@ -80,6 +80,8 @@ void CGameObject::CalcPotentialCollisions(
 	{
 		//Exclude player from list object to check collision of all game object. 
 		if (dynamic_cast<CMario*>(coObjects->at(i))) continue;
+		if (coObjects->at(i)->isIgnoreCheckCollision()) continue;
+
 		LPCOLLISIONEVENT e = SweptAABBEx(coObjects->at(i));
 
 		if (e->t > 0 && e->t <= 1.0f)

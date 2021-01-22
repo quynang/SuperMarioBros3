@@ -62,6 +62,7 @@ public:
 	DWORD dt;
 
 	bool ignore_collide_nx = false;
+	bool ignore_check_collision = false;
 
 	LPANIMATION_SET animation_set;
 
@@ -77,6 +78,7 @@ public:
 	int getNx() { return this->nx; }
 	void RenderBoundingBox();
 	bool isIgnoreCollideNx() { return ignore_collide_nx; }
+	bool isIgnoreCheckCollision() { return ignore_check_collision; }
 	D3DXVECTOR3 GetPosition() { D3DXVECTOR3 p; p.x = x; p.y = y; return p; };
 	
 	void SetAnimationSet(LPANIMATION_SET ani_set) { animation_set = ani_set; }
