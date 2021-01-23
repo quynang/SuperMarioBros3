@@ -36,6 +36,9 @@ void TextNumber::Render() {
 	case 1000:
 		ani = ANI_NUMBER_1000;
 		break;
+	case 1:
+		ani = ANI_1_UP;
+		break;
 	}
 
 	animation_set->at(ani)->Render(x, y);

@@ -10,6 +10,7 @@
 #define ANI_NUMBER_400	2
 #define ANI_NUMBER_800	3
 #define ANI_NUMBER_1000	4
+#define ANI_1_UP	5
 class TextNumber : public Effect
 {
 	float vy;

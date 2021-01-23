@@ -533,6 +533,7 @@ void CMario::handleCollectItem(int item_type)
 	case ITEM_GREEN_MUSHROOM:
 		{
 			((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(1000);
+			EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y, 1);
 		};
 		break;
 	}
