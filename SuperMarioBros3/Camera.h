@@ -17,5 +17,6 @@ public:
 	int getWidth() { return this->width; }
 	int getHeight() { return this->height; }
 	void GetCamPosition(float& x, float& y) { x = this->x; y = this->y; };
+	void SetCamPositionX(float x) { this->x = x; }
 	static Camera* GetInstance();
 };
