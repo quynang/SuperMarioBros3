@@ -5,6 +5,7 @@
 #define ITEM_COIN_50	3
 #define ITEM_GREEN_MUSHROOM	4
 class Item : public MovableObject {
+protected:
 	bool is_collected = false;
 public:
 	Item() { this->ignore_check_collision = true; }

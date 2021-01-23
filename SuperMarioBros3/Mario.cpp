@@ -590,9 +590,12 @@ void CMario::proccessOverlapping()
 
 		if (isOverlapping && dynamic_cast<Item*>(coObjects.at(i))) {
 			Item* item = dynamic_cast<Item*>(coObjects.at(i));
-			item->handleIsCollected();
-			if(!item->isCollected())
+			
+			if (!item->isCollected())
+			{
+				item->handleIsCollected();
 				this->handleCollectItem(item->type);
+			}
 		}
 	}
 }

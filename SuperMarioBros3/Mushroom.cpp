@@ -118,8 +118,10 @@ void Mushroom::SetState(int state)
 
 void Mushroom::handleIsCollected()
 {
+	
 	if (!is_dead)
 	{
+		this->is_collected = true;
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(1000);
 		this->is_dead = true;
 	}
