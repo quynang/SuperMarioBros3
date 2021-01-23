@@ -60,6 +60,7 @@ void IdleState::handleKeyState(CMario& mario, BYTE* states) {
 void IdleState::update(CMario& mario, DWORD dt) {
 
 	mario.vx = 0;
+	mario.is_running = false;
 
 };
 

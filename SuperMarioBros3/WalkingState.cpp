@@ -4,6 +4,7 @@
 #include "IdleState.h"
 #include "JumpingState.h"
 #include "FlyingState.h"
+#include "FallingState.h"
 
 void WalkingState::handleOnKeyUp(CMario& mario, int keyCode) {
 
@@ -26,11 +27,13 @@ void WalkingState::handleOnKeyDown(CMario& mario, int keyCode) {
 	case DIK_X:
 		if (mario.power == 7 && mario.type == MARIO_TYPE_RACCOON)
 			mario.state = new FlyingState();
+		break;
 	case DIK_A:
 		mario.is_running = true;
 		break;
 	case DIK_S:
 		mario.state = new JumpingState();
+		break;
 
 	}
 };
