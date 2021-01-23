@@ -2,6 +2,19 @@
 #include "Effect.h"
 #define STEP_DRAWING_TEXT_1	0
 #define STEP_DRAWING_TEXT_2	1
+
+#define CARD_TYPE_STAR	0
+#define CARD_TYPE_PLANT	1
+#define CARD_TYPE_MUSHROOM	2
+
+#define CARD_TYPE_STAR_SPRITE_ID	94003
+#define CARD_TYPE_PLANT_SPRITE_ID	94004
+#define CARD_TYPE_MUSHROOM_SPRITE_ID	94005
+
+#define TIME_STEP_1	200
+#define TIME_STEP_2	400
+#define TIME_STEP_3	2000
+
 #define MAX_Y	40
 class CollectCard : public Effect
 {

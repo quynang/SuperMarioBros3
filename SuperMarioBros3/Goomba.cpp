@@ -95,7 +95,7 @@ void CGoomba::SetState(int state)
 			y += GOOMBA_BBOX_HEIGHT - GOOMBA_BBOX_HEIGHT_DIE;
 			vx = 0;
 			vy = 0;
-			EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - 10, 100);
+			EffectFactory::GetInstance()->create(TEXT_NUMBER, this->x, this->y - GOOMBA_BBOX_HEIGHT_DIE, 100);
 			((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->UpdateScore(100);
 			break;
 		case GOOMBA_STATE_WALKING:

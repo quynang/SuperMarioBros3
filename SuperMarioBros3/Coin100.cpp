@@ -36,7 +36,7 @@ void Coin100::SetStep(int step) {
 	switch (step)
 	{
 	case BOUNCING_STEP:
-		vy = -0.3f;
+		vy = COIN_EFFECT_BOUNCING_SPEED;
 		break;
 	case FALL_DOWN_STEP:
 		this->charge_Y = 0;

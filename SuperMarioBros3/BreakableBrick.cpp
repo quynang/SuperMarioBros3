@@ -36,13 +36,13 @@ void BreakableBrick::ProduceItem() {
 
 void BreakableBrick::handleWasAttacked() {
 	if (!is_dead)
-	EffectFactory::GetInstance()->create(BROKEN, this->x + 8, this->y - 8);
+	EffectFactory::GetInstance()->create(BROKEN, this->x + BREAKABLE_BRICK_BBOX_WIDTH/2, this->y - BREAKABLE_BRICK_BBOX_HEIGHT/2);
 	this->is_dead = true;	
 }
 
 void BreakableBrick::handleWasHitByHeadOfMario() {
 	if (!is_dead)
-	EffectFactory::GetInstance()->create(BROKEN, this->x + 8, this->y - 8);
+	EffectFactory::GetInstance()->create(BROKEN, this->x + BREAKABLE_BRICK_BBOX_WIDTH/2, this->y - BREAKABLE_BRICK_BBOX_HEIGHT/2);
 	this->is_dead = true;	
 }
 

@@ -19,7 +19,7 @@ void MarioTypeUp::Update(DWORD dt) {
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->setIsVisible(false);
 	}
 	counter_time += dt;
-	if (counter_time >= 600) {
+	if (counter_time >= MAX_TIME_TYPE_UP_EFFECT) {
 		this->is_finished = true;
 		CGame::GetInstance()->EnableKeyboard();
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->turnOnGameObjectUpdate();

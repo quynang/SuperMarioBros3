@@ -2,6 +2,7 @@
 #include "EffectFactory.h"
 #include "Font.h"
 #include "Game.h"
+#define WORD_MAP_SCENE_ID	0
 CollectCard::CollectCard(float x, float y, int card_type) {
 	this->x = x;
 	this->y = y;
@@ -12,17 +13,17 @@ CollectCard::CollectCard(float x, float y, int card_type) {
 
 void CollectCard::Update(DWORD dt) {
 	counter_time += dt;
-	if (counter_time > 200)
+	if (counter_time > TIME_STEP_1)
 		SetStep(STEP_DRAWING_TEXT_1);
 
-	if (counter_time > 400) {
+	if (counter_time > TIME_STEP_2) {
 		SetStep(STEP_DRAWING_TEXT_2);
 	}
 
-	if (counter_time > 2000)
+	if (counter_time > TIME_STEP_3)
 	{
 		this->is_finished = true;
-		CGame::GetInstance()->SwitchScene(0);
+		CGame::GetInstance()->SwitchScene(WORD_MAP_SCENE_ID);
 	}
 		
 };
@@ -34,14 +35,14 @@ void CollectCard::Render() {
 		float card_sprite_id;
 		switch (card_type)
 		{
-		case 0:
-			card_sprite_id = 94003;
+		case CARD_TYPE_STAR:
+			card_sprite_id = CARD_TYPE_STAR_SPRITE_ID;
 			break;
-		case 1:
-			card_sprite_id = 94005;
+		case CARD_TYPE_MUSHROOM:
+			card_sprite_id = CARD_TYPE_PLANT_SPRITE_ID;
 			break;
-		case 2:
-			card_sprite_id = 94004;
+		case CARD_TYPE_PLANT:
+			card_sprite_id = CARD_TYPE_MUSHROOM_SPRITE_ID;
 			break;
 			
 		}

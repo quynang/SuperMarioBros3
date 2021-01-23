@@ -16,7 +16,7 @@ void EnteringPipe::Update(DWORD dt) {
 	//TODO: This is tricky and temporary solution. Let's refactor if we can find better solution.
 	
 	counter_y += dt * SPEED_Y;
-	if (counter_y < 32)
+	if (counter_y < MAX_Y_ENTERING_PIPE_EFFECT)
 	{
 		this->y += dt*SPEED_Y;
 	}
@@ -26,7 +26,7 @@ void EnteringPipe::Update(DWORD dt) {
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->setIsVisible(false);
 	}
 	counter_time += dt;
-	if (counter_time >= 600) {
+	if (counter_time >= MAX_TIME_ENTERING_PIPE_EFFECT) {
 		CGame::GetInstance()->EnableKeyboard();
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->turnOnGameObjectUpdate();
 		CGame::GetInstance()->SwitchScene(scence_id);

@@ -10,6 +10,8 @@
 #define MARIO_TYPE_BIG	2
 #define MARIO_TYPE_RACCOON	3
 #define MARIO_TYPE_FIRE	4
+#define MAX_Y_ENTERING_PIPE_EFFECT	32
+#define MAX_TIME_ENTERING_PIPE_EFFECT	600
 class EnteringPipe : public Effect
 {
 	int scence_id;

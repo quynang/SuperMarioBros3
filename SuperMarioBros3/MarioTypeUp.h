@@ -4,6 +4,7 @@
 #define MARIO_TYPE_UP_ANI_LEFT_INDEX	0
 #define MARIO_TYPE_UP_ANI_RIGHT_INDEX	1
 
+#define MAX_TIME_TYPE_UP_EFFECT	600
 class MarioTypeUp : public Effect
 {
 	int nx;
