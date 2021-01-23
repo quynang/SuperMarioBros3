@@ -16,6 +16,12 @@ using namespace std;
 #define SCENE_SECTION_POINTS	5
 #define MAX_SCENE_LINE 1024
 
+#define BACKGROUND_SPRITE_ID	1
+#define CURTAIN_SPRITE_ID	2
+#define GROUND_SPRITE_ID	3
+
+#define NUMBER_3_ANI_ID	1
+
 IntroScene::IntroScene(int id, LPCWSTR filePath):
 	CScene(id, filePath)
 {
@@ -132,12 +138,28 @@ void IntroScene::Load()
 
 void IntroScene::Update(DWORD dt)
 {
+	curtain_y -= 3;
 }
+
+void IntroScene::RenderAction1()
+{
+	CSprites::GetInstance()->Get(CURTAIN_SPRITE_ID)->DrawOnScreen(0, 5 + curtain_y, 255);
+	CSprites::GetInstance()->Get(GROUND_SPRITE_ID)->DrawOnScreen(0, 190, 255);
+}
+
+void IntroScene::RenderAction2()
+{
+	CSprites::GetInstance()->Get(BACKGROUND_SPRITE_ID)->DrawOnScreen(0, 5, 255);
+	CAnimations::GetInstance()->Get(NUMBER_3_ANI_ID)->Render(112, 101, 255);
+}
+
 
 void IntroScene::Render()
 {
-	CSprites::GetInstance()->Get(1)->DrawOnScreen(0, 5, 255);
-	CAnimations::GetInstance()->Get(1)->Render(112, 101, 255);
+	if (curtain_y > -200) RenderAction1();
+	else RenderAction2();
+
+
 }
 
 /*
