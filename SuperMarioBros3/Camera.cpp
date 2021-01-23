@@ -8,6 +8,8 @@
 #define HUB_HEIGHT	35
 #define CAMERA_SPEED_X	0.06f
 
+#define START_Y_CAMERA_DOWN	350
+#define STAT_Y_CAMERA_UP 200
 Camera* Camera::_instance = NULL;
 
 Camera::Camera()
@@ -46,13 +48,13 @@ void Camera::Update(DWORD dt)
 		this->y = CMap::GetInstance()->getHeight() - this->height;
 		if(mario->getCurrentState() == FLYING)
 			this->y = player_y - this->height / 2;
-		if(player_y < 200)
+		if(player_y < STAT_Y_CAMERA_UP)
 			this->y = player_y - this->height / 2;
-		if (mario->getCurrentState() == FALLING && mario->flag)
+		if (mario->getCurrentState() == FALLING && mario->camera_flag)
 		{		
 			this->y = player_y - this->height / 2;
 		}
-		if (player_y >= 350) mario->flag = false;
+		if (player_y >= START_Y_CAMERA_DOWN) mario->camera_flag = false;
 
 	}
 

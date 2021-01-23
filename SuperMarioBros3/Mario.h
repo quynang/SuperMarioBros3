@@ -120,7 +120,7 @@ public:
 	void isHurted();
 	void updatePower(DWORD dt);
 	int getCurrentState();
-	bool flag = false;
+	bool camera_flag = false;
 
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 };

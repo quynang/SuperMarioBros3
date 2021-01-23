@@ -40,7 +40,7 @@
 #include "DieState.h"
 #include "StandOnMovingBarState.h"
 
-
+#define Y_VALUE_MARIO_IS_UP_MAP 140
 CMario::CMario() : MovableObject()
 {
 	SetAnimationSetById(MARIO_ANI_SET_ID);
@@ -51,7 +51,7 @@ CMario::CMario() : MovableObject()
 
 void CMario::Update(DWORD dt)
 {
-	if (this->y < 140) this->flag = true;
+	if (this->y < Y_VALUE_MARIO_IS_UP_MAP) this->camera_flag = true;
 
 	if (mission_passed) {
 		state = new WalkingState();
